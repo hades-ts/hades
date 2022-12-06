@@ -3,7 +3,7 @@
 Typescript bot framework using [Inversify.js](https://inversify.io/) and [Discord.js](https://discord.js.org/#/).
 
 <p align="center">
-  <img width="460" height="300" src="./libs/hades/hades.png">
+  <img src="./libs/hades/hades.png">
 </p>
 
 <pre style="text-align: center;">
