@@ -2,7 +2,9 @@
 
 Typescript bot framework using [Inversify.js](https://inversify.io/) and [Discord.js](https://discord.js.org/#/).
 
-![hades.png](./libs/hades/hades.png)
+<p align="center">
+  <img width="460" height="300" src="./libs/hades/hades.png">
+</p>
 
 <pre style="text-align: center;">
     Hades is a <i>dependency-injection oriented framework</i>. 
