@@ -1,0 +1,46 @@
+{
+  "name": "@hades-ts/lojban",
+  "version": "0.0.1",
+  "description": "Lojban stuff for Hades bots",
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://github.com/hades-ts/hades#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hades-ts/hades.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hades-ts/text-commands/issues"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rm -fr ./dist; tsc -p tsconfig.json",
+    "watch": "tsc -p tsconfig.json -w"
+  },
+  "devDependencies": {
+    "@types/node": "~18.11.11",
+    "@hades-ts/hades": "workspace:^0.0.1",
+    "@hades-ts/text-commands": "workspace:^0.0.1",
+    "ts-node": "~10.9.1",
+    "tsconfig-paths": "~4.1.1",
+    "typescript": "~4.9.3",
+    "inversify": "~6.0.1",
+    "reflect-metadata": "^0.1.13"
+  },
+  "peerDependencies": {
+    "@discordjs/rest": "^0.5.0",
+    "@hades-ts/hades": "workspace:^0.0.1",
+    "@hades-ts/text-commands": "workspace:^0.0.1",
+    "discord-api-types": "^0.33.5",
+    "discord-command-parser": "^1.5.3",
+    "discord.js": "^13.8.0",
+    "inversify": "^6.0.1",
+    "inversify-binding-decorators": "^4.0.0",
+    "inversify-config-injection": "github:apoptosis/inversify-config-injection",
+    "reflect-metadata": "^0.1.13"
+  }
+}
