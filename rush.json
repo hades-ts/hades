@@ -424,6 +424,11 @@
       "shouldPublish": true
     },
     {
+      "packageName": "@hades-ts/docs",
+      "projectFolder": "apps/docs",
+      "shouldPublish": false
+    },
+    {
       "packageName": "@hades-ts/example-bot",
       "projectFolder": "apps/example-bot",
       "shouldPublish": false

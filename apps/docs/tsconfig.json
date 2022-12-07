@@ -1,0 +1,29 @@
+{
+  // This file is not used in compilation. It is here just for a nice editor experience.
+  "extends": "@tsconfig/docusaurus/tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "jsx": "react-jsx",
+    "target": "es2022",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "resolveJsonModule": true,
+  },
+  "include": [
+    "config/**/*.ts",
+    "docs/**/*.ts",
+    "docs/**/*.tsx",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+  ],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "NodeNext",
+      "target": "ES2022",
+      "experimentalDecorators": true,
+      "emitDecoratorMetadata": true
+    },
+  }
+}

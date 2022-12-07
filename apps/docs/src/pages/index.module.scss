@@ -1,0 +1,45 @@
+/**
+ * CSS files with the .module.css suffix will be treated as CSS modules
+ * and scoped locally.
+ */
+
+.heroBanner {
+  text-align: center;
+
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-start;
+
+  .hero__title,
+  .hero__subtitle {
+    color: white;
+    text-shadow: 0px 0px 10px black, 0px 0px 30px black;
+  }
+}
+
+@media screen and (max-width: 996px) {
+  .heroBanner {
+    padding: 2rem;
+  }
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  margin-right: 15vw;
+  margin-top: 15vh;
+
+}
+
+splash {
+  width: 100%;
+  background-repeat: no-repeat !important;
+  background-position-y: bottom !important;
+  background-position-x: left !important;
+  background-size: contain !important;
+  background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.1) ), url("/img/hades.png")
+}
