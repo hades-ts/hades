@@ -19,7 +19,7 @@ jobs:
       - name: Rush Update
         run: node common/scripts/install-run-rush.js update
       - name: Rush rebuild
-        run: node common/scripts/install-run-rush.js rebuild --verbose --production
+        run: node common/scripts/install-run-rush.js rebuild
       # take apps/docs/build as github pages
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
