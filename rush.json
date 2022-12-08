@@ -27,6 +27,11 @@
       "shouldPublish": true
     },
     {
+      "packageName": "@hades-ts/slash-commands",
+      "projectFolder": "libs/slash-commands",
+      "shouldPublish": true
+    },
+    {
       "packageName": "@hades-ts/lojban",
       "projectFolder": "libs/lojban",
       "shouldPublish": true
