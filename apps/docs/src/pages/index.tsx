@@ -10,7 +10,8 @@ import HomepageFeatures from '../components/HomepageFeatures';
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
   return (
-    <splash className={clsx('hero', styles.heroBanner)}>
+    <div className={clsx(styles.heroBanner)}>
+      <img src="/img/hades.png" />
       <div className={styles.container}>
         <div style={{display: 'flex', flexDirection: 'column'}}>
           <h1 className={`hero__title ${styles.hero__title}`}>{siteConfig.title}</h1>
@@ -18,7 +19,7 @@ function HomepageHeader() {
           <HomepageFeatures />
         </div>
       </div>
-    </splash>
+    </div>
   );
 }
 
