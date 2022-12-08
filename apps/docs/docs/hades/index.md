@@ -13,6 +13,6 @@ Typescript bot framework using [Inversify.js](https://inversify.io/) and [Discor
 
 Hades is a <i>dependency-injection oriented framework</i>.
 
-Read more about DI <a href="./docs/solid-code.md">here</a> and <a href="./docs/di.md">here</a>.
+Read more about DI <a href="./guides/solid-code">here</a> and <a href="./guides/di">here</a>.
 
 :::

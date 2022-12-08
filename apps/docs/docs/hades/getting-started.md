@@ -3,6 +3,7 @@
 The basic bot starts with extending `HadesBotService`:
 
 ```ts
+// src/services/BotService.ts
 import { HadesBotService, singleton } from "hades";
 
 @singleton(BotService)
@@ -25,10 +26,9 @@ within the container as a singleton.
 In our `index.ts` we can configure the container:
 
 ```ts
+// src/index.ts
 import "reflect-metadata";
-
 import { HadesContainer } from "hades";
-import { installTextCommands } from "hades/dist/text-commands";
 
 import { BotService } from "./services/BotService";
 
@@ -47,13 +47,17 @@ We can finally login to Discord as the bot.
 
 ## Writing the Config
 
-Add your token to `config/default.json`:
+Add your token and user ID to `config/default.json`:
 
 ```json
 {
     "discordToken": "your bot token here",
+    "botOwner": "your discord id here"
 }
 ```
 
-That's it. The bot should now boot up and connect to any servers you've added
-it to. Of course it doesn't do anything...yet!
+That's it. 
+
+If you `ts-node src/index.ts` the bot should now boot up and connect to any servers you've added it to. 
+
+Of course it doesn't do anything...yet!
