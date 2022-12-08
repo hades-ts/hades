@@ -1,10 +1,11 @@
 import { inject } from 'inversify';
 
 import { singleton, DiscordService } from "@hades-ts/hades";
-import { TextCommandBotService } from "@hades-ts/text-commands";
+import { SlashCommandBotService } from "@hades-ts/slash-commands";
+// import { TextCommandBotService } from "@hades-ts/text-commands";
 
 @singleton(BotService)
-export class BotService extends TextCommandBotService {
+export class BotService extends SlashCommandBotService {
 
     @inject(DiscordService)
     discord: DiscordService;
@@ -16,5 +17,7 @@ export class BotService extends TextCommandBotService {
         for (const guild of guilds.values()) {
             console.log(`-- "${guild.name}" has ${Array.from(guilds.values())[0].memberCount} members.`)
         }
+
+        await super.onReady()
     }
 }
