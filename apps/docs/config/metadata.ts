@@ -1,6 +1,6 @@
 export default {
-    title: 'Hades Docs',
-    tagline: 'Documentation for @hades-ts/hades and related packages.',
+    title: '@hades-ts/hades',
+    tagline: 'Discord bot framework built with Inversify and Discord.js.',
     url: 'https://hades-ts.github.io',
     baseUrl: '/',
 }

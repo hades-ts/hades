@@ -4,23 +4,23 @@ import styles from './styles.module.scss';
 
 type FeatureItem = {
   title: string;
-  Svg: React.ComponentType<React.ComponentProps<'svg'>>;
+  url: string;
   description: JSX.Element;
 };
 
 const FeatureList: FeatureItem[] = [
   {
     title: 'Easy to Use',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    url: 'img/boon_codex.png',
     description: (
       <>
-        <code>@hades-ts/hades</code> was designed from the ground up to drastically streamline bot design.
+        Designed from the ground up to streamline bot design.
       </>
     ),
   },
   {
     title: 'Scales with your Project',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    url: 'img/boon_heart.png',
     description: (
       <>
         As your project grows, you don't need to change your approach.
@@ -29,20 +29,20 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Promotes Clean Architecture',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    url: 'img/boon_gemstone.png',
     description: (
       <>
-        Automatic dependency management throughout your application lets you focus on your bot's business logic.
+        Automatic dependency management lets you focus on your bot's business logic.
       </>
     ),
   },
 ];
 
-function Feature({ title, Svg, description }: FeatureItem) {
+function Feature({ title, url, description }: FeatureItem) {
   return (
     <div className={styles.feature}>
       <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
+        <img className={styles.featureSvg} src={url} />
       </div>
       <div className="text--center padding-horiz--md">
         <h3>{title}</h3>
