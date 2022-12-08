@@ -1,10 +1,20 @@
 import React from 'react';
+import CodeBlock from '@site/src/theme/CodeBlock';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import clsx from 'clsx';
 
 import styles from './index.module.scss';
 import HomepageFeatures from '../components/HomepageFeatures';
+
+const snippet = `import { HadesBotService, singleton } from "hades";
+
+@singleton()
+export class BotService extends HadesBotService {
+    async onReady() {
+        console.log(\`Logged in as \${this.client.user.username}.\`);
+    }
+}`
 
 
 function HomepageHeader() {
@@ -16,6 +26,9 @@ function HomepageHeader() {
         <div style={{display: 'flex', flexDirection: 'column'}}>
           <h1 className={`hero__title ${styles.hero__title}`}>{siteConfig.title}</h1>
           <p className={`hero__subtitle ${styles.hero__subtitle}`}>{siteConfig.tagline}</p>
+          <div className={styles.snippet}>
+            <CodeBlock language="jsx">{snippet}</CodeBlock>
+          </div>
           <HomepageFeatures />
         </div>
       </div>
