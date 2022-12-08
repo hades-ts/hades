@@ -1,6 +1,6 @@
 import { Collection } from "discord.js";
 import { Container } from "inversify";
-import { SlashCommandMeta } from "../../metadata/slashCommandMeta";
+import { SlashCommandMeta } from "../../metadata/SlashCommandMeta";
 import { SlashCommandContext } from "../../models/SlashCommandContext";
 import { SlashArgInstaller } from "./SlashArgInstaller";
 import { SlashArgParserRegistry } from "./SlashArgParserRegistry";

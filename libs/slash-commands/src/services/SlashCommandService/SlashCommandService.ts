@@ -26,7 +26,7 @@ export class SlashCommandService {
 
     if (factory) {
       try {
-        const command = await factory.create(ctx);
+        const command = await factory.create(ctx) as any;
         await command.execute();
       } catch (e: unknown) {
         if (e instanceof SlashArgError) {
