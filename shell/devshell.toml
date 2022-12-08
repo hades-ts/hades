@@ -1,0 +1,20 @@
+[devshell]
+name = "Hades"
+packages = [ "alejandra"
+           , "nodePackages.prettier"
+           , "shfmt"
+           , "editorconfig-checker"
+           , "nodejs"
+]
+
+[[commands]]
+package = "treefmt"
+
+[[commands]]
+package = "nodePackages.pnpm"
+category = "package management"
+
+# TODO: Add rush to nixpkgs
+# [[commands]]
+# package = "nodePackages.rush"
+# category = "package management"
