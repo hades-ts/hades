@@ -27,7 +27,7 @@ export default function Home(): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
   return (
     <Layout
-      title={`@hades-ts/solid`}
+      title={`@hades-ts/hades`}
       description="Build SOLID Discord bots.">
       <HomepageHeader />
     </Layout>
