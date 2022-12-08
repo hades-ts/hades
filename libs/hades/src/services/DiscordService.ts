@@ -1,4 +1,3 @@
-import { ChannelType } from 'discord-api-types/v10';
 import { CategoryChannel, Collection, Guild, GuildBasedChannel, TextChannel } from 'discord.js';
 import { inject } from 'inversify';
 

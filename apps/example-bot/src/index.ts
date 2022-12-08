@@ -19,10 +19,9 @@ import "@hades-ts/lojban/dist/text-commands/ToLojban";
     const container = new HadesContainer({
         installers: [
             new TextCommandsInstaller(),
+            installLojbanSupport,
         ],
     });
-
-    installLojbanSupport(container);
 
     const bot = container.get(BotService);
     await bot.login();

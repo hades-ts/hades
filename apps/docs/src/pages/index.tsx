@@ -7,12 +7,22 @@ import clsx from 'clsx';
 import styles from './index.module.scss';
 import HomepageFeatures from '../components/HomepageFeatures';
 
-const snippet = `import { HadesBotService, singleton } from "hades";
-
-@singleton()
+const snippet = `@singleton()
 export class BotService extends HadesBotService {
+
+    @inject(ILogger) log: ILogger;
+
     async onReady() {
-        console.log(\`Logged in as \${this.client.user.username}.\`);
+        this.log.info(
+          \`Logged in as \${this.client.user.username}.\`
+        );
+    }
+
+    async onMessage(message: Message) {
+        const highlight = \`<@!\${this.client.user.id}>\`;
+        if (message.content.startsWith(highlight)) {
+            await message.reply('Hello!');
+        }
     }
 }`
 

@@ -1,6 +1,10 @@
 {
     "order": [
         "installation",
-        "getting-started"
+        "getting-started",
+        "hades-container",
+        "bot-service",
+        "events",
+        "discord-service"
     ]
 }
