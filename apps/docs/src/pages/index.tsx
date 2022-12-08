@@ -18,10 +18,9 @@ export class BotService extends HadesBotService {
         );
     }
 
-    async onMessage(message: Message) {
-        const highlight = \`<@!\${this.client.user.id}>\`;
-        if (message.content.startsWith(highlight)) {
-            await message.reply('Hello!');
+    async onMessage({ content, reply }: Message) {
+        if (this.isHighlight(content))) {
+            await reply('Hello!');
         }
     }
 }`

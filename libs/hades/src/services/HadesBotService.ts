@@ -54,6 +54,14 @@ export class HadesBotService {
         return this.client.login(this.token.toString());
     }
 
+    get highlight() {
+        return `<@!${this.client.user.id}>`;
+    }
+
+    protected isHighlight(content: string) {
+        return content.startsWith(this.highlight);
+    }
+
     /* logging */
     async onDebug(...args: any[]) { console.debug(...args); }
     async onError(...args: any[]) { console.error(...args); }
