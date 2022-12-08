@@ -15,6 +15,8 @@ export class HadesClient extends Client {
                 GatewayIntentBits.Guilds,
                 GatewayIntentBits.MessageContent,
                 GatewayIntentBits.GuildMessages,
+                GatewayIntentBits.GuildIntegrations,
+                GatewayIntentBits.DirectMessages
             ]
         })
     }
