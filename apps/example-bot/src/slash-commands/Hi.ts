@@ -1,16 +1,25 @@
-import { command, SlashCommand } from "@hades-ts/slash-commands";
+import { user, command, SlashCommand } from "@hades-ts/slash-commands";
+import { GuildMember } from "discord.js";
 
+const avatarEmbed = (member: GuildMember) => ({
+    "embeds": [
+        {
+            "image": {
+                "url": member.avatarURL(),
+            }
+        }
+    ]
+});
 
-@command("hi", {
-    name: "hi",
-    description: "Say hi to the bot.",
-    type: "CHAT_INPUT",
-})
+@command("hi", { description: "Say hi to the bot." })
 export class HiCommand extends SlashCommand {
 
-    execute() {
-        return this.reply(
-            "hi"
-        );
+    @user({ description: "Who to say hi to." })
+    who: GuildMember;
+
+    async execute() {
+        const reply = `Hi <@!${this.who.id}>!`
+        const embed = avatarEmbed(this.who);
+        return this.reply(reply, embed);
     }
 }

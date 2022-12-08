@@ -18,7 +18,7 @@ export abstract class SlashCommand {
   discord: DiscordService;
 
   /** main command logic handler */
-  abstract execute(): Promise<any>;
+  abstract execute(): Promise<void>;
 
   get interaction() {
     return this.context.interaction;

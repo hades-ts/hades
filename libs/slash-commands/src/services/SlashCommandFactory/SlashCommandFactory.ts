@@ -1,6 +1,7 @@
 import { Collection } from "discord.js";
 import { Container } from "inversify";
 import { SlashCommandMeta } from "../../metadata/SlashCommandMeta";
+import { SlashCommand } from "../../models";
 import { SlashCommandContext } from "../../models/SlashCommandContext";
 import { SlashArgInstaller } from "./SlashArgInstaller";
 import { SlashArgParserRegistry } from "./SlashArgParserRegistry";
@@ -27,17 +28,19 @@ export class SlashCommandFactory {
   argInstallers = new Collection<string, SlashArgInstaller>();
 
   constructor(parentContainer: Container, meta: SlashCommandMeta) {
+    console.log(`Creating factory for ${meta.name}...`)
     this.parentContainer = parentContainer;
     this.meta = meta;
 
     this.inferenceService = parentContainer.get(SlashArgParserResolver);
     this.parserService = parentContainer.get(SlashArgParserRegistry);
-
     // setup arguments
     for (let [argName, argMeta] of meta.args) {
+      console.log(`Creating arg installer for ${meta.name}.${argName}`)
       const parserType =
         argMeta.parserType || this.inferenceService.infer(argMeta.type);
       const parser = this.parserService.parserFor(parserType);
+      console.log(`Decided on parser: ${parserType.name}`)
       const arg = new SlashArgInstaller(argMeta, parser);
       this.argInstallers.set(argName, arg);
     }
@@ -97,10 +100,10 @@ export class SlashCommandFactory {
     const subContainer = this.createSubContainer(context);
 
     // parse, validate and bind argument values
-    // await this.installArguments(subContainer, context);
+    await this.installArguments(subContainer, context);
 
     // resolve command instance
-    const inst = subContainer.get(this.meta.target);
+    const inst = subContainer.get<SlashCommand>(this.meta.target);
 
     // run instance-method validators
     // await this.runMethodValidators(inst);

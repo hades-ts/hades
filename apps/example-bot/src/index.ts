@@ -5,7 +5,7 @@ dotenv.config();
 import { HadesContainer } from '@hades-ts/hades';
 import { installLojbanSupport } from "@hades-ts/lojban";
 import { TextCommandsInstaller } from "@hades-ts/text-commands"
-import { SlashCommandsInstaller } from "@hades-ts/slash-commands"
+import { SlashCommandsInstaller } from  "@hades-ts/slash-commands"
 
 
 import { BotService } from './services/BotService';
