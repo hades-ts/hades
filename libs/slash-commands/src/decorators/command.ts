@@ -1,13 +1,11 @@
+import { ChatInputApplicationCommandData } from "discord.js";
 import { injectable } from "inversify";
 
-import {
-  getSlashCommandMeta,
-  SlashCommandRegistrationDetails,
-} from "../metadata";
+import { getSlashCommandMeta } from "../metadata";
 
 
 export type CommandOptions = 
-  Omit<SlashCommandRegistrationDetails, 'name' | 'type'>
+  Omit<ChatInputApplicationCommandData, 'name' | 'type'>
 
 /**
  * Marks a SlashCommand class as a command.
@@ -24,7 +22,7 @@ export function command(
       ...registrationDetails,
       name,
       type: "CHAT_INPUT"
-    } as SlashCommandRegistrationDetails;
+    } as ChatInputApplicationCommandData;
     meta.target = target;
     return injectable()(target);
   };

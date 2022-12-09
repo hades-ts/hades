@@ -1,12 +1,11 @@
-import { BaseCommandInteraction, Client } from "discord.js";
+import { BaseCommandInteraction, ChatInputApplicationCommandData, Client } from "discord.js";
 import { inject } from "inversify";
 import { singleton } from "@hades-ts/hades";
 import { SlashArgError } from "../../errors/SlashArgError";
 import { SlashCommandContext } from "../../models/SlashCommandContext";
 import { SlashCommandFactoryRegistry } from "../SlashCommandFactory/SlashCommandFactoryRegistry";
 import { SlashParserService } from "./SlashParserService";
-import { Command } from "../../builtins/Command";
-import { getSlashArgMeta, getSlashCommandMetas } from "../../metadata/api";
+import { getSlashCommandMetas } from "../../metadata/api";
 
 @singleton(SlashCommandService)
 export class SlashCommandService {
@@ -56,16 +55,12 @@ export class SlashCommandService {
   }
 
   async registerCommands(client: Client) {
-    console.log("Registering commands...?");
     const config = this.getCommandRegistrationMeta()
-    console.log(JSON.stringify(config, null, 2))
-    console.log('---')
     await client.application.commands.set(config);
   }
 
-  protected getCommandRegistrationMeta(): Command[] {
+  protected getCommandRegistrationMeta(): ChatInputApplicationCommandData[] {
     const commands = getSlashCommandMetas().map((meta) => {
-      console.log(`Command: ${meta.name}`)
       return {
         ...meta.registrationDetails,
         options: meta.args.map((arg) => arg.options)
