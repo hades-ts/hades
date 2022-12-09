@@ -1,23 +1,36 @@
 import { inject } from 'inversify';
+import { Interaction, Message } from 'discord.js';
 
-import { singleton, DiscordService } from "@hades-ts/hades";
-import { SlashCommandBotService } from "@hades-ts/slash-commands";
-// import { TextCommandBotService } from "@hades-ts/text-commands";
+import { singleton, DiscordService, HadesBotService } from "@hades-ts/hades";
+import { SlashCommandService } from "@hades-ts/slash-commands";
+import { TextCommandService } from '@hades-ts/text-commands';
 
 @singleton(BotService)
-export class BotService extends SlashCommandBotService {
+export class BotService extends HadesBotService {
 
     @inject(DiscordService)
     discord: DiscordService;
 
+    @inject(SlashCommandService)
+    slashCommands: SlashCommandService;
+
+    @inject(TextCommandService)
+    textCommands: TextCommandService
+
     async onReady() {
-        const guilds = this.discord.guilds;
         console.log(`Logged in as ${this.client.user.username}.`);
-        console.log(`-- in ${guilds.size} guilds`);
-        for (const guild of guilds.values()) {
-            console.log(`-- "${guild.name}" has ${Array.from(guilds.values())[0].memberCount} members.`)
+        await this.slashCommands.registerCommands(this.client);
+    }
+
+    async onMessage<T extends Message>(message: T) {
+        this.textCommands.dispatch(message);
+    }    
+
+    async onInteractionCreate<T extends Interaction>(interaction: T) {
+        if (!interaction.isCommand() || interaction.isContextMenu()) {
+          return;
         }
 
-        await super.onReady()
-    }
+        this.slashCommands.dispatch(interaction);
+    }    
 }

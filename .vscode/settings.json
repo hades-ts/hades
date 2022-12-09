@@ -3,6 +3,7 @@
         "camxes",
         "inversify",
         "lojban",
-        "metas"
+        "metas",
+        "subcontainer"
     ]
 }

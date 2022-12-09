@@ -12,7 +12,7 @@ export class NotMeValidator extends Validator {
     async validate(arg: SlashArgInstaller, interaction: BaseCommandInteraction) {
         const member = interaction.options.get(arg.name).member as GuildMember;
         if (member.id === this.client.user.id) {
-            throw new SlashArgError("You can't check my roles! ;)");
+            throw new SlashArgError("You can't use this command on me.");
         }
     }
 }

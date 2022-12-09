@@ -25,12 +25,4 @@ export class IsUpper extends TextCommand {
             `${this.input} is indeed uppercase.`
         );
     }
-
-    // @validate("input")
-    // public async validate() {
-    //     const valid = this.input === this.input.toUpperCase();
-    //     if (!valid) {
-    //         throw new TextArgError(`${this.input} is not uppercase.`);
-    //     }
-    // }
 }

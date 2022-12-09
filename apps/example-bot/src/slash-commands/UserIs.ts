@@ -18,14 +18,6 @@ export class UserIsCommand extends SlashCommand {
     @role({ description: "The role to check for." })
     role: Role;
 
-    // @validate("who")
-    // async validateWho() {
-    //     console.log("Validating 'who'.")
-    //     if (this.who.id === this.client.user.id) {
-    //         throw new SlashArgError("You can't check my roles ;)");
-    //     }
-    // }
-
     async execute() {
         console.log(JSON.stringify(this.who, null, 2));
         this.who.roles.cache.has(this.role.id)

@@ -27,7 +27,6 @@ export class SlashCommandFactory {
   argInstallers = new Collection<string, SlashArgInstaller>();
 
   constructor(parentContainer: Container, meta: SlashCommandMeta) {
-    console.log(`Creating factory for ${meta.name}...`)
     this.parentContainer = parentContainer;
     this.meta = meta;
 
@@ -35,11 +34,9 @@ export class SlashCommandFactory {
     this.parserService = parentContainer.get(SlashArgParserRegistry);
     // setup arguments
     for (let [argName, argMeta] of meta.args) {
-      console.log(`Creating arg installer for ${meta.name}.${argName}`)
       const parserType =
         argMeta.parserType || this.inferenceService.infer(argMeta.type);
       const parser = this.parserService.parserFor(parserType);
-      console.log(`Decided on parser: ${parserType.name}`)
       const arg = new SlashArgInstaller(argMeta, parser);
       this.argInstallers.set(argName, arg);
     }
@@ -61,12 +58,8 @@ export class SlashCommandFactory {
    * @param inst Command instance.
    */
   async runMethodValidators(inst: any) {
-      console.log(`Running method validators for ${this.meta.name}...`)
-      console.log(`Found ${this.argInstallers.size} args`)
       for (let [_, arg] of this.argInstallers) {
-          console.log(`Found ${arg.validatorMethods.size} validators`)
           for (let methodName of arg.validatorMethods) {
-              console.log(`Running method validator: ${methodName}... for ${this.meta.name}`)
               const callable = inst[methodName];
               if (callable) {
                   await callable.apply(inst);
@@ -102,7 +95,6 @@ export class SlashCommandFactory {
    * @returns A command instance.
    */
   async create(interaction: BaseCommandInteraction) {
-    console.log(`Creating command instance for ${this.meta.name}...`)
     // subcontainer config
     const subContainer = this.createSubContainer(interaction);
 
@@ -113,7 +105,6 @@ export class SlashCommandFactory {
     const inst = subContainer.get<SlashCommand>(this.meta.target);
 
     // run instance-method validators
-    console.log("WTF??????????????")
     await this.runMethodValidators(inst);
 
     return inst;
