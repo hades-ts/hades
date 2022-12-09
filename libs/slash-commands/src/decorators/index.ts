@@ -7,3 +7,4 @@ export * from './member';
 export * from './parser';
 export * from './role';
 export * from './user';
+export * from './validate';

@@ -1,5 +1,5 @@
 import { Collection } from "discord.js";
-import { Constructor, Newable } from "@hades-ts/hades";
+import { Constructor, InstallerFunc, Newable } from "@hades-ts/hades";
 import { SlashArgParser } from "../parsers/SlashArgParser";
 import { SlashArgParserMeta } from "./SlashArgParserMeta";
 import { SlashCommandMeta } from "./SlashCommandMeta";
@@ -89,4 +89,27 @@ export function setSlashParserMetas(metas: Collection<string, SlashArgParserMeta
   const meta = new SlashArgParserMeta();
   meta.type = target;
   metas.add(meta);
+}
+
+/**
+ * Add a method as a validator for an argument.
+ * @param target Target class object.
+ * @param argName Target argument field name.
+ * @param methodName Validator method name.
+ * @returns
+ */
+export function addSlashValidatorMethod(target: Constructor, argName: string, methodName: string) {
+    const meta = getSlashArgMeta(target, argName);
+    return meta.validatorMethods.add(methodName);
+}
+
+/**
+ * Add an installer for a Validator for the given argument.
+ * @param target Target class object.
+ * @param argName Target argument field name.
+ * @param installer Validator installer.
+ */
+export function addSlashArgValidator(target: Constructor, argName: string, installer: InstallerFunc) {
+    const meta = getSlashArgMeta(target, argName);
+    meta.validatorInstallers.push(installer);
 }

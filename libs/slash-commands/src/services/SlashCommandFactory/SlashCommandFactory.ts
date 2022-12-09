@@ -60,16 +60,20 @@ export class SlashCommandFactory {
    * Invoke validator methods on the given command instance.
    * @param inst Command instance.
    */
-  // async runMethodValidators(inst: any) {
-  //     for (let [_, arg] of this.argInstallers) {
-  //         for (let methodName of arg.validatorMethods) {
-  //             const callable = inst[methodName];
-  //             if (callable) {
-  //                 await callable.apply(inst);
-  //             }
-  //         }
-  //     }
-  // }
+  async runMethodValidators(inst: any) {
+      console.log(`Running method validators for ${this.meta.name}...`)
+      console.log(`Found ${this.argInstallers.size} args`)
+      for (let [_, arg] of this.argInstallers) {
+          console.log(`Found ${arg.validatorMethods.size} validators`)
+          for (let methodName of arg.validatorMethods) {
+              console.log(`Running method validator: ${methodName}... for ${this.meta.name}`)
+              const callable = inst[methodName];
+              if (callable) {
+                  await callable.apply(inst);
+              }
+          }
+      }
+  }
 
   /**
    * Create a sub-container for resolving the command instance from.
@@ -98,6 +102,7 @@ export class SlashCommandFactory {
    * @returns A command instance.
    */
   async create(interaction: BaseCommandInteraction) {
+    console.log(`Creating command instance for ${this.meta.name}...`)
     // subcontainer config
     const subContainer = this.createSubContainer(interaction);
 
@@ -108,7 +113,8 @@ export class SlashCommandFactory {
     const inst = subContainer.get<SlashCommand>(this.meta.target);
 
     // run instance-method validators
-    // await this.runMethodValidators(inst);
+    console.log("WTF??????????????")
+    await this.runMethodValidators(inst);
 
     return inst;
   }

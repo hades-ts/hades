@@ -3,8 +3,9 @@ import { Container } from 'inversify';
 import { SlashArgError } from '../../errors';
 import { SlashArgMeta } from '../../metadata';
 import { SlashArgParser } from '../../parsers';
-import { Constructor, Newable } from "@hades-ts/hades";
+import { Constructor, InstallerFunc, Newable } from "@hades-ts/hades";
 import { BaseCommandInteraction } from 'discord.js';
+import { Validator } from '../../validators';
 
 /**
  * Binds argument values in a container.
@@ -28,9 +29,9 @@ export class SlashArgInstaller {
     parserType: Newable<SlashArgParser>;
 
     /** validator installers for this argument */
-    // validatorInstallers: InstallerFunc[];
+    validatorInstallers: InstallerFunc[];
     /** methods for validating this argument's value */
-    // validatorMethods: any;
+    validatorMethods: Set<string>;
 
     constructor(meta: SlashArgMeta, parser: SlashArgParser) {
         this.name = meta.name;
@@ -41,8 +42,8 @@ export class SlashArgInstaller {
         this.parser = parser;
         this.parserType = meta.parserType;
 
-        // this.validatorMethods = meta.validatorMethods;
-        // this.validatorInstallers = meta.validatorInstallers;
+        this.validatorMethods = meta.validatorMethods;
+        this.validatorInstallers = meta.validatorInstallers;
     }
 
     /**
@@ -55,10 +56,12 @@ export class SlashArgInstaller {
         const value = await this.parse(interaction);
 
         // install validators
-        // this.installValidators(di);
+        console.log(`Installing validators for ${this.name}...`)
+        this.installValidators(di);
 
         // resolve and run validators
-        // await this.executeValidators(di, context, value);
+        console.log(`Executing validators for ${this.name}...`)
+        await this.executeValidators(di, interaction, value);
 
         // finally bind the validated value in the subcontainer
         di.bind(this.property).toConstantValue(value)
@@ -76,18 +79,18 @@ export class SlashArgInstaller {
         return value;
     }
 
-    // private installValidators(di: Container) {
-    //     for (let installer of this.validatorInstallers) {
-    //         installer(di);
-    //     }
-    // }
+    private installValidators(di: Container) {
+        for (let installer of this.validatorInstallers) {
+            installer(di);
+        }
+    }
 
-    // private async executeValidators(di: Container, context: SlashCommandContext, value: any) {
-    //     if (di.isBoundNamed(Validator, this.property)) {
-    //         const validators = di.getAllNamed(Validator, this.property);
-    //         for (let validator of validators) {
-    //             await validator.validate(this, context, value);
-    //         }
-    //     }
-    // }
+    private async executeValidators(di: Container, interaction: BaseCommandInteraction, value: any) {
+        if (di.isBoundNamed(Validator, this.property)) {
+            const validators = di.getAllNamed(Validator, this.property);
+            for (let validator of validators) {
+                await validator.validate(this, interaction, value);
+            }
+        }
+    }
 }
