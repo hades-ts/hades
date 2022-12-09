@@ -23,7 +23,7 @@ export const defaultMappedTypes: TypePair[] = [
 export const installDefaultMappedTypes = (container: Container, mappedTypes: TypePair[]) => {
     mappedTypes.forEach(
         pair => {
-            container.bind('MappedTypes').toConstantValue(pair)
+            container.bind('SlashMappedTypes').toConstantValue(pair)
         }
     );
 }

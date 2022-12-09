@@ -1,7 +1,7 @@
 import { command } from "../decorators";
 import { SlashCommand } from "../models/SlashCommand";
 
-@command("ping", { description: "Returns pong" })
+@command("ping", { description: "Returns pong 🏓" })
 export class PingCommand extends SlashCommand {
   execute() {
     const then = this.interaction.createdTimestamp;

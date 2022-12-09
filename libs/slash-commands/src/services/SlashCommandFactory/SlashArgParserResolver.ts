@@ -14,7 +14,7 @@ export type TypeMap = [Constructor, Newable<SlashArgParser>];
  */
 @singleton(SlashArgParserResolver)
 export class SlashArgParserResolver {
-    @multiInject('MappedTypes')
+    @multiInject('SlashMappedTypes')
     protected types: TypeMap[]
 
     private map = new Collection<Constructor, Newable<SlashArgParser>>();

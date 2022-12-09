@@ -14,7 +14,7 @@ export type TypeMap = [Constructor, Newable<TextArgParser>];
  */
 @singleton(TextArgParserResolver)
 export class TextArgParserResolver {
-    @multiInject('MappedTypes')
+    @multiInject('TextMappedTypes')
     protected types: TypeMap[]
 
     private map = new Collection<Constructor, Newable<TextArgParser>>();
