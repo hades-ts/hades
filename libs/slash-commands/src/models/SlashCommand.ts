@@ -1,8 +1,7 @@
 import { inject, injectable } from "inversify";
-import { InteractionReplyOptions } from "discord.js";
+import { BaseCommandInteraction, InteractionReplyOptions, Message } from "discord.js";
 
 import { DiscordService } from "@hades-ts/hades";
-import { SlashCommandContext } from "./SlashCommandContext";
 
 /**
  * Base slash command class.
@@ -10,8 +9,8 @@ import { SlashCommandContext } from "./SlashCommandContext";
 @injectable()
 export abstract class SlashCommand {
   /** information on the current command invocation */
-  @inject("SlashCommandContext")
-  context: SlashCommandContext;
+  @inject("Interaction")
+  interaction: BaseCommandInteraction;
 
   /** service for getting data from discord */
   @inject(DiscordService)
@@ -20,17 +19,13 @@ export abstract class SlashCommand {
   /** main command logic handler */
   abstract execute(): Promise<void>;
 
-  get interaction() {
-    return this.context.interaction;
-  }
-
   public reply(content: string, options?: InteractionReplyOptions) {
     return this.interaction.reply({ ...options, content });
   }
 
-  // public followUp(content: string, options?: InteractionReplyOptions) {
-  //   return this.interaction.followUp({ ...options, content });
-  // }
+  public followUp(content: string, options?: InteractionReplyOptions) {
+    return this.interaction.followUp({ ...options, content }) as Promise<Message>;
+  }
 
   public async deferReply() {
     return await this.interaction.deferReply();

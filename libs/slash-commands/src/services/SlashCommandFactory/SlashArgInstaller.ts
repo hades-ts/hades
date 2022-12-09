@@ -3,8 +3,8 @@ import { Container } from 'inversify';
 import { SlashArgError } from '../../errors';
 import { SlashArgMeta } from '../../metadata';
 import { SlashArgParser } from '../../parsers';
-import { Constructor, InstallerFunc, Newable } from "@hades-ts/hades";
-import { SlashCommandContext } from '../../models/SlashCommandContext';
+import { Constructor, Newable } from "@hades-ts/hades";
+import { BaseCommandInteraction } from 'discord.js';
 
 /**
  * Binds argument values in a container.
@@ -50,9 +50,9 @@ export class SlashArgInstaller {
      * @param di A container to bind the argument value in
      * @param context The context for the command invocation
      */
-    async install(di: Container, context: SlashCommandContext) {
+    async install(di: Container, interaction: BaseCommandInteraction) {
         // parse value
-        const value = await this.parse(context);
+        const value = await this.parse(interaction);
 
         // install validators
         // this.installValidators(di);
@@ -70,8 +70,8 @@ export class SlashArgInstaller {
         }
     }
 
-    private async parse(context: SlashCommandContext) {
-        const value = await this.parser.parse(this, context);
+    private async parse(interaction: BaseCommandInteraction) {
+        const value = await this.parser.parse(this, interaction);
         this.throwIfValueIsEmpty(value);
         return value;
     }

@@ -1,7 +1,7 @@
 import { Interaction } from "discord.js";
 import { inject, injectable } from "inversify";
 import { HadesBotService } from "@hades-ts/hades";
-import { SlashCommandService } from "./SlashCommandService/SlashCommandService";
+import { SlashCommandService } from "./SlashCommandService";
 
 @injectable()
 export class SlashCommandBotService extends HadesBotService {

@@ -32,7 +32,7 @@ export function setSlashCommandMetas(metas: Collection<Constructor, SlashCommand
 }
 
 /**
- * Get the command metdata for a particular class.
+ * Get the command metadata for a particular class.
  * @param target Target class object.
  * @returns 
  */
