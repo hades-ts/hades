@@ -39,6 +39,56 @@ There are a number of built-in parsers available:
 - `User`: a Discord user
 - `UserId` a Discord user ID
 
+## Default Parsers
+
+By default, a number of field types have automatically associated parsers.
+
+In the above example, Hades will observe the field's type is `number` and automatically use the `IntegerParser`. So the `@parser(IntegerParser)` bit can be removed:
+
+```ts
+@command("squared")
+export class Squared extends TextCommand {
+
+    @arg()
+    input!: number // automatically parsed with IntegerParser
+
+    async execute() {
+        const square = this.input * this.input;
+        return this.reply(
+            `${this.input} squared is ${square}.`
+        );
+    }
+}
+```
+
+Here are the default type-parser associations:
+
+- `string` => `StringParser`
+- `number` => `IntegerParser`
+- `Channel` => `ChannelParser`
+- `User` => `UserParser`
+- `Role` => `RoleParser`
+- `GuildChannel` => `GuildChannelParser`
+- `GuildMember` => `MemberParser`
+
+You can provide your own mapping by providing it to `TextCommandsInstaller`:
+
+```ts
+const container = new HadesContainer({
+    installers: [
+        new TextCommandsInstaller(
+            [
+                ...defaultMappedTypes,
+                [Number, FloatParser],
+            ]
+        ),
+    ],
+});
+```
+
+Now the `Squared` command above would only accept floating-point numbers.
+
+
 ## Custom Parsers
 
 You can also implement your own parsers by extending the `Parser` class:
@@ -61,3 +111,20 @@ export class YoutubeVideo extends TextArgParser {
 ```
 
 If the argument cannot be parsed, a `TextArgError`  can be thrown.
+
+## Manually Parsing Arguments
+
+Instead of using decorated fields, you can also manually parse arguments passed to your commands using the `CommandContext.reader` attribute.
+
+`CommandContext.reader` is a parser from [discord-command-parser](https://github.com/campbellbrendene/discord-command-parser).
+
+This can parse arguments in a more structured way, including user and channel IDs.
+
+- **getString()**
+- **getInt()**
+- **getFloat()**
+- **getRemaining()**
+- **getUserID()**
+- **getRoleID()**
+- **getChannelID()**
+- **seek(** amount: number = 1 **)**: Useful for skipping tokens
