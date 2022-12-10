@@ -5,5 +5,8 @@
         "lojban",
         "metas",
         "subcontainer"
+    ],
+    "exportall.config.folderListener": [
+        "/libs/text-commands/src/commands/metadata"
     ]
 }

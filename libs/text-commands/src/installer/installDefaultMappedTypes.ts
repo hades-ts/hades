@@ -1,7 +1,7 @@
 import { Channel, User, Role, GuildChannel, GuildMember } from "discord.js";
 import { Container } from "inversify";
 import { Constructable, Newable } from "@hades-ts/hades";
-import { StringParser, IntegerParser, ChannelParser, UserParser, RoleParser, GuildChannelParser, MemberParser, TextArgParser } from "../parsers";
+import { StringParser, IntegerParser, ChannelParser, UserParser, RoleParser, GuildChannelParser, MemberParser, TextArgParser } from "../parsing/parsers";
 
 export type TypePair = readonly [Constructable, Newable<TextArgParser>];
 

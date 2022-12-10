@@ -1,5 +1,4 @@
-import { command } from "../decorators";
-import { TextCommand } from "../models/TextCommand";
+import { command, TextCommand } from "../commands";
 
 
 @command("ping")

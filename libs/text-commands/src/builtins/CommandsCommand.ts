@@ -1,8 +1,9 @@
 import { inject } from "inversify";
+import { command, description } from "../commands";
 
-import { command, description } from "../decorators";
-import { TextCommand } from "../models/TextCommand";
-import { TextCommandHelpService } from "../services/TextCommandHelpService";
+
+import { TextCommand } from "../commands/services/TextCommand";
+import { TextCommandHelpService } from "../commands/services/TextCommandHelpService";
 
 
 @command("commands")

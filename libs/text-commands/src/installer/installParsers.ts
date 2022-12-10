@@ -1,6 +1,5 @@
 import { Container } from "inversify";
-import { getTextParserMetas } from "../metadata";
-import { TextArgParser } from "../parsers";
+import { getTextParserMetas, TextArgParser } from "../parsing";
 
 
 /**

@@ -1,7 +1,5 @@
 import { Container } from "inversify";
-import { TextCommandFactory } from "../services/TextCommandFactory/TextCommandFactory";
-import { getTextCommandMetas, TextCommandMeta } from "../metadata";
-import { TextCommandHelper } from "../services/TextCommandHelpService/TextCommandHelper";
+import { getTextCommandMetas, TextCommandMeta, TextCommandFactory, TextCommandHelper } from "../commands";
 
 
 type Metas = ReturnType<typeof getTextCommandMetas>

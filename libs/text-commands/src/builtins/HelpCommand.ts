@@ -1,10 +1,13 @@
 import { inject } from "inversify";
 import { MessageEmbed } from "discord.js";
 
-import { TextCommand } from "../models/TextCommand";
-import { TextArgError } from "../errors/TextArgError";
-import { command, description, arg, validate } from "../decorators";
-import { TextCommandHelpService } from "../services/TextCommandHelpService";
+import { TextCommand } from "../commands/services/TextCommand";
+import { TextArgError } from "../arguments/errors/TextArgError";
+
+import { TextCommandHelpService } from "../commands/services/TextCommandHelpService";
+import { arg } from "../arguments";
+import { command, description } from "../commands";
+import { validate } from "../validation";
 
 
 @command("help")
