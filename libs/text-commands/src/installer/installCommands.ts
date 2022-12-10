@@ -29,7 +29,11 @@ const installCommandHelpers = (container: Container, metas: Metas) => {
 }
 
 /**
- * Binds TextCommandFactory instances for each @command
+ * Used by the TextCommandsInstaller construct a 
+ * TextCommandFactory for each @command class into 
+ * the HadesContainer. These are then used by the 
+ * TextCommandService to create instances of commands.
+ * 
  * @param container The HadesContainer to use.
  */
 export const installCommands = (container: Container) => {

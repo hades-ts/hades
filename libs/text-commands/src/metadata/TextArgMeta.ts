@@ -3,7 +3,7 @@ import { Constructor, InstallerFunc, Newable } from "@hades-ts/hades";
 
 
 /**
- * Decorator metdata for command arguments.
+ * Decorator metadata for command arguments.
  */
 export class TextArgMeta {
     name?: string;
