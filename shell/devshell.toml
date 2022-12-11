@@ -1,17 +1,21 @@
 [devshell]
 name = "Hades"
+motd = "{202}🔨 Welcome to Hades{reset}\n$(type -p menu &>/dev/null && menu)\n"
 packages = [ "alejandra"
            , "nodePackages.prettier"
            , "shfmt"
            , "editorconfig-checker"
            , "nodejs"
+           , "nodePackages.pnpm"
 ]
 
 [[commands]]
 package = "treefmt"
 
 [[commands]]
-package = "nodePackages.pnpm"
+name = "rbld"
+command = "rush update && rush rebuild"
+help = "Update and rebuild all projects."
 category = "package management"
 
 # TODO: Add rush to nixpkgs
