@@ -1,38 +1,24 @@
 {
     "compilerOptions": {
-        "target": "es6",
+        "outDir": "dist/",
         "module": "commonjs",
         "moduleResolution": "node",
+        "target": "es6",
+        "lib": ["dom", "es5", "es6"],
+        "types": ["reflect-metadata", "node", "jest"],
+        "typeRoots": ["node_modules/@types"],
+        "allowSyntheticDefaultImports": true,
         "esModuleInterop": true,
         "declaration": true,
         "declarationMap": true,
+        "strict": true,
         "sourceMap": true,
-        "outDir": "dist/",
         "skipLibCheck": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
-        "allowSyntheticDefaultImports": true,
         "resolveJsonModule": true,
-        "allowJs": true,
-        "lib": [
-            "dom",
-            "es5",
-            "es6"
-        ],
-        "types": [
-            "node",
-            "reflect-metadata"
-        ],
-        "typeRoots": [
-            "node_modules/@types",
-        ]
+        "allowJs": true
     },
-    "include": [
-        "src/**/*.ts",
-        "src/**/*.js"
-
-    ],
-    "exclude": [
-        "node_modules"
-    ]
+    "include": ["src/**/*.ts", "src/**/*.js"],
+    "exclude": ["node_modules"]
 }

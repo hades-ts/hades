@@ -1,45 +1,50 @@
 {
-  "name": "@hades-ts/lojban",
-  "version": "0.0.5",
-  "description": "Lojban stuff for Hades bots",
-  "author": "",
-  "license": "ISC",
-  "homepage": "https://github.com/hades-ts/hades#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/hades-ts/hades.git"
-  },
-  "bugs": {
-    "url": "https://github.com/hades-ts/text-commands/issues"
-  },
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "build": "tsc -p tsconfig.json",
-    "rebuild": "rm -fr ./dist; npm run build",
-    "watch": "tsc -p tsconfig.json -w"
-  },
-  "devDependencies": {
-    "@hades-ts/hades": "workspace:^0.0.5",
-    "@hades-ts/text-commands": "workspace:^0.0.5",
-    "@types/node": "~18.11.11",
-    "ts-node": "~10.9.1",
-    "tsconfig-paths": "~4.1.1",
-    "typescript": "~4.9.3"
-  },
-  "peerDependencies": {
-    "@discordjs/rest": "^0.5.0",
-    "@hades-ts/hades": "workspace:^0.0.5",
-    "@hades-ts/text-commands": "workspace:^0.0.5",
-    "discord-api-types": "^0.33.5",
-    "discord-command-parser": "^1.5.3",
-    "discord.js": "~14.7.1",
-    "inversify": "^6.0.1",
-    "@ldlework/inversify-binding-decorators": "^4.0.1",
-    "@ldlework/inversify-config-injection": "0.0.7",
-    "reflect-metadata": "^0.1.13"
-  }
+    "name": "@hades-ts/lojban",
+    "version": "0.0.5",
+    "description": "Lojban stuff for Hades bots",
+    "author": "",
+    "license": "ISC",
+    "homepage": "https://github.com/hades-ts/hades#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/hades-ts/hades.git"
+    },
+    "bugs": {
+        "url": "https://github.com/hades-ts/text-commands/issues"
+    },
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "tsc -p tsconfig.json",
+        "rebuild": "rm -fr ./dist; npm run build",
+        "watch": "tsc -p tsconfig.json -w",
+        "test": "jest",
+        "test:watch": "jest --watch"
+    },
+    "devDependencies": {
+        "@hades-ts/hades": "workspace:^0.0.5",
+        "@hades-ts/text-commands": "workspace:^0.0.5",
+        "@types/node": "~18.11.11",
+        "ts-node": "~10.9.1",
+        "tsconfig-paths": "~4.1.1",
+        "typescript": "~4.9.3",
+        "jest": "~29.3.1",
+        "ts-jest": "~29.0.3",
+        "@types/jest": "~29.2.4"
+    },
+    "peerDependencies": {
+        "@discordjs/rest": "^0.5.0",
+        "@hades-ts/hades": "workspace:^0.0.5",
+        "@hades-ts/text-commands": "workspace:^0.0.5",
+        "discord-api-types": "^0.33.5",
+        "discord-command-parser": "^1.5.3",
+        "discord.js": "~14.7.1",
+        "inversify": "^6.0.1",
+        "@ldlework/inversify-binding-decorators": "^4.0.1",
+        "@ldlework/inversify-config-injection": "0.0.7",
+        "reflect-metadata": "^0.1.13"
+    }
 }

@@ -5,7 +5,7 @@ max_line_length = 120
 trim_trailing_whitespace = true
 indent_style = space
 
-[*.{tsx?,jsx?}]
+[*.{tsx?,jsx?,json}]
 indent_size = 4
 
 [*.nix]
