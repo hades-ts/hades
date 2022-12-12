@@ -12,6 +12,7 @@
         "declaration": true,
         "declarationMap": true,
         "strict": true,
+        "strictPropertyInitialization": false,
         "sourceMap": true,
         "skipLibCheck": true,
         "experimentalDecorators": true,

@@ -1,11 +1,10 @@
 import { arg, command, description, TextCommand } from "@hades-ts/text-commands";
-import { inject } from 'inversify';
-import { CamxesService } from '../services';
+import { inject } from "inversify";
+import { CamxesService } from "../services";
 
 @command("camxes")
 @description("Get parse of lojban sentence.")
 export class Camxes extends TextCommand {
-
     @arg()
     @description("String to parse.")
     phrase!: string;
