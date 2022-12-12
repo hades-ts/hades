@@ -1,4 +1,4 @@
-# Hades Example Bot
+# Hades GPT Bot
 
 This is an example bot using [Hades](https://github.com/hades-ts/hades), the Discord bot framework.
 
@@ -10,8 +10,9 @@ Copy `config/default.template.json` to `config/default.json`
 
 ```json
 {
-    "discordToken": "your bot token here",
-    "botOwner": "your discord id here",
+  "discordToken": "your bot token here",
+  "botOwner": "your discord id here",
+  "gpt3Token": "you openAI token here"
 }
 ```
 
