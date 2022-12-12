@@ -1,4 +1,4 @@
-import { BaseCommandInteraction, GuildMember } from 'discord.js';
+import { CommandInteraction, GuildMember } from 'discord.js';
 import { parser, SlashArgInstaller, SlashArgParser } from '../../services';
 
 
@@ -7,7 +7,7 @@ export class MemberParser extends SlashArgParser {
     name = 'user';
     description = 'A guild user.';
 
-    async parse(arg: SlashArgInstaller, interaction: BaseCommandInteraction) {
+    async parse(arg: SlashArgInstaller, interaction: CommandInteraction) {
         const data = interaction.options.get(arg.name);
         return data.member as GuildMember;
     }

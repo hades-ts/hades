@@ -1,5 +1,5 @@
 import { inject } from "inversify";
-import { MessageEmbed } from "discord.js";
+import { EmbedBuilder } from "discord.js";
 
 import { TextCommand } from "../commands/services/TextCommand";
 import { TextArgError } from "../arguments/errors/TextArgError";
@@ -22,7 +22,7 @@ export class HelpCommand extends TextCommand {
     @inject(TextCommandHelpService)
     helpService: TextCommandHelpService;
 
-    private helpEmbed: MessageEmbed;
+    private helpEmbed: EmbedBuilder;
 
     @validate('commandName')
     validateCommandName() {

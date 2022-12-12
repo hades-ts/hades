@@ -1,4 +1,4 @@
-import { CategoryChannel, Collection, Guild, GuildBasedChannel, TextChannel } from 'discord.js';
+import { CategoryChannel, ChannelType, Collection, Guild, GuildBasedChannel, TextChannel } from 'discord.js';
 import { inject } from 'inversify';
 
 import { singleton } from '../decorators';
@@ -87,7 +87,7 @@ export class DiscordService {
      * @param guildId The ID of the guild.
      * @returns Collection<string, GuildChannel>
      */
-    getChansOf<T extends GuildBasedChannel>(type: ChannelTypes, guildId: string) {
+    getChansOf<T extends GuildBasedChannel>(type: ChannelType, guildId: string) {
         console.log(`Grabbing channels of type ${type} for guild ${guildId}`);
         const guild = this.guilds.get(guildId);
         if (guild !== undefined) {
@@ -103,7 +103,7 @@ export class DiscordService {
      * @returns Collection<string, CategoryChannel>
      */
     getCategories(guildId: string) {
-        return this.getChansOf<CategoryChannel>("GUILD_CATEGORY", guildId);
+        return this.getChansOf<CategoryChannel>(ChannelType.GuildCategory, guildId);
     }
 
     /**
@@ -112,7 +112,7 @@ export class DiscordService {
      * @returns Collection<string, TextChannel>
      */
     getChannels(guildId: string) {
-        return this.getChansOf<TextChannel>("GUILD_TEXT", guildId);
+        return this.getChansOf<TextChannel>(ChannelType.GuildText, guildId);
     }
 
     /**

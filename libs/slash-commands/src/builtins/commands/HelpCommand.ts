@@ -1,5 +1,5 @@
 import { inject } from "inversify";
-import { MessageEmbed } from "discord.js";
+import { EmbedBuilder } from "discord.js";
 
 import { arg, command, commandName, validate } from "../decorators"
 import { SlashCommand } from "../../models";
@@ -30,7 +30,7 @@ export class HelpCommand extends SlashCommand {
     @inject(SlashCommandHelpService)
     helpService: SlashCommandHelpService;
 
-    private helpEmbed: MessageEmbed;
+    private helpEmbed: EmbedBuilder;
 
     @validate('commandName')
     validateCommandName() {
@@ -41,7 +41,7 @@ export class HelpCommand extends SlashCommand {
         }
     }
 
-    execute() {
-        return this.reply("Here's what I've got:", { embeds: [this.helpEmbed] });
+    async execute() {
+        await this.reply("Here's what I've got:", { embeds: [this.helpEmbed] });
     }
 }

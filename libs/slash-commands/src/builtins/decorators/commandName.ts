@@ -2,6 +2,7 @@ import { Constructable } from "@hades-ts/hades";
 import { inject, injectable } from "inversify";
 import { SlashCommandService } from "../../services";
 import { makeArgMeta } from ".";
+import { ApplicationCommandOptionType } from "discord.js";
 
 
 export type ChannelNameArgOptions = {
@@ -31,7 +32,7 @@ class CommandChoicesResolver {
 export function commandName(info: ChannelNameArgOptions) {
     return (target: Constructable, key: string) => {
         const meta = makeArgMeta({
-            type: "STRING",
+            type: ApplicationCommandOptionType.String,
             required: info.required,
             description: info.description,
         }, target, key)

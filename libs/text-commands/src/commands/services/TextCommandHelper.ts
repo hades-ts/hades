@@ -1,4 +1,4 @@
-import { Collection, MessageEmbed } from 'discord.js';
+import { Collection, EmbedBuilder } from 'discord.js';
 import { TextArgMeta } from '../../arguments';
 import { TextCommandMeta } from '../models';
 
@@ -43,7 +43,7 @@ export class TextCommandHelper {
             desc = desc + "\n" + this.description;
         }
 
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
             .setDescription(desc)
             .addFields(this.getArgFields());
         return embed;

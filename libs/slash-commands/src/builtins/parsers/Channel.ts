@@ -1,4 +1,4 @@
-import { BaseCommandInteraction, GuildBasedChannel } from 'discord.js';
+import { CommandInteraction, GuildBasedChannel } from 'discord.js';
 
 import { parser, SlashArgInstaller, SlashArgParser } from '../../services';
 
@@ -8,7 +8,7 @@ export class ChannelParser extends SlashArgParser {
     name = 'channel';
     description = 'A guild channel."';
 
-    async parse(arg: SlashArgInstaller, interaction: BaseCommandInteraction) {
+    async parse(arg: SlashArgInstaller, interaction: CommandInteraction) {
         const data = interaction.options.get(arg.name);
         return data.channel as GuildBasedChannel;
     }

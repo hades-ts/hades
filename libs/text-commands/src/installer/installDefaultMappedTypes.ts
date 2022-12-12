@@ -8,7 +8,6 @@ export type TypePair = readonly [Constructable, Newable<TextArgParser>];
 export const defaultMappedTypes: TypePair[] = [
     [String, StringParser],
     [Number, IntegerParser],
-    [Channel, ChannelParser],
     [User, UserParser],
     [Role, RoleParser],
     [GuildChannel, GuildChannelParser],

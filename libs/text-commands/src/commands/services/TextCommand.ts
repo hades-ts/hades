@@ -1,5 +1,5 @@
 import { inject, injectable } from "inversify";
-import { AwaitReactionsOptions, CollectorFilter, MessageEditOptions, ReactionCollectorOptions, MessageEmbed, Message, EmojiIdentifierResolvable, MessageReaction, User, ReplyMessageOptions, Collection, MessageAttachment } from "discord.js";
+import { AwaitReactionsOptions, CollectorFilter, MessageEditOptions, ReactionCollectorOptions, EmbedBuilder, Message, EmojiIdentifierResolvable, MessageReaction, User, Collection, Attachment, MessageReplyOptions } from "discord.js";
 
 
 import { DiscordService } from "@hades-ts/hades";
@@ -25,14 +25,13 @@ export abstract class TextCommand {
     get activity() { return this.msg.activity; }
     get application() { return this.msg.applicationId; }
     get args() { return this.context.args; }
-    get attachments(): Collection<string, MessageAttachment> { return this.msg.attachments; }
+    get attachments(): Collection<string, Attachment> { return this.msg.attachments; }
     get body() { return this.context.body; }
     get channel() { return this.msg.channel; }
     get command() { return this.context.command; }
     get createdAt() { return this.msg.createdAt; }
     get createdTimestamp() { return this.msg.createdTimestamp; }
     get deletable() { return this.msg.deletable; }
-    get deleted() { return this.msg.deleted; }
     get editable() { return this.msg.editable; }
     get editedAt() { return this.msg.editedAt; }
     get editedTimestamp() { return this.msg.editedTimestamp; }
@@ -78,7 +77,7 @@ export abstract class TextCommand {
         return this.msg.delete();
     }
 
-    public edit(content: string, options: MessageEditOptions | MessageEmbed) {
+    public edit(content: string, options: MessageEditOptions | EmbedBuilder) {
         return this.msg.edit({ ...options, content });
     }
 
@@ -106,7 +105,7 @@ export abstract class TextCommand {
         return this.msg.react(emoji);
     }
 
-    public reply(content: string, options?: ReplyMessageOptions) {
+    public reply(content: string, options?: MessageReplyOptions) {
         return this.msg.reply({ ...options, content });
     }
 

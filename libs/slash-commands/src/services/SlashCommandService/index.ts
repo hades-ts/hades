@@ -1,10 +1,11 @@
-import { BaseCommandInteraction, ChatInputApplicationCommandData, Client } from "discord.js";
+import { CommandInteraction, ChatInputApplicationCommandData, Client } from "discord.js";
 import { inject } from "inversify";
 import { HadesContainer, singleton } from "@hades-ts/hades";
 
 import { SlashArgError } from "../../errors";
 import { SlashCommandFactoryRegistry } from "../SlashCommandFactory";
 import { getSlashCommandMetas } from "../../metadata";
+import { HadesClient } from "@hades-ts/hades";
 
 @singleton(SlashCommandService)
 export class SlashCommandService {
@@ -19,7 +20,7 @@ export class SlashCommandService {
   // @inject(SlashCommandHelpService)
   // help: SlashCommandHelpService
 
-  async execute(interaction: BaseCommandInteraction) {
+  async execute(interaction: CommandInteraction) {
     console.log("Executing command: " + interaction.commandName)
     const factory = this.factories.factoryFor(interaction.commandName);
 
@@ -46,11 +47,11 @@ export class SlashCommandService {
     }
   }
 
-  dispatch(interaction: BaseCommandInteraction) {
+  dispatch(interaction: CommandInteraction) {
     return this.execute(interaction);
   }
 
-  async registerCommands(client: Client) {
+  async registerCommands(client: HadesClient) {
     const config = this.getCommandRegistrationMeta()
     console.log(JSON.stringify(config, null, 2))
     await client.application.commands.set(config);

@@ -1,5 +1,5 @@
 import { inject, injectable } from "inversify";
-import { BaseCommandInteraction, InteractionReplyOptions, Message } from "discord.js";
+import { CommandInteraction, InteractionReplyOptions, Message } from "discord.js";
 
 import { DiscordService } from "@hades-ts/hades";
 
@@ -10,7 +10,7 @@ import { DiscordService } from "@hades-ts/hades";
 export abstract class SlashCommand {
   /** information on the current command invocation */
   @inject("Interaction")
-  interaction: BaseCommandInteraction;
+  interaction: CommandInteraction;
 
   /** service for getting data from discord */
   @inject(DiscordService)

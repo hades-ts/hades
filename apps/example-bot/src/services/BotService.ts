@@ -27,7 +27,7 @@ export class BotService extends HadesBotService {
     }    
 
     async onInteractionCreate<T extends Interaction>(interaction: T) {
-        if (!interaction.isCommand() || interaction.isContextMenu()) {
+        if (!interaction.isCommand()) {
           return;
         }
 

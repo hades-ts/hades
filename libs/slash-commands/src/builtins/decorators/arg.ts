@@ -1,5 +1,5 @@
 import { inject } from "inversify";
-import { ApplicationCommandAutocompleteOption, ApplicationCommandChannelOptionData, ApplicationCommandChoicesData, ApplicationCommandNonOptionsData, ApplicationCommandNumericOptionData, ApplicationCommandOptionChoiceData, ApplicationCommandOptionData, ApplicationCommandStringOptionData, ApplicationCommandSubCommandData, ApplicationCommandSubGroupData } from "discord.js";
+import { ApplicationCommandAutocompleteStringOption, ApplicationCommandChannelOptionData, ApplicationCommandChoicesData, ApplicationCommandNonOptionsData, ApplicationCommandNumericOptionData, ApplicationCommandOptionChoiceData, ApplicationCommandOptionData, ApplicationCommandStringOptionData, ApplicationCommandSubCommandData, ApplicationCommandSubGroupData } from "discord.js";
 
 import { Constructable } from "@hades-ts/hades";
 
@@ -13,7 +13,7 @@ export type ArgOptions =
     | Optional<ApplicationCommandNonOptionsData, 'name'>
     | Optional<ApplicationCommandChannelOptionData, 'name'>
     | Optional<ApplicationCommandChoicesData, 'name'>
-    | Optional<ApplicationCommandAutocompleteOption, 'name'>
+    | Optional<ApplicationCommandAutocompleteStringOption, 'name'>
     | Optional<ApplicationCommandNumericOptionData, 'name'>
     | Optional<ApplicationCommandStringOptionData, 'name'>
     | Optional<ApplicationCommandSubCommandData, 'name'>

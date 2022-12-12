@@ -1,5 +1,5 @@
 import { Constructable } from "@hades-ts/hades";
-import { ApplicationCommandOptionChoiceData } from "discord.js";
+import { ApplicationCommandOptionChoiceData, ApplicationCommandOptionType } from "discord.js";
 import { arg } from "./arg";
 
 
@@ -16,7 +16,7 @@ export type IntegerArgOptions = {
 export function integer(info: IntegerArgOptions) {
     return (target: Constructable, key: string) => {
         arg({
-            type: "INTEGER",
+            type: ApplicationCommandOptionType.Integer,
             required: info.required,
             description: info.description,
             choices: info.choices,

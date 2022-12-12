@@ -1,7 +1,7 @@
 import { HadesClient } from "@hades-ts/hades";
 import { user, command, SlashCommand, SlashArgError, arg } from "@hades-ts/slash-commands";
 import { validate } from "@hades-ts/slash-commands";
-import { GuildMember, MessageEmbed } from "discord.js";
+import { ApplicationCommandOptionType, GuildMember, EmbedBuilder } from "discord.js";
 import { inject } from "inversify";
 import { join } from "path";
 import { OpenAIClient } from "../services/OpenAIClient";
@@ -17,7 +17,7 @@ export class ExplainCommand extends SlashCommand {
     @inject(OpenAIClient)
     openai: OpenAIClient;
 
-    @arg({ description: "Your question.", type: "STRING" })
+    @arg({ description: "Your question.", type: ApplicationCommandOptionType.String })
     question: string;
 
     async execute() {
@@ -25,7 +25,7 @@ export class ExplainCommand extends SlashCommand {
         const response = await this.openai.tryCompletion(`
 Q: ${this.question}
 A:`);
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
             .setTitle(`${this.interaction.user.username} asked:`)
             .setDescription(`\`\`\`
 ${this.question}

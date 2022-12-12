@@ -1,4 +1,4 @@
-import { ChatInputApplicationCommandData } from "discord.js";
+import { ApplicationCommandType, ChatInputApplicationCommandData } from "discord.js";
 import { injectable } from "inversify";
 
 import { getSlashCommandMeta } from "../../metadata";
@@ -21,7 +21,7 @@ export function command(
     meta.registrationDetails = {
       ...registrationDetails,
       name,
-      type: "CHAT_INPUT"
+      type: ApplicationCommandType.ChatInput,
     } as ChatInputApplicationCommandData;
     meta.target = target;
     return injectable()(target);

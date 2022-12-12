@@ -1,5 +1,5 @@
 import { Container, injectable } from 'inversify';
-import { BaseCommandInteraction } from 'discord.js';
+import { CommandInteraction } from 'discord.js';
 
 import { Constructable } from "@hades-ts/hades";
 
@@ -12,7 +12,7 @@ import { addSlashArgValidator } from '../metadata';
  */
 @injectable()
 export class Validator {
-    public async validate(arg: SlashArgInstaller, ctx: BaseCommandInteraction, value: any): Promise<any> {
+    public async validate(arg: SlashArgInstaller, ctx: CommandInteraction, value: any): Promise<any> {
         return;
     }
 

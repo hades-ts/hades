@@ -1,4 +1,4 @@
-import { MessageEmbed, User } from 'discord.js';
+import { User } from 'discord.js';
 import { arg, command, description, TextCommand } from "@hades-ts/text-commands";
 
 

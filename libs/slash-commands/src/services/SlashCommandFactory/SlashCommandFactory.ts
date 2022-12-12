@@ -1,4 +1,4 @@
-import { BaseCommandInteraction, Collection } from "discord.js";
+import { CommandInteraction, Collection } from "discord.js";
 import { Container } from "inversify";
 
 import { SlashCommandMeta } from "../../metadata";
@@ -48,7 +48,7 @@ export class SlashCommandFactory {
    * @param container Container to install into.
    * @param context The command invocation context.
    */
-  async installArguments(container: Container, interaction: BaseCommandInteraction) {
+  async installArguments(container: Container, interaction: CommandInteraction) {
     for (let [_, arg] of this.argInstallers) {
       await arg.install(container, interaction);
     }
@@ -74,7 +74,7 @@ export class SlashCommandFactory {
    * @param context The parent container.
    * @returns A sub-container.
    */
-  createSubContainer(interaction: BaseCommandInteraction) {
+  createSubContainer(interaction: CommandInteraction) {
     const di = this.parentContainer.createChild({ skipBaseClassChecks: true });
 
     // bind the command class
@@ -82,7 +82,7 @@ export class SlashCommandFactory {
 
     // bind the invocation context
     di
-      .bind<BaseCommandInteraction>("Interaction")
+      .bind<CommandInteraction>("Interaction")
       .toConstantValue(interaction);
 
     // connect the containers
@@ -95,7 +95,7 @@ export class SlashCommandFactory {
    * @param context A command invocation context.
    * @returns A command instance.
    */
-  async create(interaction: BaseCommandInteraction) {
+  async create(interaction: CommandInteraction) {
     // subcontainer config
     const subContainer = this.createSubContainer(interaction);
 
