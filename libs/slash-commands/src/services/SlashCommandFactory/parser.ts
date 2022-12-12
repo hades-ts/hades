@@ -1,11 +1,12 @@
 import { injectable } from 'inversify';
-
-import { getSlashArgMeta, registerSlashParser } from '../metadata';
-import { SlashArgParser } from '../parsers/SlashArgParser';
 import { Constructable, Constructor, Newable } from '@hades-ts/hades';
+
+import { getSlashArgMeta, registerSlashParser } from '../../metadata';
+import { SlashArgParser } from './SlashArgParser';
 
 
 export interface ParserDecorator extends ClassDecorator, PropertyDecorator { }
+
 
 /**
  * Sets the Parser to use for an argument.

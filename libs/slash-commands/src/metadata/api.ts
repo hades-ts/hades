@@ -1,8 +1,9 @@
 import { Collection } from "discord.js";
 import { Constructor, InstallerFunc, Newable } from "@hades-ts/hades";
-import { SlashArgParser } from "../parsers/SlashArgParser";
 import { SlashArgParserMeta } from "./SlashArgParserMeta";
 import { SlashCommandMeta } from "./SlashCommandMeta";
+import { SlashArgParser } from "../services";
+
 
 // key where @parser metadata is stored
 const PARSER_METADATA = Symbol("Hades:ParserMetadata");

@@ -1,6 +1,7 @@
 import { Constructor, InstallerFunc, Newable } from "@hades-ts/hades";
 import { ApplicationCommandOptionData } from "discord.js";
-import { SlashArgParser } from "../parsers/SlashArgParser";
+import { SlashArgParser } from "../services";
+
 
 /**
  * Decorator metdata for command arguments.
@@ -11,6 +12,7 @@ export class SlashArgMeta {
     property?: string;
     description?: string;
     options?: ApplicationCommandOptionData;
+    choicesResolver?: Constructor;
     parserType?: Newable<SlashArgParser>;
     validatorMethods = new Set<string>();
     validatorInstallers: InstallerFunc[] = [];

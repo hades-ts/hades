@@ -1,4 +1,3 @@
-
 /**
  * An error that occurs when a slash command is called with invalid arguments.
  * 

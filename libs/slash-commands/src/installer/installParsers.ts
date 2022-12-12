@@ -1,6 +1,7 @@
 import { Container } from "inversify";
-import { getSlashParserMetas } from "../metadata/api";
-import { SlashArgParser } from "../parsers/SlashArgParser";
+import { getSlashParserMetas } from "../metadata";
+import { SlashArgParser } from "../services";
+
 
 /**
  * Binds all @parser classes.

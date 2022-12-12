@@ -1,6 +1,6 @@
 import { ChatInputApplicationCommandData, Collection } from "discord.js";
-
 import { Constructor } from "@hades-ts/hades";
+
 import { SlashArgMeta } from "./SlashArgMeta";
 
 

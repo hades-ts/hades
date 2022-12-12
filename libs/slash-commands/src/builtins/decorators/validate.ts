@@ -1,4 +1,4 @@
-import { addSlashValidatorMethod } from "../metadata";
+import { addSlashValidatorMethod } from "../../metadata";
 import { Constructable } from "@hades-ts/hades";
 
 

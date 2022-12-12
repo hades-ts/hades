@@ -1,12 +1,17 @@
 import { BaseCommandInteraction, ChatInputApplicationCommandData, Client } from "discord.js";
 import { inject } from "inversify";
-import { singleton } from "@hades-ts/hades";
-import { SlashArgError } from "../../errors/SlashArgError";
-import { SlashCommandFactoryRegistry } from "../SlashCommandFactory/SlashCommandFactoryRegistry";
-import { getSlashCommandMetas } from "../../metadata/api";
+import { HadesContainer, singleton } from "@hades-ts/hades";
+
+import { SlashArgError } from "../../errors";
+import { SlashCommandFactoryRegistry } from "../SlashCommandFactory";
+import { getSlashCommandMetas } from "../../metadata";
 
 @singleton(SlashCommandService)
 export class SlashCommandService {
+
+  @inject(HadesContainer)  
+  container: HadesContainer;
+
   /** factories for creating command instances */
   @inject(SlashCommandFactoryRegistry)
   factories: SlashCommandFactoryRegistry;
@@ -47,6 +52,7 @@ export class SlashCommandService {
 
   async registerCommands(client: Client) {
     const config = this.getCommandRegistrationMeta()
+    console.log(JSON.stringify(config, null, 2))
     await client.application.commands.set(config);
   }
 
@@ -54,7 +60,15 @@ export class SlashCommandService {
     const commands = getSlashCommandMetas().map((meta) => {
       return {
         ...meta.registrationDetails,
-        options: meta.args.map((arg) => arg.options)
+        options: meta.args.map((arg) => {
+          if (arg.choicesResolver) {
+            const resolver = this.container.resolve(arg.choicesResolver);
+            (arg.options as any).choices = (resolver as any).getChoices();
+          }
+          return {
+            ...arg.options,
+          };
+        })
       }
     })
     return commands

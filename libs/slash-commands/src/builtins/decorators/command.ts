@@ -1,7 +1,7 @@
 import { ChatInputApplicationCommandData } from "discord.js";
 import { injectable } from "inversify";
 
-import { getSlashCommandMeta } from "../metadata";
+import { getSlashCommandMeta } from "../../metadata";
 
 
 export type CommandOptions = 

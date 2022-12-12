@@ -1,9 +1,10 @@
 import { Container, injectable } from 'inversify';
-
-import { SlashArgInstaller } from '../services/SlashCommandFactory/SlashArgInstaller';
-import { addSlashArgValidator } from '../metadata';
-import { Constructable } from "@hades-ts/hades";
 import { BaseCommandInteraction } from 'discord.js';
+
+import { Constructable } from "@hades-ts/hades";
+
+import { SlashArgInstaller } from '../services';
+import { addSlashArgValidator } from '../metadata';
 
 
 /**

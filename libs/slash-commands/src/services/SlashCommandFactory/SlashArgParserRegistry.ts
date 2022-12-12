@@ -1,8 +1,8 @@
 import { Collection } from 'discord.js';
 import { multiInject, postConstruct } from 'inversify';
-
 import { Newable, singleton } from "@hades-ts/hades"
-import { SlashArgParser } from '../../parsers/SlashArgParser';
+
+import { SlashArgParser } from './SlashArgParser';
 
 
 /**

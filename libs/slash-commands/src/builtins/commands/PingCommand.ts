@@ -1,5 +1,6 @@
+import { SlashCommand } from "../../models";
 import { command } from "../decorators";
-import { SlashCommand } from "../models/SlashCommand";
+
 
 @command("ping", { description: "Returns pong 🏓" })
 export class PingCommand extends SlashCommand {

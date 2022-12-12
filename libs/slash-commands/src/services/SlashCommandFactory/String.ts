@@ -1,7 +1,7 @@
-import { parser } from '../decorators';
-import { SlashArgParser } from './SlashArgParser';
-import { SlashArgInstaller } from '../services/SlashCommandFactory/SlashArgInstaller';
 import { BaseCommandInteraction } from 'discord.js';
+import { parser } from './parser';
+import { SlashArgInstaller } from './SlashArgInstaller';
+import { SlashArgParser } from './SlashArgParser';
 
 
 @parser()

@@ -1,10 +1,11 @@
 import { Constructable } from "@hades-ts/hades";
-import { ApplicationCommandOptionTypes } from "discord.js/typings/enums";
-import { arg, ArgOptions } from "./arg";
+import { arg } from "./arg";
 
 
-export type ChannelArgOptions = Omit<ArgOptions, 'type'>
-
+export type ChannelArgOptions = {
+    required?: boolean;
+    description: string;
+}
 /**
  * Marks the field of a TextCommand as an argument.
  * @param info Options for the decorator.
@@ -12,8 +13,9 @@ export type ChannelArgOptions = Omit<ArgOptions, 'type'>
 export function channel(info: ChannelArgOptions) {
     return (target: Constructable, key: string) => {
         arg({
-            ...info,
-            type: ApplicationCommandOptionTypes.CHANNEL
+            type: "CHANNEL",
+            required: info.required,
+            description: info.description,
         })(target, key);
     };
 };

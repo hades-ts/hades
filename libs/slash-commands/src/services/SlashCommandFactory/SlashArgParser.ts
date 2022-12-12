@@ -1,6 +1,6 @@
 import { injectable } from 'inversify';
 
-import { SlashArgInstaller } from '../services/SlashCommandFactory/SlashArgInstaller';
+import { SlashArgInstaller } from '..';
 import { BaseCommandInteraction } from 'discord.js';
 
 

@@ -1,11 +1,11 @@
 import { Container } from 'inversify';
+import { BaseCommandInteraction } from 'discord.js';
+import { Constructor, InstallerFunc, Newable } from "@hades-ts/hades";
 
 import { SlashArgError } from '../../errors';
 import { SlashArgMeta } from '../../metadata';
-import { SlashArgParser } from '../../parsers';
-import { Constructor, InstallerFunc, Newable } from "@hades-ts/hades";
-import { BaseCommandInteraction } from 'discord.js';
 import { Validator } from '../../validators';
+import { SlashArgParser } from './SlashArgParser';
 
 /**
  * Binds argument values in a container.

@@ -1,9 +1,10 @@
 import { Collection } from 'discord.js';
 import { multiInject, postConstruct } from 'inversify';
 
-import { SlashArgParser } from '../../parsers/SlashArgParser';
 import { Constructor, Newable, singleton } from "@hades-ts/hades";
-import { StringParser } from '../../parsers';
+
+import { SlashArgParser } from './SlashArgParser';
+import { StringParser } from './String';
 
 
 export type TypeMap = [Constructor, Newable<SlashArgParser>];

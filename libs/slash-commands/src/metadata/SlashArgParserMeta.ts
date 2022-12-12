@@ -1,8 +1,8 @@
-import { SlashArgParser as SlashParser } from "../parsers";
 import { Newable } from "@hades-ts/hades";
+import { SlashArgParser } from "../services";
 
 
 export class SlashArgParserMeta {
-    type: Newable<SlashParser>;
+    type: Newable<SlashArgParser>;
     description?: string;
 }

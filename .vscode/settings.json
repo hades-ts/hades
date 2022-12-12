@@ -7,6 +7,7 @@
         "subcontainer"
     ],
     "exportall.config.folderListener": [
-        "/libs/text-commands/src/commands/metadata"
+        "/libs/text-commands/src/commands/metadata",
+        "/libs/slash-commands/src/decorators"
     ]
 }

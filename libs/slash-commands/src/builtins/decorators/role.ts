@@ -1,9 +1,11 @@
 import { Constructable } from "@hades-ts/hades";
-import { ApplicationCommandOptionTypes } from "discord.js/typings/enums";
-import { arg, ArgOptions } from "./arg";
+import { arg } from "./arg";
 
 
-export type RoleArgOptions = Omit<ArgOptions, 'type'>
+export type RoleArgOptions = {
+    required?: boolean;
+    description: string;
+}
 
 /**
  * Marks the field of a TextCommand as an argument.
@@ -12,8 +14,9 @@ export type RoleArgOptions = Omit<ArgOptions, 'type'>
 export function role(info: RoleArgOptions) {
     return (target: Constructable, key: string) => {
         arg({
-            ...info,
-            type: ApplicationCommandOptionTypes.ROLE
+            type: "ROLE",
+            required: info.required,
+            description: info.description,
         })(target, key);
     };
 };
