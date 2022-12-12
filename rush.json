@@ -45,6 +45,11 @@
       "packageName": "@hades-ts/example-bot",
       "projectFolder": "apps/example-bot",
       "shouldPublish": false
+    },
+    {
+      "packageName": "@hades-ts/gpt3-bot",
+      "projectFolder": "apps/gpt3-bot",
+      "shouldPublish": false
     }   
   ]
 }

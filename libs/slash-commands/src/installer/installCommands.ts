@@ -1,7 +1,5 @@
 import { Container } from "inversify"
-import { getSlashCommandMetas } from "../metadata/api";
-import { SlashCommandMeta } from "../metadata/SlashCommandMeta";
-
+import { getSlashCommandMetas, SlashCommandMeta } from "../metadata";
 import { SlashCommandFactory, SlashCommandHelper } from "../services";
 
 
