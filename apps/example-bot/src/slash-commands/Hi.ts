@@ -1,6 +1,5 @@
 import { HadesClient } from "@hades-ts/hades";
-import { user, command, SlashCommand, SlashArgError } from "@hades-ts/slash-commands";
-import { validate } from "@hades-ts/slash-commands";
+import { user, command, validate, SlashCommand, SlashArgError } from "@hades-ts/slash-commands";
 import { GuildMember, EmbedBuilder } from "discord.js";
 import { inject } from "inversify";
 

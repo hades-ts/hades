@@ -8,6 +8,7 @@
     ],
     "exportall.config.folderListener": [
         "/libs/text-commands/src/commands/metadata",
-        "/libs/slash-commands/src/decorators"
+        "/libs/slash-commands/src/decorators",
+        "/apps/example-bot/src/utils.ts"
     ]
 }

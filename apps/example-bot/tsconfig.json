@@ -29,7 +29,7 @@
     "include": [
         "src/**/*.ts",
         "src/**/*.js"
-    ],
+, "src/utils"    ],
     "exclude": [
         "node_modules"
     ]
