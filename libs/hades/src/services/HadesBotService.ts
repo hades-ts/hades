@@ -56,7 +56,7 @@ export class HadesBotService {
     }
 
     get highlight() {
-        return `<@!${this.client.user.id}>`;
+        return `<@${this.client.user.id}>`;
     }
 
     protected isHighlight(content: string) {

@@ -32,7 +32,7 @@ export class HadesContainer extends Container {
      * Enables inverisfy-config-injection support.
      */
     private loadConfigurationModule() {
-        const configBinder = new EagerBinder({ prefix: 'cfg' });
+        const configBinder = new EagerBinder({ prefix: 'cfg', objects: true });
         const configCallback = configBinder.getModuleFunction();
         const configModule = new ContainerModule(configCallback);
         this.load(configModule);

@@ -28,7 +28,9 @@
         "sqlite3": "^5.0.1",
         "typeorm": "^0.2.29",
         "dotenv": "~16.0.3",
-        "axios": "~1.2.1"
+        "axios": "~1.2.1",
+        "rxjs": "~7.6.0",
+        "gpt3-tokenizer": "~1.1.4"
     },
     "devDependencies": {
         "@types/common-tags": "^1.8.0",

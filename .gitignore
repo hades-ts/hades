@@ -75,3 +75,5 @@ common/autoinstallers/*/.npmrc
 **/dist
 **/node_modules
 /.direnv/
+
+apps/gpt3-bot/data

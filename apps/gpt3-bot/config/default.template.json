@@ -1,5 +1,12 @@
 {
     "discordToken": "",
     "botOwner": "",
-    "gpt3Token": ""
+    "gpt3Token": "",
+    "guilds": {},
+    "transcriptsPath": "transcripts",
+    "quota": {
+        "quotaFile": "quota.json",
+        "globalDailyTokenLimit": 100000,
+        "userDailyTokenLimit": 1000
+    }
 }
