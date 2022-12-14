@@ -4,6 +4,7 @@ export default [
     mkMenuItem('hades'),
     mkMenuItem('text-commands'),
     mkMenuItem('slash-commands'),
+    mkMenuItem('bots'),
     mkMenuItem('guides'),
     {
         to: `/blog`,

@@ -76,5 +76,5 @@ common/autoinstallers/*/.npmrc
 **/node_modules
 /.direnv/
 
-bots
-apps/gpt3-bot/data
+.ignore
+bots/pythia/data

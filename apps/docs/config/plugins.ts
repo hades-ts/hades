@@ -14,6 +14,7 @@ export default async () => {
         await mkSection('hades'),
         await mkSection('text-commands'),
         await mkSection('slash-commands'),
+        await mkSection('bots'),
         await mkSection('guides'),
     ]
 }
