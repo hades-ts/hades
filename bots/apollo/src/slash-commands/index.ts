@@ -1,3 +1,2 @@
-export * from './ButtonTest';
-export * from './Hi';
-export * from './UserIs';
+export * from "./coi";
+export * from "./weeaboo";
