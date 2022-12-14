@@ -1,78 +1,82 @@
-/**
+/*
  * This is the main configuration file for Rush.
  * For full documentation, please see https://rushjs.io
  */
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/rush.schema.json",
-  "rushVersion": "5.82.1",
-  "pnpmVersion": "7.13.4",
-  "nodeSupportedVersionRange": ">=18.0.0",
-  "suppressNodeLtsWarning": true,
-  "ensureConsistentVersions": true,
-  "projectFolderMinDepth": 2,
-  "projectFolderMaxDepth": 2,
-  "repository": {
-    "url": "https://github.com/hades-ts/hades"
-  },
-
-  "projects": [
-    {
-        "packageName": "repo-scripts",
-        "projectFolder": "rigs/repo-scripts"
+    "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/rush.schema.json",
+    "rushVersion": "5.82.1",
+    "pnpmVersion": "7.13.4",
+    "nodeSupportedVersionRange": ">=18.0.0",
+    "suppressNodeLtsWarning": true,
+    "ensureConsistentVersions": true,
+    "projectFolderMinDepth": 2,
+    "projectFolderMaxDepth": 2,
+    "repository": {
+        "url": "https://github.com/hades-ts/hades"
     },
-    {
-        "packageName": "eslint-plugin-hades",
-        "projectFolder": "rigs/eslint-plugin-hades"
-    },    
-    {
-      "packageName": "@hades-ts/hades",
-      "projectFolder": "libs/hades",
-      "shouldPublish": true
-    },
-    {
-      "packageName": "@hades-ts/text-commands",
-      "projectFolder": "libs/text-commands",
-      "shouldPublish": true
-    },
-    {
-      "packageName": "@hades-ts/slash-commands",
-      "projectFolder": "libs/slash-commands",
-      "shouldPublish": true
-    },
-    {
-      "packageName": "@hades-ts/lojban",
-      "projectFolder": "libs/lojban",
-      "shouldPublish": true
-    },
-    {
-      "packageName": "generator-hades-bot",
-      "projectFolder": "libs/generator",
-      "shouldPublish": true
-    },
-    {
-      "packageName": "@hades-ts/docs",
-      "projectFolder": "apps/docs",
-      "shouldPublish": false
-    },
-    {
-      "packageName": "@hades-ts/example-bot",
-      "projectFolder": "bots/example-bot",
-      "shouldPublish": false
-    },
-    {
-      "packageName": "@hades-ts/pythia",
-      "projectFolder": "bots/pythia",
-      "shouldPublish": false
-    },
-    {
-      "packageName": "@hades-ts/chaos",
-      "projectFolder": "bots/chaos",
-      "shouldPublish": false
-    },
-    {
-      "packageName": "@hades-ts/zeus",
-      "projectFolder": "bots/zeus",
-      "shouldPublish": false
-    }   
-  ]
+    "projects": [
+        {
+            "packageName": "repo-scripts",
+            "projectFolder": "rigs/repo-scripts"
+        },
+        {
+            "packageName": "eslint-plugin-hades",
+            "projectFolder": "rigs/eslint-plugin-hades"
+        },
+        {
+            "packageName": "@hades-ts/hades",
+            "projectFolder": "libs/hades",
+            "shouldPublish": true
+        },
+        {
+            "packageName": "@hades-ts/text-commands",
+            "projectFolder": "libs/text-commands",
+            "shouldPublish": true
+        },
+        {
+            "packageName": "@hades-ts/slash-commands",
+            "projectFolder": "libs/slash-commands",
+            "shouldPublish": true
+        },
+        {
+            "packageName": "@hades-ts/lojban",
+            "projectFolder": "libs/lojban",
+            "shouldPublish": true
+        },
+        {
+            "packageName": "generator-hades-bot",
+            "projectFolder": "libs/generator",
+            "shouldPublish": true
+        },
+        {
+            "packageName": "@hades-ts/docs",
+            "projectFolder": "apps/docs",
+            "shouldPublish": false
+        },
+        {
+            "packageName": "@hades-ts/example-bot",
+            "projectFolder": "bots/example-bot",
+            "shouldPublish": false
+        },
+        {
+            "packageName": "@hades-ts/pythia",
+            "projectFolder": "bots/pythia",
+            "shouldPublish": false
+        },
+        {
+            "packageName": "@hades-ts/chaos",
+            "projectFolder": "bots/chaos",
+            "shouldPublish": false
+        },
+        {
+            "packageName": "@hades-ts/zeus",
+            "projectFolder": "bots/zeus",
+            "shouldPublish": false
+        },
+        {
+            "packageName": "@hades-ts/apollo",
+            "projectFolder": "bots/apollo",
+            "shouldPublish": false
+        }
+    ]
 }
