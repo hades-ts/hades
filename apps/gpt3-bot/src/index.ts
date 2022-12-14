@@ -3,7 +3,6 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 import { HadesContainer } from '@hades-ts/hades';
-import { installLojbanSupport } from "@hades-ts/lojban";
 import { TextCommandsInstaller } from "@hades-ts/text-commands"
 import { SlashCommandsInstaller } from  "@hades-ts/slash-commands"
 
@@ -19,7 +18,6 @@ import './slash-commands';
         installers: [
             new TextCommandsInstaller(),
             new SlashCommandsInstaller(),
-            installLojbanSupport,
         ],
     });
 

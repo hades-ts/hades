@@ -115,7 +115,6 @@ importers:
     specifiers:
       '@discordjs/rest': ^0.5.0
       '@hades-ts/hades': workspace:^0.0.1
-      '@hades-ts/lojban': workspace:^0.0.1
       '@hades-ts/slash-commands': workspace:^0.0.1
       '@hades-ts/text-commands': workspace:^0.0.1
       '@types/common-tags': ^1.8.0
@@ -145,7 +144,6 @@ importers:
     dependencies:
       '@discordjs/rest': 0.5.0
       '@hades-ts/hades': link:../../libs/hades
-      '@hades-ts/lojban': link:../../libs/lojban
       '@hades-ts/slash-commands': link:../../libs/slash-commands
       '@hades-ts/text-commands': link:../../libs/text-commands
       axios: 1.2.1
@@ -219,7 +217,7 @@ importers:
       '@types/node': ~18.11.11
       discord-api-types: ^0.33.5
       discord-command-parser: ^1.5.3
-      discord.js: ^13.8.0
+      discord.js: ~14.7.1
       inversify: ^6.0.1
       inversify-binding-decorators: ^4.0.0
       inversify-config-injection: github:apoptosis/inversify-config-injection
@@ -231,7 +229,7 @@ importers:
       '@discordjs/rest': 0.5.0
       discord-api-types: 0.33.5
       discord-command-parser: 1.5.3
-      discord.js: 13.12.0
+      discord.js: 14.7.1
       inversify: 6.0.1
       inversify-binding-decorators: 4.0.0
       inversify-config-injection: github.com/apoptosis/inversify-config-injection/d6457432a8aad25da2103f0b8ee6a005aec8339a_scz6qrwecfbbxg4vskopkl3a7u
@@ -1719,18 +1717,6 @@ packages:
       '@jridgewell/trace-mapping': 0.3.9
     dev: true
 
-  /@discordjs/builders/0.16.0:
-    resolution: {integrity: sha512-9/NCiZrLivgRub2/kBc0Vm5pMBE5AUdYbdXsLu/yg9ANgvnaJ0bZKTY8yYnLbsEc/LYUP79lEIdC73qEYhWq7A==}
-    engines: {node: '>=16.9.0'}
-    deprecated: no longer supported
-    dependencies:
-      '@sapphire/shapeshift': 3.7.1
-      discord-api-types: 0.36.3
-      fast-deep-equal: 3.1.3
-      ts-mixer: 6.0.2
-      tslib: 2.4.1
-    dev: false
-
   /@discordjs/builders/1.4.0:
     resolution: {integrity: sha512-nEeTCheTTDw5kO93faM1j8ZJPonAX86qpq/QVoznnSa8WWcCgJpjlu6GylfINTDW6o7zZY0my2SYdxx2mfNwGA==}
     engines: {node: '>=16.9.0'}
@@ -3213,13 +3199,6 @@ packages:
 
   /@types/mime/3.0.1:
     resolution: {integrity: sha512-Y4XFY5VJAuw0FgAqPNd6NNoV44jbq9Bz2L7Rh/J6jLTiHBSBJa9fxqQIvkIld4GsoDOcCbvzOUAbLPsSKKg+uA==}
-
-  /@types/node-fetch/2.6.2:
-    resolution: {integrity: sha512-DHqhlq5jeESLy19TYhLakJ07kNumXWjcDdxXsLUMJZ6ue8VZJj4kLPQVE/2mdHh3xZziNF1xppu5lwmS53HR+A==}
-    dependencies:
-      '@types/node': 18.11.11
-      form-data: 3.0.1
-    dev: false
 
   /@types/node-schedule/1.3.2:
     resolution: {integrity: sha512-Y0CqdAr+lCpArT8CJJjJq4U2v8Bb5e7ru2nV/NhDdaptCMCRdOL3Y7tAhen39HluQMaIKWvPbDuiFBUQpg7Srw==}
@@ -5161,35 +5140,12 @@ packages:
     resolution: {integrity: sha512-dvO5M52v7m7Dy96+XUnzXNsQ/0npsYpU6dL205kAtEDueswoz3aU3bh1UMoK4cQmcGtB1YRyLKqp+DXi05lzFg==}
     dev: false
 
-  /discord-api-types/0.36.3:
-    resolution: {integrity: sha512-bz/NDyG0KBo/tY14vSkrwQ/n3HKPf87a0WFW/1M9+tXYK+vp5Z5EksawfCWo2zkAc6o7CClc0eff1Pjrqznlwg==}
-    dev: false
-
   /discord-api-types/0.37.21:
     resolution: {integrity: sha512-GB4ThibZEzWXcvgL2QfjKoDX5j1sNLWtgibodiJ9M9PM0u9bdR2t3vZ24oQWLKlksJehSJmZDtRsAibhcr46vw==}
     dev: false
 
   /discord-command-parser/1.5.3:
     resolution: {integrity: sha512-YWgalkrbly0dJCyLw7p9SX3RC7HIxOrSTz/8vKjlmYPyyZmMCGmKwpXu6HkPXRZ20L6QqftVWigSw6fDK2zemg==}
-    dev: false
-
-  /discord.js/13.12.0:
-    resolution: {integrity: sha512-K5qhREsYcTHkEqt7+7LcSoXTeQYZpI+SQRs9ei/FhbhUpirmjqFtN99P8W2mrKUyhhy7WXWm7rnna0AooKtIpw==}
-    engines: {node: '>=16.6.0', npm: '>=7.0.0'}
-    dependencies:
-      '@discordjs/builders': 0.16.0
-      '@discordjs/collection': 0.7.0
-      '@sapphire/async-queue': 1.5.0
-      '@types/node-fetch': 2.6.2
-      '@types/ws': 8.5.3
-      discord-api-types: 0.33.5
-      form-data: 4.0.0
-      node-fetch: 2.6.7
-      ws: 8.11.0
-    transitivePeerDependencies:
-      - bufferutil
-      - encoding
-      - utf-8-validate
     dev: false
 
   /discord.js/14.7.1:
@@ -5722,15 +5678,6 @@ packages:
       tapable: 1.1.3
       typescript: 4.9.4
       webpack: 5.75.0
-
-  /form-data/3.0.1:
-    resolution: {integrity: sha512-RHkBKtLWUVwd7SqRIvCZMEvAMoGUp0XU+seQiZejj0COz3RI3hWP4sCv3gZWWLjJTd7rGwcsF5eKZGii0r/hbg==}
-    engines: {node: '>= 6'}
-    dependencies:
-      asynckit: 0.4.0
-      combined-stream: 1.0.8
-      mime-types: 2.1.35
-    dev: false
 
   /form-data/4.0.0:
     resolution: {integrity: sha512-ETEklSGi5t0QMZuiXoA/Q6vcnxcLQP5vdugSpuAyi6SVGi2clPPp+xgEhuMaHC+zGgn31Kd235W35f7Hykkaww==}

@@ -20,7 +20,6 @@
         "@hades-ts/hades": "workspace:^0.0.1",
         "@hades-ts/text-commands": "workspace:^0.0.1",
         "@hades-ts/slash-commands": "workspace:^0.0.1",
-        "@hades-ts/lojban": "workspace:^0.0.1",
         "inversify": "~6.0.1",
         "inversify-binding-decorators": "^4.0.0",
         "node-schedule": "^1.3.2",
