@@ -1,19 +1,19 @@
 import { arg, command, description, TextCommand } from "@hades-ts/text-commands";
 import { inject } from "inversify";
-import { CamxesService } from "../services";
+import { CamxesService } from "../services/CamxesService";
 
-@command("camxes")
-@description("Get parse of lojban sentence.")
+@command("markup")
+@description("Markup jufra (Lojban sentences).")
 export class Camxes extends TextCommand {
-    @arg()
-    @description("String to parse.")
-    phrase!: string;
+  @arg()
+  @description("String to markup.")
+  phrase!: string;
 
-    @inject(CamxesService)
-    camxes: CamxesService;
+  @inject(CamxesService)
+  camxes: CamxesService;
 
-    async execute() {
-        const parse = this.camxes.getParse(this.phrase);
-        this.reply(`\`\`\`\n${parse}\n\`\`\``);
-    }
+  async execute() {
+    const parsed = this.camxes.getParse(this.phrase);
+    this.reply(`\`\`\`\n${parsed}\`\`\`\n`);
+  }
 }

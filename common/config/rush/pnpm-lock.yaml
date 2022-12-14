@@ -379,6 +379,7 @@ importers:
       '@ldlework/inversify-config-injection': 0.0.7
       '@types/jest': ~29.2.4
       '@types/node': ~18.11.11
+      camxes: github:Lord-Valen/camxes.js
       discord-api-types: ^0.33.5
       discord-command-parser: ^1.5.3
       discord.js: ~14.7.1
@@ -393,6 +394,7 @@ importers:
       '@discordjs/rest': 0.5.0
       '@ldlework/inversify-binding-decorators': 4.0.2
       '@ldlework/inversify-config-injection': 0.0.7_scz6qrwecfbbxg4vskopkl3a7u
+      camxes: github.com/Lord-Valen/camxes.js/ad3abbb387a3b7735361a9c9d143dc55da5db03b
       discord-api-types: 0.33.5
       discord-command-parser: 1.5.3
       discord.js: 14.7.1
@@ -12066,6 +12068,12 @@ packages:
     engines: {node: '>=14.16'}
     dev: false
 
+  /pegjs/0.7.0:
+    resolution: {integrity: sha512-LKb5vROzG2N6FVpITS8zy4BSB8M5z8JgiM0LzgvUVRIdScHys8RYlYvHVSL3WeXMLowF9MZj1hPusuVvTgeq4w==}
+    engines: {node: '>= 0.6.6'}
+    hasBin: true
+    dev: false
+
   /picocolors/1.0.0:
     resolution: {integrity: sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==}
 
@@ -15871,6 +15879,18 @@ packages:
 
   /zwitch/1.0.5:
     resolution: {integrity: sha512-V50KMwwzqJV0NpZIZFwfOD5/lyny3WlSzRiXgA0G7VUnRlqttta1L6UQIHzd6EuBY/cHGfwTIck7w1yH6Q5zUw==}
+
+  github.com/Lord-Valen/camxes.js/ad3abbb387a3b7735361a9c9d143dc55da5db03b:
+    resolution: {tarball: https://codeload.github.com/Lord-Valen/camxes.js/tar.gz/ad3abbb387a3b7735361a9c9d143dc55da5db03b}
+    name: camxes.js
+    version: 0.0.1
+    engines: {node: '>=16.00'}
+    hasBin: true
+    prepare: true
+    requiresBuild: true
+    dependencies:
+      pegjs: 0.7.0
+    dev: false
 
   github.com/dustinlacewell/categoric-decorators/e66c164ffb66cc17f00c41e844e224ef602356b4:
     resolution: {tarball: https://codeload.github.com/dustinlacewell/categoric-decorators/tar.gz/e66c164ffb66cc17f00c41e844e224ef602356b4}

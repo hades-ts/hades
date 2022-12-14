@@ -1,11 +1,9 @@
 import { arg, command, description, TextArgError, TextCommand, validate } from "@hades-ts/text-commands";
 import { inject, postConstruct } from 'inversify';
 
-
 @command("lojban")
-@description("Get definition of lojban word.")
+@description("Get definition of a lojban word.")
 export class Lojban extends TextCommand {
-
     @arg()
     @description("Word to lookup.")
     word!: string;
@@ -41,7 +39,7 @@ export class Lojban extends TextCommand {
     @validate("word")
     public async validate() {
         if (!this.data) {
-            throw new TextArgError(`${this.word} is not a Lojban word.`);
+            throw new TextArgError(`I don't know ${this.word} to be a Lojban word.`);
         }
     }
 }
