@@ -12,12 +12,6 @@ import { TranscriptMessage } from "../types";
 @command("explain", { description: "Ask the bot a question." })
 export class ExplainCommand extends SlashCommand {
 
-    @inject('cfg.botOwner')
-    botOwner: string;
-
-    @inject('cfg.guilds')
-    guilds: Record<string, { users: string[], roles?: string[] }>;
-
     @arg({ description: "Your question.", type: ApplicationCommandOptionType.String })
     question: string;
 
