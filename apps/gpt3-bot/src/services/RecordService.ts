@@ -20,15 +20,6 @@ export class RecordService {
     @inject('cfg.transcriptsPath')
     dataDir: string;
 
-    _recordUpdated: Subject<Transcript>;
-
-    @postConstruct() 
-    init() {
-        this._recordUpdated = new Subject<Transcript>();
-    }
-
-    get recordUpdated() { return this._recordUpdated }
-
     protected ensureDataDir() {
         // ensure the data directory exists
         if (!fs.existsSync(this.dataDir)) {
@@ -51,17 +42,8 @@ export class RecordService {
         }
 
         this.ensureGuildDir(thread.guildId);
-        // save a transcript
         const threadPath = path.join(this.dataDir, thread.guildId, thread.threadId);
         fs.writeFileSync(threadPath, JSON.stringify(thread, null, 4));
-        this._recordUpdated.next(thread);
-    }
-
-    addMessage(guildId: string, threadId: string, message: TranscriptMessage) {
-        this.ensureGuildDir(guildId);
-        const thread = this.getThread(guildId, threadId);
-        thread.messages.push(message);
-        this.saveThread(thread);
     }
 
     getThread(guildId: string, threadId: string | undefined): Transcript {
