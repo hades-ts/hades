@@ -9,8 +9,10 @@ import { SlashCommandsInstaller } from  "@hades-ts/slash-commands"
 
 import { BotService } from './services/BotService';
 
+
 import './slash-commands';
 
+import { configSchema } from './config';
 
 ((async () => {
 
@@ -19,6 +21,9 @@ import './slash-commands';
             new TextCommandsInstaller(),
             new SlashCommandsInstaller(),
         ],
+        configOptions: {
+            schema: configSchema,
+        }
     });
 
     const bot = container.get(BotService);

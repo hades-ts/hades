@@ -141,6 +141,7 @@ importers:
       tsconfig-paths: ~4.1.1
       typeorm: ^0.2.29
       typescript: ~4.9.3
+      zod: ~3.20.2
     dependencies:
       '@discordjs/rest': 0.5.0
       '@hades-ts/hades': link:../../libs/hades
@@ -162,6 +163,7 @@ importers:
       rxjs: 7.6.0
       sqlite3: 5.1.2
       typeorm: 0.2.45_sqlite3@5.1.2
+      zod: 3.20.2
     devDependencies:
       '@types/common-tags': 1.8.1
       '@types/node': 18.11.11
@@ -175,6 +177,7 @@ importers:
   ../../libs/hades:
     specifiers:
       '@discordjs/rest': ^0.5.0
+      '@ldlework/inversify-config-injection': ^0.0.7
       '@types/node': ~18.11.11
       commander: ^7.2.0
       common-tags: ^1.8.0
@@ -185,13 +188,13 @@ importers:
       googleapis: ^67.0.0
       inversify: ~6.0.1
       inversify-binding-decorators: ^4.0.0
-      inversify-config-injection: github:apoptosis/inversify-config-injection
       reflect-metadata: ^0.1.13
       ts-node: ~10.9.1
       tsconfig-paths: ~4.1.1
       typescript: ~4.9.3
     dependencies:
       '@discordjs/rest': 0.5.0
+      '@ldlework/inversify-config-injection': 0.0.7_scz6qrwecfbbxg4vskopkl3a7u
       common-tags: 1.8.2
       config: 3.3.8
       discord-api-types: 0.33.5
@@ -200,7 +203,6 @@ importers:
       googleapis: 67.1.1
       inversify: 6.0.1
       inversify-binding-decorators: 4.0.0
-      inversify-config-injection: github.com/apoptosis/inversify-config-injection/d6457432a8aad25da2103f0b8ee6a005aec8339a_scz6qrwecfbbxg4vskopkl3a7u
       reflect-metadata: 0.1.13
     devDependencies:
       '@types/node': 18.11.11
@@ -232,7 +234,7 @@ importers:
       discord.js: 14.7.1
       inversify: 6.0.1
       inversify-binding-decorators: 4.0.0
-      inversify-config-injection: github.com/apoptosis/inversify-config-injection/d6457432a8aad25da2103f0b8ee6a005aec8339a_scz6qrwecfbbxg4vskopkl3a7u
+      inversify-config-injection: github.com/apoptosis/inversify-config-injection/1fa0cb45803a64cc28751cdf83b0863df2089acd_scz6qrwecfbbxg4vskopkl3a7u
       reflect-metadata: 0.1.13
     devDependencies:
       '@hades-ts/hades': link:../hades
@@ -264,7 +266,7 @@ importers:
       discord.js: 14.7.1
       inversify: 6.0.1
       inversify-binding-decorators: 4.0.0
-      inversify-config-injection: github.com/apoptosis/inversify-config-injection/d6457432a8aad25da2103f0b8ee6a005aec8339a_scz6qrwecfbbxg4vskopkl3a7u
+      inversify-config-injection: github.com/apoptosis/inversify-config-injection/1fa0cb45803a64cc28751cdf83b0863df2089acd_scz6qrwecfbbxg4vskopkl3a7u
       reflect-metadata: 0.1.13
     devDependencies:
       '@hades-ts/hades': link:../hades
@@ -295,7 +297,7 @@ importers:
       discord.js: 14.7.1
       inversify: 6.0.1
       inversify-binding-decorators: 4.0.0
-      inversify-config-injection: github.com/apoptosis/inversify-config-injection/d6457432a8aad25da2103f0b8ee6a005aec8339a_scz6qrwecfbbxg4vskopkl3a7u
+      inversify-config-injection: github.com/apoptosis/inversify-config-injection/1fa0cb45803a64cc28751cdf83b0863df2089acd_scz6qrwecfbbxg4vskopkl3a7u
       reflect-metadata: 0.1.13
     devDependencies:
       '@hades-ts/hades': link:../hades
@@ -2780,6 +2782,19 @@ packages:
       '@jridgewell/resolve-uri': 3.1.0
       '@jridgewell/sourcemap-codec': 1.4.14
     dev: true
+
+  /@ldlework/inversify-config-injection/0.0.7_scz6qrwecfbbxg4vskopkl3a7u:
+    resolution: {integrity: sha512-+2ZXZZwmoG5Fq1ENmCZ5kSdLc/WRHZ+lS7c/QBYi6tVS08NKxohlFodtjQ4EVpjIF4VY8uDSJg0Fuomi/V5hhA==}
+    engines: {node: '>=4.0.0'}
+    peerDependencies:
+      inversify: ^6.0.1
+      reflect-metadata: ^0.1.13
+    dependencies:
+      config: 1.31.0
+      inversify: 6.0.1
+      reflect-metadata: 0.1.13
+      zod: 3.20.2
+    dev: false
 
   /@leichtgewicht/ip-codec/2.0.4:
     resolution: {integrity: sha512-Hcv+nVC0kZnQ3tD9GVu5xSMR4VVYOteQIr/hwFPVEvPdlXqgGEuRjiheChHgdM+JyqdgNcmzZOX/tnl0JOiI7A==}
@@ -9913,13 +9928,17 @@ packages:
     resolution: {integrity: sha512-PQ2PC7R9rslx84ndNBZB/Dkv8V8fZEpk83RLgXtYd0fwUgEjseMn1Dgajh2x6S8QbZAFa9p2qVCEuYZNgve0dQ==}
     dev: false
 
+  /zod/3.20.2:
+    resolution: {integrity: sha512-1MzNQdAvO+54H+EaK5YpyEy0T+Ejo/7YLHS93G3RnYWh5gaotGHwGeN/ZO687qEDU2y4CdStQYXVHIgrUl5UVQ==}
+    dev: false
+
   /zwitch/1.0.5:
     resolution: {integrity: sha512-V50KMwwzqJV0NpZIZFwfOD5/lyny3WlSzRiXgA0G7VUnRlqttta1L6UQIHzd6EuBY/cHGfwTIck7w1yH6Q5zUw==}
 
-  github.com/apoptosis/inversify-config-injection/d6457432a8aad25da2103f0b8ee6a005aec8339a_scz6qrwecfbbxg4vskopkl3a7u:
-    resolution: {tarball: https://codeload.github.com/apoptosis/inversify-config-injection/tar.gz/d6457432a8aad25da2103f0b8ee6a005aec8339a}
-    id: github.com/apoptosis/inversify-config-injection/d6457432a8aad25da2103f0b8ee6a005aec8339a
-    name: inversify-config-injection
+  github.com/apoptosis/inversify-config-injection/1fa0cb45803a64cc28751cdf83b0863df2089acd_scz6qrwecfbbxg4vskopkl3a7u:
+    resolution: {tarball: https://codeload.github.com/apoptosis/inversify-config-injection/tar.gz/1fa0cb45803a64cc28751cdf83b0863df2089acd}
+    id: github.com/apoptosis/inversify-config-injection/1fa0cb45803a64cc28751cdf83b0863df2089acd
+    name: '@ldlework/inversify-config-injection'
     version: 0.0.4
     engines: {node: '>=4.0.0'}
     peerDependencies:

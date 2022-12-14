@@ -29,7 +29,8 @@
         "dotenv": "~16.0.3",
         "axios": "~1.2.1",
         "rxjs": "~7.6.0",
-        "gpt3-tokenizer": "~1.1.4"
+        "gpt3-tokenizer": "~1.1.4",
+        "zod": "~3.20.2"
     },
     "devDependencies": {
         "@types/common-tags": "^1.8.0",
