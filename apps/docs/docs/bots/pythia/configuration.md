@@ -1,6 +1,3 @@
-
-
-
 # Configuration
 
 Copy `config/default.template.json` to `config/default.json`
@@ -28,8 +25,38 @@ Copy `config/default.template.json` to `config/default.json`
 }
 ```
 
-## Running the Bot
+## `discordToken`
 
-```sh
-$ npm run start
-```
+The Discord Bot token for your bot.
+
+## `botOwner`
+
+The Discord User ID of the bot admin.
+
+## `gpt3Token`
+
+An OpenAI API token.
+
+## `transcriptsPath`
+
+Where to store on-going threads.
+
+## `quota`
+
+Configuration for the token quota:
+
+- `quotaFile` - Where to store the quota file.
+- `globalDailyTokenLimit` - The global daily token limit.
+- `userDailyTokenLimit` - The user daily token limit.
+
+## `guilds`
+
+Per-guild configuration:
+
+- `prompt` - The GPT prompt to use for this guild.
+- `roleExemptions` - A list of users and roles that are exempt from the token quota.
+
+### `roleExemptions`
+
+- `users` - A list of user IDs that are exempt from the token quota.
+- `roles` - A list of role IDs that are exempt from the token quota.

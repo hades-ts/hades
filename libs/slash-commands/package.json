@@ -1,6 +1,6 @@
 {
   "name": "@hades-ts/slash-commands",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Slash-command extension for Hades",
   "author": "",
   "license": "ISC",

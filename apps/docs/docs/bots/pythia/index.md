@@ -1,6 +1,6 @@
 # Pythia (GPT3 AI)
 
-This is an GPT3 AI bot built with [Hades](https://github.com/hades-ts/hades), the Discord bot framework.
+A GPT3 AI bot built with [Hades](https://github.com/hades-ts/hades), the Discord bot framework.
 
 <p align="center">
 

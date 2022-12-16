@@ -37,6 +37,11 @@
       "shouldPublish": true
     },
     {
+      "packageName": "generator-hades-bot",
+      "projectFolder": "libs/generator",
+      "shouldPublish": true
+    },
+    {
       "packageName": "@hades-ts/docs",
       "projectFolder": "apps/docs",
       "shouldPublish": false
