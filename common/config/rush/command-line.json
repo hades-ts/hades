@@ -26,6 +26,14 @@
       "incremental": false,
       "enableParallelism": true,
       "allowWarningsInSuccessfulBuild": true
+    },
+    {
+        "commandKind": "global",
+        "name": "eject",
+        "summary": "Ejects the specified bot",
+        "description": "Ejects the specified bot",
+        "safeForSimultaneousRushProcesses": false,
+        "shellCommand": "ts-node rigs/repo-scripts/src/eject.ts"
     }
   ],
 

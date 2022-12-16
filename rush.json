@@ -17,6 +17,14 @@
 
   "projects": [
     {
+        "packageName": "repo-scripts",
+        "projectFolder": "rigs/repo-scripts"
+    },
+    {
+        "packageName": "eslint-plugin-hades",
+        "projectFolder": "rigs/eslint-plugin-hades"
+    },    
+    {
       "packageName": "@hades-ts/hades",
       "projectFolder": "libs/hades",
       "shouldPublish": true

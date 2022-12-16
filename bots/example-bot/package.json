@@ -1,6 +1,6 @@
 {
     "name": "@hades-ts/example-bot",
-    "version": "0.0.4",
+    "version": "0.0.0",
     "description": "Example Discord bot",
     "main": "dist/index.js",
     "scripts": {

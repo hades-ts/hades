@@ -1,6 +1,6 @@
 {
     "name": "@hades-ts/pythia",
-    "version": "0.0.4",
+    "version": "0.0.0",
     "description": "Hades based GPT3 Discord bot",
     "main": "dist/index.js",
     "scripts": {
