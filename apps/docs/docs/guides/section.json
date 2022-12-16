@@ -1,5 +1,6 @@
 {
     "order": [
+        "ejecting-a-bot",
         "bot-generator",
         "solid-code",
         "di"
