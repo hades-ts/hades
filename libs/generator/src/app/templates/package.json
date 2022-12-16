@@ -10,9 +10,9 @@
         "watch": "tsc -p tsconfig.json -w"
     },
     "dependencies": {
-        "@hades-ts/hades": "^0.0.3",
-        "@hades-ts/text-commands": "^0.0.3",
-        "@hades-ts/slash-commands": "^0.0.3",
+        "@hades-ts/hades": "^0.0.4",
+        "@hades-ts/text-commands": "^0.0.4",
+        "@hades-ts/slash-commands": "^0.0.4",
         "@discordjs/rest": "^0.5.0",
         "common-tags": "^1.8.0",
         "config": "^3.3.3",

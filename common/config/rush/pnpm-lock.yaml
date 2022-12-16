@@ -57,10 +57,10 @@ importers:
   ../../bots/example-bot:
     specifiers:
       '@discordjs/rest': ^0.5.0
-      '@hades-ts/hades': workspace:^0.0.1
-      '@hades-ts/lojban': workspace:^0.0.1
-      '@hades-ts/slash-commands': workspace:^0.0.1
-      '@hades-ts/text-commands': workspace:^0.0.1
+      '@hades-ts/hades': workspace:^0.0.4
+      '@hades-ts/lojban': workspace:^0.0.4
+      '@hades-ts/slash-commands': workspace:^0.0.4
+      '@hades-ts/text-commands': workspace:^0.0.4
       '@types/common-tags': ^1.8.0
       '@types/node': ~18.11.11
       '@types/node-schedule': ^1.3.1
@@ -114,9 +114,9 @@ importers:
   ../../bots/pythia:
     specifiers:
       '@discordjs/rest': ^0.5.0
-      '@hades-ts/hades': workspace:^0.0.1
-      '@hades-ts/slash-commands': workspace:^0.0.1
-      '@hades-ts/text-commands': workspace:^0.0.1
+      '@hades-ts/hades': workspace:^0.0.4
+      '@hades-ts/slash-commands': workspace:^0.0.4
+      '@hades-ts/text-commands': workspace:^0.0.4
       '@types/common-tags': ^1.8.0
       '@types/node': ~18.11.11
       '@types/node-schedule': ^1.3.1
@@ -251,27 +251,27 @@ importers:
   ../../libs/lojban:
     specifiers:
       '@discordjs/rest': ^0.5.0
-      '@hades-ts/hades': workspace:^0.0.1
-      '@hades-ts/text-commands': workspace:^0.0.1
+      '@hades-ts/hades': workspace:^0.0.4
+      '@hades-ts/text-commands': workspace:^0.0.4
+      '@ldlework/inversify-config-injection': 0.0.7
       '@types/node': ~18.11.11
       discord-api-types: ^0.33.5
       discord-command-parser: ^1.5.3
       discord.js: ~14.7.1
       inversify: ^6.0.1
       inversify-binding-decorators: ^4.0.0
-      inversify-config-injection: github:apoptosis/inversify-config-injection
       reflect-metadata: ^0.1.13
       ts-node: ~10.9.1
       tsconfig-paths: ~4.1.1
       typescript: ~4.9.3
     dependencies:
       '@discordjs/rest': 0.5.0
+      '@ldlework/inversify-config-injection': 0.0.7_scz6qrwecfbbxg4vskopkl3a7u
       discord-api-types: 0.33.5
       discord-command-parser: 1.5.3
       discord.js: 14.7.1
       inversify: 6.0.1
       inversify-binding-decorators: 4.0.0
-      inversify-config-injection: github.com/apoptosis/inversify-config-injection/1fa0cb45803a64cc28751cdf83b0863df2089acd_scz6qrwecfbbxg4vskopkl3a7u
       reflect-metadata: 0.1.13
     devDependencies:
       '@hades-ts/hades': link:../hades
@@ -284,26 +284,26 @@ importers:
   ../../libs/slash-commands:
     specifiers:
       '@discordjs/rest': ^0.5.0
-      '@hades-ts/hades': workspace:^0.0.1
+      '@hades-ts/hades': workspace:^0.0.4
+      '@ldlework/inversify-config-injection': ^0.0.7
       '@types/node': ~18.11.11
       discord-api-types: ^0.33.5
       discord-command-parser: ^1.5.3
       discord.js: ~14.7.1
       inversify: ^6.0.1
       inversify-binding-decorators: ^4.0.0
-      inversify-config-injection: github:apoptosis/inversify-config-injection
       reflect-metadata: ^0.1.13
       ts-node: ~10.9.1
       tsconfig-paths: ~4.1.1
       typescript: ~4.9.3
     dependencies:
       '@discordjs/rest': 0.5.0
+      '@ldlework/inversify-config-injection': 0.0.7_scz6qrwecfbbxg4vskopkl3a7u
       discord-api-types: 0.33.5
       discord-command-parser: 1.5.3
       discord.js: 14.7.1
       inversify: 6.0.1
       inversify-binding-decorators: 4.0.0
-      inversify-config-injection: github.com/apoptosis/inversify-config-injection/1fa0cb45803a64cc28751cdf83b0863df2089acd_scz6qrwecfbbxg4vskopkl3a7u
       reflect-metadata: 0.1.13
     devDependencies:
       '@hades-ts/hades': link:../hades
@@ -315,26 +315,26 @@ importers:
   ../../libs/text-commands:
     specifiers:
       '@discordjs/rest': ^0.5.0
-      '@hades-ts/hades': workspace:^0.0.1
+      '@hades-ts/hades': workspace:^0.0.4
+      '@ldlework/inversify-config-injection': 0.0.7
       '@types/node': ~18.11.11
       discord-api-types: ^0.33.5
       discord-command-parser: ^1.5.3
       discord.js: ~14.7.1
       inversify: ^6.0.1
       inversify-binding-decorators: ^4.0.0
-      inversify-config-injection: github:apoptosis/inversify-config-injection
       reflect-metadata: ^0.1.13
       ts-node: ~10.9.1
       tsconfig-paths: ~4.1.1
       typescript: ~4.9.3
     dependencies:
       '@discordjs/rest': 0.5.0
+      '@ldlework/inversify-config-injection': 0.0.7_scz6qrwecfbbxg4vskopkl3a7u
       discord-api-types: 0.33.5
       discord-command-parser: 1.5.3
       discord.js: 14.7.1
       inversify: 6.0.1
       inversify-binding-decorators: 4.0.0
-      inversify-config-injection: github.com/apoptosis/inversify-config-injection/1fa0cb45803a64cc28751cdf83b0863df2089acd_scz6qrwecfbbxg4vskopkl3a7u
       reflect-metadata: 0.1.13
     devDependencies:
       '@hades-ts/hades': link:../hades
@@ -13001,18 +13001,3 @@ packages:
 
   /zwitch/1.0.5:
     resolution: {integrity: sha512-V50KMwwzqJV0NpZIZFwfOD5/lyny3WlSzRiXgA0G7VUnRlqttta1L6UQIHzd6EuBY/cHGfwTIck7w1yH6Q5zUw==}
-
-  github.com/apoptosis/inversify-config-injection/1fa0cb45803a64cc28751cdf83b0863df2089acd_scz6qrwecfbbxg4vskopkl3a7u:
-    resolution: {tarball: https://codeload.github.com/apoptosis/inversify-config-injection/tar.gz/1fa0cb45803a64cc28751cdf83b0863df2089acd}
-    id: github.com/apoptosis/inversify-config-injection/1fa0cb45803a64cc28751cdf83b0863df2089acd
-    name: '@ldlework/inversify-config-injection'
-    version: 0.0.4
-    engines: {node: '>=4.0.0'}
-    peerDependencies:
-      inversify: ^6.0.1
-      reflect-metadata: ^0.1.13
-    dependencies:
-      config: 1.31.0
-      inversify: 6.0.1
-      reflect-metadata: 0.1.13
-    dev: false

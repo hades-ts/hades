@@ -1,6 +1,6 @@
 {
   "name": "@hades-ts/lojban",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Lojban stuff for Hades bots",
   "author": "",
   "license": "ISC",
@@ -23,8 +23,8 @@
     "watch": "tsc -p tsconfig.json -w"
   },
   "devDependencies": {
-    "@hades-ts/hades": "workspace:^0.0.3",
-    "@hades-ts/text-commands": "workspace:^0.0.3",
+    "@hades-ts/hades": "workspace:^0.0.4",
+    "@hades-ts/text-commands": "workspace:^0.0.4",
     "@types/node": "~18.11.11",
     "ts-node": "~10.9.1",
     "tsconfig-paths": "~4.1.1",
@@ -32,14 +32,14 @@
   },
   "peerDependencies": {
     "@discordjs/rest": "^0.5.0",
-    "@hades-ts/hades": "workspace:^0.0.3",
-    "@hades-ts/text-commands": "workspace:^0.0.3",
+    "@hades-ts/hades": "workspace:^0.0.4",
+    "@hades-ts/text-commands": "workspace:^0.0.4",
     "discord-api-types": "^0.33.5",
     "discord-command-parser": "^1.5.3",
     "discord.js": "~14.7.1",
     "inversify": "^6.0.1",
     "inversify-binding-decorators": "^4.0.0",
-    "inversify-config-injection": "github:apoptosis/inversify-config-injection",
+    "@ldlework/inversify-config-injection": "0.0.7",
     "reflect-metadata": "^0.1.13"
   }
 }
