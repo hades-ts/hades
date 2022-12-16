@@ -1,0 +1,7 @@
+{
+    "order": [
+        "bot-generator",
+        "solid-code",
+        "di"
+    ]
+}
