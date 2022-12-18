@@ -77,4 +77,4 @@ common/autoinstallers/*/.npmrc
 /.direnv/
 
 .ignore
-bots/pythia/data
+**/data

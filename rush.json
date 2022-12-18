@@ -63,6 +63,11 @@
       "packageName": "@hades-ts/pythia",
       "projectFolder": "bots/pythia",
       "shouldPublish": false
+    },
+    {
+      "packageName": "@hades-ts/chaos",
+      "projectFolder": "bots/chaos",
+      "shouldPublish": false
     }   
   ]
 }

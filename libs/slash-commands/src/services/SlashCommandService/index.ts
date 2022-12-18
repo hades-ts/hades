@@ -33,14 +33,19 @@ export class SlashCommandService {
           if (e.showHelp) {
             interaction.reply({
               content: e.message,
+              ephemeral: true,
             });
           } else {
-            interaction.reply(e.message);
+            interaction.reply({
+              content: e.message,
+              ephemeral: true,
+            });
           }
         } else {
-          interaction.reply(
-            "Erm, uh well something went wrong. Dunno what though."
-          );
+          interaction.reply({
+            content: "Erm, uh well something went wrong. Dunno what though.",
+            ephemeral: true,
+          });
           console.error(e);
         }
       }

@@ -1,5 +1,5 @@
 import { Container, ContainerModule, interfaces } from "inversify";
-import { buildProviderModule } from 'inversify-binding-decorators';
+import { buildProviderModule } from '@ldlework/inversify-binding-decorators';
 import { EagerBinder, EagerBinderSettings } from "@ldlework/inversify-config-injection";
 import { Installer } from "./Installer";
 import { InstallerFunc } from "./utils";

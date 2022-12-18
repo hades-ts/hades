@@ -5,5 +5,8 @@
         "lojban",
         "metas",
         "subcontainer"
+    ],
+    "exportall.config.folderListener": [
+        "/bots/ares/src/utils"
     ]
 }
