@@ -1,9 +1,10 @@
 import { inject } from "inversify";
-import { ApplicationCommandOptionType } from "discord.js";
+import { ApplicationCommandOptionType, GuildMember } from "discord.js";
 
 import { HadesClient } from "@hades-ts/hades";
 import { command, SlashCommand, arg, validate, SlashArgError } from "@hades-ts/slash-commands";
 import { GuildManager } from "../guilds";
+import { ConfigGuild } from "../config";
 
 
 
@@ -11,13 +12,16 @@ import { GuildManager } from "../guilds";
 export class ChaosCommand extends SlashCommand {
 
     @arg({ description: "Your word.", type: ApplicationCommandOptionType.String })
-    word: string;
+    word!: string;
+
+    @inject('cfg.guilds')
+    configGuilds!: Record<string, ConfigGuild>;
 
     @inject(HadesClient)
-    client: HadesClient;
+    client!: HadesClient;
 
     @inject(GuildManager)
-    guildManager: GuildManager;
+    guildManager!: GuildManager;
 
     @validate("word")    
     protected validateWord() {
@@ -27,55 +31,51 @@ export class ChaosCommand extends SlashCommand {
     }
 
     protected async reject(content: string) {
-        await this.interaction.deferReply({
-            ephemeral: true,
-        })
-        await this.interaction.editReply({
-            content,
-        })
+        try {
+            await this.interaction.deferReply({
+                ephemeral: true,
+            })
+            await this.interaction.editReply({
+                content,
+            })
+        } catch (error) {
+            console.error(`Couldn't reply to user:`, error);
+        }
     }
 
     async execute(): Promise<void> {
-        const guildId = this.interaction.guildId;
-        const guild = this.guildManager.getGuild(guildId);
+        const guildId = this.interaction.guildId!;
 
-        if (!guild) {
+        const guildConfig = this.configGuilds[guildId];
+        
+        if (!guildConfig) {
             await this.reject("Sorry, I'm not set up for this guild yet. Try again later!");
             return;
         }
 
+        if (guildConfig.disabled) {
+            await this.reject("Sorry, I'm disabled in this server at the moment.");
+            return;
+        }
+
+        const guild = await this.guildManager.getGuild(guildId);
+
         try {        
-            await guild.addWord(this.interaction.user.id, this.word);
+            await guild.addWord(this.interaction.member as GuildMember, this.word);
         } catch (error) {
             if (error instanceof Error) {
                 await this.reject(error.message);
+                return
             }
+            await this.reject("Sorry, something went wrong. Try again later!");
+            return
         }
 
-        this.interaction.reply({
+        await this.interaction.reply({
             content: "Your word has been added. You can add a word again tomorrow.",
             ephemeral: true,
         })
-        // if (this.interaction.channel.type === ChannelType.GuildText) {
-        //     return this.executeNewThread();
-        // }
 
-        // if (this.interaction.channel.type === ChannelType.PublicThread) {
-        //     return this.executeExistingThread();
-        // }
     }
 
-    // async handleError(error: Error) {
-    //     if (error instanceof GlobalQuotaError) {
-    //         await this.reject(`Sorry, I'm out of tokens for the day. Ask again tomorrow!`);
-    //         return
-    //     }
-    //     if (error instanceof UserQuotaError) {
-    //         await this.reject(`Sorry, you're out of tokens for the day. Ask again tomorrow!`);
-    //         return
-    //     }
-        
-    //     await this.reject(`Sorry, I'm having trouble right now. Try again later!`);
-    //     return        
-    // }
 }

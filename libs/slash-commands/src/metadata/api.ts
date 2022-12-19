@@ -1,5 +1,5 @@
 import { Collection } from "discord.js";
-import { Constructor, InstallerFunc, Newable } from "@hades-ts/hades";
+import { InstallerFunc, Newable } from "@hades-ts/hades";
 import { SlashArgParserMeta } from "./SlashArgParserMeta";
 import { SlashCommandMeta } from "./SlashCommandMeta";
 import { SlashArgParser } from "../services";
@@ -14,10 +14,10 @@ const COMMAND_METADATA = Symbol("Hades:CommandMetadata");
  * Get all metas defined with @command
  * @returns A collection of SlashCommandMetas
  */
-export function getSlashCommandMetas(): Collection<Constructor, SlashCommandMeta> {
+export function getSlashCommandMetas(): Collection<Newable, SlashCommandMeta> {
     let metas = Reflect.getMetadata(COMMAND_METADATA, SlashCommandMeta);
     if (metas === undefined) {
-        metas = new Collection<Constructor, SlashCommandMeta>();
+        metas = new Collection<Newable, SlashCommandMeta>();
         setSlashCommandMetas(metas);
     }
     return metas;
@@ -28,7 +28,7 @@ export function getSlashCommandMetas(): Collection<Constructor, SlashCommandMeta
  * @param metas All SlashCommandMeta objects.
  * @returns 
  */
-export function setSlashCommandMetas(metas: Collection<Constructor, SlashCommandMeta>) {
+export function setSlashCommandMetas(metas: Collection<Newable, SlashCommandMeta>) {
     return Reflect.defineMetadata(COMMAND_METADATA, metas, SlashCommandMeta);
 }
 
@@ -37,7 +37,7 @@ export function setSlashCommandMetas(metas: Collection<Constructor, SlashCommand
  * @param target Target class object.
  * @returns 
  */
-export function getSlashCommandMeta(target: Constructor) {
+export function getSlashCommandMeta(target: Newable) {
     const metas = getSlashCommandMetas();
     let meta = metas.get(target);
     if (meta === undefined) {
@@ -54,7 +54,7 @@ export function getSlashCommandMeta(target: Constructor) {
  * @param argName Target argument field name.
  * @returns 
  */
- export function getSlashArgMeta(target: Constructor, argName: string) {
+ export function getSlashArgMeta(target: Newable, argName: string) {
   const meta = getSlashCommandMeta(target);
   return meta.getArgMeta(argName);
 }
@@ -99,7 +99,7 @@ export function setSlashParserMetas(metas: Collection<string, SlashArgParserMeta
  * @param methodName Validator method name.
  * @returns
  */
-export function addSlashValidatorMethod(target: Constructor, argName: string, methodName: string) {
+export function addSlashValidatorMethod(target: Newable, argName: string, methodName: string) {
     const meta = getSlashArgMeta(target, argName);
     return meta.validatorMethods.add(methodName);
 }
@@ -110,7 +110,7 @@ export function addSlashValidatorMethod(target: Constructor, argName: string, me
  * @param argName Target argument field name.
  * @param installer Validator installer.
  */
-export function addSlashArgValidator(target: Constructor, argName: string, installer: InstallerFunc) {
+export function addSlashArgValidator(target: Newable, argName: string, installer: InstallerFunc) {
     const meta = getSlashArgMeta(target, argName);
     meta.validatorInstallers.push(installer);
 }

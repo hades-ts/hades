@@ -1,5 +1,5 @@
 import { ChatInputApplicationCommandData, Collection } from "discord.js";
-import { Constructor } from "@hades-ts/hades";
+import { Constructable, Newable } from "@hades-ts/hades";
 
 import { SlashArgMeta } from "./SlashArgMeta";
 
@@ -9,7 +9,7 @@ import { SlashArgMeta } from "./SlashArgMeta";
  */
 export class SlashCommandMeta {
   name: string;
-  target: Constructor;
+  target: Newable;
   args = new Collection<string, SlashArgMeta>();
   description?: string;
   registrationDetails?: ChatInputApplicationCommandData;

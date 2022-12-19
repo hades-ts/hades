@@ -5,6 +5,7 @@ import { RoleParser, UserParser, ChannelParser, MemberParser } from "../builtins
 import { SlashArgParser, StringParser } from "../services";
 
 
+
 export type TypePair = readonly [Constructable, Newable<SlashArgParser>];
 
 export const defaultMappedTypes: TypePair[] = [

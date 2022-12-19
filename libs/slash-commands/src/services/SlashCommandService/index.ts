@@ -69,7 +69,11 @@ export class SlashCommandService {
         options: meta.args.map((arg) => {
           if (arg.choicesResolver) {
             const resolver = this.container.resolve(arg.choicesResolver);
-            (arg.options as any).choices = (resolver as any).getChoices();
+            const choices = (resolver as any).getChoices();
+            arg.options = {
+              ...arg.options,
+              choices,
+            } as any
           }
           return {
             ...arg.options,

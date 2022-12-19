@@ -68,6 +68,11 @@
       "packageName": "@hades-ts/chaos",
       "projectFolder": "bots/chaos",
       "shouldPublish": false
+    },
+    {
+      "packageName": "@hades-ts/zeus",
+      "projectFolder": "bots/zeus",
+      "shouldPublish": false
     }   
   ]
 }

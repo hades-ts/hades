@@ -1,30 +1,33 @@
-import { EventService, HadesClient } from "@hades-ts/hades";
-import { inject } from "inversify";
-import { guildRequest } from "./decorators"
-import { ChannelManager, DataService } from "./services";
-import { tokens } from "./tokens";
+import { GuildMember } from "discord.js";
+import { inject, postConstruct } from "inversify";
+import { guildSingleton } from "./decorators"
+import { ChannelCleaner, ChannelManager } from "./services";
 
 
-@guildRequest()
+@guildSingleton()
 export class GuildService {
 
-    @inject(tokens.GuildId)
-    guildId: string;
-
-    @inject(HadesClient)
-    client: HadesClient;
-
-    @inject(EventService)
-    eventService: EventService;
-
-    @inject(DataService)
-    dataService: DataService;
-
     @inject(ChannelManager)
-    channelManager: ChannelManager;  
+    private channel!: ChannelManager;
 
-    async addWord(userId: string, word: string) {
-        await this.channelManager.addWord(userId, word);
+    @inject(ChannelCleaner)
+    private cleaner!: ChannelCleaner;
+
+    @postConstruct() 
+    protected init () {
+        this.startup();
     }
 
+    protected async startup() {
+        await this.cleaner.cleanup();
+        await this.channel.checkRollover();
+    }    
+
+    async addWord(user: GuildMember, word: string) {
+        await this.channel.addWord(user, word);
+    }
+
+    async rollover() {
+        await this.channel.rollover();
+    }
 }

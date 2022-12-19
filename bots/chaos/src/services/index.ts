@@ -1,2 +1,2 @@
 export * from './BotService';
-export * from './CronService';
+export * from '../guilds/services/CronService';

@@ -6,6 +6,7 @@ import { HadesContainer } from '@hades-ts/hades';
 import { TextCommandsInstaller } from "@hades-ts/text-commands"
 import { SlashCommandsInstaller } from  "@hades-ts/slash-commands"
 
+import "@hades-ts/slash-commands/dist/builtins/commands/HelpCommand"
 
 import { BotService } from './services/BotService';
 

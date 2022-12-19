@@ -1,0 +1,90 @@
+import { HadesClient } from "@hades-ts/hades";
+import { Interaction, Message } from "discord.js";
+import { inject, postConstruct } from "inversify";
+import { ConfigGuild } from "../../config";
+import { guildSingleton } from "../decorators";
+import { tokens } from "../tokens";
+import { CleanupBypass } from "./CleanupBypass";
+
+
+@guildSingleton()
+export class MessageFilter {
+
+    @inject(HadesClient)
+    protected client!: HadesClient;
+
+    @inject(tokens.GuildConfig)
+    protected config!: ConfigGuild;
+
+    @inject(tokens.GuildId)
+    protected guildId!: string;
+
+    @inject(CleanupBypass)
+    protected bypass!: CleanupBypass;
+
+    protected onMessageCreate(message: Message) {
+        if (!this.config.guardChannel) {
+            return;
+        }
+
+        if (message.guild!.id !== this.guildId) {
+            return;
+        }
+
+        if (message.channel.id !== this.config.channel) {
+            return;
+        }
+
+        if (message.author.id === this.client.user!.id) {
+            return;
+        }
+
+        if (this.bypass.isExempt(message.author.id)) {
+            return;
+        }
+
+        try {
+            message.delete();
+        } catch (e) {
+            console.error(`[MessageManager] Could not delete message ${message.id} in guild ${this.guildId}`);
+        }
+    }
+
+    protected async onInteractionCreate(interaction: Interaction) {
+        if (!this.config.guardChannel) {
+            return;
+        }
+
+        if (interaction.guild!.id !== this.guildId) {
+            return;
+        }
+
+        if (interaction.channelId !== this.config.channel) {
+            return;
+        }
+
+        if (interaction.applicationId === this.client.user!.id) {
+            return;
+        }
+
+        if (this.bypass.isExempt(interaction.user.id)) {
+            return;
+        }
+
+        if (!interaction.isCommand()) {
+            return;
+        }
+
+        try {
+            interaction.deleteReply();
+        } catch (e) {
+            console.error(`[MessageManager] Could not delete interaction ${interaction.id} in guild ${this.guildId}`);
+        }
+    }
+
+    @postConstruct()
+    init() {
+        this.client.on('messageCreate', this.onMessageCreate.bind(this))
+        this.client.on('interactionCreate', this.onInteractionCreate.bind(this))
+    }
+}

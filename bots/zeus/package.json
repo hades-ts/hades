@@ -1,0 +1,54 @@
+{
+    "name": "@hades-ts/zeus",
+    "version": "0.0.0",
+    "description": "Hades based rules and roles Discord bot.",
+    "main": "dist/index.js",
+    "scripts": {
+        "build": "tsc -p tsconfig.json",
+        "rebuild": "rm -fr ./dist; tsc -p tsconfig.json",
+        "start": "node dist/index.js",
+        "watch": "tsc -p tsconfig.json -w"
+    },
+    "dependencies": {
+        "@discordjs/rest": "^0.5.0",
+        "common-tags": "^1.8.0",
+        "config": "^3.3.3",
+        "discord-api-types": "^0.33.5",
+        "discord-command-parser": "^1.5.3",
+        "discord.js": "~14.7.1",
+        "googleapis": "^67.0.0",
+        "@hades-ts/hades": "workspace:^0.0.5",
+        "@hades-ts/text-commands": "workspace:^0.0.5",
+        "@hades-ts/slash-commands": "workspace:^0.0.5",
+        "inversify": "~6.0.1",
+        "@ldlework/inversify-binding-decorators": "4.0.2",
+        "node-schedule": "^1.3.2",
+        "reflect-metadata": "^0.1.13",
+        "dotenv": "~16.0.3",
+        "zod": "~3.20.2",
+        "luxon": "~3.1.1",
+        "@ldlework/categoric-decorators": "~1.0.0",
+        "@ldlework/categoric-containers": "0.0.2"
+    },
+    "devDependencies": {
+        "@types/common-tags": "^1.8.0",
+        "@types/node": "~18.11.11",
+        "@types/node-schedule": "^1.3.1",
+        "@types/reflect-metadata": "^0.1.0",
+        "@types/ws": "^8.5.3",
+        "ts-node": "~10.9.1",
+        "tsconfig-paths": "~4.1.1",
+        "typescript": "~4.9.3",
+        "@types/luxon": "~3.1.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/hades-ts/hades.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/hades-ts/hades/issues"
+    },
+    "homepage": "https://github.com/hades-ts/hades#readme"
+}

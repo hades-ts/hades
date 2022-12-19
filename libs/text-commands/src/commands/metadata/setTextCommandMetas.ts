@@ -1,4 +1,4 @@
-import { Constructor } from "@hades-ts/hades";
+import { Newable } from "@hades-ts/hades";
 import { Collection } from "discord.js";
 import { COMMAND_METADATA } from "./consts";
 import { TextCommandMeta } from "../models";
@@ -9,6 +9,6 @@ import { TextCommandMeta } from "../models";
  * @param metas All TextCommandMeta objects.
  * @returns
  */
-export function setTextCommandMetas(metas: Collection<Constructor, TextCommandMeta>) {
+export function setTextCommandMetas(metas: Collection<Newable, TextCommandMeta>) {
     return Reflect.defineMetadata(COMMAND_METADATA, metas, TextCommandMeta);
 }

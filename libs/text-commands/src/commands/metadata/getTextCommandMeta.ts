@@ -1,4 +1,4 @@
-import { Constructor } from "@hades-ts/hades";
+import { Constructor, Newable } from "@hades-ts/hades";
 import { TextCommandMeta } from "../models";
 
 import { getTextCommandMetas } from "./getTextCommandMetas";
@@ -9,7 +9,7 @@ import { getTextCommandMetas } from "./getTextCommandMetas";
  * @param target Target class object.
  * @returns
  */
-export function getTextCommandMeta(target: Constructor) {
+export function getTextCommandMeta(target: Newable) {
     const metas = getTextCommandMetas();
     let meta = metas.get(target);
     if (meta === undefined) {

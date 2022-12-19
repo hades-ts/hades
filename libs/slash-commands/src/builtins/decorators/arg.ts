@@ -6,6 +6,7 @@ import { Constructable } from "@hades-ts/hades";
 import { getSlashArgMeta } from "../../metadata";
 import { camelToDash } from "../../utils";
 import { Optional } from "../../utils";
+import { SlashCommand } from "../../models";
 
 
 export type ArgOptions =
@@ -37,8 +38,8 @@ export const makeArgMeta = (info: ArgOptions, target: Constructable, key: string
  * Marks the field of a TextCommand as an argument.
  * @param info Options for the decorator.
  */
-export function arg(info: ArgOptions) {
-    return (target: Constructable, key: string) => {
+export function arg<T extends SlashCommand>(info: ArgOptions) {
+    return (target: Constructable<T>, key: string) => {
         const meta = makeArgMeta(info, target, key);
         // decorate the field with @inject(key)
         inject(key)(target, key);

@@ -1,5 +1,5 @@
 import { CommandInteraction, Collection } from "discord.js";
-import { Container } from "inversify";
+import { Container, interfaces } from "inversify";
 
 import { SlashCommandMeta } from "../../metadata";
 import { SlashCommand } from "../../models";
@@ -78,7 +78,7 @@ export class SlashCommandFactory {
     const di = this.parentContainer.createChild({ skipBaseClassChecks: true });
 
     // bind the command class
-    di.bind(this.meta.target).toSelf();
+    di.bind(this.meta.target as interfaces.ServiceIdentifier).toSelf();
 
     // bind the invocation context
     di
@@ -103,7 +103,7 @@ export class SlashCommandFactory {
     await this.installArguments(subContainer, interaction);
 
     // resolve command instance
-    const inst = subContainer.get<SlashCommand>(this.meta.target);
+    const inst = subContainer.get<SlashCommand>(this.meta.target as interfaces.ServiceIdentifier<SlashCommand>);
 
     // run instance-method validators
     await this.runMethodValidators(inst);

@@ -5,6 +5,7 @@ export * from './command';
 export * from './commandName';
 export * from './integer';
 export * from './member';
+export * from './resolver';
 export * from './role';
 export * from './user';
 export * from './validate';

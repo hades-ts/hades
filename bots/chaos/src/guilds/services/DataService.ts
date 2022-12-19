@@ -1,28 +1,37 @@
 import fs from 'fs';
 import path from 'path';
-import { inject } from "inversify";
+import { inject, postConstruct } from "inversify";
 import { z } from "zod";
 import { tokens } from '../tokens';
-import { guildRequest } from '../decorators';
+import { guildSingleton } from '../decorators';
 
 
 const dataSchema = z.object({
-    date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/), // YYYY-MM-DD
+    thread: z.string(),
+    created: z.string().datetime(),
     text: z.string(),
-    users: z.array(z.string()),
+    users: z.array(z.object({
+        id: z.string(),
+        name: z.string(),
+        word: z.string(),
+    })),
 })
 
-type Data = z.infer<typeof dataSchema>
+export type Data = z.infer<typeof dataSchema>
 
-
-@guildRequest()
+@guildSingleton()
 export class DataService {
 
     @inject('cfg.dataDirectory')
-    dataDirectory: string;
+    dataDirectory!: string;
 
     @inject(tokens.GuildId)
-    guildId: string;
+    guildId!: string;
+
+    @postConstruct()
+    protected init() {
+        this.ensureDataDirectory();
+    }
 
     get dataFile() {
         return path.join(this.dataDirectory, `${this.guildId}.json`);
@@ -34,7 +43,7 @@ export class DataService {
         }
     }
 
-    getData(): Data {
+    getData(): Data | null {
         if (!fs.existsSync(this.dataFile)) {
             return null;
         }
@@ -48,44 +57,10 @@ export class DataService {
         fs.writeFileSync(this.dataFile, JSON.stringify(data, null, 4));
     }
 
-    // protected getRecord(guild: string) {
-    //     const data = this.getData();
-    //     return data[guild] || {
-    //         text: '',
-    //         users: [],
-    //     };
-    // }
-
-    // protected saveRecord(guild: string, record: Data) {
-    //     const data = this.getData();
-    //     data[guild] = record;
-    //     this.saveData(data);
-    // }
-
-    // getText(guild: string) {
-    //     return this.getRecord(guild).text;
-    // }
-
-    // setText(guild: string, text: string) {
-    //     const record = this.getRecord(guild);
-    //     record.text = text;
-    //     this.saveRecord(guild, record);
-    // }
-
-    // getUsers(guild: string) {
-    //     return this.getRecord(guild).users;
-    // }
-
-    // addUser(guild: string, user: string) {
-    //     const record = this.getRecord(guild);
-    //     record.users.push(user);
-    //     this.saveRecord(guild, record);
-    // }
-
-    // resetGuild(guild: string) {
-    //     const data = this.getData();
-    //     delete data[guild];
-    //     this.saveData(data);
-    // }   
+    clearData() {
+        if (fs.existsSync(this.dataFile)) {
+            fs.unlinkSync(this.dataFile);
+        }
+    }
 
 }

@@ -1,4 +1,4 @@
-import { Constructor } from "@hades-ts/hades";
+import { Constructor, Newable } from "@hades-ts/hades";
 import { getTextArgMeta } from "../../../arguments";
 
 
@@ -9,7 +9,7 @@ import { getTextArgMeta } from "../../../arguments";
  * @param methodName Validator method name.
  * @returns
  */
-export function addTextValidatorMethod(target: Constructor, argName: string, methodName: string) {
+export function addTextValidatorMethod(target: Newable, argName: string, methodName: string) {
     const meta = getTextArgMeta(target, argName);
     return meta.validatorMethods.add(methodName);
 }

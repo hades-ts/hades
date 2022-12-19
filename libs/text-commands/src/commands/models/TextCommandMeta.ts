@@ -1,6 +1,6 @@
 import { Collection } from "discord.js";
 
-import { Constructor } from "@hades-ts/hades";
+import { Constructor, Newable } from "@hades-ts/hades";
 import { TextArgMeta } from "../../arguments";
 
 
@@ -9,7 +9,7 @@ import { TextArgMeta } from "../../arguments";
  */
 export class TextCommandMeta {
     name: string;
-    target: Constructor;
+    target: Newable;
     args = new Collection<string, TextArgMeta>();
     description?: string;
 
