@@ -1,6 +1,6 @@
 import { inject } from "inversify";
-import { guildSingleton } from "../decorators";
-import { tokens } from "../tokens";
+import { guildSingleton } from "../../decorators";
+import { tokens } from "../../tokens";
 
 
 @guildSingleton()

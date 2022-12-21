@@ -7,7 +7,6 @@ import { GuildManager } from "../guilds";
 import { ConfigGuild } from "../config";
 
 
-
 @command("rollover", { description: "Start a new chaos message." })
 export class RolloverCommand extends SlashCommand {
 
@@ -64,7 +63,7 @@ export class RolloverCommand extends SlashCommand {
         }
 
         try {        
-            await guild.rollover();
+            await guild.channel.rollover();
         } catch (error) {
             if (error instanceof Error) {
                 await this.reject(error.message);

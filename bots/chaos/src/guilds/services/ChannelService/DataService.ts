@@ -2,8 +2,8 @@ import fs from 'fs';
 import path from 'path';
 import { inject, postConstruct } from "inversify";
 import { z } from "zod";
-import { tokens } from '../tokens';
-import { guildSingleton } from '../decorators';
+import { tokens } from '../../tokens';
+import { guildSingleton } from '../../decorators';
 
 
 const dataSchema = z.object({

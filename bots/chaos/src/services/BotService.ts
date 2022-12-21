@@ -1,11 +1,9 @@
 import { inject } from 'inversify';
-import { BaseGuildTextChannel, EmbedBuilder, Interaction, TextChannel } from 'discord.js';
+import { Interaction } from 'discord.js';
 
 import { singleton, HadesBotService } from "@hades-ts/hades";
 import { SlashCommandService } from '@hades-ts/slash-commands';
-import { CronService } from '../guilds/services/CronService';
 import { Config } from '../config';
-import { DateTime } from 'luxon';
 import { GuildManager } from '../guilds';
 
 

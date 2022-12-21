@@ -1,33 +1,16 @@
-import { GuildMember } from "discord.js";
-import { inject, postConstruct } from "inversify";
+import { inject } from "inversify";
 import { guildSingleton } from "./decorators"
-import { ChannelCleaner, ChannelManager } from "./services";
+import { ChannelService } from "./services";
+import { ThreadService } from "./services/ThreadService";
 
 
 @guildSingleton()
 export class GuildService {
 
-    @inject(ChannelManager)
-    private channel!: ChannelManager;
+    @inject(ChannelService)
+    public readonly channel!: ChannelService;
 
-    @inject(ChannelCleaner)
-    private cleaner!: ChannelCleaner;
+    @inject(ThreadService)
+    public readonly threading!: ThreadService;
 
-    @postConstruct() 
-    protected init () {
-        this.startup();
-    }
-
-    protected async startup() {
-        await this.cleaner.cleanup();
-        await this.channel.checkRollover();
-    }    
-
-    async addWord(user: GuildMember, word: string) {
-        await this.channel.addWord(user, word);
-    }
-
-    async rollover() {
-        await this.channel.rollover();
-    }
 }

@@ -1,11 +1,10 @@
 import { inject } from "inversify";
-import { ApplicationCommandOptionType, GuildMember } from "discord.js";
+import { ApplicationCommandOptionType, ChannelType } from "discord.js";
 
 import { HadesClient } from "@hades-ts/hades";
 import { command, SlashCommand, arg, validate, SlashArgError } from "@hades-ts/slash-commands";
-import { GuildManager } from "../guilds";
+import { ChannelWordAdder, GuildManager, ThreadWordAdder } from "../guilds";
 import { ConfigGuild } from "../config";
-
 
 
 @command("chaos", { description: "Add a word to today's chaos message." })
@@ -23,7 +22,13 @@ export class ChaosCommand extends SlashCommand {
     @inject(GuildManager)
     guildManager!: GuildManager;
 
-    @validate("word")    
+    @inject(ChannelWordAdder)
+    channelWordAdder!: ChannelWordAdder;
+
+    @inject(ThreadWordAdder)
+    threadWordAdder!: ThreadWordAdder;
+
+    @validate("word")
     protected validateWord() {
         if (this.word.split(/\s+/).length > 1) {
             throw new SlashArgError("Please only use one word.");
@@ -44,38 +49,19 @@ export class ChaosCommand extends SlashCommand {
     }
 
     async execute(): Promise<void> {
-        const guildId = this.interaction.guildId!;
-
-        const guildConfig = this.configGuilds[guildId];
-        
-        if (!guildConfig) {
-            await this.reject("Sorry, I'm not set up for this guild yet. Try again later!");
-            return;
-        }
-
-        if (guildConfig.disabled) {
-            await this.reject("Sorry, I'm disabled in this server at the moment.");
-            return;
-        }
-
-        const guild = await this.guildManager.getGuild(guildId);
-
-        try {        
-            await guild.addWord(this.interaction.member as GuildMember, this.word);
+        try {
+            if (this.interaction.channel?.type === ChannelType.PublicThread) {
+                await this.threadWordAdder.execute(this.interaction, this.word);
+            } else {
+                await this.channelWordAdder.execute(this.interaction, this.word);
+            }
         } catch (error) {
             if (error instanceof Error) {
                 await this.reject(error.message);
-                return
+            } else {
+                await this.reject("Sorry, something went wrong. Try again later!");
             }
-            await this.reject("Sorry, something went wrong. Try again later!");
-            return
         }
-
-        await this.interaction.reply({
-            content: "Your word has been added. You can add a word again tomorrow.",
-            ephemeral: true,
-        })
-
     }
 
 }

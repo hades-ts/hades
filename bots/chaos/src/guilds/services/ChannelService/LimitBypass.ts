@@ -1,8 +1,9 @@
 import { GuildMember } from "discord.js";
 import { inject } from "inversify";
-import { ConfigGuild } from "../../config";
-import { guildSingleton } from "../decorators";
-import { tokens } from "../tokens";
+import { ConfigGuild } from "../../../config";
+import { WithRequired } from "../../../types";
+import { guildSingleton } from "../../decorators";
+import { tokens } from "../../tokens";
 import { DataService } from "./DataService";
 
 
@@ -13,7 +14,7 @@ export class LimitBypass {
     protected botOwner!: string;
 
     @inject(tokens.GuildConfig)
-    protected config!: ConfigGuild;
+    protected config!: WithRequired<ConfigGuild, 'channel'>;
 
     @inject(tokens.GuildOwner)
     protected guildOwner!: string;
@@ -41,11 +42,11 @@ export class LimitBypass {
             return true;
         }
 
-        if (this.config.exemptedRoles?.some(role => member.roles.cache.has(role))) {
+        if (this.config.exemptions?.roles?.some(role => member.roles.cache.has(role))) {
             return true;
         }
 
-        if (this.config.exemptedUsers?.includes(member.id)) {
+        if (this.config.exemptions?.users?.includes(member.id)) {
             return true;
         }
 

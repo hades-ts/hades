@@ -4,6 +4,7 @@
         "datetime",
         "inversify",
         "lojban",
+        "luxon",
         "metas",
         "subcontainer"
     ],

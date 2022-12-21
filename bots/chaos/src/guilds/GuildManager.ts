@@ -1,6 +1,6 @@
 import { HadesClient, HadesContainer, singleton } from "@hades-ts/hades";
 import { TextChannel } from "discord.js";
-import { Container, inject } from "inversify";
+import { inject } from "inversify";
 import { ConfigGuild } from "../config";
 import { makeGuildContainer } from "./decorators";
 import { GuildService } from "./GuildService";
@@ -17,6 +17,7 @@ export class GuildManager {
     client!: HadesClient;
 
     async setupGuild(guildId: string) {
+        const guild = await this.client.guilds.fetch(guildId);
         const guildConfigs = this.container.get<Record<string, ConfigGuild>>('cfg.guilds');
         const guildConfig = guildConfigs[guildId];
 
@@ -24,17 +25,20 @@ export class GuildManager {
             return null;
         }
 
-        let channel: TextChannel;
-
-        // check that the guildConfig.channel exists
         try {
-            channel = await this.client.channels.fetch(guildConfig.channel) as TextChannel;
+            if (guildConfig.channel) {
+                await this.client.channels.fetch(guildConfig.channel.id) as TextChannel;
+            }
         } catch (e) {
             console.error(`[GuildManager] Channel ${guildConfig.channel} does not exist for guild ${guildId}`);
             return null;
         }
 
         const subContainer = makeGuildContainer(this.container);
+
+        subContainer
+            .bind(tokens.GuildContainer)
+            .toConstantValue(subContainer);
 
         subContainer
             .bind(tokens.GuildId)
@@ -46,15 +50,11 @@ export class GuildManager {
 
         subContainer
             .bind(tokens.GuildOwner)
-            .toConstantValue(channel.guild.ownerId);
+            .toConstantValue(guild.ownerId);
 
         subContainer
             .bind(tokens.GuildFactory)
             .toConstantValue(async () => this.client.guilds.fetch(guildId));
-
-        subContainer
-            .bind(tokens.ChannelFactory)
-            .toConstantValue(async () => this.client.channels.fetch(guildConfig.channel));
 
         this.guilds[guildId] = subContainer.get(GuildService);
 

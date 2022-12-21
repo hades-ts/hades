@@ -1,9 +1,10 @@
 import { HadesClient } from "@hades-ts/hades";
 import { Interaction, Message } from "discord.js";
 import { inject, postConstruct } from "inversify";
-import { ConfigGuild } from "../../config";
-import { guildSingleton } from "../decorators";
-import { tokens } from "../tokens";
+import { ConfigGuild } from "../../../config";
+import { WithRequired } from "../../../types";
+import { guildSingleton } from "../../decorators";
+import { tokens } from "../../tokens";
 import { CleanupBypass } from "./CleanupBypass";
 
 
@@ -14,7 +15,7 @@ export class MessageFilter {
     protected client!: HadesClient;
 
     @inject(tokens.GuildConfig)
-    protected config!: ConfigGuild;
+    protected config!: WithRequired<ConfigGuild, 'channel'>;
 
     @inject(tokens.GuildId)
     protected guildId!: string;
@@ -23,7 +24,7 @@ export class MessageFilter {
     protected bypass!: CleanupBypass;
 
     protected onMessageCreate(message: Message) {
-        if (!this.config.guardChannel) {
+        if (!this.config.channel.guard) {
             return;
         }
 
@@ -31,7 +32,7 @@ export class MessageFilter {
             return;
         }
 
-        if (message.channel.id !== this.config.channel) {
+        if (message.channel.id !== this.config.channel.id) {
             return;
         }
 
@@ -51,7 +52,7 @@ export class MessageFilter {
     }
 
     protected async onInteractionCreate(interaction: Interaction) {
-        if (!this.config.guardChannel) {
+        if (!this.config.channel.guard) {
             return;
         }
 
@@ -59,7 +60,7 @@ export class MessageFilter {
             return;
         }
 
-        if (interaction.channelId !== this.config.channel) {
+        if (interaction.channelId !== this.config.channel.id) {
             return;
         }
 
