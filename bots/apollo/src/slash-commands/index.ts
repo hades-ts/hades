@@ -1,2 +1,3 @@
-export * from "./coi";
-export * from "./weeaboo";
+export * from './coi';
+export * from './karda';
+export * from './weeaboo';

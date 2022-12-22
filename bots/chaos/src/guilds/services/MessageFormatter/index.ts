@@ -17,7 +17,7 @@ export abstract class BaseMessageFormatter {
     }
 
     protected async createFooter() {
-        return `Add a word with /chaos <word>`;
+        return `Add a word with /add-word <word>`;
     }
 
     protected async createEmbed(): Promise<EmbedBuilder> {

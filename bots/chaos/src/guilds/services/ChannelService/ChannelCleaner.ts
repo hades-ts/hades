@@ -1,5 +1,4 @@
 import { HadesClient } from "@hades-ts/hades";
-import { Channel, ChannelType, TextChannel } from "discord.js";
 import { inject } from "inversify";
 import { ConfigGuild } from "../../../config";
 import { guildSingleton } from "../../decorators";

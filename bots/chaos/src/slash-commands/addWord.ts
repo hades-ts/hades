@@ -3,12 +3,12 @@ import { ApplicationCommandOptionType, ChannelType } from "discord.js";
 
 import { HadesClient } from "@hades-ts/hades";
 import { command, SlashCommand, arg, validate, SlashArgError } from "@hades-ts/slash-commands";
-import { ChannelWordAdder, GuildManager, ThreadWordAdder } from "../guilds";
+import { GuildManager } from "../guilds";
 import { ConfigGuild } from "../config";
 
 
-@command("chaos", { description: "Add a word to today's chaos message." })
-export class ChaosCommand extends SlashCommand {
+@command("add-word", { description: "Add a word to a multiplayer message." })
+export class AddWordCommand extends SlashCommand {
 
     @arg({ description: "Your word.", type: ApplicationCommandOptionType.String })
     word!: string;
@@ -21,12 +21,6 @@ export class ChaosCommand extends SlashCommand {
 
     @inject(GuildManager)
     guildManager!: GuildManager;
-
-    @inject(ChannelWordAdder)
-    channelWordAdder!: ChannelWordAdder;
-
-    @inject(ThreadWordAdder)
-    threadWordAdder!: ThreadWordAdder;
 
     @validate("word")
     protected validateWord() {
@@ -49,12 +43,18 @@ export class ChaosCommand extends SlashCommand {
     }
 
     async execute(): Promise<void> {
+        const guild = await this.guildManager.getGuild(this.interaction.guildId!);
+
         try {
             if (this.interaction.channel?.type === ChannelType.PublicThread) {
-                await this.threadWordAdder.execute(this.interaction, this.word);
+                await guild.threading.addWord(this.interaction, this.word);
             } else {
-                await this.channelWordAdder.execute(this.interaction, this.word);
+                await guild.channel.addWord(this.interaction, this.word);
             }
+            await this.interaction.reply({
+                content: "Word added!",
+                ephemeral: true,
+            })
         } catch (error) {
             if (error instanceof Error) {
                 await this.reject(error.message);

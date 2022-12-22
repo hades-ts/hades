@@ -1,4 +1,4 @@
-# Chaos (Crowdsourced Messages)
+# Chaos (Multiplayer Messages)
 
 A bot built with [Hades](https://github.com/hades-ts/hades), the Discord bot framework.
 

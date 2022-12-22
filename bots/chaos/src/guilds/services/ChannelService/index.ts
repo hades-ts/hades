@@ -1,3 +1,4 @@
+export * from './ChannelAdder';
 export * from './ChannelCleaner';
 export * from './ChannelService';
 export * from './CleanupBypass';

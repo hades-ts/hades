@@ -84,6 +84,7 @@ importers:
       tsconfig-paths: ~4.1.1
       typeorm: ^0.2.29
       typescript: ~4.9.3
+      yaml: ~2.2.0
     dependencies:
       '@discordjs/rest': 0.5.0
       '@hades-ts/hades': link:../../libs/hades
@@ -105,6 +106,7 @@ importers:
       reflect-metadata: 0.1.13
       sqlite3: 5.1.4
       typeorm: 0.2.45_sqlite3@5.1.4
+      yaml: 2.2.0
     devDependencies:
       '@types/common-tags': 1.8.1
       '@types/node': 18.11.17
@@ -15675,6 +15677,11 @@ packages:
   /yaml/1.10.2:
     resolution: {integrity: sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg==}
     engines: {node: '>= 6'}
+
+  /yaml/2.2.0:
+    resolution: {integrity: sha512-auf7Gi6QwO7HW//GA9seGvTXVGWl1CM/ADWh1+RxtXr6XOxnT65ovDl9fTi4e0monEyJxCHqDpF6QnFDXmJE4g==}
+    engines: {node: '>= 14'}
+    dev: false
 
   /yargs-parser/20.2.4:
     resolution: {integrity: sha512-WOkpgNhPTlE73h4VFAFsOnomJVaovO8VqLDzy5saChRBFQFBoMYirowyW+Q9HB4HFF4Z7VZTiG3iSzJJA29yRA==}

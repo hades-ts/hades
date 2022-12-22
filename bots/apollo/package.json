@@ -35,7 +35,8 @@
         "typeorm": "^0.2.29",
         "dotenv": "~16.0.3",
         "@ldlework/categoric-decorators": "~1.0.0",
-        "@ldlework/categoric-containers": "0.0.2"
+        "@ldlework/categoric-containers": "0.0.2",
+        "yaml": "~2.2.0"
     },
     "devDependencies": {
         "@types/common-tags": "^1.8.0",

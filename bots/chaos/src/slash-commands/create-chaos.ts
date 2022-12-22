@@ -1,11 +1,11 @@
 import { command, SlashCommand } from "@hades-ts/slash-commands";
-import { GuildMember, InteractionReplyOptions, InteractionResponse, TextChannel } from "discord.js";
+import { GuildMember, InteractionReplyOptions, TextChannel } from "discord.js";
 import { inject } from "inversify";
 import { ConfigGuild } from "../config";
 import { GuildManager } from "../guilds";
 
 
-@command("create", { description: "Create a new chaos message." })
+@command("create", { description: "Create a new multiplayer message." })
 export class CreateChaosCommand extends SlashCommand {
 
     @inject('cfg.botOwner')
@@ -65,17 +65,17 @@ export class CreateChaosCommand extends SlashCommand {
         const guild = await this.guildManager.getGuild(guildId);
 
         try {
-            await guild.threading.validateCreation(this.member.id, this.channel.id);
+            await guild.threading.validateCreation(this.member.id, this.channel.id)
         } catch (error) {
             if (error instanceof Error) {
                 return this.reject(error.message);
             }
-            this.reject("Something went wrong. Please try again later.")
+            return this.reject("Something went wrong. Please try again later.")
         }
 
         await this.interaction.deferReply();      
         const message = await this.interaction.fetchReply();
-        const content = await guild.threading.createThread(message) as InteractionReplyOptions;
+        const content = await guild.threading.createThread(this.member, message) as InteractionReplyOptions;
         await this.interaction.followUp(content);
         await message.startThread({
             "name": "Chaos Thread",

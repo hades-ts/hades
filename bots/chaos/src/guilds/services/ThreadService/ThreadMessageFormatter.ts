@@ -13,7 +13,7 @@ export class ThreadMessageFormatter extends BaseMessageFormatter {
     protected config!: WithRequired<ConfigGuild, 'threads'>;
 
     protected async createFooter(): Promise<string> {
-        return `Use /chaos <word> in the thread to add a word.`
+        return `Use /add-word <word> in the thread to add a word.`
     }
 
 }
