@@ -39,6 +39,16 @@
             "shouldPublish": true
         },
         {
+            "packageName": "@hades-ts/stash",
+            "projectFolder": "libs/stash",
+            "shouldPublish": true
+        },
+        {
+            "packageName": "@hades-ts/guilds",
+            "projectFolder": "libs/guilds",
+            "shouldPublish": true
+        },
+        {
             "packageName": "@hades-ts/lojban",
             "projectFolder": "libs/lojban",
             "shouldPublish": true
