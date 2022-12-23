@@ -1,4 +1,4 @@
-import { CommandInteraction, Collection } from "discord.js";
+import { CommandInteraction, Collection, AutocompleteInteraction } from "discord.js";
 import { Container, interfaces } from "inversify";
 
 import { SlashCommandMeta } from "../../metadata";
@@ -109,5 +109,18 @@ export class SlashCommandFactory {
     await this.runMethodValidators(inst);
 
     return inst;
+  }
+
+  async complete(interaction: AutocompleteInteraction) {
+    const { name, value } = interaction.options.getFocused(true)
+    const argMeta = this.meta.args.get(name)
+    if (!argMeta) {
+      return
+    }
+    const di = this.parentContainer.createChild({ skipBaseClassChecks: true });
+    di.bind(AutocompleteInteraction).toConstantValue(interaction)
+    const completer = di.resolve(argMeta.choicesCompleter)
+    const choices = await completer.complete(value)
+    return choices
   }
 }

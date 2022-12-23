@@ -13,6 +13,8 @@ import { BotService } from './services/BotService';
 import './slash-commands';
 
 import { configSchema } from './config';
+import { GuildManager } from 'discord.js';
+import { interfaces } from 'inversify';
 
 ((async () => {
 
@@ -25,6 +27,11 @@ import { configSchema } from './config';
             schema: configSchema,
         }
     });
+
+    container
+        .bind(GuildManager)
+        .toSelf()
+        .inSingletonScope();
 
     const bot = container.get(BotService);
     await bot.login();

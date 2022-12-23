@@ -13,6 +13,7 @@ export class SlashArgMeta {
     description?: string;
     options?: ApplicationCommandOptionData;
     choicesResolver?: Constructor;
+    choicesCompleter?: Constructor;
     parserType?: Newable<SlashArgParser>;
     validatorMethods = new Set<string>();
     validatorInstallers: InstallerFunc[] = [];

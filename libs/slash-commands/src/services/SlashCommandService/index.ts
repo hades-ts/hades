@@ -1,4 +1,4 @@
-import { CommandInteraction, ChatInputApplicationCommandData, Client } from "discord.js";
+import { CommandInteraction, ChatInputApplicationCommandData, Client, Interaction, AutocompleteInteraction, BaseInteraction } from "discord.js";
 import { inject } from "inversify";
 import { HadesContainer, singleton } from "@hades-ts/hades";
 
@@ -52,8 +52,30 @@ export class SlashCommandService {
     }
   }
 
-  dispatch(interaction: CommandInteraction) {
-    return this.execute(interaction);
+  async complete(interaction: AutocompleteInteraction) {
+    const factory = this.factories.factoryFor(interaction.commandName);
+
+    if (!factory) {
+      return
+    }
+
+    try {
+      const choices = await factory.complete(interaction)
+      await interaction.respond(choices)
+    } catch (e) {
+      console.error(e)
+    }
+
+  }
+
+  dispatch(interaction: BaseInteraction) {
+    if (interaction.isAutocomplete()) {
+      return this.complete(interaction);
+    }
+
+    if (interaction.isCommand()){
+      return this.execute(interaction);
+    }
   }
 
   async registerCommands(client: HadesClient) {
@@ -73,6 +95,11 @@ export class SlashCommandService {
             arg.options = {
               ...arg.options,
               choices,
+            } as any
+          } else if (arg.choicesCompleter) {
+            arg.options = {
+              ...arg.options,
+              autocomplete: true,
             } as any
           }
           return {

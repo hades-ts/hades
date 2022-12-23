@@ -3,6 +3,7 @@ export * from './boolean';
 export * from './channel';
 export * from './command';
 export * from './commandName';
+export * from './completer';
 export * from './integer';
 export * from './member';
 export * from './resolver';

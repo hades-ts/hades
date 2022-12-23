@@ -1,7 +1,6 @@
 import fs from "fs";
 import path from "path";
 
-import { injectable } from "inversify";
 import { z } from "zod";
 import { ExtensionLocator } from "../Locator/SimpleLocator";
 
@@ -10,7 +9,6 @@ export type ZodWithId<T extends z.ZodTypeAny> =
     z.TypeOf<T> & { id: string }
 
 
-@injectable()
 export abstract class BaseFiletypeStash<T extends z.ZodTypeAny> {
     locator: ExtensionLocator;
 

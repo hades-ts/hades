@@ -1,10 +1,8 @@
-import { injectable } from "inversify";
 import { z } from "zod";
 import { BaseFiletypeStash } from "./BaseStash";
 import { stringify, parse } from "yaml";
 
 
-@injectable()
 export class YamlStash<T extends z.ZodTypeAny> extends BaseFiletypeStash<T> {
 
     constructor(

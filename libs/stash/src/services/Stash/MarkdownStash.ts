@@ -1,11 +1,9 @@
-import { injectable } from "inversify";
 import { z } from "zod";
 import { BaseFiletypeStash } from "./BaseStash";
 import matter = require("gray-matter");
 import yaml from "yaml"
 
 
-@injectable()
 export class MarkdownStash<T extends z.ZodTypeAny> extends BaseFiletypeStash<T> {
     constructor(
         public readonly path: string,

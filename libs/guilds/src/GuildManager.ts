@@ -3,7 +3,7 @@ import { Guild } from "discord.js";
 import { Container, inject, optional } from "inversify";
 import { makeGuildContainer } from "./decorators";
 import { GuildBinder } from "./GuildBinder";
-import { tokens } from "./tokens";
+import { guildTokens } from "./tokens";
 
 export type GuildFetcher = () => Promise<Guild>;
 
@@ -18,26 +18,26 @@ export class GuildManager  {
     client!: HadesClient;
 
     @optional()
-    @inject(tokens.GuildBinder)
+    @inject(guildTokens.GuildBinder)
     guildBinder?: GuildBinder
 
     protected async setupGuild(guild: Guild) {
         const subContainer: Container = makeGuildContainer(this.container);
 
         subContainer
-            .bind(tokens.GuildContainer)
+            .bind(guildTokens.GuildContainer)
             .toConstantValue(subContainer);
 
         subContainer
-            .bind(tokens.GuildId)
+            .bind(guildTokens.GuildId)
             .toConstantValue(guild.id);
 
         subContainer
-            .bind(tokens.GuildOwnerId)
+            .bind(guildTokens.GuildOwnerId)
             .toConstantValue(guild.ownerId);
 
         subContainer
-            .bind(tokens.GuildFetcher)
+            .bind(guildTokens.GuildFetcher)
             .toConstantValue(async () => this.client.guilds.fetch(guild.id));
 
         this.guildContainers[guild.id] = subContainer
