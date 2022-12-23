@@ -10,12 +10,12 @@ COPY ../../../../ ./
 
 RUN rush update
 
-RUN rush build --to chaos
+RUN rush build --to apollo
 
-WORKDIR /monorepo/bots/chaos
+WORKDIR /monorepo/bots/apollo
 
-VOLUME /monorepo/bots/chaos/data
+VOLUME /monorepo/bots/apollo/data
 
-VOLUME /monorepo/bots/chaos/config
+VOLUME /monorepo/bots/apollo/config
 
 ENTRYPOINT [ "node", "dist/index.js" ]

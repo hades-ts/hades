@@ -6,16 +6,16 @@ RUN npm install -g @microsoft/rush pnpm
 
 WORKDIR /monorepo
 
-COPY ../../ ./
+COPY ../../../../ ./
 
 RUN rush update
 
-RUN rush build --to gpt3-bot
+RUN rush build --to pythia
 
-WORKDIR /monorepo/apps/gpt3-bot
+WORKDIR /monorepo/bots/pythia
 
-VOLUME /monorepo/apps/gpt3-bot/data
+VOLUME /monorepo/bots/pythia/data
 
-VOLUME /monorepo/apps/gpt3-bot/config
+VOLUME /monorepo/bots/pythia/config
 
 ENTRYPOINT [ "node", "dist/index.js" ]

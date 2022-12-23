@@ -6,16 +6,16 @@ RUN npm install -g @microsoft/rush pnpm
 
 WORKDIR /monorepo
 
-COPY ../../ ./
+COPY ../../../../ ./
 
 RUN rush update
 
-RUN rush build --to gpt3-bot
+RUN rush build --to zeus
 
-WORKDIR /monorepo/apps/gpt3-bot
+WORKDIR /monorepo/bots/zeus
 
-VOLUME /monorepo/apps/gpt3-bot/data
+VOLUME /monorepo/bots/zeus/data
 
-VOLUME /monorepo/apps/gpt3-bot/config
+VOLUME /monorepo/bots/zeus/config
 
 ENTRYPOINT [ "node", "dist/index.js" ]
