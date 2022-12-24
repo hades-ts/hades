@@ -36,6 +36,7 @@ export class GuildStashChannels {
     }
 
     protected async renderEmbed(embedRecord: EmbedSchema) {
+        console.log(JSON.stringify(embedRecord))
         let embed = new EmbedBuilder()
 
         if (embedRecord.title) embed.setTitle(embedRecord.title)
@@ -43,9 +44,15 @@ export class GuildStashChannels {
         // if (embedRecord.color) embed.setColor(embedRecord.color)
         if (embedRecord.imageUrl) embed.setImage(embedRecord.imageUrl)
         if (embedRecord.thumbnailUrl) embed.setThumbnail(embedRecord.thumbnailUrl)
-        if (embedRecord.author) embed.setAuthor(embedRecord.author)
+        if (embedRecord.author) 
+            embed.setAuthor({
+                name: embedRecord.author.name,
+                iconURL: embedRecord.author.iconURL,
+                url: embedRecord.author.url,
+            })
         if (embedRecord.footer) embed.setFooter(embedRecord.footer)
-        embed.addFields(embedRecord.fields)
+        embed.addFields(embedRecord.fields);
+
         return embed;
     }
 
