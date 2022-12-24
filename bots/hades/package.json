@@ -1,5 +1,5 @@
 {
-    "name": "@hades-ts/example-bot",
+    "name": "@hades-ts/hades-bot",
     "version": "0.0.0",
     "description": "Example Discord bot",
     "main": "dist/index.js",
