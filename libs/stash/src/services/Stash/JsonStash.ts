@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { BaseFiletypeStash } from "./BaseStash";
+import { BaseFiletypeStash } from "./BaseFiletypeStash";
 
 
 export class JsonStash<T extends z.ZodTypeAny> extends BaseFiletypeStash<T> {

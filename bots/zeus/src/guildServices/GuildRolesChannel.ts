@@ -7,7 +7,7 @@ import { RoleRecord } from "../schemas";
 import { GuildRoleStash } from "./GuildRoleStash";
 
 @guildSingleton()
-export class GuildRoleChannelManager {
+export class GuildRolesChannel {
     /**
      * This service maintain a number of messages in the configured channel.
      * 

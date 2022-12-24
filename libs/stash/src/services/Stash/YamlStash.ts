@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { BaseFiletypeStash } from "./BaseStash";
+import { BaseFiletypeStash } from "./BaseFiletypeStash";
 import { stringify, parse } from "yaml";
 
 

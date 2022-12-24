@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { BaseFiletypeStash } from "./BaseStash";
+import { BaseFiletypeStash } from "./BaseFiletypeStash";
 import matter = require("gray-matter");
 import yaml from "yaml"
 

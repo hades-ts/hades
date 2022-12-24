@@ -1,7 +1,7 @@
 import { guildSingleton, guildTokens } from "@hades-ts/guilds";
 import { inject } from "inversify";
 import { GuildConfig } from "../config";
-import { GuildRoleChannelManager } from "./GuildRoleChannelManager";
+import { GuildRolesChannel } from "./GuildRolesChannel";
 import { GuildRoleStash } from "./GuildRoleStash";
 import { GuildRuleStash } from "./GuildRuleStash";
 import { GuildStashChannels } from "./GuildStashChannels";
@@ -19,8 +19,8 @@ export class GuildService {
     @inject(GuildRoleStash)
     roles!: GuildRoleStash;
 
-    @inject(GuildRoleChannelManager)
-    roleChannel!: GuildRoleChannelManager;
+    @inject(GuildRolesChannel)
+    roleChannel!: GuildRolesChannel;
 
     @inject(GuildStashChannels)
     stashChannels!: GuildStashChannels;
