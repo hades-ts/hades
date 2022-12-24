@@ -64,8 +64,8 @@
             "shouldPublish": false
         },
         {
-            "packageName": "@hades-ts/example-bot",
-            "projectFolder": "bots/example-bot",
+            "packageName": "@hades-ts/hades-bot",
+            "projectFolder": "bots/hades",
             "shouldPublish": false
         },
         {
