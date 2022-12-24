@@ -544,9 +544,11 @@ importers:
 
   ../../libs/stash:
     specifiers:
+      '@hades-ts/hades': workspace:^0.0.5
       '@ldlework/inversify-binding-decorators': ^4.0.1
       '@ldlework/inversify-config-injection': ^0.0.7
       '@types/node': ~18.11.11
+      discord.js: ~14.7.1
       gray-matter: ~4.0.3
       inversify: ^6.0.1
       reflect-metadata: ^0.1.13
@@ -556,8 +558,10 @@ importers:
       yaml: ~2.2.0
       zod: ~3.20.2
     dependencies:
+      '@hades-ts/hades': link:../hades
       '@ldlework/inversify-binding-decorators': 4.0.2
       '@ldlework/inversify-config-injection': 0.0.7_scz6qrwecfbbxg4vskopkl3a7u
+      discord.js: 14.7.1
       gray-matter: 4.0.3
       inversify: 6.0.1
       reflect-metadata: 0.1.13
