@@ -6,7 +6,7 @@ Copy `config/default.template.json` to `config/default.json`
 {
   "discordToken": "your bot token here",
   "botOwner": "your discord id here",
-  "gpt3Token": "you openAI token here",
+  "gpt3Token": "your openAI token here",
   "transcriptsPath": "data/transcripts",
   "quota": {
     "quotaFile": "data/quota.json",
@@ -15,7 +15,7 @@ Copy `config/default.template.json` to `config/default.json`
   },
   "guilds": {
     "<guild id>": {
-      "prompt": "your GPT prompt here",
+      "prompt": "path to the file storing your GPT prompt here (i.e. data/prompts/examplePrompt)",
       "roleExemptions": {
         "users": ["<user id>"],
         "roles": ["<role id>"]
@@ -39,7 +39,7 @@ An OpenAI API token.
 
 ## `transcriptsPath`
 
-Where to store on-going threads.
+Where to store on-going threads. 
 
 ## `quota`
 
@@ -53,7 +53,7 @@ Configuration for the token quota:
 
 Per-guild configuration:
 
-- `prompt` - The GPT prompt to use for this guild.
+- `prompt` - The file path to the file that stores the GPT prompt to use for this guild.
 - `roleExemptions` - A list of users and roles that are exempt from the token quota.
 
 ### `roleExemptions`
