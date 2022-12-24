@@ -9,7 +9,7 @@ export const embedSchema = z.object({
     author: z.object({
         name: z.string(),
         url: z.string().optional(),
-        iconUrl: z.string().optional(),
+        iconURL: z.string().optional(),
     }).optional(),
     fields: z.array(
         z.object({
