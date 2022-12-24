@@ -39,10 +39,15 @@ export class InstallRoleChannelCommand extends SlashCommand {
             return;
         }
 
+        await this.interaction.deferReply({
+            ephemeral: true,
+        });
+
         await guildService.roleChannel.install();
         await guildService.stashChannels.install();
 
-        await this.reply(`Role channel established in <#${guildService.guildConfig.rolesChannel}>!`, {
+        await this.interaction.followUp({
+            content: `Channels updated!`,
             ephemeral: true,
         });
     }
