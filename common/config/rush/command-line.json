@@ -37,14 +37,6 @@
         },
         {
             "commandKind": "global",
-            "name": "audit",
-            "summary": "Check packages for workspace dependencies",
-            "description": "Shows packages which have been erroneously deployed with npm",
-            "safeForSimultaneousRushProcesses": false,
-            "shellCommand": "cd rigs/repo-scripts && npm run audit"
-        },
-        {
-            "commandKind": "global",
             "name": "versions",
             "summary": "Shows versions of all packages",
             "description": "Shows versions of all packages",
