@@ -2,8 +2,7 @@ import { mkMenuItem } from './utils';
 
 export default [
     mkMenuItem('hades'),
-    mkMenuItem('text-commands'),
-    mkMenuItem('slash-commands'),
+    mkMenuItem('libs'),
     mkMenuItem('bots'),
     mkMenuItem('guides'),
     {

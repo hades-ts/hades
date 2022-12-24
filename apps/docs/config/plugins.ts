@@ -12,8 +12,7 @@ export default async () => {
             indexBlog: false,
         }],
         await mkSection('hades'),
-        await mkSection('text-commands'),
-        await mkSection('slash-commands'),
+        await mkSection('libs'),
         await mkSection('bots'),
         await mkSection('guides'),
     ]
