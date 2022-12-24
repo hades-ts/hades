@@ -1,6 +1,8 @@
 {
     "order": [
         "slash-commands",
-        "text-commands"
+        "text-commands",
+        "guilds",
+        "stash"
     ]
 }
