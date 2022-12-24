@@ -1,4 +1,14 @@
 {
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4,
+    "editor.rulers": [
+        100
+    ],
+    "editor.tabCompletion": "on",
+    "editor.detectIndentation": false,
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true,
+    },
     "cSpell.words": [
         "camxes",
         "datetime",
@@ -11,5 +21,10 @@
     ],
     "exportall.config.folderListener": [
         "/bots/ares/src/utils"
-    ]
+    ],
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "eslint.format.enable": true,
+    "files.associations": {
+        "*.json": "jsonc"
+    },
 }
