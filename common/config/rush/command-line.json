@@ -3,45 +3,53 @@
  * More documentation is available on the Rush website: https://rushjs.io
  */
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/command-line.schema.json",
+    "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/command-line.schema.json",
 
-  /**
-   * Custom "commands" introduce new verbs for the command-line.  To see the help for these
-   * example commands, try "rush --help", "rush my-bulk-command --help", or
-   * "rush my-global-command --help".
-   */
-   "commands": [
-    {
-      "name": "build",
-      "commandKind": "bulk",
-      "summary": "Build all projects that haven't been built, or have changed since they were last built",
-      "incremental": true,
-      "enableParallelism": false,
-      "allowWarningsInSuccessfulBuild": true
-    },
-    {
-      "name": "rebuild",
-      "commandKind": "bulk",
-      "summary": "Rebuild all projects",
-      "incremental": false,
-      "enableParallelism": false,
-      "allowWarningsInSuccessfulBuild": true
-    },
-    {
-        "commandKind": "global",
-        "name": "eject",
-        "summary": "Ejects the specified bot",
-        "description": "Ejects the specified bot",
-        "safeForSimultaneousRushProcesses": false,
-        "shellCommand": "ts-node rigs/repo-scripts/src/eject.ts"
-    }
-  ],
+    /**
+    * Custom "commands" introduce new verbs for the command-line.  To see the help for these
+    * example commands, try "rush --help", "rush my-bulk-command --help", or
+    * "rush my-global-command --help".
+    */
+    "commands": [
+        {
+            "name": "build",
+            "commandKind": "bulk",
+            "summary": "Build all projects that haven't been built, or have changed since they were last built",
+            "incremental": true,
+            "enableParallelism": false,
+            "allowWarningsInSuccessfulBuild": true
+        },
+        {
+            "name": "rebuild",
+            "commandKind": "bulk",
+            "summary": "Rebuild all projects",
+            "incremental": false,
+            "enableParallelism": false,
+            "allowWarningsInSuccessfulBuild": true
+        },
+        {
+            "commandKind": "global",
+            "name": "eject",
+            "summary": "Ejects the specified bot",
+            "description": "Ejects the specified bot",
+            "safeForSimultaneousRushProcesses": false,
+            "shellCommand": "ts-node rigs/repo-scripts/src/eject.ts"
+        },
+        {
+            "commandKind": "global",
+            "name": "audit",
+            "summary": "Check packages for workspace dependencies",
+            "description": "Shows packages which have been erroneously deployed with npm",
+            "safeForSimultaneousRushProcesses": false,
+            "shellCommand": "cd rigs/repo-scripts && npm run audit"
+        }
+    ],
 
-  /**
-   * Custom "parameters" introduce new parameters for specified Rush command-line commands.
-   * For example, you might define a "--production" parameter for the "rush build" command.
-   */
-  "parameters": [
+    /**
+    * Custom "parameters" introduce new parameters for specified Rush command-line commands.
+    * For example, you might define a "--production" parameter for the "rush build" command.
+    */
+    "parameters": [
     // {
     //   /**
     //    * (Required) Determines the type of custom parameter.
@@ -162,5 +170,5 @@
     //     }
     //   ]
     // }
-  ]
+    ]
 }
