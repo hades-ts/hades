@@ -16,7 +16,7 @@
       "commandKind": "bulk",
       "summary": "Build all projects that haven't been built, or have changed since they were last built",
       "incremental": true,
-      "enableParallelism": true,
+      "enableParallelism": false,
       "allowWarningsInSuccessfulBuild": true
     },
     {
@@ -24,7 +24,7 @@
       "commandKind": "bulk",
       "summary": "Rebuild all projects",
       "incremental": false,
-      "enableParallelism": true,
+      "enableParallelism": false,
       "allowWarningsInSuccessfulBuild": true
     },
     {
