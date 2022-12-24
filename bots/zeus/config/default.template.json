@@ -1,8 +1,7 @@
 {
     "discordToken": "your bot token here",
     "botOwner": "your discord id here",
-    "gpt3Token": "you openAI token here",
-    "dataDirectory": "your data directory",
+    "dataPath": "your data directory",
     "guilds": {
       "<guild id>": {
         "channel": "which channel to post in",
