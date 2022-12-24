@@ -54,7 +54,24 @@
       "inputs": {
         "devshell": "devshell",
         "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "rush-nixpkgs": "rush-nixpkgs"
+      }
+    },
+    "rush-nixpkgs": {
+      "locked": {
+        "lastModified": 1671758674,
+        "narHash": "sha256-MtAuWkwMqIzLPS+BNK+ri9zTmAWGRnY0DMRFPZcbDRI=",
+        "owner": "Lord-Valen",
+        "repo": "nixpkgs",
+        "rev": "13b82a8cde26ca331d63e3f3dde6e48442a83b8d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Lord-Valen",
+        "ref": "init/nodePackages.rush",
+        "repo": "nixpkgs",
+        "type": "github"
       }
     }
   },

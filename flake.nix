@@ -9,11 +9,15 @@
     };
   };
 
+  # For rush, pending merge
+  inputs.rush-nixpkgs.url = "github:Lord-Valen/nixpkgs/init/nodePackages.rush";
+
   outputs = {
     self,
     nixpkgs,
     flake-utils,
     devshell,
+    rush-nixpkgs,
   }:
     flake-utils.lib.eachDefaultSystem (system: {
       devShells.default = let
@@ -25,12 +29,21 @@
           inherit system;
           overlays = [devshell.overlay];
         };
+        rushPkgs = rush-nixpkgs.legacyPackages.${system};
       in
         pkgs.devshell.mkShell {
           imports = [
             (pkgs.devshell.extraModulesDir + "/git/hooks.nix")
             (pkgs.devshell.importTOML (shellPath + "/devshell.toml"))
           ];
+
+          commands = [
+            {
+              category = "monorepo";
+              package = rushPkgs.nodePackages.rush;
+            }
+          ];
+
           git.hooks = {
             enable = true;
             pre-commit.text = builtins.readFile (shellPath + "/pre-commit.sh");
