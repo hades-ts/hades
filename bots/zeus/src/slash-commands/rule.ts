@@ -4,7 +4,8 @@ import { HadesClient } from "@hades-ts/hades";
 import { arg, command, completer, ICompleter, SlashCommand } from "@hades-ts/slash-commands";
 import { GuildServiceFactory } from "../services";
 import { ApplicationCommandOptionType, AutocompleteInteraction, EmbedBuilder } from "discord.js";
-import { RuleRecord } from "../schemas";
+import { RuleConfig } from "../config";
+
 
 
 @injectable()
@@ -16,7 +17,7 @@ class RuleCompleter implements ICompleter {
     @inject(GuildServiceFactory)
     guildServiceFactory!: GuildServiceFactory;
 
-    protected tokenize(rule: RuleRecord) {
+    protected tokenize(rule: RuleConfig) {
         const titleTokens = rule.title.toLowerCase().split(/\s+/);
         const descriptionTokens = rule.description.toLowerCase().split(/\s+/);
         return titleTokens.concat(descriptionTokens);
@@ -30,7 +31,7 @@ class RuleCompleter implements ICompleter {
         );
     }
 
-    protected makeChoices(rules: (RuleRecord & { id: string })[]) {
+    protected makeChoices(rules: (RuleConfig & { id: string })[]) {
         return rules.map(
             rule => ({
                 name: `${rule.title}: ${rule.description}`,

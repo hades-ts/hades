@@ -18,3 +18,19 @@ export const configSchema = z.object({
 })
 
 export type Config = z.infer<typeof configSchema>
+
+export const roleSchema = z.object({
+    roleId: discordIdSchema,
+    description: z.string(),
+    title: z.string(),
+})
+
+export type RoleConfig = z.infer<typeof roleSchema>
+
+export const ruleSchema = z.object({
+    title: z.string(),
+    description: z.string(),
+    content: z.string(),
+})
+
+export type RuleConfig = z.infer<typeof ruleSchema>

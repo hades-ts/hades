@@ -1,3 +1,4 @@
+import { ButtonStyle } from "discord.js";
 import { z } from "zod";
 
 export const embedSchema = z.object({

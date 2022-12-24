@@ -6,7 +6,7 @@ import { HadesClient } from "@hades-ts/hades";
 import { BaseFiletypeStash, MarkdownStash } from "../Stash";
 import { embedSchema, EmbedSchema } from "../../schemas";
 import { z } from "zod";
-import { renderEmbedRecord } from "../../utils";
+import { renderComponents, renderEmbedRecord } from "../../utils";
 
 
 export class ChannelSync {
@@ -44,9 +44,18 @@ export class ChannelSync {
 
     protected async sendMessage(channel: GuildTextBasedChannel, embedRecord: EmbedSchema) {
         const embed = await renderEmbedRecord(embedRecord);
-        await channel.send({
-            embeds: [embed],
-        })
+        const hasButtons = embedRecord.buttons && embedRecord.buttons.length > 0;
+        if (hasButtons) {
+            const components = await renderComponents(embedRecord)
+            await channel.send({
+                embeds: [embed],
+                components: [components],
+            })
+        } else {
+            await channel.send({
+                embeds: [embed],
+            })
+        }
     }
 
     protected async sendMessages(

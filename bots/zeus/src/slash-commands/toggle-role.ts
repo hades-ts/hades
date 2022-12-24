@@ -26,7 +26,7 @@ class RoleCompleter implements ICompleter {
             .map(key => guildService.roles.stash.get(key))
             .map(role => {
             return {
-                name: `<@&${role.roleId}>: ${role.description}>`,
+                name: `${role.title}: ${role.description}`,
                 value: role.id,
             }
         })
@@ -43,11 +43,11 @@ class RoleCompleter implements ICompleter {
     }
 }
 
-@command("add-role", { description: "Get a server role." })
-export class AddRoleCommand extends SlashCommand {
+@command("toggle-role", { description: "Toggle a server role." })
+export class ToggleRoleCommand extends SlashCommand {
 
     @arg({
-        description: "The role you want.",
+        description: "The role to toggle.",
         type: ApplicationCommandOptionType.String,
         required: true 
     })
@@ -75,15 +75,16 @@ export class AddRoleCommand extends SlashCommand {
         const hasRole = roleCache.cache.has(this.role);
 
         if (hasRole) {
-            await this.reject("You already have this role.");
-            return;
+            await roleCache.remove(this.role);
+            await this.reply(`Role <@&${this.role}> removed.`, {
+                ephemeral: true,
+            });
+        } else {
+            await roleCache.add(this.role);
+            await this.reply(`Role <@&${this.role}> added.`, {
+                ephemeral: true,
+            });
         }
-
-        await roleCache.add(this.role);
-
-        await this.reply(`You now have the role <@&${this.role}>.`, {
-            ephemeral: true,
-        });
     }
 
 }

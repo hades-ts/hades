@@ -21,19 +21,19 @@ export class GuildStashChannels {
     @inject(guildTokens.GuildConfig)
     protected guildConfig!: GuildConfig;
 
-    protected sync!: MultiSync;
+    protected multiSync!: MultiSync;
 
     @postConstruct()
     protected init () {
-        this.sync = new MultiSync(
+        this.multiSync = new MultiSync(
             this.client,
             path.join(this.dataPath, this.guildId),
             this.guildConfig.stashChannels
         )
     }
 
-    async install() {
-        await this.sync.sync();
+    async sync() {
+        await this.multiSync.sync();
     }
 
 }

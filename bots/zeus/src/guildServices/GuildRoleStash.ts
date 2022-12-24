@@ -1,9 +1,9 @@
 import path from "path";
 
 import { guildSingleton, guildTokens } from "@hades-ts/guilds";
-import { MarkdownStash } from "@hades-ts/stash";
+import { embedSchema, MarkdownStash } from "@hades-ts/stash";
 import { inject } from "inversify";
-import { roleSchema } from "../schemas";
+import { roleSchema } from "../config";
 
 
 @guildSingleton()

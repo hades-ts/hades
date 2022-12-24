@@ -34,17 +34,11 @@ export class InstallRoleChannelCommand extends SlashCommand {
     async execute(): Promise<void> {
         const guildService = await this.guildServiceFactory.getGuildService(this.interaction.guild!);
 
-        if (!guildService.guildConfig.rolesChannel) {
-            await this.reject(`Hmm, no a role channel is configured!`);
-            return;
-        }
-
         await this.interaction.deferReply({
             ephemeral: true,
         });
 
-        await guildService.roleChannel.install();
-        await guildService.stashChannels.install();
+        await guildService.stashChannels.sync();
 
         await this.interaction.followUp({
             content: `Channels updated!`,
