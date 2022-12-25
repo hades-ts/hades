@@ -7,6 +7,7 @@ import { GlobalQuotaError, UserQuotaError } from "../errors";
 
 import { CompletionService } from "../services/CompletionService";
 import { Thread, ThreadMessage } from "../types";
+import { RecordService } from "../services";
 
 
 @command("explain", { description: "Ask the bot a question." })
@@ -20,6 +21,9 @@ export class ExplainCommand extends SlashCommand {
 
     @inject(CompletionService)
     threads: CompletionService;
+
+    @inject(RecordService)
+    protected records: RecordService;
 
     protected async reject(content: string) {
         await this.interaction.deferReply({
@@ -49,9 +53,9 @@ export class ExplainCommand extends SlashCommand {
             await this.reject(`Sorry, you're out of tokens for the day. Ask again tomorrow!`);
             return
         }
-        
+
         await this.reject(`Sorry, I'm having trouble right now. Try again later!`);
-        return        
+        return
     }
 
     async executeCompletion(thread: Thread) {
@@ -65,23 +69,25 @@ export class ExplainCommand extends SlashCommand {
 
         try {
             thread = await this.threads.check(
-                undefined, 
-                this.interaction.member as GuildMember, 
+                undefined,
+                this.interaction.member as GuildMember,
                 this.question
             )
         } catch (e) {
             await this.handleError(e);
             return
         }
-        const starter = await this.interaction.deferReply();
+        await this.interaction.deferReply();
 
-        thread.threadId = starter.id;        
+        const starter = await this.interaction.fetchReply();
+
+        thread.threadId = starter.id;
 
         const [userEmbed, botEmbed] = await this.executeCompletion(thread);
 
         const buttonId = Math.random().toString(36).substring(7);
 
-        const reply = await this.interaction.editReply({ 
+        const reply = await this.interaction.followUp({
             embeds: [
                 userEmbed,
                 botEmbed
@@ -97,12 +103,13 @@ export class ExplainCommand extends SlashCommand {
             ]
         });
 
+
         const collector = this.interaction.channel.createMessageComponentCollector({
             filter: (interaction) => interaction.customId === buttonId,
         })
 
         collector.on('collect', async (interaction) => {
-            this.interaction.editReply({
+            await reply.edit({
                 content: reply.content,
                 embeds: reply.embeds,
                 components: [],
@@ -114,13 +121,13 @@ export class ExplainCommand extends SlashCommand {
                 name: this.question.substring(0, 8),
                 reason: "Continuing conversation"
             })
-        })       
+        })
     }
 
     async executeExistingThread() {
 
         if (this.interaction.channel.type !== ChannelType.PublicThread) {
-            return 
+            return
         }
 
         const threadStarter = await this.interaction.channel.fetchStarterMessage();
@@ -133,8 +140,8 @@ export class ExplainCommand extends SlashCommand {
 
         try {
             thread = await this.threads.check(
-                threadStarter.id, 
-                this.interaction.member as GuildMember, 
+                threadStarter.id,
+                this.interaction.member as GuildMember,
                 this.question
             )
         } catch (e) {
@@ -144,7 +151,7 @@ export class ExplainCommand extends SlashCommand {
 
         await this.interaction.deferReply();
         const [userEmbed, botEmbed] = await this.executeCompletion(thread);
-        await this.interaction.editReply({ 
+        await this.interaction.editReply({
             embeds: [
                 userEmbed,
                 botEmbed
