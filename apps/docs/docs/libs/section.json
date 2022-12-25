@@ -3,6 +3,7 @@
         "slash-commands",
         "text-commands",
         "guilds",
-        "stash"
+        "stash",
+        "bypass"
     ]
 }
