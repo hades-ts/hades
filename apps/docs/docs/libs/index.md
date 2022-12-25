@@ -1,4 +1,4 @@
 # Guides
 
-This section contains guides for using Hades.
+This section contains documentation for various support libraries.
 
