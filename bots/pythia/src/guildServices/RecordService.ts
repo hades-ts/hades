@@ -1,24 +1,24 @@
 import fs from 'fs'
 import path from 'path'
 
-import { HadesClient, singleton } from "@hades-ts/hades";
-import { inject, postConstruct } from "inversify";
-import { Subject } from 'rxjs';
-import { Thread, ThreadMessage } from '../types';
+import { HadesClient } from "@hades-ts/hades";
+import { inject } from "inversify";
+import { Thread } from '../types';
+import { guildSingleton } from '@hades-ts/guilds';
 
 
 export const RecordServiceTokens = {
     RecordUpdated: Symbol.for('RecordUpdated')
 }
 
-@singleton(RecordService)
+@guildSingleton()
 export class RecordService {
 
-    @inject(HadesClient)    
-    client: HadesClient;
+    @inject(HadesClient)
+    client!: HadesClient;
 
     @inject('cfg.transcriptsPath')
-    dataDir: string;
+    dataDir!: string;
 
     protected ensureDataDir() {
         if (!fs.existsSync(this.dataDir)) {

@@ -1,29 +1,25 @@
 import { inject } from "inversify";
-import { ApplicationCommandOptionType, GuildMember, EmbedBuilder, ChannelType, ActionRowBuilder, ButtonBuilder, ButtonStyle } from "discord.js";
+import { ApplicationCommandOptionType, GuildMember, EmbedBuilder, ChannelType, ActionRowBuilder, ButtonBuilder, ButtonStyle, GuildTextBasedChannel, ThreadChannel } from "discord.js";
 
 import { HadesClient } from "@hades-ts/hades";
 import { command, SlashCommand, arg } from "@hades-ts/slash-commands";
 import { GlobalQuotaError, UserQuotaError } from "../errors";
 
-import { CompletionService } from "../services/CompletionService";
 import { Thread, ThreadMessage } from "../types";
-import { RecordService } from "../services";
+import { GuildServiceFactory } from "../services";
 
 
 @command("explain", { description: "Ask the bot a question." })
 export class ExplainCommand extends SlashCommand {
 
     @arg({ description: "Your question.", type: ApplicationCommandOptionType.String })
-    question: string;
+    question!: string;
 
     @inject(HadesClient)
-    client: HadesClient;
+    client!: HadesClient;
 
-    @inject(CompletionService)
-    threads: CompletionService;
-
-    @inject(RecordService)
-    protected records: RecordService;
+    @inject(GuildServiceFactory)
+    guildServiceFactory!: GuildServiceFactory;
 
     protected async reject(content: string) {
         await this.interaction.deferReply({
@@ -35,11 +31,11 @@ export class ExplainCommand extends SlashCommand {
     }
 
     async execute(): Promise<void> {
-        if (this.interaction.channel.type === ChannelType.GuildText) {
+        if (this.interaction.channel!.type === ChannelType.GuildText) {
             return this.executeNewThread();
         }
 
-        if (this.interaction.channel.type === ChannelType.PublicThread) {
+        if (this.interaction.channel!.type === ChannelType.PublicThread) {
             return this.executeExistingThread();
         }
     }
@@ -59,22 +55,30 @@ export class ExplainCommand extends SlashCommand {
     }
 
     async executeCompletion(thread: Thread) {
-        const transcript = await this.threads.complete(thread);
+        const guildService = await this.getGuildService()
+        const transcript = await guildService.completions.complete(thread);
         const lastMessage = transcript.messages[transcript.messages.length - 1];
         return this.buildEmbeds(lastMessage);
     }
 
+    async getGuildService() {
+        const service = await this.guildServiceFactory.getGuildService(this.interaction.guild!);
+        return service
+    }
+
     async executeNewThread() {
+        const guildService = await this.getGuildService()
+
         let thread: Thread;
 
         try {
-            thread = await this.threads.check(
+            thread = await guildService.completions.check(
                 undefined,
                 this.interaction.member as GuildMember,
                 this.question
             )
         } catch (e) {
-            await this.handleError(e);
+            await this.handleError(e as Error);
             return
         }
         await this.interaction.deferReply();
@@ -103,27 +107,34 @@ export class ExplainCommand extends SlashCommand {
     }
 
     async executeExistingThread() {
+        const guildService = await this.getGuildService()
 
-        if (this.interaction.channel.type !== ChannelType.PublicThread) {
+        if (this.interaction.channel!.type !== ChannelType.PublicThread) {
             return
         }
 
-        const threadStarter = await this.interaction.channel.fetchStarterMessage();
+        const textChannel = this.interaction.channel! as ThreadChannel;
 
-        if (threadStarter.author.id !== this.client.user.id) {
+        const threadStarter = await textChannel.fetchStarterMessage();
+
+        if (!threadStarter) {
+            return this.reject('You can only use `/explain` in threads I started.')
+        }
+
+        if (threadStarter.author.id !== this.client.user!.id) {
             return this.reject('You can only use `/explain` in threads I started.')
         }
 
         let thread: Thread;
 
         try {
-            thread = await this.threads.check(
+            thread = await guildService.completions.check(
                 threadStarter.id,
                 this.interaction.member as GuildMember,
                 this.question
             )
         } catch (e) {
-            await this.handleError(e);
+            await this.handleError(e as Error);
             return
         }
 
@@ -141,14 +152,14 @@ export class ExplainCommand extends SlashCommand {
         const userEmbed = new EmbedBuilder()
             .setAuthor({
                 "name": this.interaction.user.username,
-                "iconURL": this.interaction.user.avatarURL()
+                "iconURL": this.interaction.user.avatarURL()!
             })
             .setDescription(this.question)
 
         let botEmbed = new EmbedBuilder()
             .setAuthor({
-                "name": this.client.user.username,
-                "iconURL": this.client.user.avatarURL()
+                "name": this.client.user!.username,
+                "iconURL": this.client.user!.avatarURL()!
             })
             .setDescription(lastMessage.content)
 

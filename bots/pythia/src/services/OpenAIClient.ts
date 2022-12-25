@@ -10,18 +10,18 @@ import { QuotaService } from "./QuotaService"
 export class OpenAIClient {
 
     @inject("cfg.gpt3Token")
-    token: string
+    token!: string
 
     @inject(QuotaService)
-    quota: QuotaService
+    quota!: QuotaService
 
     protected getHeaders() {
         return {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${this.token}`
         }
-    } 
-    
+    }
+
     protected postRequest(prompt: string, stop?: string[]) {
         return axios.post(
             "https://api.openai.com/v1/completions",

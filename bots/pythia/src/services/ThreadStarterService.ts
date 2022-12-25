@@ -6,7 +6,7 @@ import { inject, postConstruct } from "inversify";
 export class ThreadStarterService {
 
     @inject(HadesClient)
-    protected client: HadesClient;
+    protected client!: HadesClient;
 
 
     @postConstruct()

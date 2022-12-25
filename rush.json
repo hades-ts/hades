@@ -44,6 +44,11 @@
             "shouldPublish": true
         },
         {
+            "packageName": "@hades-ts/bypass",
+            "projectFolder": "libs/bypass",
+            "shouldPublish": true
+        },
+        {
             "packageName": "@hades-ts/guilds",
             "projectFolder": "libs/guilds",
             "shouldPublish": true

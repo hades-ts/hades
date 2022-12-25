@@ -1,36 +1,37 @@
 import { GuildMember } from "discord.js";
 import { inject } from "inversify";
 
-import { HadesClient, singleton } from "@hades-ts/hades";
+import { HadesClient } from "@hades-ts/hades";
 
-import { OpenAIClient } from "./OpenAIClient";
-import { QuotaService } from "./QuotaService";
+import { OpenAIClient } from "../services/OpenAIClient";
+import { QuotaService } from "../services/QuotaService";
 import { RecordService } from "./RecordService";
 import { ThreadFormatter } from "./ThreadFormatter";
 import { Thread } from "../types";
 import { QuotaBypassService } from "./QuotaBypassService";
+import { guildSingleton } from "@hades-ts/guilds";
 
 
-@singleton(CompletionService)
+@guildSingleton()
 export class CompletionService {
 
     @inject(HadesClient)
-    protected client: HadesClient;
+    protected client!: HadesClient;
 
     @inject(OpenAIClient)
-    protected openai: OpenAIClient;
-
-    @inject(RecordService)
-    protected records: RecordService;
+    protected openai!: OpenAIClient;
 
     @inject(ThreadFormatter)
-    protected formatter: ThreadFormatter;
+    protected formatter!: ThreadFormatter;
+
+    @inject(RecordService)
+    protected records!: RecordService;
 
     @inject(QuotaService)
-    quota: QuotaService
+    protected quota!: QuotaService
 
     @inject(QuotaBypassService)
-    bypass: QuotaBypassService
+    protected bypass!: QuotaBypassService
 
     /**
      * Checks if the user is able to send a message.
@@ -54,7 +55,7 @@ export class CompletionService {
         const prompt = this.formatter.format(thread);
 
         // check user has the number of tokens needed to complete the prompt
-        if (!this.bypass.isExempted(author.guild.id, author)) {
+        if (!this.bypass.isExempted(author)) {
             this.quota.checkTokens(author.id, prompt);
         }
 
@@ -66,7 +67,7 @@ export class CompletionService {
      * 
      * @param thread Thread to complete
      * @returns The completed Thread
-     */    
+     */
     async complete(thread: Thread) {
         const lastMessage = thread.messages[thread.messages.length - 1];
         const prompt = this.formatter.format(thread);
@@ -76,13 +77,13 @@ export class CompletionService {
         const guild = await this.client.guilds.fetch(thread.guildId);
         const member = guild.members.cache.get(lastMessage.authorId);
 
-        if (!this.bypass.isExempted(thread.guildId, member)) {
+        if (member && !this.bypass.isExempted(member)) {
             this.quota.spendTokens(member.id, tokens);
         }
 
         thread.messages.push({
-            authorId: this.client.user.id,
-            authorName: this.client.user.username,
+            authorId: this.client.user!.id,
+            authorName: this.client.user!.username,
             content: completion
         })
 

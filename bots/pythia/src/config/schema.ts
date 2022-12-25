@@ -1,25 +1,20 @@
+import { bypassSchema } from "@hades-ts/bypass";
 import { z } from "zod";
 
 export const discordIdSchema = z.string().min(18).max(19).regex(/^[0-9_]+$/);
 export const guildIdSchema = discordIdSchema
 
-export const quotaExemptionsSchema = z.object({
-    users: z.array(discordIdSchema).optional(),
-    roles: z.array(discordIdSchema).optional(),
-}).refine(data => data.users === undefined && data.roles === undefined, {
-    message: 'At least one of users or roles must be defined',
-    path: ['users', 'roles']
-})
-
-export type ConfigQuotaExemptions = z.infer<typeof quotaExemptionsSchema>
-
 export const guildSchema = z.object({
     prompt: z.string(),
-    quotaExemptions: quotaExemptionsSchema.optional(),
-    quotaEnabled: z.boolean().optional().default(true),
+    quotaEnabled: z.boolean().default(true),
+    bypass: bypassSchema.optional().default({
+        guildOwner: false,
+        users: [],
+        roles: [],
+    }),
 })
 
-export type ConfigGuild = z.infer<typeof guildSchema>
+export type GuildConfig = z.infer<typeof guildSchema>
 
 export const quotaSchema = z.object({
     quotaFile: z.string(),

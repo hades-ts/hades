@@ -7,7 +7,6 @@ import { singleton } from "@hades-ts/hades";
 
 import { GlobalQuotaError, UserQuotaError } from "../errors";
 import { ConfigQuota } from "../config";
-import { QuotaBypassService } from "./QuotaBypassService";
 
 
 export type Quota = {
@@ -20,13 +19,7 @@ export type Quota = {
 export class QuotaService {
 
     @inject('cfg.quota')
-    quotaConfig: ConfigQuota
-
-    @inject('cfg.botOwner')
-    botOwner: string
-
-    @inject(QuotaBypassService)
-    bypassService: QuotaBypassService
+    quotaConfig!: ConfigQuota
 
     protected getToday() {
         const today = new Date();
@@ -76,10 +69,6 @@ export class QuotaService {
     }
 
     spendTokens(userId: string, tokens: number) {
-        if (userId === this.botOwner) {
-            return
-        }
-
         const quota = this.loadQuota();
         const userQuota = quota.users[userId] || 0;
         quota.total += tokens;
@@ -88,10 +77,6 @@ export class QuotaService {
     }
 
     checkTokens(userId: string, text: string) {
-        if (userId === this.botOwner) {
-            return
-        }
-
         const tokenizer = new GPT3Tokenizer({ type: "gpt3" });
         const tokens = tokenizer.encode(text).bpe.length;
         const quota = this.loadQuota();
@@ -99,13 +84,12 @@ export class QuotaService {
         if (quota.total + tokens > this.quotaConfig.globalDailyTokenLimit) {
             throw new GlobalQuotaError(`Global quota exceeded`);
         }
-        
+
         const userQuota = quota.users[userId] || 0;
 
         if (userQuota + tokens > this.quotaConfig.userDailyTokenLimit) {
             throw new UserQuotaError(`User quota exceeded`);
         }
-
     }
 
 }

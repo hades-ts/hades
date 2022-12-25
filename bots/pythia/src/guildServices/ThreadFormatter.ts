@@ -4,16 +4,17 @@ import { HadesClient, singleton } from "@hades-ts/hades";
 
 import { Thread, ThreadMessage } from "../types";
 import { PromptService } from "./PromptService";
+import { guildSingleton } from "@hades-ts/guilds";
 
 
-@singleton(ThreadFormatter)
+@guildSingleton()
 export class ThreadFormatter {
 
     @inject(HadesClient)
-    protected client: HadesClient;
+    protected client!: HadesClient;
 
     @inject(PromptService)
-    protected promptService: PromptService;    
+    protected promptService!: PromptService;
 
     protected formatMessage(message: ThreadMessage) {
         return `${message.authorName}: ${message.content}`
@@ -28,8 +29,8 @@ export class ThreadFormatter {
 
     format(thread: Thread) {
         const formattedTranscript = this.formatMessages(thread);
-        const prompt = this.promptService.getPrompt(thread.guildId);
-        const botName = this.client.user.username;
+        const prompt = this.promptService.getPrompt();
+        const botName = this.client.user!.username;
         return `${prompt}\n${formattedTranscript}\n${botName}:`
-    }    
+    }
 }

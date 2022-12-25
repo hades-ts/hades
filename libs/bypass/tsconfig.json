@@ -3,33 +3,31 @@
         "target": "es6",
         "module": "commonjs",
         "moduleResolution": "node",
-        "strict": true,
         "esModuleInterop": true,
+        "declaration": true,
+        "declarationMap": true,
+        "sourceMap": true,
+        "outDir": "dist/",
+        "skipLibCheck": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "allowSyntheticDefaultImports": true,
         "resolveJsonModule": true,
-        "skipLibCheck": true,
-        "allowJs": true,
         "lib": [
             "dom",
             "es5",
             "es6"
         ],
-        "sourceMap": true,
-        "rootDir": "src",
-        "outDir": "dist/",
         "types": [
             "node",
             "reflect-metadata"
         ],
         "typeRoots": [
-            "node_modules/@types"
+            "node_modules/@types",
         ]
     },
     "include": [
-        "src/**/*.ts",
-        "src/**/*.js"
+        "src/**/*.ts"
     ],
     "exclude": [
         "node_modules"

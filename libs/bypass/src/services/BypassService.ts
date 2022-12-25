@@ -1,0 +1,27 @@
+import { singleton } from "@hades-ts/hades";
+import { GuildMember } from "discord.js";
+import { inject } from "inversify";
+import { BypassConfig } from "../schema";
+
+
+@singleton(BypassService)
+export class BypassService {
+
+    constructor(protected config: BypassConfig) { }
+
+    isExempted(member: GuildMember) {
+        const id = member.id;
+
+        if (this.config.guildOwner && id === member.guild.ownerId) {
+            return true;
+        }
+
+        const exemptedUsers = this.config.users || [];
+        const exemptedRoles = this.config.roles || [];
+
+        const exemptedUser = exemptedUsers.includes(id);
+        const exemptedRole = exemptedRoles.some((roleId) => member.roles.cache.has(roleId));
+
+        return Boolean(exemptedUser || exemptedRole);
+    }
+}
