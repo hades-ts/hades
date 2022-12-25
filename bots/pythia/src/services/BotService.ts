@@ -3,6 +3,7 @@ import { Interaction } from 'discord.js';
 
 import { singleton, HadesBotService } from "@hades-ts/hades";
 import { SlashCommandService } from '@hades-ts/slash-commands';
+import { ThreadStarterService } from './ThreadStarterService';
 
 
 @singleton(BotService)
@@ -10,6 +11,9 @@ export class BotService extends HadesBotService {
 
     @inject(SlashCommandService)
     protected slashCommands: SlashCommandService;
+
+    @inject(ThreadStarterService)
+    protected threadStarter: ThreadStarterService;
 
     async onReady() {
         console.log(`Logged in as ${this.client.user.username}.`);
@@ -23,5 +27,5 @@ export class BotService extends HadesBotService {
         if (interaction.isCommand()) {
             this.slashCommands.dispatch(interaction);
         }
-    }    
+    }
 }

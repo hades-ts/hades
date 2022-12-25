@@ -85,9 +85,7 @@ export class ExplainCommand extends SlashCommand {
 
         const [userEmbed, botEmbed] = await this.executeCompletion(thread);
 
-        const buttonId = Math.random().toString(36).substring(7);
-
-        const reply = await this.interaction.followUp({
+        await this.interaction.followUp({
             embeds: [
                 userEmbed,
                 botEmbed
@@ -98,30 +96,10 @@ export class ExplainCommand extends SlashCommand {
                         new ButtonBuilder()
                             .setLabel("Continue in thread")
                             .setStyle(ButtonStyle.Primary)
-                            .setCustomId(buttonId)
+                            .setCustomId('create-thread')
                     ) as any
             ]
         });
-
-
-        const collector = this.interaction.channel.createMessageComponentCollector({
-            filter: (interaction) => interaction.customId === buttonId,
-        })
-
-        collector.on('collect', async (interaction) => {
-            await reply.edit({
-                content: reply.content,
-                embeds: reply.embeds,
-                components: [],
-            })
-
-            collector.empty();
-
-            await reply.startThread({
-                name: this.question.substring(0, 8),
-                reason: "Continuing conversation"
-            })
-        })
     }
 
     async executeExistingThread() {
