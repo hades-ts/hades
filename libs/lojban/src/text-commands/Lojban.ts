@@ -1,23 +1,31 @@
-import { arg, command, description, TextArgError, TextCommand, validate } from "@hades-ts/text-commands";
-import { inject, postConstruct } from 'inversify';
+import {
+    arg,
+    command,
+    description,
+    TextArgError,
+    TextCommand,
+    validate
+} from "@hades-ts/text-commands"
+import { inject, postConstruct } from 'inversify'
+
 
 @command("lojban")
 @description("Get definition of a lojban word.")
 export class Lojban extends TextCommand {
     @arg()
     @description("Word to lookup.")
-    word!: string;
+    protected word!: string
 
     @inject('LOJBAN_DICT')
-    dict: any;
+    protected dict: any
 
     get data() {
-        return this.dict[this.word];
+        return this.dict[this.word]
     }
 
     @postConstruct()
     public init() {
-        this.word = this.word.toLowerCase();
+        this.word = this.word.toLowerCase()
     }
 
     protected cleanDefinition(meaning: string) {
@@ -30,16 +38,16 @@ export class Lojban extends TextCommand {
     }
 
     async execute(): Promise<any> {
-        const definition = this.cleanDefinition(this.data['d']);
+        const definition = this.cleanDefinition(this.data['d'])
         return this.reply(
             `\`${this.word}\`:  ${definition}`
-        );
+        )
     }
 
     @validate("word")
     public async validate() {
         if (!this.data) {
-            throw new TextArgError(`I don't know ${this.word} to be a Lojban word.`);
+            throw new TextArgError(`I don't know ${this.word} to be a Lojban word.`)
         }
     }
 }

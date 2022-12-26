@@ -1,9 +1,10 @@
-import fs from 'fs';
-import path from 'path';
-import { inject, postConstruct } from "inversify";
-import { z } from "zod";
-import { tokens } from '../../tokens';
-import { guildSingleton } from '../../decorators';
+import fs from 'fs'
+import { inject, postConstruct } from "inversify"
+import path from 'path'
+import { z } from "zod"
+
+import { guildSingleton } from '../../decorators'
+import { tokens } from '../../tokens'
 
 
 const dataSchema = z.object({
@@ -23,43 +24,43 @@ export type Data = z.infer<typeof dataSchema>
 export class DataService {
 
     @inject('cfg.dataDirectory')
-    dataDirectory!: string;
+    protected dataDirectory!: string
 
     @inject(tokens.GuildId)
-    guildId!: string;
+    protected guildId!: string
 
     @postConstruct()
     protected init() {
-        this.ensureDataDirectory();
+        this.ensureDataDirectory()
     }
 
     get dataFile() {
-        return path.join(this.dataDirectory, `${this.guildId}.json`);
+        return path.join(this.dataDirectory, `${this.guildId}.json`)
     }
 
     protected ensureDataDirectory() {
         if (!fs.existsSync(this.dataDirectory)) {
-            fs.mkdirSync(this.dataDirectory, { recursive: true });
+            fs.mkdirSync(this.dataDirectory, { recursive: true })
         }
     }
 
     getData(): Data | null {
         if (!fs.existsSync(this.dataFile)) {
-            return null;
+            return null
         }
 
-        const data = fs.readFileSync(this.dataFile, 'utf-8');
-        return dataSchema.parse(JSON.parse(data));
+        const data = fs.readFileSync(this.dataFile, 'utf-8')
+        return dataSchema.parse(JSON.parse(data))
     }
 
     saveData(data: Data) {
-        this.ensureDataDirectory();
-        fs.writeFileSync(this.dataFile, JSON.stringify(data, null, 4));
+        this.ensureDataDirectory()
+        fs.writeFileSync(this.dataFile, JSON.stringify(data, null, 4))
     }
 
     clearData() {
         if (fs.existsSync(this.dataFile)) {
-            fs.unlinkSync(this.dataFile);
+            fs.unlinkSync(this.dataFile)
         }
     }
 

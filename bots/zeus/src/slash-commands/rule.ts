@@ -1,10 +1,16 @@
-import { inject, injectable } from "inversify";
+import { HadesClient } from "@hades-ts/hades"
+import {
+    arg,
+    command,
+    completer,
+    ICompleter,
+    SlashCommand
+} from "@hades-ts/slash-commands"
+import { ApplicationCommandOptionType, AutocompleteInteraction, EmbedBuilder } from "discord.js"
+import { inject, injectable } from "inversify"
 
-import { HadesClient } from "@hades-ts/hades";
-import { arg, command, completer, ICompleter, SlashCommand } from "@hades-ts/slash-commands";
-import { GuildServiceFactory } from "../services";
-import { ApplicationCommandOptionType, AutocompleteInteraction, EmbedBuilder } from "discord.js";
-import { RuleConfig } from "../config";
+import { RuleConfig } from "../config"
+import { GuildServiceFactory } from "../services"
 
 
 
@@ -12,15 +18,15 @@ import { RuleConfig } from "../config";
 class RuleCompleter implements ICompleter {
 
     @inject(AutocompleteInteraction)
-    interaction!: AutocompleteInteraction;
+    protected interaction!: AutocompleteInteraction
 
     @inject(GuildServiceFactory)
-    guildServiceFactory!: GuildServiceFactory;
+    protected guildServiceFactory!: GuildServiceFactory
 
     protected tokenize(rule: RuleConfig) {
-        const titleTokens = rule.title.toLowerCase().split(/\s+/);
-        const descriptionTokens = rule.description.toLowerCase().split(/\s+/);
-        return titleTokens.concat(descriptionTokens);
+        const titleTokens = rule.title.toLowerCase().split(/\s+/)
+        const descriptionTokens = rule.description.toLowerCase().split(/\s+/)
+        return titleTokens.concat(descriptionTokens)
     }
 
     protected compare(tokens: string[], searchTokens: string[]) {
@@ -28,32 +34,32 @@ class RuleCompleter implements ICompleter {
             searchToken => tokens.some(
                 token => token.includes(searchToken)
             )
-        );
+        )
     }
 
-    protected makeChoices(rules: (RuleConfig & { id: string })[]) {
+    protected makeChoices(rules: Array<RuleConfig & { id: string }>) {
         return rules.map(
             rule => ({
                 name: `${rule.title}: ${rule.description}`,
                 value: rule.id,
             })
-        );
+        )
     }
 
     async complete(value: string) {
-        const guildService = await this.guildServiceFactory.getGuildService(this.interaction.guild!);
+        const guildService = await this.guildServiceFactory.getGuildService(this.interaction.guild!)
         const rules = guildService.rules.stash.filter(
             rule => {
                 if (value.trim() === "") {
-                    return true;
+                    return true
                 }
-                const tokens = this.tokenize(rule);
-                const searchTokens = value.split(/\s+/);
-                return this.compare(tokens, searchTokens);
+                const tokens = this.tokenize(rule)
+                const searchTokens = value.split(/\s+/)
+                return this.compare(tokens, searchTokens)
             }
         )
 
-        return this.makeChoices(rules);
+        return this.makeChoices(rules)
     }
 }
 
@@ -63,16 +69,16 @@ export class RuleCommand extends SlashCommand {
     @arg({
         description: "The rule number.",
         type: ApplicationCommandOptionType.String,
-        required: true 
+        required: true
     })
     @completer(RuleCompleter)
-    rule!: string;
+    protected rule!: string
 
     @inject(HadesClient)
-    client!: HadesClient;
+    protected client!: HadesClient
 
     @inject(GuildServiceFactory)
-    guildServiceFactory!: GuildServiceFactory;
+    protected guildServiceFactory!: GuildServiceFactory
 
     protected async reject(content: string) {
         try {
@@ -83,17 +89,17 @@ export class RuleCommand extends SlashCommand {
                 content,
             })
         } catch (error) {
-            console.error(`Couldn't reply to user:`, error);
+            console.error(`Couldn't reply to user:`, error)
         }
     }
 
     async execute(): Promise<void> {
-        const guildService = await this.guildServiceFactory.getGuildService(this.interaction.guild!);
-        const rule = await guildService.rules.stash.get(this.rule);
+        const guildService = await this.guildServiceFactory.getGuildService(this.interaction.guild!)
+        const rule = await guildService.rules.stash.get(this.rule)
 
         if (!rule) {
-            await this.reject(`Hmm, couldn't find that rule!`);
-            return;
+            await this.reject(`Hmm, couldn't find that rule!`)
+            return
         }
 
         await this.interaction.reply({
@@ -105,7 +111,7 @@ export class RuleCommand extends SlashCommand {
                         text: rule.description,
                     })
             ]
-        });
+        })
     }
 
 }

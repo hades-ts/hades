@@ -1,6 +1,7 @@
-import { Constructable } from "@hades-ts/hades";
-import { ApplicationCommandOptionType } from "discord.js";
-import { arg } from "./arg";
+import { Constructable } from "@hades-ts/hades"
+import { ApplicationCommandOptionType } from "discord.js"
+
+import { arg } from "./arg"
 
 
 type BooleanArgOptions = {
@@ -18,6 +19,6 @@ export function boolean(info: BooleanArgOptions) {
             type: ApplicationCommandOptionType.Boolean,
             description: info.description,
             required: info.required,
-        })(target, key);
-    };
-};
+        })(target, key)
+    }
+}

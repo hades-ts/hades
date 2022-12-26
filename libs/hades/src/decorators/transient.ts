@@ -1,4 +1,4 @@
-import { fluentProvide } from "@ldlework/inversify-binding-decorators";
+import { fluentProvide } from "@ldlework/inversify-binding-decorators"
 
 
 /**
@@ -8,5 +8,5 @@ import { fluentProvide } from "@ldlework/inversify-binding-decorators";
 export function transient(identifier: any) {
     return fluentProvide(identifier)
         .inTransientScope()
-        .done();
-};
+        .done()
+}

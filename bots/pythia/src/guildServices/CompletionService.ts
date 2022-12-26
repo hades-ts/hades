@@ -1,31 +1,30 @@
-import { GuildMember } from "discord.js";
-import { inject } from "inversify";
+import { guildSingleton } from "@hades-ts/guilds"
+import { HadesClient } from "@hades-ts/hades"
+import { GuildMember } from "discord.js"
+import { inject } from "inversify"
 
-import { HadesClient } from "@hades-ts/hades";
-
-import { OpenAIClient } from "../services/OpenAIClient";
-import { QuotaService } from "../services/QuotaService";
-import { RecordService } from "./RecordService";
-import { ThreadFormatter } from "./ThreadFormatter";
-import { Thread } from "../types";
-import { QuotaBypassService } from "./QuotaBypassService";
-import { guildSingleton } from "@hades-ts/guilds";
+import { OpenAIClient } from "../services/OpenAIClient"
+import { QuotaService } from "../services/QuotaService"
+import { Thread } from "../types"
+import { QuotaBypassService } from "./QuotaBypassService"
+import { RecordService } from "./RecordService"
+import { ThreadFormatter } from "./ThreadFormatter"
 
 
 @guildSingleton()
 export class CompletionService {
 
     @inject(HadesClient)
-    protected client!: HadesClient;
+    protected client!: HadesClient
 
     @inject(OpenAIClient)
-    protected openai!: OpenAIClient;
+    protected openai!: OpenAIClient
 
     @inject(ThreadFormatter)
-    protected formatter!: ThreadFormatter;
+    protected formatter!: ThreadFormatter
 
     @inject(RecordService)
-    protected records!: RecordService;
+    protected records!: RecordService
 
     @inject(QuotaService)
     protected quota!: QuotaService
@@ -44,7 +43,7 @@ export class CompletionService {
      */
     async check(threadId: string | undefined, author: GuildMember, content: string) {
         // add the new message to the thread
-        const thread = this.records.getThread(author.guild.id, threadId);
+        const thread = this.records.getThread(author.guild.id, threadId)
         thread.messages.push({
             authorId: author.id,
             authorName: author.user.username,
@@ -52,11 +51,11 @@ export class CompletionService {
         })
 
         // render the thread with the latest message
-        const prompt = this.formatter.format(thread);
+        const prompt = this.formatter.format(thread)
 
         // check user has the number of tokens needed to complete the prompt
         if (!this.bypass.isExempted(author)) {
-            this.quota.checkTokens(author.id, prompt);
+            this.quota.checkTokens(author.id, prompt)
         }
 
         return thread
@@ -69,16 +68,16 @@ export class CompletionService {
      * @returns The completed Thread
      */
     async complete(thread: Thread) {
-        const lastMessage = thread.messages[thread.messages.length - 1];
-        const prompt = this.formatter.format(thread);
-        const { completion, tokens } = await this.openai.complete(prompt);
+        const lastMessage = thread.messages[thread.messages.length - 1]
+        const prompt = this.formatter.format(thread)
+        const { completion, tokens } = await this.openai.complete(prompt)
 
         // get the member based on the thread.guildId and lastMessage.authorId
-        const guild = await this.client.guilds.fetch(thread.guildId);
-        const member = guild.members.cache.get(lastMessage.authorId);
+        const guild = await this.client.guilds.fetch(thread.guildId)
+        const member = guild.members.cache.get(lastMessage.authorId)
 
         if (member && !this.bypass.isExempted(member)) {
-            this.quota.spendTokens(member.id, tokens);
+            this.quota.spendTokens(member.id, tokens)
         }
 
         thread.messages.push({
@@ -87,8 +86,8 @@ export class CompletionService {
             content: completion
         })
 
-        this.records.saveThread(thread);
+        this.records.saveThread(thread)
 
-        return thread;
+        return thread
     }
 }

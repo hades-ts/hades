@@ -1,8 +1,9 @@
-import { Container } from "inversify";
-import { Constructable, Newable } from "@hades-ts/hades";
-import { GuildChannel, GuildMember, Role, User } from "discord.js";
-import { RoleParser, UserParser, ChannelParser, MemberParser } from "../builtins";
-import { SlashArgParser, StringParser } from "../services";
+import { Constructable, Newable } from "@hades-ts/hades"
+import { GuildChannel, GuildMember, Role, User } from "discord.js"
+import { Container } from "inversify"
+
+import { ChannelParser, MemberParser, RoleParser, UserParser } from "../builtins"
+import { SlashArgParser, StringParser } from "../services"
 
 
 
@@ -26,5 +27,5 @@ export const installDefaultMappedTypes = (container: Container, mappedTypes: Typ
         pair => {
             container.bind('SlashMappedTypes').toConstantValue(pair)
         }
-    );
+    )
 }

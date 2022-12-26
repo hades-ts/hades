@@ -1,8 +1,15 @@
-import { CategoryChannel, ChannelType, Collection, Guild, GuildBasedChannel, TextChannel } from 'discord.js';
-import { inject } from 'inversify';
+import {
+    CategoryChannel,
+    ChannelType,
+    Collection,
+    Guild,
+    GuildBasedChannel,
+    TextChannel
+} from 'discord.js'
+import { inject } from 'inversify'
 
-import { singleton } from '../decorators';
-import { HadesClient } from './HadesClient';
+import { singleton } from '../decorators'
+import { HadesClient } from './HadesClient'
 
 
 export type ChannelTypes =
@@ -20,6 +27,7 @@ export type ChannelTypes =
  */
 @singleton(DiscordService)
 export class DiscordService {
+    // eslint-disable-next-line no-useless-constructor
     constructor(
         @inject(HadesClient)
         private client: HadesClient,
@@ -29,7 +37,7 @@ export class DiscordService {
      * Get all guilds the bot is in.
      */
     get guilds(): Collection<string, Guild> {
-        return this.client.guilds.cache;
+        return this.client.guilds.cache
     }
 
     /**
@@ -38,9 +46,9 @@ export class DiscordService {
      * @returns string | undefined
      */
     getName(guildId: string) {
-        const guild = this.guilds.get(guildId);
+        const guild = this.guilds.get(guildId)
         if (guild !== undefined) {
-            return guild.name;
+            return guild.name
         }
     }
 
@@ -50,9 +58,9 @@ export class DiscordService {
      * @returns Collection<string, GuildMember> | undefined
      */
     getMembers(guildId: string) {
-        const guild = this.guilds.get(guildId);
+        const guild = this.guilds.get(guildId)
         if (guild !== undefined) {
-            return guild.members.cache;
+            return guild.members.cache
         }
     }
 
@@ -63,9 +71,9 @@ export class DiscordService {
      * @returns GuildMember | undefined
      */
     getMember(guildId: string, memberId: string) {
-        const members = this.getMembers(guildId);
+        const members = this.getMembers(guildId)
         if (members !== undefined) {
-            return members.get(memberId);
+            return members.get(memberId)
         }
     }
 
@@ -75,9 +83,9 @@ export class DiscordService {
      * @returns string | undefined
      */
     getOwner(guildId: string) {
-        const guild = this.guilds.get(guildId);
+        const guild = this.guilds.get(guildId)
         if (guild !== undefined) {
-            return guild.ownerId;
+            return guild.ownerId
         }
     }
 
@@ -88,12 +96,12 @@ export class DiscordService {
      * @returns Collection<string, GuildChannel>
      */
     getChansOf<T extends GuildBasedChannel>(type: ChannelType, guildId: string) {
-        console.log(`Grabbing channels of type ${type} for guild ${guildId}`);
-        const guild = this.guilds.get(guildId);
+        console.log(`Grabbing channels of type ${type} for guild ${guildId}`)
+        const guild = this.guilds.get(guildId)
         if (guild !== undefined) {
             return guild.channels.cache
-                .filter((chan, _) => chan.type === type)
-                .mapValues((chan, _) => chan as T)
+                .filter((chan) => chan.type === type)
+                .mapValues((chan) => chan as T)
         }
     }
 
@@ -103,7 +111,7 @@ export class DiscordService {
      * @returns Collection<string, CategoryChannel>
      */
     getCategories(guildId: string) {
-        return this.getChansOf<CategoryChannel>(ChannelType.GuildCategory, guildId);
+        return this.getChansOf<CategoryChannel>(ChannelType.GuildCategory, guildId)
     }
 
     /**
@@ -112,7 +120,7 @@ export class DiscordService {
      * @returns Collection<string, TextChannel>
      */
     getChannels(guildId: string) {
-        return this.getChansOf<TextChannel>(ChannelType.GuildText, guildId);
+        return this.getChansOf<TextChannel>(ChannelType.GuildText, guildId)
     }
 
     /**
@@ -122,9 +130,9 @@ export class DiscordService {
      * @returns GuildChannel | undefined
      */
     getChannel(guildId: string, channelId: string) {
-        const guild = this.guilds.get(guildId);
+        const guild = this.guilds.get(guildId)
         if (guild !== undefined) {
-            return guild.channels.cache.get(channelId);
+            return guild.channels.cache.get(channelId)
         }
     }
 
@@ -134,9 +142,9 @@ export class DiscordService {
      * @returns Collection<string, Role>
      */
     getRoles(guildId: string) {
-        const guild = this.guilds.get(guildId);
+        const guild = this.guilds.get(guildId)
         if (guild !== undefined) {
-            return guild.roles.cache;
+            return guild.roles.cache
         }
     }
 }

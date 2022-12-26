@@ -1,57 +1,58 @@
-import { GuildMember } from "discord.js";
-import { inject } from "inversify";
-import { ConfigGuild } from "../../../config";
-import { WithRequired } from "../../../types";
-import { guildSingleton } from "../../decorators";
-import { tokens } from "../../tokens";
-import { DataService } from "./DataService";
+import { GuildMember } from "discord.js"
+import { inject } from "inversify"
+
+import { ConfigGuild } from "../../../config"
+import { WithRequired } from "../../../types"
+import { guildSingleton } from "../../decorators"
+import { tokens } from "../../tokens"
+import { DataService } from "./DataService"
 
 
 @guildSingleton()
 export class LimitBypass {
 
     @inject('cfg.botOwner')
-    protected botOwner!: string;
+    protected botOwner!: string
 
     @inject(tokens.GuildConfig)
-    protected config!: WithRequired<ConfigGuild, 'channel'>;
+    protected config!: WithRequired<ConfigGuild, 'channel'>
 
     @inject(tokens.GuildOwner)
-    protected guildOwner!: string;
+    protected guildOwner!: string
 
     @inject(DataService)
-    protected dataService!: DataService;
+    protected dataService!: DataService
 
     getData() {
-        const data = this.dataService.getData();
+        const data = this.dataService.getData()
         if (data === null) {
-            throw new Error('No data found');
+            throw new Error('No data found')
         }
 
-        return data;
+        return data
     }
 
     isExempt(member: GuildMember) {
-        const data = this.getData();
+        const data = this.getData()
 
         if (member.id === this.botOwner) {
-            return true;
+            return true
         }
 
         if (member.id === this.guildOwner) {
-            return true;
+            return true
         }
 
         if (this.config.exemptions?.roles?.some(role => member.roles.cache.has(role))) {
-            return true;
+            return true
         }
 
         if (this.config.exemptions?.users?.includes(member.id)) {
-            return true;
+            return true
         }
 
         if (data.users.find(user => user.id === member.id) === undefined) {
-            return true;
+            return true
         }
 
         return false

@@ -1,9 +1,9 @@
-import { EmbedBuilder } from "discord.js";
-import { inject } from "inversify";
-import { singleton } from "@hades-ts/hades";
+import { singleton } from "@hades-ts/hades"
+import { EmbedBuilder } from "discord.js"
+import { inject } from "inversify"
 
-import { SlashCommandHelperRegistry } from "./SlashCommandHelperRegistry";
-import { SlashCommandHelper } from "./SlashCommandHelper";
+import { SlashCommandHelper } from "./SlashCommandHelper"
+import { SlashCommandHelperRegistry } from "./SlashCommandHelperRegistry"
 
 
 
@@ -11,7 +11,7 @@ import { SlashCommandHelper } from "./SlashCommandHelper";
 export class SlashCommandHelpService {
 
     @inject(SlashCommandHelperRegistry)
-    helpers: SlashCommandHelperRegistry
+    protected helpers: SlashCommandHelperRegistry
 
     getHelpEmbed(command: string) {
         const helper = this.helpers.helperFor(command)
@@ -29,7 +29,7 @@ export class SlashCommandHelpService {
             if (helper.args.size > 0 || helper.description) {
                 embed = embed.addFields(
                     {
-                        name: helper.getUsage(), 
+                        name: helper.getUsage(),
                         value: helper.description
                     }
                 )
@@ -45,6 +45,6 @@ export class SlashCommandHelpService {
             }
         )
 
-        return embed;
+        return embed
     }
 }

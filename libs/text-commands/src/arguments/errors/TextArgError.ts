@@ -6,10 +6,10 @@
  * to the user.
  */
 export class TextArgError extends Error {
-    showHelp: boolean;
+    showHelp: boolean
 
     constructor(msg: string, showHelp = true) {
-        super(msg);
-        this.showHelp = showHelp;
+        super(msg)
+        this.showHelp = showHelp
     }
 }

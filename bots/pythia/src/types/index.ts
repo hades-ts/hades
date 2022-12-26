@@ -1,1 +1,1 @@
-export * from './threads';
+export * from './threads'

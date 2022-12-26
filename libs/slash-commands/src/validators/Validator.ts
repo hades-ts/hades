@@ -1,10 +1,9 @@
-import { Container, injectable } from 'inversify';
-import { CommandInteraction } from 'discord.js';
+import { Constructable } from "@hades-ts/hades"
+import { CommandInteraction } from 'discord.js'
+import { Container, injectable } from 'inversify'
 
-import { Constructable } from "@hades-ts/hades";
-
-import { SlashArgInstaller } from '../services';
-import { addSlashArgValidator } from '../metadata';
+import { addSlashArgValidator } from '../metadata'
+import { SlashArgInstaller } from '../services'
 
 
 /**
@@ -12,8 +11,9 @@ import { addSlashArgValidator } from '../metadata';
  */
 @injectable()
 export class Validator {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     public async validate(arg: SlashArgInstaller, ctx: CommandInteraction, value: any): Promise<any> {
-        return;
+        return
     }
 
     static check() {
@@ -22,8 +22,8 @@ export class Validator {
                 container
                     .bind(Validator)
                     .to(this)
-                    .whenTargetNamed(key);
-            });
+                    .whenTargetNamed(key)
+            })
         }
     }
 }

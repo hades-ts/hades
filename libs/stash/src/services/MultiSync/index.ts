@@ -1,1 +1,1 @@
-export * from './MultiSync';
+export * from './MultiSync'

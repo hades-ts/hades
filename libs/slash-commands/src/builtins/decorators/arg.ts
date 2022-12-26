@@ -1,12 +1,20 @@
-import { inject } from "inversify";
-import { ApplicationCommandAutocompleteStringOption, ApplicationCommandChannelOptionData, ApplicationCommandChoicesData, ApplicationCommandNonOptionsData, ApplicationCommandNumericOptionData, ApplicationCommandOptionChoiceData, ApplicationCommandOptionData, ApplicationCommandStringOptionData, ApplicationCommandSubCommandData, ApplicationCommandSubGroupData } from "discord.js";
+import { Constructable } from "@hades-ts/hades"
+import {
+    ApplicationCommandAutocompleteStringOption,
+    ApplicationCommandChannelOptionData,
+    ApplicationCommandChoicesData,
+    ApplicationCommandNonOptionsData,
+    ApplicationCommandNumericOptionData,
+    ApplicationCommandOptionData,
+    ApplicationCommandStringOptionData,
+    ApplicationCommandSubCommandData,
+    ApplicationCommandSubGroupData
+} from "discord.js"
+import { inject } from "inversify"
 
-import { Constructable } from "@hades-ts/hades";
-
-import { getSlashArgMeta } from "../../metadata";
-import { camelToDash } from "../../utils";
-import { Optional } from "../../utils";
-import { SlashCommand } from "../../models";
+import { getSlashArgMeta } from "../../metadata"
+import { SlashCommand } from "../../models"
+import { camelToDash, Optional } from "../../utils"
 
 
 export type ArgOptions =
@@ -20,18 +28,18 @@ export type ArgOptions =
     | Optional<ApplicationCommandSubCommandData, 'name'>
 
 export const makeArgMeta = (info: ArgOptions, target: Constructable, key: string) => {
-    const meta = getSlashArgMeta(target.constructor, key);
-    meta.name = camelToDash(key);
+    const meta = getSlashArgMeta(target.constructor, key)
+    meta.name = camelToDash(key)
     meta.options = {
         required: true,
         ...info,
         name: info.name || meta.name,
-    } as ApplicationCommandOptionData;
+    } as ApplicationCommandOptionData
     // get design:type from the constructor
-    const typeInfo = Reflect.getMetadata("design:type", target, key).name;
+    const typeInfo = Reflect.getMetadata("design:type", target, key).name
     meta.type = typeInfo
-    meta.property = key;
-    return meta;
+    meta.property = key
+    return meta
 }
 
 /**
@@ -40,10 +48,10 @@ export const makeArgMeta = (info: ArgOptions, target: Constructable, key: string
  */
 export function arg<T extends SlashCommand>(info: ArgOptions) {
     return (target: Constructable<T>, key: string) => {
-        const meta = makeArgMeta(info, target, key);
+        makeArgMeta(info, target, key)
         // decorate the field with @inject(key)
-        inject(key)(target, key);
-    };
-};
+        inject(key)(target, key)
+    }
+}
 
 

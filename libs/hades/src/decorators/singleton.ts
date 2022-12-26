@@ -1,4 +1,4 @@
-import { fluentProvide } from "@ldlework/inversify-binding-decorators";
+import { fluentProvide } from "@ldlework/inversify-binding-decorators"
 
 
 /**
@@ -8,5 +8,5 @@ import { fluentProvide } from "@ldlework/inversify-binding-decorators";
 export function singleton(identifier: any) {
     return fluentProvide(identifier)
         .inSingletonScope()
-        .done();
-};
+        .done()
+}

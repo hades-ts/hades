@@ -67,9 +67,9 @@ module.exports = {
                     "error",
                     {
                         overrides: {
-                            accessors: "off",
+                            accessors: "explicit",
                             constructors: "no-public",
-                            methods: "off",
+                            methods: "explicit",
                             properties: "explicit",
                             parameterProperties: "off",
                         },

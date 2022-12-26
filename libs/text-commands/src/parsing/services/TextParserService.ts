@@ -1,8 +1,9 @@
-import { parse, ParserOptions } from "discord-command-parser";
-import { Message } from "discord.js";
-import { inject, optional } from "inversify";
-import { singleton } from "@hades-ts/hades";
-import { TextCommandContext } from "../../commands";
+import { singleton } from "@hades-ts/hades"
+import { Message } from "discord.js"
+import { parse, ParserOptions } from "discord-command-parser"
+import { inject, optional } from "inversify"
+
+import { TextCommandContext } from "../../commands"
 
 
 export type TextParserServiceOptions = {
@@ -27,6 +28,7 @@ export class TextParserService {
     constructor(
         @optional()
         @inject("PARSER_OPTIONS")
+        // eslint-disable-next-line indent
         options?: TextParserServiceOptions
     ) {
         this.options = {
@@ -44,8 +46,8 @@ export class TextParserService {
      * @param msg The original invocation Message.
      */
     replaceBotMention(msg: Message) {
-        const botname = `<@${msg.client.user.id}> `;
-        msg.content = msg.content.replace(botname, this.options.prefix);
+        const botname = `<@${msg.client.user.id}> `
+        msg.content = msg.content.replace(botname, this.options.prefix)
     }
 
 
@@ -56,15 +58,15 @@ export class TextParserService {
      */
     parse(msg: Message): TextCommandContext | null {
         if (this.options.allowMention) {
-            this.replaceBotMention(msg);
+            this.replaceBotMention(msg)
         }
 
-        const parsed = parse(msg, this.options.prefix, this.options.parserOptions);
+        const parsed = parse(msg, this.options.prefix, this.options.parserOptions)
 
         if (!parsed.success) {
-            return null;
-        };
+            return null
+        }
 
-        return new TextCommandContext(msg, parsed);
+        return new TextCommandContext(msg, parsed)
     }
 }

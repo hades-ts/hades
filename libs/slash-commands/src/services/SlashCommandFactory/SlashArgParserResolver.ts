@@ -1,10 +1,9 @@
-import { Collection } from 'discord.js';
-import { multiInject, postConstruct } from 'inversify';
+import { Constructor, Newable, singleton } from "@hades-ts/hades"
+import { Collection } from 'discord.js'
+import { multiInject, postConstruct } from 'inversify'
 
-import { Constructor, Newable, singleton } from "@hades-ts/hades";
-
-import { SlashArgParser } from './SlashArgParser';
-import { StringParser } from './String';
+import { SlashArgParser } from './SlashArgParser'
+import { StringParser } from './String'
 
 
 export type TypeMap = [Constructor, Newable<SlashArgParser>];
@@ -18,7 +17,7 @@ export class SlashArgParserResolver {
     @multiInject('SlashMappedTypes')
     protected types: TypeMap[]
 
-    private map = new Collection<Constructor, Newable<SlashArgParser>>();
+    private map = new Collection<Constructor, Newable<SlashArgParser>>()
 
     @postConstruct()
     init() {
@@ -32,11 +31,11 @@ export class SlashArgParserResolver {
      */
     infer(fromType: Constructor) {
         if (!fromType) {
-            return StringParser;
+            return StringParser
         }
-        for (let [ctor, type] of this.map) {
+        for (const [ctor, type] of this.map) {
             if (ctor.name === fromType.toString()) {
-                return type;
+                return type
             }
         }
     }

@@ -1,58 +1,63 @@
-import { ActionRowBuilder, ButtonBuilder, ButtonComponent, ButtonStyle, EmbedBuilder } from "discord.js"
+import {
+    ActionRowBuilder,
+    ButtonBuilder,
+    ButtonStyle
+} from "discord.js"
+
 import { EmbedSchema } from "../schemas"
 
 
 export const renderComponents = (embedRecord: EmbedSchema): ActionRowBuilder<ButtonBuilder> => {
-    let rowBuilder = new ActionRowBuilder<ButtonBuilder>()
+    const rowBuilder = new ActionRowBuilder<ButtonBuilder>()
 
     if (embedRecord.buttons) {
         console.log("buttons -", JSON.stringify(embedRecord.buttons, null, 2))
-    }    
+    }
 
     for (const button of embedRecord.buttons) {
         const buttonBuilder = buildButton(button)
         rowBuilder.addComponents(buttonBuilder)
     }
 
-    return rowBuilder;    
+    return rowBuilder
 }
 
 function buildButton(button: EmbedSchema["buttons"][0]): ButtonBuilder {
-    const buttonBuilder = new ButtonBuilder();
+    const buttonBuilder = new ButtonBuilder()
 
-    let buttonStyle = ButtonStyle.Primary;
+    let buttonStyle = ButtonStyle.Primary
 
     switch (button.style) {
         case "PRIMARY":
             buttonStyle = ButtonStyle.Primary
-            break;
+            break
         case "SECONDARY":
             buttonStyle = ButtonStyle.Secondary
-            break;
+            break
         case "SUCCESS":
             buttonStyle = ButtonStyle.Success
-            break;
+            break
         case "DANGER":
             buttonStyle = ButtonStyle.Danger
-            break;
+            break
         case "LINK":
             buttonStyle = ButtonStyle.Link
-            break;
+            break
         default:
             buttonStyle = ButtonStyle.Primary
-            break;
+            break
     }
 
-    if (button.label) 
-        buttonBuilder.setLabel(button.label);
-    if (button.style) 
-        buttonBuilder.setStyle(buttonStyle);
-    if (button.customId) 
-        buttonBuilder.setCustomId(button.customId);
-    if (button.emoji) 
-        buttonBuilder.setEmoji(button.emoji);
-    if (button.url) 
-        buttonBuilder.setURL(button.url);
+    if (button.label)
+        buttonBuilder.setLabel(button.label)
+    if (button.style)
+        buttonBuilder.setStyle(buttonStyle)
+    if (button.customId)
+        buttonBuilder.setCustomId(button.customId)
+    if (button.emoji)
+        buttonBuilder.setEmoji(button.emoji)
+    if (button.url)
+        buttonBuilder.setURL(button.url)
 
-    return buttonBuilder;
+    return buttonBuilder
 }

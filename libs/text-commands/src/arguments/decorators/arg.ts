@@ -1,8 +1,9 @@
-import { inject } from "inversify";
-import { Constructable, InstallerFunc, Newable } from "@hades-ts/hades";
-import { TextArgParser } from "../../parsing";
-import { getTextArgMeta } from "../metadata";
-import { camelToDash } from "../../utils";
+import { Constructable, InstallerFunc, Newable } from "@hades-ts/hades"
+import { inject } from "inversify"
+
+import { TextArgParser } from "../../parsing"
+import { camelToDash } from "../../utils"
+import { getTextArgMeta } from "../metadata"
 
 
 /**
@@ -29,22 +30,22 @@ export type ArgInfo = {
  */
 export function arg(info?: ArgInfo) {
     return (target: Constructable, key: string) => {
-        const meta = getTextArgMeta(target.constructor, key);
-        meta.name = camelToDash(key);
+        const meta = getTextArgMeta(target.constructor, key)
+        meta.name = camelToDash(key)
         // get design:type from the constructor
-        const typeInfo = Reflect.getMetadata("design:type", target, key).name;
+        const typeInfo = Reflect.getMetadata("design:type", target, key).name
         meta.type = typeInfo
-        meta.property = key;
+        meta.property = key
         if (info) {
-            meta.name = info.name || camelToDash(key);
-            meta.description = info.description || info.description;
-            meta.parserType = info.parser || meta.parserType;
-            meta.validatorMethods = info.validatorMethods || meta.validatorMethods;
-            meta.validatorInstallers = info.validatorInstallers || meta.validatorInstallers;
+            meta.name = info.name || camelToDash(key)
+            meta.description = info.description || info.description
+            meta.parserType = info.parser || meta.parserType
+            meta.validatorMethods = info.validatorMethods || meta.validatorMethods
+            meta.validatorInstallers = info.validatorInstallers || meta.validatorInstallers
         }
         // decorate the field with @inject(key)
-        inject(key)(target, key);
-    };
-};
+        inject(key)(target, key)
+    }
+}
 
 

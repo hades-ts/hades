@@ -1,3 +1,3 @@
-export * from './request';
-export * from './singleton';
-export * from './transient';
+export * from './request'
+export * from './singleton'
+export * from './transient'

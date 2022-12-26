@@ -1,26 +1,27 @@
-import { Collection } from "discord.js";
-import { InstallerFunc, Newable } from "@hades-ts/hades";
-import { SlashArgParserMeta } from "./SlashArgParserMeta";
-import { SlashCommandMeta } from "./SlashCommandMeta";
-import { SlashArgParser } from "../services";
+import { InstallerFunc, Newable } from "@hades-ts/hades"
+import { Collection } from "discord.js"
+
+import { SlashArgParser } from "../services"
+import { SlashArgParserMeta } from "./SlashArgParserMeta"
+import { SlashCommandMeta } from "./SlashCommandMeta"
 
 
 // key where @parser metadata is stored
-const PARSER_METADATA = Symbol("Hades:ParserMetadata");
+const PARSER_METADATA = Symbol("Hades:ParserMetadata")
 // key where @command metadata is stored
-const COMMAND_METADATA = Symbol("Hades:CommandMetadata");
+const COMMAND_METADATA = Symbol("Hades:CommandMetadata")
 
 /**
  * Get all metas defined with @command
  * @returns A collection of SlashCommandMetas
  */
 export function getSlashCommandMetas(): Collection<Newable, SlashCommandMeta> {
-    let metas = Reflect.getMetadata(COMMAND_METADATA, SlashCommandMeta);
+    let metas = Reflect.getMetadata(COMMAND_METADATA, SlashCommandMeta)
     if (metas === undefined) {
-        metas = new Collection<Newable, SlashCommandMeta>();
-        setSlashCommandMetas(metas);
+        metas = new Collection<Newable, SlashCommandMeta>()
+        setSlashCommandMetas(metas)
     }
-    return metas;
+    return metas
 }
 
 /**
@@ -29,7 +30,7 @@ export function getSlashCommandMetas(): Collection<Newable, SlashCommandMeta> {
  * @returns 
  */
 export function setSlashCommandMetas(metas: Collection<Newable, SlashCommandMeta>) {
-    return Reflect.defineMetadata(COMMAND_METADATA, metas, SlashCommandMeta);
+    return Reflect.defineMetadata(COMMAND_METADATA, metas, SlashCommandMeta)
 }
 
 /**
@@ -38,14 +39,14 @@ export function setSlashCommandMetas(metas: Collection<Newable, SlashCommandMeta
  * @returns 
  */
 export function getSlashCommandMeta(target: Newable) {
-    const metas = getSlashCommandMetas();
-    let meta = metas.get(target);
+    const metas = getSlashCommandMetas()
+    let meta = metas.get(target)
     if (meta === undefined) {
-        meta = new SlashCommandMeta();
-        meta.target = target;
-        metas.set(target, meta);
+        meta = new SlashCommandMeta()
+        meta.target = target
+        metas.set(target, meta)
     }
-    return meta;
+    return meta
 }
 
 /**
@@ -54,22 +55,22 @@ export function getSlashCommandMeta(target: Newable) {
  * @param argName Target argument field name.
  * @returns 
  */
- export function getSlashArgMeta(target: Newable, argName: string) {
-  const meta = getSlashCommandMeta(target);
-  return meta.getArgMeta(argName);
+export function getSlashArgMeta(target: Newable, argName: string) {
+    const meta = getSlashCommandMeta(target)
+    return meta.getArgMeta(argName)
 }
 
 /**
  * Get all @parser metas.
  * @returns A Collection of all Parser metas.
  */
- export function getSlashParserMetas(): Set<SlashArgParserMeta> {
-  let metas = Reflect.getMetadata(PARSER_METADATA, SlashArgParserMeta);
-  if (metas === undefined) {
-      metas = new Set<SlashArgParserMeta>();
-      setSlashParserMetas(metas);
-  }
-  return metas;
+export function getSlashParserMetas(): Set<SlashArgParserMeta> {
+    let metas = Reflect.getMetadata(PARSER_METADATA, SlashArgParserMeta)
+    if (metas === undefined) {
+        metas = new Set<SlashArgParserMeta>()
+        setSlashParserMetas(metas)
+    }
+    return metas
 }
 
 /**
@@ -78,18 +79,18 @@ export function getSlashCommandMeta(target: Newable) {
 * @returns 
 */
 export function setSlashParserMetas(metas: Collection<string, SlashArgParserMeta>) {
-  return Reflect.defineMetadata(PARSER_METADATA, metas, SlashArgParserMeta);
+    return Reflect.defineMetadata(PARSER_METADATA, metas, SlashArgParserMeta)
 }
 
 /**
  * Register a class as a parser.
  * @param target Target parser class.
  */
- export function registerSlashParser(target: Newable<SlashArgParser>) {
-  const metas = getSlashParserMetas();
-  const meta = new SlashArgParserMeta();
-  meta.type = target;
-  metas.add(meta);
+export function registerSlashParser(target: Newable<SlashArgParser>) {
+    const metas = getSlashParserMetas()
+    const meta = new SlashArgParserMeta()
+    meta.type = target
+    metas.add(meta)
 }
 
 /**
@@ -100,8 +101,8 @@ export function setSlashParserMetas(metas: Collection<string, SlashArgParserMeta
  * @returns
  */
 export function addSlashValidatorMethod(target: Newable, argName: string, methodName: string) {
-    const meta = getSlashArgMeta(target, argName);
-    return meta.validatorMethods.add(methodName);
+    const meta = getSlashArgMeta(target, argName)
+    return meta.validatorMethods.add(methodName)
 }
 
 /**
@@ -111,6 +112,6 @@ export function addSlashValidatorMethod(target: Newable, argName: string, method
  * @param installer Validator installer.
  */
 export function addSlashArgValidator(target: Newable, argName: string, installer: InstallerFunc) {
-    const meta = getSlashArgMeta(target, argName);
-    meta.validatorInstallers.push(installer);
+    const meta = getSlashArgMeta(target, argName)
+    meta.validatorInstallers.push(installer)
 }

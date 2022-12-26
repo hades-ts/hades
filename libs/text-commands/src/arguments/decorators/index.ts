@@ -1,1 +1,1 @@
-export * from './arg';
+export * from './arg'

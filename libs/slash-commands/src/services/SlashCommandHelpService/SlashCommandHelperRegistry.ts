@@ -1,8 +1,8 @@
-import { Collection } from 'discord.js';
-import { multiInject, postConstruct } from 'inversify';
+import { singleton } from "@hades-ts/hades"
+import { Collection } from 'discord.js'
+import { multiInject, postConstruct } from 'inversify'
 
-import { singleton } from "@hades-ts/hades";
-import { SlashCommandHelper } from './SlashCommandHelper';
+import { SlashCommandHelper } from './SlashCommandHelper'
 
 
 
@@ -11,20 +11,20 @@ import { SlashCommandHelper } from './SlashCommandHelper';
  */
 @singleton(SlashCommandHelperRegistry)
 export class SlashCommandHelperRegistry {
-    map = new Collection<string, SlashCommandHelper>();
+    map = new Collection<string, SlashCommandHelper>()
 
     @multiInject(SlashCommandHelper)
-    helpers: SlashCommandHelper[]
+    public helpers: SlashCommandHelper[]
 
     @postConstruct()
     init() {
         for (const helper of this.helpers) {
-            this.map.set(helper.name, helper);
+            this.map.set(helper.name, helper)
         }
     }
 
     helperFor(name: string) {
-        return this.map.get(name);
+        return this.map.get(name)
     }
 
     find(predicate: (helper: SlashCommandHelper) => boolean) {

@@ -1,8 +1,8 @@
-import { Collection } from 'discord.js';
-import { multiInject, postConstruct } from 'inversify';
-import { singleton } from "@hades-ts/hades";
+import { singleton } from "@hades-ts/hades"
+import { Collection } from 'discord.js'
+import { multiInject, postConstruct } from 'inversify'
 
-import { SlashCommandFactory } from './SlashCommandFactory';
+import { SlashCommandFactory } from './SlashCommandFactory'
 
 
 /**
@@ -10,20 +10,20 @@ import { SlashCommandFactory } from './SlashCommandFactory';
  */
 @singleton(SlashCommandFactoryRegistry)
 export class SlashCommandFactoryRegistry {
-    map = new Collection<string, SlashCommandFactory>();
+    map = new Collection<string, SlashCommandFactory>()
 
     @multiInject(SlashCommandFactory)
-    factories: SlashCommandFactory[]
+    protected factories: SlashCommandFactory[]
 
     @postConstruct()
     init() {
         for (const factory of this.factories) {
-            this.map.set(factory.meta.name, factory);
+            this.map.set(factory.meta.name, factory)
         }
     }
 
     factoryFor(name: string) {
-        return this.map.get(name);
+        return this.map.get(name)
     }
 
     find(predicate: (factory: SlashCommandFactory) => boolean) {
@@ -31,6 +31,6 @@ export class SlashCommandFactoryRegistry {
     }
 
     all() {
-        return this.factories;
+        return this.factories
     }
 }

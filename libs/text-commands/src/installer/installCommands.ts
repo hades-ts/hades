@@ -1,14 +1,15 @@
-import { Container } from "inversify";
-import { getTextCommandMetas, TextCommandMeta, TextCommandFactory, TextCommandHelper } from "../commands";
+import { Container } from "inversify"
+
+import { getTextCommandMetas, TextCommandFactory, TextCommandHelper, TextCommandMeta } from "../commands"
 
 
 type Metas = ReturnType<typeof getTextCommandMetas>
 
 const installCommandFactory = (container: Container, meta: TextCommandMeta) => {
-    const factory = new TextCommandFactory(container, meta);
+    const factory = new TextCommandFactory(container, meta)
     container
         .bind<TextCommandFactory>(TextCommandFactory)
-        .toConstantValue(factory);
+        .toConstantValue(factory)
 }
 
 const installCommandFactories = (container: Container, metas: Metas) => {
@@ -16,7 +17,7 @@ const installCommandFactories = (container: Container, metas: Metas) => {
 }
 
 const installCommandHelper = (container: Container, meta: TextCommandMeta) => {
-    const helper = new TextCommandHelper(meta);
+    const helper = new TextCommandHelper(meta)
     container
         .bind(TextCommandHelper)
         .toConstantValue(helper)

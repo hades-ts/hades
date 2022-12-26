@@ -1,8 +1,9 @@
-import { Constructable } from "@hades-ts/hades";
-import { inject, injectable } from "inversify";
-import { SlashCommandService } from "../../services";
-import { makeArgMeta } from ".";
-import { ApplicationCommandOptionType } from "discord.js";
+import { Constructable } from "@hades-ts/hades"
+import { ApplicationCommandOptionType } from "discord.js"
+import { inject, injectable } from "inversify"
+
+import { SlashCommandService } from "../../services"
+import { makeArgMeta } from "."
 
 
 export type ChannelNameArgOptions = {
@@ -15,7 +16,7 @@ export type ChannelNameArgOptions = {
 class CommandChoicesResolver {
 
     @inject(SlashCommandService)
-    private slashCommandService!: SlashCommandService;
+    private slashCommandService!: SlashCommandService
 
     getChoices() {
         return this.slashCommandService.factories.all().map(
@@ -36,7 +37,7 @@ export function commandName(info: ChannelNameArgOptions) {
             required: info.required,
             description: info.description,
         }, target, key)
-        meta.choicesResolver = CommandChoicesResolver;
-        inject(key)(target, key);
-    };
-};
+        meta.choicesResolver = CommandChoicesResolver
+        inject(key)(target, key)
+    }
+}

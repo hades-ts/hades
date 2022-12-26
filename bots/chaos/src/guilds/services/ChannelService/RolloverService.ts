@@ -1,10 +1,11 @@
-import { inject } from "inversify";
-import { DateTime } from "luxon";
-import { ConfigGuild } from "../../../config";
-import { WithRequired } from "../../../types";
-import { guildSingleton } from "../../decorators";
-import { tokens } from "../../tokens";
-import { Data, DataService } from "./DataService";
+import { inject } from "inversify"
+import { DateTime } from "luxon"
+
+import { ConfigGuild } from "../../../config"
+import { WithRequired } from "../../../types"
+import { guildSingleton } from "../../decorators"
+import { tokens } from "../../tokens"
+import { Data, DataService } from "./DataService"
 
 
 export type EmptyRollover = {
@@ -27,36 +28,35 @@ export type RolloverStatus = EmptyRollover | PassedRollover | ScheduledRollover;
 export class RolloverService {
 
     @inject(tokens.GuildConfig)
-    private config!: WithRequired<ConfigGuild, 'channel'>;
+    private config!: WithRequired<ConfigGuild, 'channel'>
 
     @inject(DataService)
-    private dataService!: DataService;
+    private dataService!: DataService
 
     protected calculateChangeOver(data: Data) {
-        const period = this.config.channel.period || { days: 1 };
-        const { created } = data;
-        const dateObj = DateTime.fromISO(created).toUTC();
-        return dateObj.plus(period);
+        const period = this.config.channel.period || { days: 1 }
+        const { created } = data
+        const dateObj = DateTime.fromISO(created).toUTC()
+        return dateObj.plus(period)
     }
 
     protected changeOverPassed(changeOver: DateTime) {
-        return changeOver < DateTime.now().toUTC();
+        return changeOver < DateTime.now().toUTC()
     }
 
     async checkRollover(): Promise<RolloverStatus> {
-        const data = this.dataService.getData();
+        const data = this.dataService.getData()
 
         if (data === null) {
-            return { type: 'empty' };
+            return { type: 'empty' }
         }
 
-        const changeOver = this.calculateChangeOver(data);
+        const changeOver = this.calculateChangeOver(data)
 
         if (this.changeOverPassed(changeOver)) {
-            return { type: 'passed', changeOver };
+            return { type: 'passed', changeOver }
         }
 
-        return { type: 'scheduled', changeOver };
-    }  
+        return { type: 'scheduled', changeOver }
+    }
 }
-    

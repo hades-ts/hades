@@ -1,5 +1,5 @@
-import { ButtonStyle } from "discord.js";
-import { z } from "zod";
+import { z } from "zod"
+
 
 export const embedSchema = z.object({
     title: z.string().optional(),
@@ -32,6 +32,6 @@ export const embedSchema = z.object({
             customId: z.string(),
         })
     ).optional().default([]),
-});
+})
 
 export type EmbedSchema = z.infer<typeof embedSchema>;

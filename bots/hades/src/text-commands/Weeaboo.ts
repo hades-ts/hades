@@ -1,5 +1,5 @@
-import { EmbedBuilder } from 'discord.js';
-import { command, description, TextCommand } from "@hades-ts/text-commands";
+import { command, description, TextCommand } from "@hades-ts/text-commands"
+import { EmbedBuilder } from 'discord.js'
 
 
 @command("weeaboo")
@@ -12,9 +12,10 @@ export class WeeabooCommand extends TextCommand {
             },
         })
         return this.reply(
-            'Did someone just say "weeaboo"!?', {
-            embeds: [embed]
-        }
-        );
+            'Did someone just say "weeaboo"!?',
+            {
+                embeds: [embed]
+            }
+        )
     }
 }

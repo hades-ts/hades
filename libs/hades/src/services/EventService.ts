@@ -1,8 +1,8 @@
-import { inject } from 'inversify';
+import { inject } from 'inversify'
 
-import { singleton } from '../decorators';
-import { HadesBotService } from './HadesBotService';
-import { HadesClient } from './HadesClient';
+import { singleton } from '../decorators'
+import { HadesBotService } from './HadesBotService'
+import { HadesClient } from './HadesClient'
 
 
 /**
@@ -12,7 +12,7 @@ import { HadesClient } from './HadesClient';
 export abstract class EventService {
 
     @inject(HadesClient)
-    client: HadesClient;
+    protected client: HadesClient
 
     /**
      * Register a bot for event callbacks.

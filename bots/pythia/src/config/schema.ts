@@ -1,7 +1,8 @@
-import { bypassSchema } from "@hades-ts/bypass";
-import { z } from "zod";
+import { bypassSchema } from "@hades-ts/bypass"
+import { z } from "zod"
 
-export const discordIdSchema = z.string().min(18).max(19).regex(/^[0-9_]+$/);
+
+export const discordIdSchema = z.string().min(18).max(19).regex(/^[0-9_]+$/)
 export const guildIdSchema = discordIdSchema
 
 export const guildSchema = z.object({

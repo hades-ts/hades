@@ -1,1 +1,1 @@
-export * from './SlashArgError';
+export * from './SlashArgError'

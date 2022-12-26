@@ -1,7 +1,6 @@
+import { singleton } from "@hades-ts/hades"
 import axios, { AxiosResponse } from "axios"
 import { inject } from "inversify"
-
-import { singleton } from "@hades-ts/hades"
 
 import { QuotaService } from "./QuotaService"
 
@@ -10,10 +9,10 @@ import { QuotaService } from "./QuotaService"
 export class OpenAIClient {
 
     @inject("cfg.gpt3Token")
-    token!: string
+    protected token!: string
 
     @inject(QuotaService)
-    quota!: QuotaService
+    protected quota!: QuotaService
 
     protected getHeaders() {
         return {
@@ -42,7 +41,7 @@ export class OpenAIClient {
 
     protected getCompletion(prompt: string, response: AxiosResponse) {
         const completion = response.data.choices[0].text.replace(prompt, "").trim()
-        const tokens = response.data.usage.total_tokens;
+        const tokens = response.data.usage.total_tokens
         return { completion, tokens }
     }
 

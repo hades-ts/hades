@@ -1,12 +1,10 @@
+import { singleton } from "@hades-ts/hades"
 import fs from "fs"
+import GPT3Tokenizer from 'gpt3-tokenizer'
+import { inject } from "inversify"
 
-import { inject } from "inversify";
-import GPT3Tokenizer from 'gpt3-tokenizer';
-
-import { singleton } from "@hades-ts/hades";
-
-import { GlobalQuotaError, UserQuotaError } from "../errors";
-import { ConfigQuota } from "../config";
+import { ConfigQuota } from "../config"
+import { GlobalQuotaError, UserQuotaError } from "../errors"
 
 
 export type Quota = {
@@ -19,15 +17,15 @@ export type Quota = {
 export class QuotaService {
 
     @inject('cfg.quota')
-    quotaConfig!: ConfigQuota
+    protected quotaConfig!: ConfigQuota
 
     protected getToday() {
-        const today = new Date();
-        return today.toISOString().split('T')[0];
+        const today = new Date()
+        return today.toISOString().split('T')[0]
     }
 
     protected isToday(date: string) {
-        return date === this.getToday();
+        return date === this.getToday()
     }
 
     protected loadQuota(): Quota {
@@ -36,59 +34,59 @@ export class QuotaService {
                 currentDay: this.getToday(),
                 total: 0,
                 users: {}
-            };
+            }
         }
 
-        const text = fs.readFileSync(this.quotaConfig.quotaFile, 'utf-8');
-        const quota = JSON.parse(text);
-        this.checkQuota(quota);
-        return quota;
+        const text = fs.readFileSync(this.quotaConfig.quotaFile, 'utf-8')
+        const quota = JSON.parse(text)
+        this.checkQuota(quota)
+        return quota
     }
 
     protected saveQuota(quota: Quota) {
-        fs.writeFileSync(this.quotaConfig.quotaFile, JSON.stringify(quota, null, 2));
+        fs.writeFileSync(this.quotaConfig.quotaFile, JSON.stringify(quota, null, 2))
     }
 
     protected resetQuota(quota: Quota) {
-        quota.currentDay = this.getToday();
-        quota.total = 0;
-        quota.users = {};
-        this.saveQuota(quota);
+        quota.currentDay = this.getToday()
+        quota.total = 0
+        quota.users = {}
+        this.saveQuota(quota)
     }
 
     protected checkQuota(quota: Quota) {
         if (!this.isToday(quota.currentDay)) {
-            this.resetQuota(quota);
+            this.resetQuota(quota)
         }
     }
 
     protected getTokens(userId: string) {
-        const quota = this.loadQuota();
-        this.checkQuota(quota);
-        return quota.users[userId] || 0;
+        const quota = this.loadQuota()
+        this.checkQuota(quota)
+        return quota.users[userId] || 0
     }
 
     spendTokens(userId: string, tokens: number) {
-        const quota = this.loadQuota();
-        const userQuota = quota.users[userId] || 0;
-        quota.total += tokens;
-        quota.users[userId] = userQuota + tokens;
-        this.saveQuota(quota);
+        const quota = this.loadQuota()
+        const userQuota = quota.users[userId] || 0
+        quota.total += tokens
+        quota.users[userId] = userQuota + tokens
+        this.saveQuota(quota)
     }
 
     checkTokens(userId: string, text: string) {
-        const tokenizer = new GPT3Tokenizer({ type: "gpt3" });
-        const tokens = tokenizer.encode(text).bpe.length;
-        const quota = this.loadQuota();
+        const tokenizer = new GPT3Tokenizer({ type: "gpt3" })
+        const tokens = tokenizer.encode(text).bpe.length
+        const quota = this.loadQuota()
 
         if (quota.total + tokens > this.quotaConfig.globalDailyTokenLimit) {
-            throw new GlobalQuotaError(`Global quota exceeded`);
+            throw new GlobalQuotaError(`Global quota exceeded`)
         }
 
-        const userQuota = quota.users[userId] || 0;
+        const userQuota = quota.users[userId] || 0
 
         if (userQuota + tokens > this.quotaConfig.userDailyTokenLimit) {
-            throw new UserQuotaError(`User quota exceeded`);
+            throw new UserQuotaError(`User quota exceeded`)
         }
     }
 

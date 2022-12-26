@@ -27,4 +27,62 @@
     "files.associations": {
         "*.json": "jsonc"
     },
+    "eslint.workingDirectories": [
+        {
+            "directory": "libs/bypass",
+            "changeProcessCWD": true
+        },
+        {
+            "directory": "libs/generator",
+            "changeProcessCWD": true
+        },
+        {
+            "directory": "libs/guilds",
+            "changeProcessCWD": true
+        },
+        {
+            "directory": "libs/hades",
+            "changeProcessCWD": true
+        },
+        {
+            "directory": "libs/lojban",
+            "changeProcessCWD": true
+        },
+        {
+            "directory": "libs/slash-commands",
+            "changeProcessCWD": true
+        },
+        {
+            "directory": "libs/stash",
+            "changeProcessCWD": true
+        },
+        {
+            "directory": "libs/text-commands",
+            "changeProcessCWD": true
+        },
+        {
+            "directory": "bots/apollo",
+            "changeProcessCWD": true
+        },
+        {
+            "directory": "bots/ares",
+            "changeProcessCWD": true
+        },
+        {
+            "directory": "bots/chaos",
+            "changeProcessCWD": true
+        },
+        {
+            "directory": "bots/hades",
+            "changeProcessCWD": true
+        },
+        {
+            "directory": "bots/pythia",
+            "changeProcessCWD": true
+        },
+        {
+            "directory": "bots/zeus",
+            "changeProcessCWD": true
+        }
+    ],
 }

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
     Channel,
     Collection,
@@ -10,11 +11,11 @@ import {
     Role,
     Snowflake,
     User
-} from 'discord.js';
-import { inject, postConstruct } from 'inversify';
+} from 'discord.js'
+import { inject, postConstruct } from 'inversify'
 
-import { EventService } from './EventService';
-import { HadesClient } from './HadesClient';
+import { EventService } from './EventService'
+import { HadesClient } from './HadesClient'
 
 
 /**
@@ -28,23 +29,23 @@ export class HadesBotService {
      * The Discord client.
      */
     @inject(HadesClient)
-    client: HadesClient;
+    protected client: HadesClient
 
     /**
      * The Discord bot token.
      */
     @inject('cfg.discordToken')
-    token: String;
+    protected token: String
 
     /**
      * Used to receive Discord events.
      */
     @inject(EventService)
-    eventService: EventService;
+    protected eventService: EventService
 
     @postConstruct()
     postConstruct() {
-        this.eventService.register(this);
+        this.eventService.register(this)
     }
 
     /**
@@ -52,21 +53,21 @@ export class HadesBotService {
      * @returns Promise<string>
      */
     async login() {
-        return this.client.login(this.token.toString());
+        return this.client.login(this.token.toString())
     }
 
     get highlight() {
-        return `<@${this.client.user.id}>`;
+        return `<@${this.client.user.id}>`
     }
 
     protected isHighlight(content: string) {
-        return content.startsWith(this.highlight);
+        return content.startsWith(this.highlight)
     }
 
     /* logging */
-    async onDebug(...args: any[]) { console.debug(...args); }
-    async onError(...args: any[]) { console.error(...args); }
-    async onWarn(...args: any[]) { console.warn(...args); }
+    async onDebug(...args: any[]) { console.debug(...args) }
+    async onError(...args: any[]) { console.error(...args) }
+    async onWarn(...args: any[]) { console.warn(...args) }
 
     /* channels */
     async onChannelCreate(channel: Channel) { }
@@ -103,7 +104,7 @@ export class HadesBotService {
     async onGuildUpdate(oldGuild: Guild, newGuild: Guild) { }
 
     /* interactions */
-    async onInteractionCreate<T extends Interaction>(interaction: T) {}
+    async onInteractionCreate<T extends Interaction>(interaction: T) { }
 
     /* messages */
     async onMessage<T extends Message>(message: T) { }

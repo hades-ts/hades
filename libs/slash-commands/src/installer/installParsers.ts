@@ -1,7 +1,8 @@
-import { Constructor, Newable } from "@hades-ts/hades";
-import { Container } from "inversify";
-import { getSlashParserMetas } from "../metadata";
-import { SlashArgParser } from "../services";
+import { Constructor } from "@hades-ts/hades"
+import { Container } from "inversify"
+
+import { getSlashParserMetas } from "../metadata"
+import { SlashArgParser } from "../services"
 
 
 /**
@@ -9,9 +10,9 @@ import { SlashArgParser } from "../services";
  * @param container HadesContainer to use.
  */
 export const installParsers = (container: Container) => {
-    const parserMetas = getSlashParserMetas();
-    for (let meta of parserMetas) {
-        container.bind(SlashArgParser).to(meta.type as Constructor);
-        container.bind(meta.type).to(meta.type as Constructor);
+    const parserMetas = getSlashParserMetas()
+    for (const meta of parserMetas) {
+        container.bind(SlashArgParser).to(meta.type as Constructor)
+        container.bind(meta.type).to(meta.type as Constructor)
     }
 }

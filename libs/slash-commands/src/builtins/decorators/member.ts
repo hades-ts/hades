@@ -1,6 +1,7 @@
-import { Constructable } from "@hades-ts/hades";
-import { ApplicationCommandOptionType } from "discord.js";
-import { arg } from "./arg";
+import { Constructable } from "@hades-ts/hades"
+import { ApplicationCommandOptionType } from "discord.js"
+
+import { arg } from "./arg"
 
 
 export type MemberArgOptions = {
@@ -18,6 +19,6 @@ export function member(info: MemberArgOptions) {
             type: ApplicationCommandOptionType.User,
             required: info.required,
             description: info.description,
-        })(target, key);
-    };
-};
+        })(target, key)
+    }
+}

@@ -1,16 +1,16 @@
-import 'reflect-metadata';
-import * as dotenv from 'dotenv';
-dotenv.config();
+import 'reflect-metadata'
+import './slash-commands'
+import './text-commands'
 
-import { HadesContainer } from '@hades-ts/hades';
+import { HadesContainer } from '@hades-ts/hades'
+import { SlashCommandsInstaller } from "@hades-ts/slash-commands"
 import { TextCommandsInstaller } from "@hades-ts/text-commands"
-import { SlashCommandsInstaller } from  "@hades-ts/slash-commands"
+import * as dotenv from 'dotenv'
+
+import { BotService } from './services/BotService'
 
 
-import { BotService } from './services/BotService';
-
-import './slash-commands';
-import './text-commands';
+dotenv.config();
 
 
 ((async () => {
@@ -20,10 +20,10 @@ import './text-commands';
             new TextCommandsInstaller(),
             new SlashCommandsInstaller(),
         ],
-    });
+    })
 
-    const bot = container.get(BotService);
-    await bot.login();
+    const bot = container.get(BotService)
+    await bot.login()
 
-})()).catch(e => { console.error(e); process.exit(1) });
+})()).catch(e => { console.error(e); process.exit(1) })
 

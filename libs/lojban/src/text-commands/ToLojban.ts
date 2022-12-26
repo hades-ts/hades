@@ -1,19 +1,20 @@
-import { arg, command, description, TextCommand } from "@hades-ts/text-commands";
-import { inject, postConstruct } from 'inversify';
+import { arg, command, description, TextCommand } from "@hades-ts/text-commands"
+import { inject, postConstruct } from 'inversify'
+
 
 @command("lj")
 @description("Translate english word into Lojban.")
 export class ToLojban extends TextCommand {
     @arg()
     @description("Word to lookup.")
-    word!: string;
+    protected word!: string
 
     @inject('LOJBAN_DICT')
-    dict: any;
+    protected dict: any
 
     @postConstruct()
     public init() {
-        this.word = this.word.toLowerCase();
+        this.word = this.word.toLowerCase()
     }
 
     protected cleanDefinition(meaning: string) {
@@ -26,11 +27,5 @@ export class ToLojban extends TextCommand {
     }
 
     async execute() {
-        throw new Error("lj is unimplemented!")
-        const candidates = []
-
-        for (const [word, data] of this.dict) {
-
-        }
     }
 }

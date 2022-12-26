@@ -1,3 +1,3 @@
-export * from './CommandsCommand';
-export * from './HelpCommand';
-export * from './PingCommand';
+export * from './CommandsCommand'
+export * from './HelpCommand'
+export * from './PingCommand'

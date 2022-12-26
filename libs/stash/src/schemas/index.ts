@@ -1,2 +1,2 @@
-export * from './EmbedSchema';
-export * from './StashChannelSchema';
+export * from './EmbedSchema'
+export * from './StashChannelSchema'

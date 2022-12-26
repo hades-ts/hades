@@ -1,9 +1,9 @@
-import { Constructor, Newable } from "@hades-ts/hades";
-import { Collection } from "discord.js";
+import { Newable } from "@hades-ts/hades"
+import { Collection } from "discord.js"
 
-import { COMMAND_METADATA } from "./consts";
-import { TextCommandMeta } from "../models";
-import { setTextCommandMetas } from "./setTextCommandMetas";
+import { TextCommandMeta } from "../models"
+import { COMMAND_METADATA } from "./consts"
+import { setTextCommandMetas } from "./setTextCommandMetas"
 
 
 /**
@@ -11,10 +11,10 @@ import { setTextCommandMetas } from "./setTextCommandMetas";
  * @returns A collection of TextCommandMetas
  */
 export function getTextCommandMetas(): Collection<Newable, TextCommandMeta> {
-    let metas = Reflect.getMetadata(COMMAND_METADATA, TextCommandMeta);
+    let metas = Reflect.getMetadata(COMMAND_METADATA, TextCommandMeta)
     if (metas === undefined) {
-        metas = new Collection<Newable, TextCommandMeta>();
-        setTextCommandMetas(metas);
+        metas = new Collection<Newable, TextCommandMeta>()
+        setTextCommandMetas(metas)
     }
-    return metas;
+    return metas
 }

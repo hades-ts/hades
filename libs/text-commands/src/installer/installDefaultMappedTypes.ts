@@ -1,7 +1,22 @@
-import { Channel, User, Role, GuildChannel, GuildMember } from "discord.js";
-import { Container } from "inversify";
-import { Constructable, Newable } from "@hades-ts/hades";
-import { StringParser, IntegerParser, ChannelParser, UserParser, RoleParser, GuildChannelParser, MemberParser, TextArgParser } from "../parsing/parsers";
+import { Constructable, Newable } from "@hades-ts/hades"
+import {
+    GuildChannel,
+    GuildMember,
+    Role,
+    User
+} from "discord.js"
+import { Container } from "inversify"
+
+import {
+    GuildChannelParser,
+    IntegerParser,
+    MemberParser,
+    RoleParser,
+    StringParser,
+    TextArgParser,
+    UserParser
+} from "../parsing/parsers"
+
 
 export type TypePair = readonly [Constructable, Newable<TextArgParser>];
 
@@ -24,5 +39,5 @@ export const installDefaultMappedTypes = (container: Container, mappedTypes: Typ
         pair => {
             container.bind('TextMappedTypes').toConstantValue(pair)
         }
-    );
+    )
 }

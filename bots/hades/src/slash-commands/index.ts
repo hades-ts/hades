@@ -1,3 +1,3 @@
-export * from './ButtonTest';
-export * from './Hi';
-export * from './UserIs';
+export * from './ButtonTest'
+export * from './Hi'
+export * from './UserIs'

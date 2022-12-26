@@ -1,6 +1,7 @@
-import { Collection } from "discord.js";
-import { PARSER_METADATA } from "../consts";
-import { TextArgParserMeta } from "../models";
+import { Collection } from "discord.js"
+
+import { PARSER_METADATA } from "../consts"
+import { TextArgParserMeta } from "../models"
 
 
 /**
@@ -9,5 +10,5 @@ import { TextArgParserMeta } from "../models";
  * @returns
  */
 export function setTextParserMetas(metas: Collection<string, TextArgParserMeta>) {
-    return Reflect.defineMetadata(PARSER_METADATA, metas, TextArgParserMeta);
+    return Reflect.defineMetadata(PARSER_METADATA, metas, TextArgParserMeta)
 }

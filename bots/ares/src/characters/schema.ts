@@ -78,7 +78,7 @@ const moveSchema = z.object({
     description: z.string(),
 
     powerRatio: z.number().min(0).max(1),
-    statusEffects: z.
+    // statusEffects: z.
 })
 
 const characterSchema = z.object({

@@ -1,6 +1,7 @@
-import { z } from "zod";
+import { z } from "zod"
 
-export const discordIdSchema = z.string().min(18).max(19).regex(/^[0-9_]+$/);
+
+export const discordIdSchema = z.string().min(18).max(19).regex(/^[0-9_]+$/)
 
 export const periodSchema = z.object({
     seconds: z.number().min(1).max(60).optional(),

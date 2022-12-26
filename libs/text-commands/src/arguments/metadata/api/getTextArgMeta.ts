@@ -1,5 +1,6 @@
-import { Constructor, Newable } from "@hades-ts/hades";
-import { getTextCommandMeta } from "../../../commands";
+import { Newable } from "@hades-ts/hades"
+
+import { getTextCommandMeta } from "../../../commands"
 
 
 /**
@@ -9,6 +10,6 @@ import { getTextCommandMeta } from "../../../commands";
  * @returns
  */
 export function getTextArgMeta(target: Newable, argName: string) {
-    const meta = getTextCommandMeta(target);
-    return meta.getArgMeta(argName);
+    const meta = getTextCommandMeta(target)
+    return meta.getArgMeta(argName)
 }

@@ -1,12 +1,12 @@
-import fs from 'fs';
-import path from 'path';
+import fs from 'fs'
+import { inject, postConstruct } from "inversify"
+import { DateTime } from 'luxon'
+import path from 'path'
+import { z } from 'zod'
 
-import { inject, postConstruct } from "inversify";
-import { guildSingleton } from "../../decorators";
-import { tokens } from "../../tokens";
-import { z } from 'zod';
-import { DateTime } from 'luxon';
-import { ConfigPeriod } from '../../../config';
+import { ConfigPeriod } from '../../../config'
+import { guildSingleton } from "../../decorators"
+import { tokens } from "../../tokens"
 
 
 const usersQuotaSchema = z.record(
@@ -30,50 +30,50 @@ export type ThreadQuotaData = z.infer<typeof threadQuotaSchema>
 export class ThreadQuotaService {
 
     @inject('cfg.dataDirectory')
-    dataDirectory!: string;
+    protected dataDirectory!: string
 
     @inject(tokens.GuildId)
-    guildId!: string;    
+    protected guildId!: string
 
     @postConstruct()
     protected init() {
-        this.ensureDataDirectory();
+        this.ensureDataDirectory()
     }
 
     protected get guildDirectory() {
-        return path.join(this.dataDirectory, this.guildId);
+        return path.join(this.dataDirectory, this.guildId)
     }
 
     protected get guildFile() {
-        return path.join(this.guildDirectory, 'quota.json');
+        return path.join(this.guildDirectory, 'quota.json')
     }
 
     protected ensureDataDirectory() {
         if (!fs.existsSync(this.dataDirectory)) {
-            fs.mkdirSync(this.dataDirectory, { recursive: true });
+            fs.mkdirSync(this.dataDirectory, { recursive: true })
         }
     }
 
     protected dataFileExists() {
-        return fs.existsSync(this.guildFile);
+        return fs.existsSync(this.guildFile)
     }
 
     protected getData(): ThreadQuotaData {
-        this.ensureDataDirectory();
+        this.ensureDataDirectory()
 
         if (!this.dataFileExists()) {
             return {
                 users: {},
                 channels: {},
-            };
+            }
         }
 
-        const data = fs.readFileSync(this.guildFile, 'utf-8');
-        return threadQuotaSchema.parse(JSON.parse(data));
+        const data = fs.readFileSync(this.guildFile, 'utf-8')
+        return threadQuotaSchema.parse(JSON.parse(data))
     }
 
     protected saveData(data: Partial<ThreadQuotaData>) {
-        const oldData = this.getData();
+        const oldData = this.getData()
         const newData = {
             users: {
                 ...oldData.users,
@@ -84,61 +84,61 @@ export class ThreadQuotaService {
                 ...data.channels,
             }
         }
-        this.ensureDataDirectory();
-        fs.writeFileSync(this.guildFile, JSON.stringify(newData, null, 4));
+        this.ensureDataDirectory()
+        fs.writeFileSync(this.guildFile, JSON.stringify(newData, null, 4))
         return newData
     }
 
     protected getUsers() {
-        return this.getData().users;
+        return this.getData().users
     }
 
     protected getUser(userId: string) {
-        const users = this.getUsers();
-        return users[userId];
+        const users = this.getUsers()
+        return users[userId]
     }
 
     protected getChannels() {
-        return this.getData().channels;
+        return this.getData().channels
     }
 
     protected getChannel(channelId: string) {
-        const channels = this.getChannels();
-        return channels[channelId];
+        const channels = this.getChannels()
+        return channels[channelId]
     }
 
     public userCanSpend(userId: string, period: ConfigPeriod) {
-        const userTimestamp = this.getUser(userId);
+        const userTimestamp = this.getUser(userId)
         if (!userTimestamp) {
-            return true;
+            return true
         }
-        const userDateTime = DateTime.fromISO(userTimestamp).plus(period);
+        const userDateTime = DateTime.fromISO(userTimestamp).plus(period)
         const now = DateTime.now().toUTC()
-        return userDateTime < now;
+        return userDateTime < now
     }
 
     public channelCanSpend(channelId: string, period: ConfigPeriod) {
-        const channelTimestamp = this.getChannel(channelId);
+        const channelTimestamp = this.getChannel(channelId)
         if (!channelTimestamp) {
-            return true;
+            return true
         }
-        const channelDateTime = DateTime.fromISO(channelTimestamp).plus(period);
+        const channelDateTime = DateTime.fromISO(channelTimestamp).plus(period)
         const now = DateTime.now().toUTC()
-        return channelDateTime < now;
+        return channelDateTime < now
     }
 
     public userSpend(userId: string) {
-        const timestamp = DateTime.now().toUTC().toISO();
+        const timestamp = DateTime.now().toUTC().toISO()
         this.saveData({
             users: { [userId]: timestamp }
-        });
-    }    
+        })
+    }
 
     public channelSpend(channelId: string) {
-        const timestamp = DateTime.now().toUTC().toISO();
+        const timestamp = DateTime.now().toUTC().toISO()
         this.saveData({
             channels: { [channelId]: timestamp }
-        });
-    }    
+        })
+    }
 
 }

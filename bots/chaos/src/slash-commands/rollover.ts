@@ -1,26 +1,26 @@
-import { inject } from "inversify";
-import { GuildMember } from "discord.js";
+import { HadesClient } from "@hades-ts/hades"
+import { command, SlashCommand } from "@hades-ts/slash-commands"
+import { GuildMember } from "discord.js"
+import { inject } from "inversify"
 
-import { HadesClient } from "@hades-ts/hades";
-import { command, SlashCommand } from "@hades-ts/slash-commands";
-import { GuildManager } from "../guilds";
-import { ConfigGuild } from "../config";
+import { ConfigGuild } from "../config"
+import { GuildManager } from "../guilds"
 
 
 @command("rollover", { description: "Start a new chaos message." })
 export class RolloverCommand extends SlashCommand {
 
     @inject('cfg.guilds')
-    configGuilds!: Record<string, ConfigGuild>;
+    protected configGuilds!: Record<string, ConfigGuild>
 
     @inject('cfg.botOwner')
-    botOwner!: string;
+    protected botOwner!: string
 
     @inject(HadesClient)
-    client!: HadesClient;
+    protected client!: HadesClient
 
     @inject(GuildManager)
-    guildManager!: GuildManager;
+    protected guildManager!: GuildManager
 
     protected async reject(content: string) {
         try {
@@ -31,45 +31,45 @@ export class RolloverCommand extends SlashCommand {
                 content,
             })
         } catch (error) {
-            console.error(`Couldn't reply to user:`, error);
+            console.error(`Couldn't reply to user:`, error)
         }
     }
 
     async execute(): Promise<void> {
-        const member = this.interaction.member as GuildMember;
+        const member = this.interaction.member as GuildMember
 
         if (
             member.id !== this.interaction.guild!.ownerId &&
             member.id !== this.botOwner
         ) {
-            await this.reject("Sorry, only an admin can do that.");
-            return;
+            await this.reject("Sorry, only an admin can do that.")
+            return
         }
 
-        const guildId = this.interaction.guildId!;
+        const guildId = this.interaction.guildId!
 
-        const guild = await this.guildManager.getGuild(guildId);
+        const guild = await this.guildManager.getGuild(guildId)
 
-        const guildConfig = this.configGuilds[guildId];
-        
+        const guildConfig = this.configGuilds[guildId]
+
         if (!guildConfig) {
-            await this.reject("Sorry, I'm not set up for this guild yet. Try again later!");
-            return;
+            await this.reject("Sorry, I'm not set up for this guild yet. Try again later!")
+            return
         }
 
         if (guildConfig.disabled) {
-            await this.reject("Sorry, I'm disabled in this server at the moment.");
-            return;
+            await this.reject("Sorry, I'm disabled in this server at the moment.")
+            return
         }
 
-        try {        
-            await guild.channel.rollover();
+        try {
+            await guild.channel.rollover()
         } catch (error) {
             if (error instanceof Error) {
-                await this.reject(error.message);
+                await this.reject(error.message)
                 return
             }
-            await this.reject("Sorry, something went wrong. Try again later!");
+            await this.reject("Sorry, something went wrong. Try again later!")
             return
         }
 

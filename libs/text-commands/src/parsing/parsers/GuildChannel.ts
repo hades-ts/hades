@@ -1,17 +1,17 @@
-import { TextArgInstaller, TextCommandContext } from "../../commands";
-import { parser } from "../decorators";
-import { TextArgParser } from "./TextArgParser";
+import { TextArgInstaller, TextCommandContext } from "../../commands"
+import { parser } from "../decorators"
+import { TextArgParser } from "./TextArgParser"
 
 
 @parser()
 export class GuildChannelParser extends TextArgParser {
-    name = 'guild channel';
-    description = 'A Channel on this server.';
+    name = 'guild channel'
+    description = 'A Channel on this server.'
 
     async parse(arg: TextArgInstaller, context: TextCommandContext) {
-        const id = context.reader.getChannelID();
+        const id = context.reader.getChannelID()
         if (id) {
-            return context.msg.guild.channels.cache.get(id);
+            return context.msg.guild.channels.cache.get(id)
         }
     }
 }

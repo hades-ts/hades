@@ -1,6 +1,7 @@
-import { Constructor } from "@hades-ts/hades";
-import { Container } from "inversify";
-import { getTextParserMetas, TextArgParser } from "../parsing";
+import { Constructor } from "@hades-ts/hades"
+import { Container } from "inversify"
+
+import { getTextParserMetas, TextArgParser } from "../parsing"
 
 
 /**
@@ -8,9 +9,9 @@ import { getTextParserMetas, TextArgParser } from "../parsing";
  * @param container HadesContainer to use.
  */
 export const installParsers = (container: Container) => {
-    const parserMetas = getTextParserMetas();
-    for (let meta of parserMetas) {
-        container.bind(TextArgParser).to(meta.type as Constructor);
-        container.bind(meta.type).to(meta.type as Constructor);
+    const parserMetas = getTextParserMetas()
+    for (const meta of parserMetas) {
+        container.bind(TextArgParser).to(meta.type as Constructor)
+        container.bind(meta.type).to(meta.type as Constructor)
     }
 }

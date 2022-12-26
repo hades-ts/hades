@@ -1,5 +1,6 @@
-import { Constructor, InstallerFunc, Newable } from "@hades-ts/hades";
-import { getTextArgMeta } from "../../../arguments";
+import { InstallerFunc, Newable } from "@hades-ts/hades"
+
+import { getTextArgMeta } from "../../../arguments"
 
 
 /**
@@ -9,6 +10,6 @@ import { getTextArgMeta } from "../../../arguments";
  * @param installer Validator installer.
  */
 export function addTextArgValidator(target: Newable, argName: string, installer: InstallerFunc) {
-    const meta = getTextArgMeta(target, argName);
-    meta.validatorInstallers.push(installer);
+    const meta = getTextArgMeta(target, argName)
+    meta.validatorInstallers.push(installer)
 }

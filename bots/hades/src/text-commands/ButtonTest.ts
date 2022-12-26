@@ -1,5 +1,6 @@
-import { command, TextCommand } from "@hades-ts/text-commands";
-import { CounterButton } from "../utils";
+import { command, TextCommand } from "@hades-ts/text-commands"
+
+import { CounterButton } from "../utils"
 
 
 @command("button-test")

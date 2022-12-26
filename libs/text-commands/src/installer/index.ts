@@ -1,10 +1,12 @@
-import { Container } from "inversify";
-import { Installer } from "@hades-ts/hades";
-import { installCommands } from "./installCommands";
-import { defaultMappedTypes, installDefaultMappedTypes, TypePair } from "./installDefaultMappedTypes";
-import { installParsers } from "./installParsers";
+import { Installer } from "@hades-ts/hades"
+import { Container } from "inversify"
 
-export { defaultMappedTypes, TypePair } from "./installDefaultMappedTypes";
+import { installCommands } from "./installCommands"
+import { defaultMappedTypes, installDefaultMappedTypes, TypePair } from "./installDefaultMappedTypes"
+import { installParsers } from "./installParsers"
+
+
+export { defaultMappedTypes, TypePair } from "./installDefaultMappedTypes"
 
 
 /**
@@ -14,12 +16,12 @@ export class TextCommandsInstaller extends Installer {
     constructor(
         private readonly mappedTypes: TypePair[] = defaultMappedTypes
     ) {
-        super();
+        super()
     }
 
     async install(container: Container) {
-        installDefaultMappedTypes(container, this.mappedTypes);
-        installParsers(container);
-        installCommands(container);
+        installDefaultMappedTypes(container, this.mappedTypes)
+        installParsers(container)
+        installCommands(container)
     }
 }

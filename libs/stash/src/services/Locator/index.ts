@@ -1,2 +1,2 @@
-export * from './Locator';
-export * from './SimpleLocator';
+export * from './Locator'
+export * from './SimpleLocator'

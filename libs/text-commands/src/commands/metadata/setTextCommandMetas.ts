@@ -1,7 +1,8 @@
-import { Newable } from "@hades-ts/hades";
-import { Collection } from "discord.js";
-import { COMMAND_METADATA } from "./consts";
-import { TextCommandMeta } from "../models";
+import { Newable } from "@hades-ts/hades"
+import { Collection } from "discord.js"
+
+import { TextCommandMeta } from "../models"
+import { COMMAND_METADATA } from "./consts"
 
 
 /**
@@ -10,5 +11,5 @@ import { TextCommandMeta } from "../models";
  * @returns
  */
 export function setTextCommandMetas(metas: Collection<Newable, TextCommandMeta>) {
-    return Reflect.defineMetadata(COMMAND_METADATA, metas, TextCommandMeta);
+    return Reflect.defineMetadata(COMMAND_METADATA, metas, TextCommandMeta)
 }

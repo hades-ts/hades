@@ -1,8 +1,10 @@
-import { Constructable } from "@hades-ts/hades";
-import { getSlashArgMeta } from "../../metadata";
+import { Constructable } from "@hades-ts/hades"
+
+import { getSlashArgMeta } from "../../metadata"
+
 
 export interface IResolver {
-    getChoices(): { name: string, value: string }[]
+    getChoices(): Array<{ name: string, value: string }>
 }
 
 /**
@@ -11,7 +13,7 @@ export interface IResolver {
  */
 export function resolver(resolver: any) {
     return (target: Constructable, key: string) => {
-        const meta = getSlashArgMeta(target.constructor, key);
-        meta.choicesResolver = resolver as any;
-    };
-};
+        const meta = getSlashArgMeta(target.constructor, key)
+        meta.choicesResolver = resolver as any
+    }
+}

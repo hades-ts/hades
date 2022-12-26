@@ -1,11 +1,11 @@
-import { Container } from 'inversify';
-import { CommandInteraction } from 'discord.js';
-import { Constructor, InstallerFunc, Newable } from "@hades-ts/hades";
+import { Constructor, InstallerFunc, Newable } from "@hades-ts/hades"
+import { CommandInteraction } from 'discord.js'
+import { Container } from 'inversify'
 
-import { SlashArgError } from '../../errors';
-import { SlashArgMeta } from '../../metadata';
-import { Validator } from '../../validators';
-import { SlashArgParser } from './SlashArgParser';
+import { SlashArgError } from '../../errors'
+import { SlashArgMeta } from '../../metadata'
+import { Validator } from '../../validators'
+import { SlashArgParser } from './SlashArgParser'
 
 /**
  * Binds argument values in a container.
@@ -15,35 +15,35 @@ import { SlashArgParser } from './SlashArgParser';
  */
 export class SlashArgInstaller {
     /** the name of the argument */
-    name: string;
+    name: string
     /** the command class */
-    type: Constructor;
+    type: Constructor
     /** the property to bind to */
-    property: string;
+    property: string
     /** the argument's description */
-    description: string;
+    description: string
 
     /** the parser instance used to get the value */
-    parser: SlashArgParser;
+    parser: SlashArgParser
     /** the parser type used to get the value */
-    parserType: Newable<SlashArgParser>;
+    parserType: Newable<SlashArgParser>
 
     /** validator installers for this argument */
-    validatorInstallers: InstallerFunc[];
+    validatorInstallers: InstallerFunc[]
     /** methods for validating this argument's value */
-    validatorMethods: Set<string>;
+    validatorMethods: Set<string>
 
     constructor(meta: SlashArgMeta, parser: SlashArgParser) {
-        this.name = meta.name;
-        this.type = meta.type;
-        this.property = meta.property;
-        this.description = meta.description;
+        this.name = meta.name
+        this.type = meta.type
+        this.property = meta.property
+        this.description = meta.description
 
-        this.parser = parser;
-        this.parserType = meta.parserType;
+        this.parser = parser
+        this.parserType = meta.parserType
 
-        this.validatorMethods = meta.validatorMethods;
-        this.validatorInstallers = meta.validatorInstallers;
+        this.validatorMethods = meta.validatorMethods
+        this.validatorInstallers = meta.validatorInstallers
     }
 
     /**
@@ -53,15 +53,15 @@ export class SlashArgInstaller {
      */
     async install(di: Container, interaction: CommandInteraction) {
         // parse value
-        const value = await this.parse(interaction);
+        const value = await this.parse(interaction)
 
         // install validators
         console.log(`Installing validators for ${this.name}...`)
-        this.installValidators(di);
+        this.installValidators(di)
 
         // resolve and run validators
         console.log(`Executing validators for ${this.name}...`)
-        await this.executeValidators(di, interaction, value);
+        await this.executeValidators(di, interaction, value)
 
         // finally bind the validated value in the subcontainer
         di.bind(this.property).toConstantValue(value)
@@ -69,27 +69,27 @@ export class SlashArgInstaller {
 
     private throwIfValueIsEmpty(value: any) {
         if (value === null || value === undefined) {
-            throw new SlashArgError(`argument \`${this.name}\` must be a ${this.parser.name}.`, true);
+            throw new SlashArgError(`argument \`${this.name}\` must be a ${this.parser.name}.`, true)
         }
     }
 
     private async parse(interaction: CommandInteraction) {
-        const value = await this.parser.parse(this, interaction);
-        this.throwIfValueIsEmpty(value);
-        return value;
+        const value = await this.parser.parse(this, interaction)
+        this.throwIfValueIsEmpty(value)
+        return value
     }
 
     private installValidators(di: Container) {
-        for (let installer of this.validatorInstallers) {
-            installer(di);
+        for (const installer of this.validatorInstallers) {
+            installer(di)
         }
     }
 
     private async executeValidators(di: Container, interaction: CommandInteraction, value: any) {
         if (di.isBoundNamed(Validator, this.property)) {
-            const validators = di.getAllNamed(Validator, this.property);
-            for (let validator of validators) {
-                await validator.validate(this, interaction, value);
+            const validators = di.getAllNamed(Validator, this.property)
+            for (const validator of validators) {
+                await validator.validate(this, interaction, value)
             }
         }
     }

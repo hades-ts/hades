@@ -1,5 +1,6 @@
-import { command, SlashCommand } from "@hades-ts/slash-commands";
-import { CounterButton } from "../utils";
+import { command, SlashCommand } from "@hades-ts/slash-commands"
+
+import { CounterButton } from "../utils"
 
 
 @command("button-test", { description: "Button interaction test." })

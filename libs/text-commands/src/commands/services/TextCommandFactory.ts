@@ -1,9 +1,9 @@
-import { Collection } from 'discord.js';
-import { Container } from 'inversify';
-import { TextArgParserResolver, TextArgParserRegistry } from '../../parsing';
-import { TextCommandMeta, TextCommandContext } from '../models';
+import { Collection } from 'discord.js'
+import { Container } from 'inversify'
 
-import { TextArgInstaller } from './TextArgInstaller';
+import { TextArgParserRegistry, TextArgParserResolver } from '../../parsing'
+import { TextCommandContext, TextCommandMeta } from '../models'
+import { TextArgInstaller } from './TextArgInstaller'
 
 
 /**
@@ -15,19 +15,19 @@ import { TextArgInstaller } from './TextArgInstaller';
  */
 export class TextCommandFactory {
     /** container to derive sub-containers from */
-    parentContainer: Container;
+    parentContainer: Container
     /** the meta of the associated command */
-    meta: TextCommandMeta;
+    meta: TextCommandMeta
     /** arguments of the associated command */
-    argInstallers = new Collection<string, TextArgInstaller>();
+    argInstallers = new Collection<string, TextArgInstaller>()
 
     constructor(
         parentContainer: Container,
         meta: TextCommandMeta,
     ) {
-        this.parentContainer = parentContainer;
-        this.meta = meta;
-        console.log("Constructed text command factory for", meta.name);
+        this.parentContainer = parentContainer
+        this.meta = meta
+        console.log("Constructed text command factory for", meta.name)
     }
 
     /**
@@ -36,8 +36,9 @@ export class TextCommandFactory {
      * @param context The command invocation context.
      */
     async installArguments(container: Container, context: TextCommandContext) {
-        for (let [_, arg] of this.argInstallers) {
-            await arg.install(container, context);
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        for (const [_, arg] of this.argInstallers) {
+            await arg.install(container, context)
         }
     }
 
@@ -46,11 +47,12 @@ export class TextCommandFactory {
      * @param inst Command instance.
      */
     async runMethodValidators(inst: any) {
-        for (let [_, arg] of this.argInstallers) {
-            for (let methodName of arg.validatorMethods) {
-                const callable = inst[methodName];
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        for (const [_, arg] of this.argInstallers) {
+            for (const methodName of arg.validatorMethods) {
+                const callable = inst[methodName]
                 if (callable) {
-                    await callable.apply(inst);
+                    await callable.apply(inst)
                 }
             }
         }
@@ -64,12 +66,12 @@ export class TextCommandFactory {
     createSubContainer(context: TextCommandContext) {
         const di = this.parentContainer.createChild({ skipBaseClassChecks: true })
         // bind the command class
-        di.bind(this.meta.target).toSelf();
+        di.bind(this.meta.target).toSelf()
         // bind the invocation context
-        di.bind<TextCommandContext>("TextCommandContext").toConstantValue(context);
+        di.bind<TextCommandContext>("TextCommandContext").toConstantValue(context)
         // connect the containers
-        di.parent = this.parentContainer;
-        return di;
+        di.parent = this.parentContainer
+        return di
     }
 
     /**
@@ -78,30 +80,30 @@ export class TextCommandFactory {
      * @returns A command instance.
      */
     async create(context: TextCommandContext) {
-        const inferenceService = this.parentContainer.get(TextArgParserResolver);
-        const parserService = this.parentContainer.get(TextArgParserRegistry);
+        const inferenceService = this.parentContainer.get(TextArgParserResolver)
+        const parserService = this.parentContainer.get(TextArgParserRegistry)
 
         // setup arguments
-        for (let [argName, argMeta] of this.meta.args) {
-            const parserType = argMeta.parserType || inferenceService.infer(argMeta.type);
-            const parser = parserService.parserFor(parserType);
-            const arg = new TextArgInstaller(argMeta, parser);
-            this.argInstallers.set(argName, arg);
+        for (const [argName, argMeta] of this.meta.args) {
+            const parserType = argMeta.parserType || inferenceService.infer(argMeta.type)
+            const parser = parserService.parserFor(parserType)
+            const arg = new TextArgInstaller(argMeta, parser)
+            this.argInstallers.set(argName, arg)
         }
 
         // subcontainer config
-        const subContainer = this.createSubContainer(context);
+        const subContainer = this.createSubContainer(context)
 
         // parse, validate and bind argument values
-        await this.installArguments(subContainer, context);
+        await this.installArguments(subContainer, context)
 
         // resolve command instanced
-        const inst = subContainer.get(this.meta.target);
+        const inst = subContainer.get(this.meta.target)
 
         // run instance-method validators
-        await this.runMethodValidators(inst);
+        await this.runMethodValidators(inst)
 
-        return inst;
+        return inst
     }
 }
 

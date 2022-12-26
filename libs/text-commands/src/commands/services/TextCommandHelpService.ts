@@ -1,15 +1,16 @@
-import { EmbedBuilder } from "discord.js";
-import { inject } from "inversify";
-import { singleton } from "@hades-ts/hades";
-import { TextCommandHelper } from "./TextCommandHelper";
-import { TextCommandHelperRegistry } from "./TextCommandHelperRegistry";
+import { singleton } from "@hades-ts/hades"
+import { EmbedBuilder } from "discord.js"
+import { inject } from "inversify"
+
+import { TextCommandHelper } from "./TextCommandHelper"
+import { TextCommandHelperRegistry } from "./TextCommandHelperRegistry"
 
 
 @singleton(TextCommandHelpService)
 export class TextCommandHelpService {
 
     @inject(TextCommandHelperRegistry)
-    helpers: TextCommandHelperRegistry
+    protected helpers: TextCommandHelperRegistry
 
     getHelpEmbed(command: string) {
         const helper = this.helpers.helperFor(command)
@@ -27,7 +28,7 @@ export class TextCommandHelpService {
             if (helper.args.size > 0 || helper.description) {
                 embed = embed.addFields(
                     {
-                        name: helper.getUsage(), 
+                        name: helper.getUsage(),
                         value: helper.description,
                     },
                 )
@@ -43,6 +44,6 @@ export class TextCommandHelpService {
             }
         )
 
-        return embed;
+        return embed
     }
 }
