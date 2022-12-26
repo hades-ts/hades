@@ -18,6 +18,6 @@ export class TextCommandBotService extends HadesBotService {
     protected helpService: TextCommandHelpService
 
     async onMessage<T extends Message>(message: T) {
-        this.commandService.dispatch(message)
+        await this.commandService.dispatch(message)
     }
 }
