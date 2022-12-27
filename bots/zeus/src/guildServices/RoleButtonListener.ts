@@ -1,5 +1,6 @@
 import { guildSingleton, guildTokens } from "@hades-ts/guilds"
 import { HadesClient } from "@hades-ts/hades"
+import { ButtonInteraction, CacheType, GuildMemberRoleManager, Interaction, Role } from "discord.js"
 import { inject, postConstruct } from "inversify"
 
 
@@ -14,39 +15,59 @@ export class RoleButtonListener {
 
     @postConstruct()
     protected init() {
-        this.client.on('interactionCreate', async interaction => {
-            const button = interaction.isButton() && interaction
+        this.client.on('interactionCreate', this.onInteractionCreate.bind(this))
+    }
 
-            if (!button) return
+    protected async onInteractionCreate(interaction: Interaction) {
+        const button = interaction.isButton()
 
-            const match = /^role-([0-9]+)$/g.exec(interaction.customId)
-            if (!match) return
+        if (!button) return
 
-            const roleId = match[1]
-            const guild = await this.client.guilds.fetch(this.guildId)
-            const role = await guild.roles.fetch(roleId)
+        const roleId = this.parseInteractionRoleId(interaction)
 
-            if (!role) return
+        if (!roleId) return
 
-            const member = await guild.members.fetch(interaction.user.id)
+        const guild = await this.client.guilds.fetch(this.guildId)
+        const role = await guild.roles.fetch(roleId)
 
-            if (!member) return
+        if (!role) return
 
-            const roleManager = member.roles
+        const member = await guild.members.fetch(interaction.user.id)
 
-            if (roleManager.cache.has(roleId)) {
-                await roleManager.remove(role)
-                await interaction.reply({
-                    content: `Removed role ${role.name}`,
-                    ephemeral: true,
-                })
-            } else {
-                await roleManager.add(role)
-                await interaction.reply({
-                    content: `Added role ${role.name}`,
-                    ephemeral: true,
-                })
-            }
+        if (!member) return
+
+        const roleManager = member.roles
+
+        if (roleManager.cache.has(roleId)) {
+            await this.removeRole(roleManager, role, interaction)
+        } else {
+            await this.addRole(roleManager, role, interaction)
+        }
+    }
+
+    protected parseInteractionRoleId(interaction: ButtonInteraction<CacheType>) {
+        const match = /^role-([0-9]+)$/g.exec(interaction.customId)
+
+        if (!match || match.length < 2) return null
+
+        return match[1]
+    }
+
+    protected async removeRole(roleManager: GuildMemberRoleManager, role: Role, interaction: ButtonInteraction<CacheType>) {
+        await roleManager.remove(role)
+        await this.giveRoleUpdateReply('Removed', role, interaction)
+
+    }
+
+    protected async addRole(roleManager: GuildMemberRoleManager, role: Role, interaction: ButtonInteraction<CacheType>) {
+        await roleManager.add(role)
+        await this.giveRoleUpdateReply('Added', role, interaction)
+    }
+
+    protected async giveRoleUpdateReply(prefix: string, role: Role, interaction: ButtonInteraction<CacheType>) {
+        await interaction.reply({
+            content: `${prefix} role ${role.name}`,
+            ephemeral: true,
         })
     }
 }
