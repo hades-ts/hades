@@ -42,21 +42,14 @@ export class CompletionService {
      * @param content Content of the message
      */
     async check(threadId: string | undefined, author: GuildMember, content: string) {
-        // add the new message to the thread
-        const thread = this.records.getThread(author.guild.id, threadId)
-        thread.messages.push({
-            authorId: author.id,
-            authorName: author.user.username,
-            content: content
-        })
+        const thread = this.getThread(threadId, author)
+        this.addThreadMessage(thread, author, content)
 
-        // render the thread with the latest message
-        const prompt = this.formatter.format(thread)
-
-        // check user has the number of tokens needed to complete the prompt
-        if (!this.bypass.isExempted(author)) {
-            this.quota.checkTokens(author.id, prompt)
+        if (this.isExemptFromQuotaLimits(author)) {
+            return thread
         }
+
+        this.verifyEligibility(author, thread)
 
         return thread
     }
@@ -89,5 +82,54 @@ export class CompletionService {
         this.records.saveThread(thread)
 
         return thread
+    }
+
+    /**
+     * Gets the thread from the records.
+     * 
+     * @param threadId Id of thread
+     * @param author Author of thread
+     * @returns thread
+     */
+    protected getThread(threadId: string | undefined, author: GuildMember): Thread {
+        return this.records.getThread(author.guild.id, threadId)
+    }
+
+    /**
+     * Adds new message to the specified thread
+     * 
+     * @param thread Thread to add the message to
+     * @param author Author of the message
+     * @param content Content of the message
+     */
+    protected addThreadMessage(thread: Thread, author: GuildMember, content: string): void {
+        thread.messages.push({
+            authorId: author.id,
+            authorName: author.user.username,
+            content: content
+        })
+    }
+
+    /**
+     * Verifies whether the author is exempt from quota limits
+     * 
+     * @param author Author of the thread
+     * @returns boolean
+     */
+    protected isExemptFromQuotaLimits(author: GuildMember): boolean {
+        return this.bypass.isExempted(author)
+    }
+
+    /**
+     * Verifies that the author is eligible to send a message based on quota limits
+     * 
+     * Throws an error if the user is out of tokens.
+     * 
+     * @param author Author of the thread
+     * @param thread Thread to verify
+     */
+    protected verifyEligibility(author: GuildMember, thread: Thread): void {
+        const prompt = this.formatter.format(thread)
+        this.quota.checkTokens(author.id, prompt)
     }
 }
