@@ -1,3 +1,4 @@
+export * from './BanService'
 export * from './ChannelService'
 export * from './GuildService'
 export * from './MessageFormatter'

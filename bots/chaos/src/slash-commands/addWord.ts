@@ -51,6 +51,11 @@ export class AddWordCommand extends SlashCommand {
     async execute(): Promise<void> {
         const guildService = await this.guildServiceFactory.getGuildService(this.interaction.guild!)
 
+        if (guildService.bans.db.getTag(this.interaction.user.id, "banned")) {
+            await this.reject("Sorry, you're banned from participating.")
+            return
+        }
+
         try {
             if (this.interaction.channel?.type === ChannelType.PublicThread) {
                 await guildService.threading.addWord(this.interaction, this.word)

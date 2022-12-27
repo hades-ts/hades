@@ -14,7 +14,7 @@ export class MessageFilter {
     @inject(HadesClient)
     protected client!: HadesClient
 
-    @inject("wtf")
+    @inject(guildTokens.GuildConfig)
     protected config!: WithRequired<GuildConfig, 'channel'>
 
     @inject(guildTokens.GuildId)

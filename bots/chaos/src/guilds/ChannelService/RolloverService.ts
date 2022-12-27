@@ -1,4 +1,4 @@
-import { guildSingleton } from "@hades-ts/guilds"
+import { guildSingleton, guildTokens } from "@hades-ts/guilds"
 import { inject } from "inversify"
 import { DateTime } from "luxon"
 
@@ -26,7 +26,7 @@ export type RolloverStatus = EmptyRollover | PassedRollover | ScheduledRollover;
 @guildSingleton()
 export class RolloverService {
 
-    @inject("wtf")
+    @inject(guildTokens.GuildConfig)
     private config!: WithRequired<GuildConfig, 'channel'>
 
     @inject(DataService)

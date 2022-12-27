@@ -54,6 +54,16 @@
             "shouldPublish": true
         },
         {
+            "packageName": "@hades-ts/tags",
+            "projectFolder": "libs/tags",
+            "shouldPublish": true
+        },
+        {
+            "packageName": "@hades-ts/ai",
+            "projectFolder": "libs/ai",
+            "shouldPublish": true
+        },
+        {
             "packageName": "@hades-ts/lojban",
             "projectFolder": "libs/lojban",
             "shouldPublish": true
@@ -91,6 +101,11 @@
         {
             "packageName": "@hades-ts/apollo",
             "projectFolder": "bots/apollo",
+            "shouldPublish": false
+        },
+        {
+            "packageName": "@hades-ts/hypnos",
+            "projectFolder": "bots/hypnos",
             "shouldPublish": false
         }
     ]

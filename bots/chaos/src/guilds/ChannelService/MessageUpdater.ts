@@ -1,4 +1,4 @@
-import { guildSingleton } from "@hades-ts/guilds"
+import { guildSingleton, guildTokens } from "@hades-ts/guilds"
 import { HadesClient } from "@hades-ts/hades"
 import { GuildMember, TextChannel } from "discord.js"
 import { inject } from "inversify"
@@ -16,7 +16,7 @@ export class MessageUpdater {
     @inject(HadesClient)
     private client!: HadesClient
 
-    @inject("wtf")
+    @inject(guildTokens.GuildConfig)
     private config!: WithRequired<GuildConfig, 'channel'>
 
     @inject(ChannelMessageFormatter)

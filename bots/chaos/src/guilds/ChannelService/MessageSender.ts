@@ -17,7 +17,7 @@ export class MessageSender {
     @inject(HadesClient)
     private client!: HadesClient
 
-    @inject("wtf")
+    @inject(guildTokens.GuildConfig)
     private config!: WithRequired<GuildConfig, 'channel'>
 
     @inject(ChannelMessageFormatter)

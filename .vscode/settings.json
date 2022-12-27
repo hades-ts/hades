@@ -17,7 +17,8 @@
         "lojban",
         "luxon",
         "metas",
-        "subcontainer"
+        "subcontainer",
+        "usertags"
     ],
     "exportall.config.folderListener": [
         "/bots/ares/src/utils",
@@ -43,6 +44,14 @@
         },
         {
             "directory": "libs/hades",
+            "changeProcessCWD": true
+        },
+        {
+            "directory": "libs/ai",
+            "changeProcessCWD": true
+        },
+        {
+            "directory": "libs/tags",
             "changeProcessCWD": true
         },
         {
@@ -83,6 +92,10 @@
         },
         {
             "directory": "bots/zeus",
+            "changeProcessCWD": true
+        },
+        {
+            "directory": "bots/hypnos",
             "changeProcessCWD": true
         }
     ],

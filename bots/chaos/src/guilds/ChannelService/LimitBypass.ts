@@ -1,4 +1,4 @@
-import { guildSingleton } from "@hades-ts/guilds"
+import { guildSingleton, guildTokens } from "@hades-ts/guilds"
 import { GuildMember } from "discord.js"
 import { inject } from "inversify"
 
@@ -13,7 +13,7 @@ export class LimitBypass {
     @inject('cfg.botOwner')
     protected botOwner!: string
 
-    @inject("wtf")
+    @inject(guildTokens.GuildConfig)
     protected config!: WithRequired<GuildConfig, 'channel'>
 
     @inject(DataService)

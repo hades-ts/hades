@@ -14,7 +14,7 @@ export class MessageScheduler {
     @inject(guildTokens.GuildId)
     private guildId!: string
 
-    @inject("wtf")
+    @inject(guildTokens.GuildConfig)
     private config!: WithRequired<GuildConfig, 'channel'>
 
     @inject(MessageSender)

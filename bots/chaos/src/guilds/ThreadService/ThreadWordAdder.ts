@@ -1,4 +1,4 @@
-import { guildSingleton } from "@hades-ts/guilds"
+import { guildSingleton, guildTokens } from "@hades-ts/guilds"
 import { CacheType, ChannelType, CommandInteraction, GuildMember } from "discord.js"
 import { inject } from "inversify"
 
@@ -10,7 +10,7 @@ import { ThreadMessageUpdater } from "./ThreadMessageUpdater"
 @guildSingleton()
 export class ThreadWordAdder extends WordAdder {
 
-    @inject("wtf")
+    @inject(guildTokens.GuildConfig)
     protected guildConfig!: GuildConfig
 
     @inject(ThreadMessageUpdater)

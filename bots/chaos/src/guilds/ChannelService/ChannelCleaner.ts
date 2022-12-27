@@ -17,7 +17,7 @@ export class ChannelCleaner {
     @inject(guildTokens.GuildId)
     protected guildId!: string
 
-    @inject("wtf")
+    @inject(guildTokens.GuildConfig)
     protected config!: WithRequired<GuildConfig, 'channel'>
 
     @inject(CleanupBypass)

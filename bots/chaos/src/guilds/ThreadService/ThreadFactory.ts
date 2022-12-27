@@ -1,4 +1,4 @@
-import { guildSingleton } from "@hades-ts/guilds"
+import { guildSingleton, guildTokens } from "@hades-ts/guilds"
 import { GuildMember, Message } from "discord.js"
 import { inject } from "inversify"
 
@@ -11,7 +11,7 @@ import { ThreadQuotaService } from "./ThreadQuotaService"
 @guildSingleton()
 export class ThreadFactory {
 
-    @inject("wtf")
+    @inject(guildTokens.GuildConfig)
     protected config!: GuildConfig
 
     @inject(ThreadQuotaService)

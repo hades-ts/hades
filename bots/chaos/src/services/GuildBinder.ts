@@ -15,7 +15,7 @@ export class ChaosGuildBinder implements GuildBinder {
         const guildId = guildContainer.get<string>(guildTokens.GuildId)
         const guildConfig = this.guilds[guildId] || null
         guildContainer
-            .bind("wtf")
+            .bind(guildTokens.GuildConfig)
             .toConstantValue(guildConfig)
 
     }

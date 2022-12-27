@@ -1,4 +1,4 @@
-import { guildSingleton } from "@hades-ts/guilds"
+import { guildSingleton, guildTokens } from "@hades-ts/guilds"
 import { inject } from "inversify"
 
 import { GuildConfig } from "../../config"
@@ -9,7 +9,7 @@ import { BaseMessageFormatter } from "../MessageFormatter"
 @guildSingleton()
 export class ThreadMessageFormatter extends BaseMessageFormatter {
 
-    @inject("wtf")
+    @inject(guildTokens.GuildConfig)
     protected config!: WithRequired<GuildConfig, 'threads'>
 
     protected async createFooter(): Promise<string> {
