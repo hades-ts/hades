@@ -148,6 +148,7 @@ importers:
   ../../bots/chaos:
     specifiers:
       '@discordjs/rest': ^0.5.0
+      '@hades-ts/guilds': workspace:^0.0.5
       '@hades-ts/hades': workspace:^0.0.5
       '@hades-ts/slash-commands': workspace:^0.0.5
       '@hades-ts/text-commands': workspace:^0.0.5
@@ -188,6 +189,7 @@ importers:
       zod: ~3.20.2
     dependencies:
       '@discordjs/rest': 0.5.0
+      '@hades-ts/guilds': link:../../libs/guilds
       '@hades-ts/hades': link:../../libs/hades
       '@hades-ts/slash-commands': link:../../libs/slash-commands
       '@hades-ts/text-commands': link:../../libs/text-commands

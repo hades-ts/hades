@@ -1,7 +1,7 @@
+import { guildSingleton } from "@hades-ts/guilds"
 import { CommandInteraction, GuildMember, Message } from "discord.js"
 import { inject } from "inversify"
 
-import { guildSingleton } from "../../decorators"
 import { ThreadFactory } from "./ThreadFactory"
 import { ThreadWordAdder } from "./ThreadWordAdder"
 

@@ -1,11 +1,10 @@
+import { guildSingleton, guildTokens } from "@hades-ts/guilds"
 import { HadesClient } from "@hades-ts/hades"
 import { Interaction, Message } from "discord.js"
 import { inject, postConstruct } from "inversify"
 
-import { ConfigGuild } from "../../../config"
-import { WithRequired } from "../../../types"
-import { guildSingleton } from "../../decorators"
-import { tokens } from "../../tokens"
+import { GuildConfig } from "../../config"
+import { WithRequired } from "../../types"
 import { CleanupBypass } from "./CleanupBypass"
 
 
@@ -15,10 +14,10 @@ export class MessageFilter {
     @inject(HadesClient)
     protected client!: HadesClient
 
-    @inject(tokens.GuildConfig)
-    protected config!: WithRequired<ConfigGuild, 'channel'>
+    @inject("wtf")
+    protected config!: WithRequired<GuildConfig, 'channel'>
 
-    @inject(tokens.GuildId)
+    @inject(guildTokens.GuildId)
     protected guildId!: string
 
     @inject(CleanupBypass)

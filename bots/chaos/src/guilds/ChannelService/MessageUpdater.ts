@@ -1,11 +1,10 @@
+import { guildSingleton } from "@hades-ts/guilds"
 import { HadesClient } from "@hades-ts/hades"
 import { GuildMember, TextChannel } from "discord.js"
 import { inject } from "inversify"
 
-import { ConfigGuild } from "../../../config"
-import { WithRequired } from "../../../types"
-import { guildSingleton } from "../../decorators"
-import { tokens } from "../../tokens"
+import { GuildConfig } from "../../config"
+import { WithRequired } from "../../types"
 import { DataService } from "./DataService"
 import { ChannelMessageFormatter } from "./MessageFormatter"
 import { ChannelWordValidator } from "./WordValidator"
@@ -17,8 +16,8 @@ export class MessageUpdater {
     @inject(HadesClient)
     private client!: HadesClient
 
-    @inject(tokens.GuildConfig)
-    private config!: WithRequired<ConfigGuild, 'channel'>
+    @inject("wtf")
+    private config!: WithRequired<GuildConfig, 'channel'>
 
     @inject(ChannelMessageFormatter)
     private formatter!: ChannelMessageFormatter

@@ -1,12 +1,11 @@
+import { guildSingleton, guildTokens } from "@hades-ts/guilds"
 import { HadesClient } from "@hades-ts/hades"
 import { TextChannel } from "discord.js"
 import { inject } from "inversify"
 import { DateTime } from "luxon"
 
-import { ConfigGuild } from "../../../config"
-import { WithRequired } from "../../../types"
-import { guildSingleton } from "../../decorators"
-import { tokens } from "../../tokens"
+import { GuildConfig } from "../../config"
+import { WithRequired } from "../../types"
 import { ChannelCleaner } from "./ChannelCleaner"
 import { DataService } from "./DataService"
 import { ChannelMessageFormatter } from "./MessageFormatter"
@@ -18,13 +17,13 @@ export class MessageSender {
     @inject(HadesClient)
     private client!: HadesClient
 
-    @inject(tokens.GuildConfig)
-    private config!: WithRequired<ConfigGuild, 'channel'>
+    @inject("wtf")
+    private config!: WithRequired<GuildConfig, 'channel'>
 
     @inject(ChannelMessageFormatter)
     private formatter!: ChannelMessageFormatter
 
-    @inject(tokens.GuildId)
+    @inject(guildTokens.GuildId)
     private guildId!: string
 
     @inject(DataService)

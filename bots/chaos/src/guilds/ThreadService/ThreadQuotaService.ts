@@ -1,12 +1,11 @@
+import { guildSingleton, guildTokens } from '@hades-ts/guilds'
 import fs from 'fs'
 import { inject, postConstruct } from "inversify"
 import { DateTime } from 'luxon'
 import path from 'path'
 import { z } from 'zod'
 
-import { ConfigPeriod } from '../../../config'
-import { guildSingleton } from "../../decorators"
-import { tokens } from "../../tokens"
+import { PeriodConfig } from '../../config'
 
 
 const usersQuotaSchema = z.record(
@@ -32,7 +31,7 @@ export class ThreadQuotaService {
     @inject('cfg.dataDirectory')
     protected dataDirectory!: string
 
-    @inject(tokens.GuildId)
+    @inject(guildTokens.GuildId)
     protected guildId!: string
 
     @postConstruct()
@@ -107,7 +106,7 @@ export class ThreadQuotaService {
         return channels[channelId]
     }
 
-    public userCanSpend(userId: string, period: ConfigPeriod) {
+    public userCanSpend(userId: string, period: PeriodConfig) {
         const userTimestamp = this.getUser(userId)
         if (!userTimestamp) {
             return true
@@ -117,7 +116,7 @@ export class ThreadQuotaService {
         return userDateTime < now
     }
 
-    public channelCanSpend(channelId: string, period: ConfigPeriod) {
+    public channelCanSpend(channelId: string, period: PeriodConfig) {
         const channelTimestamp = this.getChannel(channelId)
         if (!channelTimestamp) {
             return true

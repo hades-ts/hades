@@ -13,7 +13,7 @@ export const periodSchema = z.object({
     path: ['minutes', 'hours', 'days'],
 })
 
-export type ConfigPeriod = z.infer<typeof periodSchema>
+export type PeriodConfig = z.infer<typeof periodSchema>
 
 export const channelSchema = z.object({
     id: discordIdSchema,
@@ -24,7 +24,7 @@ export const channelSchema = z.object({
     mentionEveryone: z.boolean().optional(),
 })
 
-export type ConfigChannel = z.infer<typeof periodSchema>
+export type ChannelConfig = z.infer<typeof periodSchema>
 
 
 export const threadSchema = z.object({
@@ -32,7 +32,7 @@ export const threadSchema = z.object({
     channelPeriod: periodSchema.optional(),
 })
 
-export type ConfigThread = z.infer<typeof periodSchema>
+export type ThreadConfig = z.infer<typeof periodSchema>
 
 
 export const exemptionsSchema = z.object({
@@ -40,7 +40,7 @@ export const exemptionsSchema = z.object({
     roles: z.array(discordIdSchema).optional(),
 })
 
-export type ConfigExemptions = z.infer<typeof periodSchema>
+export type ExemptionsConfig = z.infer<typeof periodSchema>
 
 
 export const guildSchema = z.object({
@@ -50,7 +50,7 @@ export const guildSchema = z.object({
     exemptions: exemptionsSchema.optional(),
 })
 
-export type ConfigGuild = z.infer<typeof guildSchema>
+export type GuildConfig = z.infer<typeof guildSchema>
 
 export const configSchema = z.object({
     discordToken: z.string(),

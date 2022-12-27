@@ -2,8 +2,9 @@ import { command, SlashCommand } from "@hades-ts/slash-commands"
 import { GuildMember, InteractionReplyOptions, TextChannel } from "discord.js"
 import { inject } from "inversify"
 
-import { ConfigGuild } from "../config"
-import { GuildManager } from "../guilds"
+import { GuildConfig } from "../config"
+import { GuildServiceFactory } from "../services"
+
 
 
 @command("create", { description: "Create a new multiplayer message." })
@@ -13,10 +14,10 @@ export class CreateChaosCommand extends SlashCommand {
     protected botOwner!: string
 
     @inject('cfg.guilds')
-    protected configGuilds!: Record<string, ConfigGuild>
+    protected configGuilds!: Record<string, GuildConfig>
 
-    @inject(GuildManager)
-    protected guildManager!: GuildManager
+    @inject(GuildServiceFactory)
+    protected guildServiceFactory!: GuildServiceFactory
 
     protected get config() {
         return this.configGuilds[this.interaction.guildId!]
@@ -63,7 +64,7 @@ export class CreateChaosCommand extends SlashCommand {
             return
         }
 
-        const guild = await this.guildManager.getGuild(guildId)
+        const guild = await this.guildServiceFactory.getGuildService(this.interaction.guild!)
 
         try {
             await guild.threading.validateCreation(this.member.id, this.channel.id)

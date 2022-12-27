@@ -1,17 +1,16 @@
+import { guildSingleton } from "@hades-ts/guilds"
 import { inject } from "inversify"
 
-import { ConfigGuild } from "../../../config"
-import { WithRequired } from "../../../types"
-import { guildSingleton } from "../../decorators"
-import { tokens } from "../../tokens"
+import { GuildConfig } from "../../config"
+import { WithRequired } from "../../types"
 import { BaseMessageFormatter } from "../MessageFormatter"
 
 
 @guildSingleton()
 export class ThreadMessageFormatter extends BaseMessageFormatter {
 
-    @inject(tokens.GuildConfig)
-    protected config!: WithRequired<ConfigGuild, 'threads'>
+    @inject("wtf")
+    protected config!: WithRequired<GuildConfig, 'threads'>
 
     protected async createFooter(): Promise<string> {
         return `Use /add-word <word> in the thread to add a word.`

@@ -1,10 +1,9 @@
+import { guildSingleton } from "@hades-ts/guilds"
 import { GuildMember } from "discord.js"
 import { inject } from "inversify"
 
-import { ConfigGuild } from "../../../config"
-import { WithRequired } from "../../../types"
-import { guildSingleton } from "../../decorators"
-import { tokens } from "../../tokens"
+import { GuildConfig } from "../../config"
+import { WithRequired } from "../../types"
 import { DataService } from "./DataService"
 
 
@@ -14,11 +13,8 @@ export class LimitBypass {
     @inject('cfg.botOwner')
     protected botOwner!: string
 
-    @inject(tokens.GuildConfig)
-    protected config!: WithRequired<ConfigGuild, 'channel'>
-
-    @inject(tokens.GuildOwner)
-    protected guildOwner!: string
+    @inject("wtf")
+    protected config!: WithRequired<GuildConfig, 'channel'>
 
     @inject(DataService)
     protected dataService!: DataService
@@ -39,7 +35,7 @@ export class LimitBypass {
             return true
         }
 
-        if (member.id === this.guildOwner) {
+        if (member.id === member.guild.ownerId) {
             return true
         }
 

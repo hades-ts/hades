@@ -1,12 +1,10 @@
+import { guildSingleton, guildTokens } from '@hades-ts/guilds'
 import { GuildMember, Message } from 'discord.js'
 import fs from 'fs'
 import { inject, postConstruct } from "inversify"
 import { DateTime } from 'luxon'
 import path from 'path'
 import { z } from 'zod'
-
-import { guildSingleton } from "../../decorators"
-import { tokens } from "../../tokens"
 
 
 const threadSchema = z.object({
@@ -28,7 +26,7 @@ export class ThreadDataService {
     @inject('cfg.dataDirectory')
     protected dataDirectory!: string
 
-    @inject(tokens.GuildId)
+    @inject(guildTokens.GuildId)
     protected guildId!: string
 
     @postConstruct()

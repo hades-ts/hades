@@ -20,7 +20,8 @@
         "subcontainer"
     ],
     "exportall.config.folderListener": [
-        "/bots/ares/src/utils"
+        "/bots/ares/src/utils",
+        "/bots/chaos/src/guilds/services/ChannelService"
     ],
     "editor.defaultFormatter": "dbaeumer.vscode-eslint",
     "eslint.format.enable": true,

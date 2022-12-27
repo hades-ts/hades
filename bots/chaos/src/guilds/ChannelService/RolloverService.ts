@@ -1,10 +1,9 @@
+import { guildSingleton } from "@hades-ts/guilds"
 import { inject } from "inversify"
 import { DateTime } from "luxon"
 
-import { ConfigGuild } from "../../../config"
-import { WithRequired } from "../../../types"
-import { guildSingleton } from "../../decorators"
-import { tokens } from "../../tokens"
+import { GuildConfig } from "../../config"
+import { WithRequired } from "../../types"
 import { Data, DataService } from "./DataService"
 
 
@@ -27,8 +26,8 @@ export type RolloverStatus = EmptyRollover | PassedRollover | ScheduledRollover;
 @guildSingleton()
 export class RolloverService {
 
-    @inject(tokens.GuildConfig)
-    private config!: WithRequired<ConfigGuild, 'channel'>
+    @inject("wtf")
+    private config!: WithRequired<GuildConfig, 'channel'>
 
     @inject(DataService)
     private dataService!: DataService

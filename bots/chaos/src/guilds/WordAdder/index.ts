@@ -2,7 +2,7 @@ import { HadesClient } from "@hades-ts/hades"
 import { CommandInteraction } from "discord.js"
 import { inject, injectable } from "inversify"
 
-import { ConfigGuild } from "../../../config"
+import { GuildConfig } from "../../config"
 
 
 @injectable()
@@ -11,7 +11,7 @@ export abstract class WordAdder {
     @inject(HadesClient)
     protected client!: HadesClient
 
-    protected abstract guildConfig: ConfigGuild;
+    protected abstract guildConfig: GuildConfig;
 
     abstract addWord(interaction: CommandInteraction, word: string): Promise<void>;
 

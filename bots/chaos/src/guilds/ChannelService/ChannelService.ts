@@ -1,7 +1,7 @@
+import { guildSingleton } from "@hades-ts/guilds"
 import { CommandInteraction } from "discord.js"
 import { inject, postConstruct } from "inversify"
 
-import { guildSingleton } from "../../decorators"
 import { ChannelWordAdder } from "./ChannelAdder"
 import { ChannelCleaner } from "./ChannelCleaner"
 import { DataService } from "./DataService"

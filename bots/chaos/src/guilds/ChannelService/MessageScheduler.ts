@@ -1,10 +1,9 @@
+import { guildSingleton, guildTokens } from "@hades-ts/guilds"
 import { inject } from "inversify"
 import { DateTime } from "luxon"
 
-import { ConfigGuild } from "../../../config"
-import { WithRequired } from "../../../types"
-import { guildSingleton } from "../../decorators"
-import { tokens } from "../../tokens"
+import { GuildConfig } from "../../config"
+import { WithRequired } from "../../types"
 import { MessageSender } from "./MessageSender"
 import { RolloverService } from "./RolloverService"
 
@@ -12,11 +11,11 @@ import { RolloverService } from "./RolloverService"
 @guildSingleton()
 export class MessageScheduler {
 
-    @inject(tokens.GuildId)
+    @inject(guildTokens.GuildId)
     private guildId!: string
 
-    @inject(tokens.GuildConfig)
-    private config!: WithRequired<ConfigGuild, 'channel'>
+    @inject("wtf")
+    private config!: WithRequired<GuildConfig, 'channel'>
 
     @inject(MessageSender)
     private sender!: MessageSender

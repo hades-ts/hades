@@ -19,7 +19,7 @@ export const guildSchema = z.object({
     quotaEnabled: z.boolean().optional().default(true),
 })
 
-export type ConfigGuild = z.infer<typeof guildSchema>
+export type GuildConfig = z.infer<typeof guildSchema>
 
 export const quotaSchema = z.object({
     quotaFile: z.string(),

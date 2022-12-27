@@ -1,17 +1,16 @@
+import { guildSingleton } from "@hades-ts/guilds"
 import { inject } from "inversify"
 
-import { ConfigGuild } from "../../../config"
-import { WithRequired } from "../../../types"
-import { guildSingleton } from "../../decorators"
-import { tokens } from "../../tokens"
+import { GuildConfig } from "../../config"
+import { WithRequired } from "../../types"
 import { BaseMessageFormatter } from "../MessageFormatter"
 
 
 @guildSingleton()
 export class ChannelMessageFormatter extends BaseMessageFormatter {
 
-    @inject(tokens.GuildConfig)
-    protected config!: WithRequired<ConfigGuild, 'channel'>
+    @inject("wtf")
+    protected config!: WithRequired<GuildConfig, 'channel'>
 
     protected async createMention() {
         let mention = undefined

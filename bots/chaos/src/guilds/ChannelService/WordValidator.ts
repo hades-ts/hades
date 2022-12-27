@@ -1,7 +1,7 @@
+import { guildSingleton } from "@hades-ts/guilds"
 import { GuildMember } from "discord.js"
 import { inject } from "inversify"
 
-import { guildSingleton } from "../../decorators"
 import { WordValidator } from "../WordValidator"
 import { LimitBypass } from "./LimitBypass"
 

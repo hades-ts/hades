@@ -3,15 +3,16 @@ import { command, SlashCommand } from "@hades-ts/slash-commands"
 import { GuildMember } from "discord.js"
 import { inject } from "inversify"
 
-import { ConfigGuild } from "../config"
-import { GuildManager } from "../guilds"
+import { GuildConfig } from "../config"
+import { GuildServiceFactory } from "../services"
+
 
 
 @command("rollover", { description: "Start a new chaos message." })
 export class RolloverCommand extends SlashCommand {
 
     @inject('cfg.guilds')
-    protected configGuilds!: Record<string, ConfigGuild>
+    protected configGuilds!: Record<string, GuildConfig>
 
     @inject('cfg.botOwner')
     protected botOwner!: string
@@ -19,8 +20,8 @@ export class RolloverCommand extends SlashCommand {
     @inject(HadesClient)
     protected client!: HadesClient
 
-    @inject(GuildManager)
-    protected guildManager!: GuildManager
+    @inject(GuildServiceFactory)
+    protected guildServiceFactory!: GuildServiceFactory
 
     protected async reject(content: string) {
         try {
@@ -48,7 +49,7 @@ export class RolloverCommand extends SlashCommand {
 
         const guildId = this.interaction.guildId!
 
-        const guild = await this.guildManager.getGuild(guildId)
+        const guild = await this.guildServiceFactory.getGuildService(member.guild)
 
         const guildConfig = this.configGuilds[guildId]
 

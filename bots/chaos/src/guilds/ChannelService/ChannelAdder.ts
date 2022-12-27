@@ -1,9 +1,8 @@
+import { guildSingleton } from "@hades-ts/guilds"
 import { CacheType, CommandInteraction, GuildMember } from "discord.js"
 import { inject } from "inversify"
 
-import { ConfigGuild } from "../../../config"
-import { guildSingleton } from "../../decorators"
-import { tokens } from "../../tokens"
+import { GuildConfig } from "../../config"
 import { WordAdder } from "../WordAdder"
 import { MessageUpdater } from "./MessageUpdater"
 
@@ -11,8 +10,8 @@ import { MessageUpdater } from "./MessageUpdater"
 @guildSingleton()
 export class ChannelWordAdder extends WordAdder {
 
-    @inject(tokens.GuildConfig)
-    protected guildConfig!: ConfigGuild
+    @inject("wtf")
+    protected guildConfig!: GuildConfig
 
     @inject(MessageUpdater)
     private updater!: MessageUpdater

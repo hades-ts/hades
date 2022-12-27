@@ -1,10 +1,8 @@
+import { guildSingleton, guildTokens } from '@hades-ts/guilds'
 import fs from 'fs'
 import { inject, postConstruct } from "inversify"
 import path from 'path'
 import { z } from "zod"
-
-import { guildSingleton } from '../../decorators'
-import { tokens } from '../../tokens'
 
 
 const dataSchema = z.object({
@@ -26,7 +24,7 @@ export class DataService {
     @inject('cfg.dataDirectory')
     protected dataDirectory!: string
 
-    @inject(tokens.GuildId)
+    @inject(guildTokens.GuildId)
     protected guildId!: string
 
     @postConstruct()

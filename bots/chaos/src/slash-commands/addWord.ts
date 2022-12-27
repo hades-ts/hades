@@ -9,8 +9,8 @@ import {
 import { ApplicationCommandOptionType, ChannelType } from "discord.js"
 import { inject } from "inversify"
 
-import { ConfigGuild } from "../config"
-import { GuildManager } from "../guilds"
+import { GuildConfig } from "../config"
+import { GuildServiceFactory } from "../services"
 
 
 @command("add-word", { description: "Add a word to a multiplayer message." })
@@ -20,13 +20,13 @@ export class AddWordCommand extends SlashCommand {
     protected word!: string
 
     @inject('cfg.guilds')
-    protected configGuilds!: Record<string, ConfigGuild>
+    protected configGuilds!: Record<string, GuildConfig>
 
     @inject(HadesClient)
     protected client!: HadesClient
 
-    @inject(GuildManager)
-    protected guildManager!: GuildManager
+    @inject(GuildServiceFactory)
+    protected guildServiceFactory!: GuildServiceFactory
 
     @validate("word")
     protected validateWord() {
@@ -49,13 +49,13 @@ export class AddWordCommand extends SlashCommand {
     }
 
     async execute(): Promise<void> {
-        const guild = await this.guildManager.getGuild(this.interaction.guildId!)
+        const guildService = await this.guildServiceFactory.getGuildService(this.interaction.guild!)
 
         try {
             if (this.interaction.channel?.type === ChannelType.PublicThread) {
-                await guild.threading.addWord(this.interaction, this.word)
+                await guildService.threading.addWord(this.interaction, this.word)
             } else {
-                await guild.channel.addWord(this.interaction, this.word)
+                await guildService.channel.addWord(this.interaction, this.word)
             }
             await this.interaction.reply({
                 content: "Word added!",

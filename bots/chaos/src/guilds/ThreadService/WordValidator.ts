@@ -1,4 +1,5 @@
-import { guildSingleton } from "../../decorators"
+import { guildSingleton } from "@hades-ts/guilds"
+
 import { WordValidator } from "../WordValidator"
 
 

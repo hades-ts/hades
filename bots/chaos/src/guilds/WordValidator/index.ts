@@ -1,6 +1,6 @@
+import { guildSingleton } from "@hades-ts/guilds"
 import { GuildMember } from "discord.js"
 
-import { guildSingleton } from "../../decorators"
 
 
 @guildSingleton()
