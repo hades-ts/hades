@@ -6,7 +6,7 @@ import {
     ICompleter,
     SlashCommand
 } from "@hades-ts/slash-commands"
-import { ApplicationCommandOptionType, AutocompleteInteraction, GuildMemberRoleManager } from "discord.js"
+import { ApplicationCommandOptionType, AutocompleteInteraction, GuildMember, GuildMemberRoleManager } from "discord.js"
 import { inject, injectable } from "inversify"
 
 import { Config } from "../config"
@@ -63,6 +63,9 @@ export class ToggleRoleCommand extends SlashCommand {
     @inject(HadesClient)
     protected client!: HadesClient
 
+    @inject(GuildServiceFactory)
+    protected guildServiceFactory!: GuildServiceFactory
+
     protected async reject(content: string) {
         try {
             await this.interaction.deferReply({
@@ -75,21 +78,51 @@ export class ToggleRoleCommand extends SlashCommand {
             console.error(`Couldn't reply to user:`, error)
         }
     }
+    
+    protected memberHasRole(member: GuildMember): boolean {
+        let hasRole = false
 
+        for (const [_key, role] of member.roles.cache.entries()) {
+            if (this.role === role.name) {
+                hasRole = true
+                break
+            }
+        }
+
+        return hasRole
+    }
+
+    protected async addRole(roleManager: GuildMemberRoleManager, roleId: string) {
+        await roleManager.add(roleId)
+        await this.giveRoleUpdateReply("added")
+    }
+
+    protected async removeRole(roleManager: GuildMemberRoleManager, roleId: string) {
+        await roleManager.remove(roleId)
+        await this.giveRoleUpdateReply("removed")
+    }
+
+    protected async giveRoleUpdateReply(action: string) {
+        await this.reply(`Role <@&${this.role}> ${action}.`, {
+            ephemeral: true,
+        })
+    }
+    
     async execute(): Promise<void> {
-        const roleCache = this.interaction.member!.roles as GuildMemberRoleManager
-        const hasRole = roleCache.cache.has(this.role)
+        const guildService = await this.guildServiceFactory.getGuildService(this.interaction.guild!)
+        const roleInfo = guildService.roles.stash.get(this.role)
+
+        const guild = await this.client.guilds.fetch(this.interaction.guildId!)
+        const member = await guild.members.fetch(this.interaction.user.id)
+
+        const roleManager = member.roles
+
+        const hasRole = this.memberHasRole(member)
 
         if (hasRole) {
-            await roleCache.remove(this.role)
-            await this.reply(`Role <@&${this.role}> removed.`, {
-                ephemeral: true,
-            })
+            await this.removeRole(roleManager, roleInfo.roleId)
         } else {
-            await roleCache.add(this.role)
-            await this.reply(`Role <@&${this.role}> added.`, {
-                ephemeral: true,
-            })
+            await this.addRole(roleManager, roleInfo.roleId)
         }
     }
 
