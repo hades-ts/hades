@@ -30,8 +30,8 @@ The Discord User ID of the bot admin.
 
 ## Rules
 
-Create a `rules` folder under the guild id folder that is under the `data` folder.
-Then, create a file with a json, md, or yaml extension that contains the rule information.
+1. Create a `rules` folder under the guild id folder that is under the `data` folder.
+2. Create a file (json, md, or yaml extension) that contains the rule information.
 
 ### Example
 
@@ -41,4 +41,23 @@ description: Rule description
 title: Rule title
 ---
 Rule content (i.e. No swearing...)
+```
+
+## Roles
+
+1. Create a `roles` folder under the guild id folder that is under the `data` folder.
+2. Create a file (json, md, or yaml extension) that contains the role information.
+
+### Creating Roles
+
+In the discord server, you can create a role by going to the "Server Settings" -> "Roles" section. After creating or editing a role, you can copy the role id from the kebab options for the role.
+
+### Example
+
+```
+---
+description: Helper role
+title: Helper
+roleId: "<role id>"
+---
 ```
