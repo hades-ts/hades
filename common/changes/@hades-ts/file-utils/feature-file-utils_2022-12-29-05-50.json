@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@hades-ts/file-utils",
+      "comment": "Added reader and writer",
+      "type": "none"
+    }
+  ],
+  "packageName": "@hades-ts/file-utils"
+}
