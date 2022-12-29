@@ -64,6 +64,11 @@
             "shouldPublish": true
         },
         {
+            "packageName": "@hades-ts/file-utils",
+            "projectFolder": "libs/file-utils",
+            "shouldPublish": true
+        },
+        {
             "packageName": "@hades-ts/lojban",
             "projectFolder": "libs/lojban",
             "shouldPublish": true
