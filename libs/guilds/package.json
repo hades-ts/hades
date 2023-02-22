@@ -46,7 +46,6 @@
         "@ldlework/categoric-containers": "0.0.2"
     },
     "peerDependencies": {
-        "@discordjs/rest": "^0.5.0",
         "@hades-ts/hades": "workspace:^0.0.5",
         "discord-api-types": "^0.33.5",
         "discord.js": "~14.7.1",
