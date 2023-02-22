@@ -1,24 +1,31 @@
-root = true
+root=true
 
 [*]
-max_line_length = 120
-trim_trailing_whitespace = true
-indent_style = space
-
-[*.{m?tsx?,m?jsx?,json}]
-indent_size = 4
+charset=utf-8
+end_of_line=lf
+indent_size=unset
+indent_style=space
+insert_final_newline=true
+max_line_length=unset
+trim_trailing_whitespace=true
 
 [*.nix]
-indent_size = 2
+indent_size=2
+max_line_length=120
 
-[{camxes.js,pnpm-lock.yaml,flake.lock}]
-max_line_length = unset
-trim_trailing_whitespace = unset
-indent_style = unset
-indent_size = unset
+[*.{diff,patch}]
+end_of_line=unset
+insert_final_newline=unset
+trim_trailing_whitespace=unset
 
-[common/**]
-max_line_length = unset
-trim_trailing_whitespace = unset
-indent_style = unset
-indent_size = unset
+[*.{ts,js}]
+indent_size=4
+max_line_length=120
+
+[{LICENSES/**,LICENSE,*.lock,package-lock.json}]
+charset=unset
+end_of_line=unset
+indent_size=unset
+indent_style=unset
+insert_final_newline=unset
+trim_trailing_whitespace=unset

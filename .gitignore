@@ -74,7 +74,15 @@ common/autoinstallers/*/.npmrc
 
 **/dist
 **/node_modules
-/.direnv/
 
 .ignore
 **/data
+
+# Nix
+result
+.std
+.direnv
+
+# nixago: ignore-linked-files
+lefthook.yml
+treefmt.toml
