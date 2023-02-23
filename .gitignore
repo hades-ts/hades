@@ -82,6 +82,7 @@ common/autoinstallers/*/.npmrc
 result
 .std
 .direnv
+dream2nix-packages
 
 # nixago: ignore-linked-files
 lefthook.yml
