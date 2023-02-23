@@ -24,6 +24,7 @@
       cellBlocks = with std.blockTypes; [
         (devshells "devshells")
         (nixago "configs")
+        (functions "utils")
         (installables "packages")
         (functions "operables")
         (containers "containers")

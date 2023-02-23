@@ -1,0 +1,21 @@
+{
+  "_generic": {
+    "defaultPackage": "text-commands",
+    "invalidationHash": "b6b4280e4d5f47b90a0d894756ff97b8cb8a8f01eb8b4ac254e18c0d56a80505",
+    "location": "",
+    "packages": {
+      "text-commands": "unknown"
+    },
+    "sourcesAggregatedHash": null,
+    "subsystem": "nodejs"
+  },
+  "_subsystem": {
+    "meta": {
+      "license": []
+    },
+    "nodejsVersion": "18"
+  },
+  "cyclicDependencies": {},
+  "dependencies": {},
+  "sources": {}
+}
