@@ -3,8 +3,9 @@
   cell,
 }: let
   inherit (inputs) nixpkgs std;
+  inherit (std.lib) dev cfg;
 in {
-  editorconfig = std.lib.cfg.editorconfig {
+  editorconfig = dev.mkNixago cfg.editorconfig {
     hook.mode = "copy";
     data = {
       root = true;
@@ -46,10 +47,10 @@ in {
     };
   };
 
-  treefmt = std.lib.cfg.treefmt {
-    packages = [
-      nixpkgs.alejandra
-      nixpkgs.nodePackages.prettier
+  treefmt = dev.mkNixago cfg.treefmt {
+    packages = with nixpkgs; [
+      alejandra
+      nodePackages.prettier
     ];
     data.formatter = {
       nix = {
@@ -63,15 +64,45 @@ in {
     };
   };
 
-  lefthook = std.lib.cfg.lefthook {
+  conform = dev.mkNixago cfg.conform {
     data = {
-      pre-commit.commands = {
-        treefmt = {
-          run = "${nixpkgs.treefmt}/bin/treefmt --fail-on-change {staged_files}";
+      inherit (inputs) cells;
+      commit = {
+        header = {length = 89;};
+        conventional = {
+          types = [
+            "build"
+            "chore"
+            "ci"
+            "docs"
+            "feat"
+            "fix"
+            "perf"
+            "refactor"
+            "style"
+            "test"
+          ];
+          scopes = [
+          ];
+        };
+      };
+    };
+  };
+
+  lefthook = dev.mkNixago cfg.lefthook {
+    data = {
+      commit-msg.commands = {
+        conform = {
+          # allow WIP, fixup!/squash! commits locally
+          run = ''
+            [[ "$(head -n 1 {1})" =~ ^WIP(:.*)?$|^wip(:.*)?$|fixup\!.*|squash\!.* ]] ||
+            conform enforce --commit-msg-file {1}'';
           skip = ["merge" "rebase"];
         };
-        editorconfig-checker = {
-          run = "${nixpkgs.editorconfig-checker}/bin/editorconfig-checker {staged_files}";
+      };
+      pre-commit.commands = {
+        treefmt = {
+          run = "treefmt --fail-on-change {staged_files}";
           skip = ["merge" "rebase"];
         };
       };

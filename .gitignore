@@ -79,11 +79,12 @@ common/autoinstallers/*/.npmrc
 **/data
 
 # Nix
-result
-.std
-.direnv
-dream2nix-packages
+/result
+/.std/
+/.direnv/
+/.data/
 
 # nixago: ignore-linked-files
-lefthook.yml
-treefmt.toml
+/.conform.yaml
+/lefthook.yml
+/treefmt.toml

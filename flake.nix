@@ -2,14 +2,17 @@
   description = "A DI Discord bot framework";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.0.tar.gz";
+
+    devshell.url = "github:numtide/devshell";
+    nixago.url = "github:nix-community/nixago";
     std = {
       url = "github:divnix/std";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    dream2nix = {
-      url = "github:nix-community/dream2nix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        devshell.follows = "devshell";
+        nixago.follows = "nixago";
+      };
     };
   };
 
@@ -31,7 +34,6 @@
       ];
     }
     {
-      devShells = std.harvest self ["_automation" "devshells"];
-      packages = std.harvest self [["bots" "packages"] ["libs" "packages"]];
+      devShells = std.harvest self ["repo" "devshells"];
     };
 }
