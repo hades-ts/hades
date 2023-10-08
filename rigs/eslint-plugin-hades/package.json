@@ -1,39 +1,35 @@
 {
-    "name": "eslint-plugin-hades",
-    "version": "0.0.1",
-    "description": "Linting configuration for Hades projects",
-    "keywords": [
-        "eslint",
-        "eslintplugin",
-        "eslint-plugin"
-    ],
-    "main": "./lib/index.js",
-    "exports": "./lib/index.js",
-    "scripts": {
-        "build": "",
-        "rebuild": "",
-        "lint": "eslint .",
-        "test": "mocha tests --recursive"
-    },
-    "devDependencies": {
-        "eslint": "~8.26.0",
-        "eslint-plugin-eslint-plugin": "^5.0.0",
-        "eslint-plugin-node": "^11.1.0",
-        "eslint-plugin-decorator-position": "^5.0.1",
-        "eslint-plugin-import": "^2.26.0",
-        "eslint-plugin-import-newlines": "^1.2.3",
-        "eslint-plugin-simple-import-sort": "^8.0.0",
-        "eslint-plugin-unused-imports": "^2.0.0",
-        "@typescript-eslint/eslint-plugin": "~5.47.0",
-        "@typescript-eslint/parser": "~5.46.1",
-        "mocha": "^10.0.0",
-        "requireindex": "~1.2.0"
-    },
-    "engines": {
-        "node": "^14.17.0 || ^16.0.0 || >= 18.0.0"
-    },
-    "peerDependencies": {
-        "eslint": ">=7"
-    },
-    "license": "ISC"
+  "name": "eslint-plugin-hades",
+  "version": "0.0.1",
+  "description": "Linting configuration for Hades projects",
+  "keywords": ["eslint", "eslintplugin", "eslint-plugin"],
+  "main": "./lib/index.js",
+  "exports": "./lib/index.js",
+  "scripts": {
+    "build": "",
+    "rebuild": "",
+    "lint": "eslint .",
+    "test": "mocha tests --recursive"
+  },
+  "devDependencies": {
+    "eslint": "^8.26.0",
+    "eslint-plugin-eslint-plugin": "^5.0.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-decorator-position": "^5.0.1",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-import-newlines": "^1.2.3",
+    "eslint-plugin-simple-import-sort": "^8.0.0",
+    "eslint-plugin-unused-imports": "3.x",
+    "@typescript-eslint/eslint-plugin": "6.x",
+    "@typescript-eslint/parser": "6.x",
+    "mocha": "^10.0.0",
+    "requireindex": "^1.2.0"
+  },
+  "engines": {
+    "node": "^14.17.0 || ^16.0.0 || >= 18.0.0"
+  },
+  "peerDependencies": {
+    "eslint": ">=7"
+  },
+  "license": "ISC"
 }

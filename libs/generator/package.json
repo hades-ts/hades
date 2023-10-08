@@ -1,47 +1,45 @@
 {
-    "name": "generator-hades-bot",
-    "version": "0.0.5",
-    "description": "Yeoman generator for Hades Discord bots",
-    "files": [
-        "generators"
-    ],
-    "main": "generators/index.js",
-    "scripts": {
-        "build": "tsc && npm run copydeps && npm run lint",
-        "rebuild": "rm -fr ./generators; npm run build",
-        "copydeps": "copyfiles --up 1 'src/*/templates/**' generators",
-        "lint": "eslint ./src --ext .js,.ts",
-        "clean": "rimraf -rf ./generators",
-        "watch": "npm run watch-tsc --silent & npm run watch-deps --silent",
-        "watch-deps": "onchange 'src/*/templates/**' --initial -- npm run copydeps --silent",
-        "watch-tsc": "tsc-watch --onSuccess 'npm run lint --silent'"
-    },
-    "dependencies": {
-        "yeoman-generator": "~5.7.0",
-        "chalk": "4.1.0",
-        "yosay": "~2.0.2"
-    },
-    "devDependencies": {
-        "@types/node": "~18.11.11",
-        "@types/yeoman-generator": "~5.2.11",
-        "@types/yosay": "~2.0.1",
-        "eslint-plugin-hades": "workspace:^0.0.1",
-        "eslint": "~8.26.0",
-        "eslint-plugin-eslint-plugin": "^5.0.0",
-        "eslint-plugin-node": "^11.1.0",
-        "eslint-plugin-decorator-position": "^5.0.1",
-        "eslint-plugin-import": "^2.26.0",
-        "eslint-plugin-import-newlines": "^1.2.3",
-        "eslint-plugin-simple-import-sort": "^8.0.0",
-        "eslint-plugin-unused-imports": "^2.0.0",
-        "@typescript-eslint/eslint-plugin": "~5.47.0",
-        "@typescript-eslint/parser": "~5.46.1",
-        "copyfiles": "2.4.1",
-        "onchange": "7.1.0",
-        "rimraf": "3.0.2",
-        "tsc-watch": "4.2.9",
-        "typescript": "~4.9.3",
-        "yeoman-assert": "3.1.0",
-        "yeoman-test": "1.7.0"
-    }
+  "name": "generator-hades-bot",
+  "version": "0.0.5",
+  "description": "Yeoman generator for Hades Discord bots",
+  "files": ["generators"],
+  "main": "generators/index.js",
+  "scripts": {
+    "build": "tsc && npm run copydeps && npm run lint",
+    "rebuild": "rm -fr ./generators; npm run build",
+    "copydeps": "copyfiles --up 1 'src/*/templates/**' generators",
+    "lint": "eslint ./src --ext .js,.ts",
+    "clean": "rimraf -rf ./generators",
+    "watch": "npm run watch-tsc --silent & npm run watch-deps --silent",
+    "watch-deps": "onchange 'src/*/templates/**' --initial -- npm run copydeps --silent",
+    "watch-tsc": "tsc-watch --onSuccess 'npm run lint --silent'"
+  },
+  "dependencies": {
+    "yeoman-generator": "^5.7.0",
+    "chalk": "^4.1.0",
+    "yosay": "^2.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.11",
+    "@types/yeoman-generator": "^5.2.11",
+    "@types/yosay": "^2.0.1",
+    "eslint-plugin-hades": "workspace:^0.0.1",
+    "eslint": "^8.26.0",
+    "eslint-plugin-eslint-plugin": "^5.0.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-decorator-position": "^5.0.1",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-import-newlines": "^1.2.3",
+    "eslint-plugin-simple-import-sort": "^8.0.0",
+    "eslint-plugin-unused-imports": "3.x",
+    "@typescript-eslint/eslint-plugin": "6.x",
+    "@typescript-eslint/parser": "6.x",
+    "copyfiles": "^2.4.1",
+    "onchange": "^7.1.0",
+    "rimraf": "^3.0.2",
+    "tsc-watch": "^4.2.9",
+    "typescript": "^5.0.0",
+    "yeoman-assert": "^3.1.0",
+    "yeoman-test": "^7.4.0"
+  }
 }
