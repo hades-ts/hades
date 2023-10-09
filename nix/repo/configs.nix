@@ -59,6 +59,7 @@ in {
       };
       prettier = {
         command = "prettier";
+        options = ["--write"];
         includes = [
           "*.ts"
           "*.mts"
