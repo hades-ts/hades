@@ -11,7 +11,7 @@ Copy `config/default.template.json` to `config/default.json`
   "guilds": {
     "<guild id>": {
       "hour": "when to rollover",
-      "channel": "the channel to manage",
+      "channel": "the channel to manage"
     }
   }
 }

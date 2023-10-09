@@ -1,9 +1,7 @@
 import { GuildMember } from "discord.js";
 import { StatusEffect } from "../effects/StatusEffect";
 
-
 export class Player {
-
     member: GuildMember;
 
     team: number;
@@ -13,16 +11,16 @@ export class Player {
     health: number;
     magic: number;
     super: number;
-    effects: Record<string, StatusEffect>
+    effects: Record<string, StatusEffect>;
 
     constructor(member: GuildMember, character: any, team: number) {
         this.member = member;
         this.team = team;
         this.character = character;
         this.current_move = null;
-        this.health = 0
-        this.magic = 0
-        this.super = 0
+        this.health = 0;
+        this.magic = 0;
+        this.super = 0;
         this.effects = {};
     }
 
@@ -37,7 +35,7 @@ export class Player {
                 action = `doing ${m}`;
             }
         }
-        
+
         const nickname = this.member.nickname || this.member.user.username;
         const hp = this.health;
         const mp = this.magic;
@@ -61,5 +59,4 @@ export class Player {
         this.current_move.alive = false;
         this.current_move = null;
     }
-
 }

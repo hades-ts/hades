@@ -6,7 +6,6 @@ This kind of command was typical before Discord's "Slash Commands".
 
 Text command support is located in the `hades/dist/text-commands` module.
 
-
 **Table of Contents**:
 
 - [Text Commands](#text-commands)
@@ -32,34 +31,33 @@ import { TextCommandsInstaller } from "hades/dist/text-commands";
 import { BotService } from "./services/BotService";
 
 const container = new HadesContainer({
-    installers: [
-        new TextCommandsInstaller(),
-    ],
+  installers: [new TextCommandsInstaller()],
 });
 const bot = container.get(BotService);
-bot.login()
+bot.login();
 ```
 
 ## Using the `TextCommandService`
 
-Add the `TextCommandService` as a dependency to your `BotService`. 
+Add the `TextCommandService` as a dependency to your `BotService`.
 
 Then dispatch `Message`s to it:
+
 ```ts
 import { HadesBotService, singleton } from "hades";
 
 @singleton(BotService)
 export class BotService extends HadesBotService {
-    @inject(TextCommandService)
-    commandService: TextCommandService
+  @inject(TextCommandService)
+  commandService: TextCommandService;
 
-    async onReady() {
-        console.log(`Logged in as ${this.client.user.username}.`);
-    }
+  async onReady() {
+    console.log(`Logged in as ${this.client.user.username}.`);
+  }
 
-    async onMessage<T extends Message>(message: T) {
-        this.commandService.dispatch(message);
-    }
+  async onMessage<T extends Message>(message: T) {
+    this.commandService.dispatch(message);
+  }
 }
 ```
 
@@ -69,20 +67,25 @@ Commands are classes that extend the `TextCommand` class from Hades. They also n
 the `@command()` decorator. Here's a ping command:
 
 ```ts
-import { TextCommand, TextCommandContext, command, description } from "hades/dist/text-commands";
+import {
+  TextCommand,
+  TextCommandContext,
+  command,
+  description,
+} from "hades/dist/text-commands";
 
 @command("ping")
 @description("Get roundtrip latency in seconds.")
 export class PingCommand extends TextCommand {
-    execute() {
-        const then = this.msg.createdTimestamp;
-        const now = Date.now();
-        const delta = new Date(now - then);
-        const seconds = delta.getSeconds();
-        const milliseconds = delta.getMilliseconds();
-        const total = (seconds * 1000 + milliseconds) / 1000.0;
-        return this.reply(`Pong in ${total} seconds!`);
-    }
+  execute() {
+    const then = this.msg.createdTimestamp;
+    const now = Date.now();
+    const delta = new Date(now - then);
+    const seconds = delta.getSeconds();
+    const milliseconds = delta.getMilliseconds();
+    const total = (seconds * 1000 + milliseconds) / 1000.0;
+    return this.reply(`Pong in ${total} seconds!`);
+  }
 }
 ```
 
@@ -119,21 +122,15 @@ Arguments can be added to `TextCommand` classes as fields using the `@arg()` dec
 @command("isUpper")
 @description("Check if a string is uppercase.")
 export class IsUpper extends TextCommand {
+  @arg()
+  @description("String to check.")
+  input!: string;
 
-    @arg()
-    @description("String to check.")
-    input!: string;
+  async execute() {
+    const result = this.input === this.input.toUpperCase() ? "is" : "is not";
 
-    async execute() {
-        const result =
-            this.input === this.input.toUpperCase()
-                ? "is"
-                : "is not"
-
-        return this.reply(
-            `${this.input} ${result} uppercase.`
-        );
-    }
+    return this.reply(`${this.input} ${result} uppercase.`);
+  }
 }
 ```
 
@@ -145,18 +142,15 @@ Argument values can automatically be parsed into other types using the `@parser(
 @command("squared")
 @description("Get the square of a number.")
 export class Squared extends TextCommand {
+  @arg()
+  @description("Number to square.")
+  @parser(IntegerParser)
+  input!: number;
 
-    @arg()
-    @description("Number to square.")
-    @parser(IntegerParser)
-    input!: number
-
-    async execute() {
-        const square = this.input * this.input;
-        return this.reply(
-            `${this.input} squared is ${square}.`
-        );
-    }
+  async execute() {
+    const square = this.input * this.input;
+    return this.reply(`${this.input} squared is ${square}.`);
+  }
 }
 ```
 
@@ -178,7 +172,6 @@ There are a number of built-in parsers available:
 - `User`: a Discord user
 - `UserId` a Discord user ID
 
-
 **Default Parsers**
 
 By default, a number of field types have automatically associated parsers.
@@ -189,17 +182,14 @@ In the above example, Hades will observe the field's type is `number` and automa
 @command("squared")
 @description("Get the square of a number.")
 export class Squared extends TextCommand {
+  @arg()
+  @description("Number to square.")
+  input!: number; // automatically parsed with IntegerParser
 
-    @arg()
-    @description("Number to square.")
-    input!: number // automatically parsed with IntegerParser
-
-    async execute() {
-        const square = this.input * this.input;
-        return this.reply(
-            `${this.input} squared is ${square}.`
-        );
-    }
+  async execute() {
+    const square = this.input * this.input;
+    return this.reply(`${this.input} squared is ${square}.`);
+  }
 }
 ```
 
@@ -216,20 +206,14 @@ Here are the default type-parser associations:
 You can provider your own mapping by providing it to `TextCommandsInstaller`:
 
 ```ts
-    const container = new HadesContainer({
-        installers: [
-            new TextCommandsInstaller(
-                [
-                    ...defaultMappedTypes,
-                    [Number, FloatParser],
-                ]
-            ),
-        ],
-    });
+const container = new HadesContainer({
+  installers: [
+    new TextCommandsInstaller([...defaultMappedTypes, [Number, FloatParser]]),
+  ],
+});
 ```
 
 Now the `Squared` command above would only accept floating-point numbers.
-
 
 ### Manually Parsing Arguments
 
@@ -248,7 +232,6 @@ This can parse arguments in a more structured way, including user and channel ID
 - **getChannelID()**
 - **seek(** amount: number = 1 **)**: Useful for skipping tokens
 
-
 ### Argument Validation
 
 Argument values can optionally have custom validation applied to them.
@@ -259,24 +242,21 @@ Building on the `Squared` example:
 @command("squared")
 @description("Get the square of a number.")
 export class Squared extends TextCommand {
+  @arg()
+  @description("Number to square.")
+  input!: number; // automatically parsed with IntegerParser
 
-    @arg()
-    @description("Number to square.")
-    input!: number // automatically parsed with IntegerParser
+  async execute() {
+    const square = this.input * this.input;
+    return this.reply(`${this.input} squared is ${square}.`);
+  }
 
-    async execute() {
-        const square = this.input * this.input;
-        return this.reply(
-            `${this.input} squared is ${square}.`
-        );
+  @validate("input")
+  async mustBePositive() {
+    if (this.input < 0) {
+      throw new TextArgError("Value must be positive.");
     }
-
-    @validate("input")
-    async mustBePositive() {
-        if (this.input < 0) {
-            throw new TextArgError("Value must be positive.")
-        }
-    }
+  }
 }
 ```
 

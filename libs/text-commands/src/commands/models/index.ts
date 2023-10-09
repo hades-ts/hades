@@ -1,2 +1,2 @@
-export * from './TextCommandContext'
-export * from './TextCommandMeta'
+export * from "./TextCommandContext";
+export * from "./TextCommandMeta";

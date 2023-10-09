@@ -1,13 +1,12 @@
-import { Constructable } from "@hades-ts/hades"
-import { ApplicationCommandOptionType } from "discord.js"
+import { Constructable } from "@hades-ts/hades";
+import { ApplicationCommandOptionType } from "discord.js";
 
-import { arg } from "./arg"
-
+import { arg } from "./arg";
 
 export type UserArgOptions = {
     required?: boolean;
     description: string;
-}
+};
 
 /**
  * Marks the field of a TextCommand as an argument.
@@ -19,6 +18,6 @@ export function user(info: UserArgOptions) {
             type: ApplicationCommandOptionType.User,
             required: info.required,
             description: info.description,
-        })(target, key)
-    }
+        })(target, key);
+    };
 }

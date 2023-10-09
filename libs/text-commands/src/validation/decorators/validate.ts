@@ -1,7 +1,6 @@
-import { Constructable } from "@hades-ts/hades"
+import { Constructable } from "@hades-ts/hades";
 
-import { addTextValidatorMethod } from "../metadata"
-
+import { addTextValidatorMethod } from "../metadata";
 
 /**
  * Marks method as validator for named argument.
@@ -10,6 +9,6 @@ import { addTextValidatorMethod } from "../metadata"
 export function validate(name: string) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     return ({ constructor }: Constructable, key: string, _: PropertyDescriptor) => {
-        addTextValidatorMethod(constructor, name, key)
-    }
+        addTextValidatorMethod(constructor, name, key);
+    };
 }

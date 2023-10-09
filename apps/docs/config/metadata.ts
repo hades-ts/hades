@@ -1,6 +1,6 @@
 export default {
-    title: '@hades-ts/hades',
-    tagline: 'Discord bot framework built with Inversify and Discord.js.',
-    url: 'https://hades-ts.github.io',
-    baseUrl: '/',
-}
+    title: "@hades-ts/hades",
+    tagline: "Discord bot framework built with Inversify and Discord.js.",
+    url: "https://hades-ts.github.io",
+    baseUrl: "/",
+};

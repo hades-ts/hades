@@ -1,1 +1,1 @@
-export * from './getTextArgMeta'
+export * from "./getTextArgMeta";

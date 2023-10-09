@@ -3,25 +3,22 @@
 Arguments values can be validated by placing the `@validate()` decorator on a method:
 
 ```ts
-@command('factorial')
+@command("factorial")
 export class Factorial extends SlashCommand {
+  @arg()
+  input!: number;
 
-    @arg()
-    input!: number
-
-    @validate('input')
-    mustBePositive() {
-        if (this.input < 0) {
-            throw new SlashArgError('Input must be positive.')
-        }
+  @validate("input")
+  mustBePositive() {
+    if (this.input < 0) {
+      throw new SlashArgError("Input must be positive.");
     }
+  }
 
-    async execute() {
-        const factorial = factorial(this.input);
-        return this.reply(
-            `${this.input}! = ${factorial}.`
-        );
-    }
+  async execute() {
+    const factorial = factorial(this.input);
+    return this.reply(`${this.input}! = ${factorial}.`);
+  }
 }
 ```
 
@@ -33,38 +30,33 @@ You can also implement `Validator` subclasses for reusable validation:
 
 ```ts
 export class NotMeValidator extends Validator {
+  @inject(HadesClient)
+  client: HadesClient;
 
-    @inject(HadesClient)
-    client: HadesClient;
-
-    async validate(
-        arg: SlashArgInstaller, 
-        ctx: BaseCommandInteraction,
-        member: GuildMember
-    ) {
-        if (member.id === this.client.user.id) {
-            throw new SlashArgError(
-                "You can't use this command on me."
-            );
-        }
+  async validate(
+    arg: SlashArgInstaller,
+    ctx: BaseCommandInteraction,
+    member: GuildMember,
+  ) {
+    if (member.id === this.client.user.id) {
+      throw new SlashArgError("You can't use this command on me.");
     }
+  }
 }
 ```
 
 The `NotMeValidator` checks that an argument parsed as a `GuildMember` is not the bot itself. It can be used like this:
 
 ```ts
-@command('not-me')
+@command("not-me")
 export class NotMeCommand extends TextCommand {
+  @arg()
+  @parser(MemberParser)
+  @NotMeValidator.check()
+  user!: GuildMember;
 
-    @arg()
-    @parser(MemberParser)
-    @NotMeValidator.check()
-    user!: GuildMember
-
-    async execute() {
-        await this.reply(`You used the command on ${this.user.tag}.`)
-    }
+  async execute() {
+    await this.reply(`You used the command on ${this.user.tag}.`);
+  }
 }
 ```
-

@@ -1,34 +1,30 @@
-import 'reflect-metadata';
-import * as dotenv from 'dotenv';
+import "reflect-metadata";
+import * as dotenv from "dotenv";
 dotenv.config();
 
-import { HadesContainer } from '@hades-ts/hades';
-import { TextCommandsInstaller } from "@hades-ts/text-commands"
-import { SlashCommandsInstaller } from  "@hades-ts/slash-commands"
+import { HadesContainer } from "@hades-ts/hades";
+import { TextCommandsInstaller } from "@hades-ts/text-commands";
+import { SlashCommandsInstaller } from "@hades-ts/slash-commands";
 
-import "@hades-ts/slash-commands/dist/builtins/commands/HelpCommand"
+import "@hades-ts/slash-commands/dist/builtins/commands/HelpCommand";
 
-import { BotService } from './services/BotService';
+import { BotService } from "./services/BotService";
 
+import "./slash-commands";
 
-import './slash-commands';
+import { configSchema } from "./config";
 
-import { configSchema } from './config';
-
-((async () => {
-
+(async () => {
     const container = new HadesContainer({
-        installers: [
-            new TextCommandsInstaller(),
-            new SlashCommandsInstaller(),
-        ],
+        installers: [new TextCommandsInstaller(), new SlashCommandsInstaller()],
         configOptions: {
             schema: configSchema,
-        }
+        },
     });
 
     const bot = container.get(BotService);
     await bot.login();
-
-})()).catch(e => { console.error(e); process.exit(1) });
-
+})().catch((e) => {
+    console.error(e);
+    process.exit(1);
+});

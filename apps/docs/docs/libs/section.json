@@ -1,9 +1,3 @@
 {
-    "order": [
-        "slash-commands",
-        "text-commands",
-        "guilds",
-        "stash",
-        "bypass"
-    ]
+    "order": ["slash-commands", "text-commands", "guilds", "stash", "bypass"]
 }

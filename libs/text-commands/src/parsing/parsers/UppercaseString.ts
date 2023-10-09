@@ -1,28 +1,26 @@
-import { TextArgError } from "../../arguments"
-import { TextArgInstaller, TextCommandContext } from "../../commands"
-import { parser } from "../decorators"
-import { TextArgParser } from "./TextArgParser"
-
+import { TextArgError } from "../../arguments";
+import { TextArgInstaller, TextCommandContext } from "../../commands";
+import { parser } from "../decorators";
+import { TextArgParser } from "./TextArgParser";
 
 export type UppercaseString = Uppercase<string>;
 
-
 const isUppercaseString = (str: string): str is UppercaseString => {
     // check if str is uppercase
-    return str === str.toUpperCase()
-}
+    return str === str.toUpperCase();
+};
 
 @parser()
 export class UppercaseStringParser extends TextArgParser {
-    name = 'uppercase-string'
-    description = 'An uppercase string. Use "QUOTES FOR SPACES".'
+    name = "uppercase-string";
+    description = 'An uppercase string. Use "QUOTES FOR SPACES".';
 
     async parse(arg: TextArgInstaller, context: TextCommandContext) {
-        const str = context.reader.getString()
+        const str = context.reader.getString();
         if (isUppercaseString(str)) {
-            return str as UppercaseString
+            return str as UppercaseString;
         }
 
-        throw new TextArgError(`Expected an uppercase string, got "${str}".`)
+        throw new TextArgError(`Expected an uppercase string, got "${str}".`);
     }
 }

@@ -1,5 +1,3 @@
 {
-    "order": [
-        "installation"
-    ]
+    "order": ["installation"]
 }

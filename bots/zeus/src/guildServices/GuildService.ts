@@ -1,32 +1,29 @@
-import { guildSingleton, guildTokens } from "@hades-ts/guilds"
-import { inject } from "inversify"
+import { guildSingleton, guildTokens } from "@hades-ts/guilds";
+import { inject } from "inversify";
 
-import { GuildConfig } from "../config"
-import { GuildRoleStash } from "./GuildRoleStash"
-import { GuildRuleStash } from "./GuildRuleStash"
-import { GuildStashChannels } from "./GuildStashChannels"
-import { RoleButtonListener } from "./RoleButtonListener"
-
+import { GuildConfig } from "../config";
+import { GuildRoleStash } from "./GuildRoleStash";
+import { GuildRuleStash } from "./GuildRuleStash";
+import { GuildStashChannels } from "./GuildStashChannels";
+import { RoleButtonListener } from "./RoleButtonListener";
 
 @guildSingleton()
 export class GuildService {
-
     @inject(guildTokens.GuildId)
-    public guildId!: string
+    public guildId!: string;
 
     @inject(guildTokens.GuildConfig)
-    public guildConfig!: GuildConfig
+    public guildConfig!: GuildConfig;
 
     @inject(GuildRuleStash)
-    public rules!: GuildRuleStash
+    public rules!: GuildRuleStash;
 
     @inject(GuildRoleStash)
-    public roles!: GuildRoleStash
+    public roles!: GuildRoleStash;
 
     @inject(GuildStashChannels)
-    public stashChannels!: GuildStashChannels
+    public stashChannels!: GuildStashChannels;
 
     @inject(RoleButtonListener)
-    public roleButtonListener!: RoleButtonListener
-
+    public roleButtonListener!: RoleButtonListener;
 }

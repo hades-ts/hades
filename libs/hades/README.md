@@ -1,4 +1,3 @@
-
 # Hades
 
 Typescript bot framework using [Inversify.js](https://inversify.io/) and [Discord.js](https://discord.js.org/#/).
@@ -16,13 +15,11 @@ Install the latest version from Git using NPM:
 
     npm i --save https://github.com/dustinlacewell/hades.git
 
-
 ## Example
 
 You can try a simple example bot here:
 
 https://github.com/dustinlacewell/hades-example-bot
-
 
 ## Getting Started
 
@@ -33,10 +30,9 @@ import { HadesBotService, singleton } from "hades";
 
 @singleton(BotService)
 export class BotService extends HadesBotService {
-
-    async onReady() {
-        console.log(`Logged in as ${this.client.user.username}.`);
-    }
+  async onReady() {
+    console.log(`Logged in as ${this.client.user.username}.`);
+  }
 }
 ```
 
@@ -60,7 +56,7 @@ import { BotService } from "./services/BotService";
 
 const container = new HadesContainer();
 const bot = container.get(BotService);
-bot.login()
+bot.login();
 ```
 
 In order for dependency injection to work, we need to import
@@ -77,7 +73,7 @@ Add your token to `config/default.json`:
 
 ```json
 {
-    "discordToken": "your bot token here",
+  "discordToken": "your bot token here"
 }
 ```
 
@@ -91,6 +87,5 @@ Please visit our documentation for more information:
 - [Dependency Injection](./docs/di.md)
 - [Events](./docs/events.md)
 - [Text Commands](./docs/text-commands.md)
-
 
 Looking to contribute? Check out our [Contributor Documentation](./docs/dev/index.md).

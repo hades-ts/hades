@@ -1,2 +1,2 @@
 import { mkSidebar } from "../utils";
-module.exports = mkSidebar('./docs/bots');
+module.exports = mkSidebar("./docs/bots");

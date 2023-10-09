@@ -1,2 +1,2 @@
-export * from './RecordDb'
-export * from './serializers'
+export * from "./RecordDb";
+export * from "./serializers";

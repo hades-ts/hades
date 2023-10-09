@@ -1,27 +1,26 @@
-import { Constructable, InstallerFunc, Newable } from "@hades-ts/hades"
-import { inject } from "inversify"
+import { Constructable, InstallerFunc, Newable } from "@hades-ts/hades";
+import { inject } from "inversify";
 
-import { TextArgParser } from "../../parsing"
-import { camelToDash } from "../../utils"
-import { getTextArgMeta } from "../metadata"
-
+import { TextArgParser } from "../../parsing";
+import { camelToDash } from "../../utils";
+import { getTextArgMeta } from "../metadata";
 
 /**
  * Options for the @arg decorator.
  */
 export type ArgInfo = {
     /** name of the argument */
-    name?: string,
+    name?: string;
     /** type of the argument */
-    type?: string,
+    type?: string;
     /** which parser should be used */
-    parser?: Newable<TextArgParser>,
+    parser?: Newable<TextArgParser>;
     /** help description */
-    description?: string,
+    description?: string;
     /** methods to validate this argument */
-    validatorMethods?: Set<string>,
+    validatorMethods?: Set<string>;
     /** installers for Validators */
-    validatorInstallers?: InstallerFunc[],
+    validatorInstallers?: InstallerFunc[];
 };
 
 /**
@@ -30,22 +29,20 @@ export type ArgInfo = {
  */
 export function arg(info?: ArgInfo) {
     return (target: Constructable, key: string) => {
-        const meta = getTextArgMeta(target.constructor, key)
-        meta.name = camelToDash(key)
+        const meta = getTextArgMeta(target.constructor, key);
+        meta.name = camelToDash(key);
         // get design:type from the constructor
-        const typeInfo = Reflect.getMetadata("design:type", target, key).name
-        meta.type = typeInfo
-        meta.property = key
+        const typeInfo = Reflect.getMetadata("design:type", target, key).name;
+        meta.type = typeInfo;
+        meta.property = key;
         if (info) {
-            meta.name = info.name || camelToDash(key)
-            meta.description = info.description || info.description
-            meta.parserType = info.parser || meta.parserType
-            meta.validatorMethods = info.validatorMethods || meta.validatorMethods
-            meta.validatorInstallers = info.validatorInstallers || meta.validatorInstallers
+            meta.name = info.name || camelToDash(key);
+            meta.description = info.description || info.description;
+            meta.parserType = info.parser || meta.parserType;
+            meta.validatorMethods = info.validatorMethods || meta.validatorMethods;
+            meta.validatorInstallers = info.validatorInstallers || meta.validatorInstallers;
         }
         // decorate the field with @inject(key)
-        inject(key)(target, key)
-    }
+        inject(key)(target, key);
+    };
 }
-
-

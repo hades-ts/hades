@@ -1,3 +1,3 @@
-export * from './TextArgParserRegistry'
-export * from './TextArgParserResolver'
-export * from './TextParserService'
+export * from "./TextArgParserRegistry";
+export * from "./TextArgParserResolver";
+export * from "./TextParserService";

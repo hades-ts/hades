@@ -1,23 +1,22 @@
-import { BaseThreadingError } from "./threading"
-
+import { BaseThreadingError } from "./threading";
 
 export class QuotaError extends BaseThreadingError {
     constructor(message: string) {
-        super(message)
-        this.name = "OpenAIError"
+        super(message);
+        this.name = "OpenAIError";
     }
 }
 
 export class GlobalQuotaError extends QuotaError {
     constructor(message: string) {
-        super(message)
-        this.name = "GlobalQuotaError"
+        super(message);
+        this.name = "GlobalQuotaError";
     }
 }
 
 export class UserQuotaError extends QuotaError {
     constructor(message: string) {
-        super(message)
-        this.name = "UserQuotaError"
+        super(message);
+        this.name = "UserQuotaError";
     }
 }

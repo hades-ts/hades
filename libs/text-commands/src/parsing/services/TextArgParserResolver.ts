@@ -1,26 +1,24 @@
-import { Constructor, Newable, singleton } from "@hades-ts/hades"
-import { Collection } from 'discord.js'
-import { multiInject, postConstruct } from 'inversify'
+import { Constructor, Newable, singleton } from "@hades-ts/hades";
+import { Collection } from "discord.js";
+import { multiInject, postConstruct } from "inversify";
 
-import { StringParser, TextArgParser } from '../parsers'
-
+import { StringParser, TextArgParser } from "../parsers";
 
 export type TypeMap = [Constructor, Newable<TextArgParser>];
-
 
 /**
  * Decides which parser to use for a given argument type.
  */
 @singleton(TextArgParserResolver)
 export class TextArgParserResolver {
-    @multiInject('TextMappedTypes')
-    protected types: TypeMap[]
+    @multiInject("TextMappedTypes")
+    protected types: TypeMap[];
 
-    private map = new Collection<Constructor, Newable<TextArgParser>>()
+    private map = new Collection<Constructor, Newable<TextArgParser>>();
 
     @postConstruct()
     init() {
-        this.types.forEach(([from, to]) => this.map.set(from, to))
+        this.types.forEach(([from, to]) => this.map.set(from, to));
     }
 
     /**
@@ -30,11 +28,11 @@ export class TextArgParserResolver {
      */
     infer(fromType: Constructor) {
         if (!fromType) {
-            return StringParser
+            return StringParser;
         }
         for (const [ctor, type] of this.map) {
             if (ctor.name === fromType.toString()) {
-                return type
+                return type;
             }
         }
     }

@@ -1,5 +1,5 @@
 export default {
-    style: 'dark',
+    style: "dark",
     links: [],
     copyright: `License MIT :)`,
-}
+};

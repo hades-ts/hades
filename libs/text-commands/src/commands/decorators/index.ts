@@ -1,2 +1,2 @@
-export * from './command'
-export * from './description'
+export * from "./command";
+export * from "./description";

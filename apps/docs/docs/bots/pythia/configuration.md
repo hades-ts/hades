@@ -39,7 +39,7 @@ An OpenAI API token.
 
 ## `transcriptsPath`
 
-Where to store on-going threads. 
+Where to store on-going threads.
 
 ## `quota`
 

@@ -1,38 +1,30 @@
-import 'reflect-metadata'
-import './slash-commands'
+import "reflect-metadata";
+import "./slash-commands";
 
-import { HadesContainer } from '@hades-ts/hades'
-import { SlashCommandsInstaller } from "@hades-ts/slash-commands"
-import { TextCommandsInstaller } from "@hades-ts/text-commands"
-import { GuildManager } from 'discord.js'
-import * as dotenv from 'dotenv'
+import { HadesContainer } from "@hades-ts/hades";
+import { SlashCommandsInstaller } from "@hades-ts/slash-commands";
+import { TextCommandsInstaller } from "@hades-ts/text-commands";
+import { GuildManager } from "discord.js";
+import * as dotenv from "dotenv";
 
-import { configSchema } from './config'
-import { BotService } from './services/BotService'
-
+import { configSchema } from "./config";
+import { BotService } from "./services/BotService";
 
 dotenv.config();
 
-
-((async () => {
-
+(async () => {
     const container = new HadesContainer({
-        installers: [
-            new TextCommandsInstaller(),
-            new SlashCommandsInstaller(),
-        ],
+        installers: [new TextCommandsInstaller(), new SlashCommandsInstaller()],
         configOptions: {
             schema: configSchema,
-        }
-    })
+        },
+    });
 
-    container
-        .bind(GuildManager)
-        .toSelf()
-        .inSingletonScope()
+    container.bind(GuildManager).toSelf().inSingletonScope();
 
-    const bot = container.get(BotService)
-    await bot.login()
-
-})()).catch(e => { console.error(e); process.exit(1) })
-
+    const bot = container.get(BotService);
+    await bot.login();
+})().catch((e) => {
+    console.error(e);
+    process.exit(1);
+});

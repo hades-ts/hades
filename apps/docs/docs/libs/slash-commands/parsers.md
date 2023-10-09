@@ -5,19 +5,16 @@ By default, arguments are provided as strings.
 Argument values can be automatically parsed into other types using the `@parser()` decorator:
 
 ```ts
-@command('squared')
+@command("squared")
 export class Squared extends SlashCommand {
+  @arg()
+  @parser(IntegerParser)
+  input!: number;
 
-    @arg()
-    @parser(IntegerParser)
-    input!: number
-
-    async execute() {
-        const square = this.input * this.input;
-        return this.reply(
-            `${this.input} squared is ${square}.`
-        );
-    }
+  async execute() {
+    const square = this.input * this.input;
+    return this.reply(`${this.input} squared is ${square}.`);
+  }
 }
 ```
 
@@ -42,16 +39,13 @@ In the above example, Hades will observe the field's type is `number` and automa
 ```ts
 @command("squared")
 export class Squared extends TextCommand {
+  @arg()
+  input!: number; // automatically parsed with IntegerParser
 
-    @arg()
-    input!: number // automatically parsed with IntegerParser
-
-    async execute() {
-        const square = this.input * this.input;
-        return this.reply(
-            `${this.input} squared is ${square}.`
-        );
-    }
+  async execute() {
+    const square = this.input * this.input;
+    return this.reply(`${this.input} squared is ${square}.`);
+  }
 }
 ```
 
@@ -67,19 +61,13 @@ You can provide your own mapping by providing it to `SlashCommandsInstaller`:
 
 ```ts
 const container = new HadesContainer({
-    installers: [
-        new SlashCommandsInstaller(
-            [
-                ...defaultMappedTypes,
-                [Number, FloatParser],
-            ]
-        ),
-    ],
+  installers: [
+    new SlashCommandsInstaller([...defaultMappedTypes, [Number, FloatParser]]),
+  ],
 });
 ```
 
 Now the `Squared` command above would only accept floating-point numbers.
-
 
 ## Custom Parsers
 
@@ -88,21 +76,18 @@ You can also implement your own parsers by extending the `Parser` class:
 ```ts
 @parser()
 export class YoutubeVideo extends SlashArgParser {
-    name = 'youtube video'
-    description = 'A YouTube Video'
+  name = "youtube video";
+  description = "A YouTube Video";
 
-    async parse(
-        arg: SlashArgInstaller, 
-        interaction: BaseCommandInteraction
-    ) {
-        const value = interaction.options.getString(arg.name)
-        const match = value.match(/^([\w-]{11})(?:\S+)?$/)
-        if (!match) {
-            throw new SlashArgError('Invalid YouTube video ID.')
-        }
-        return new YoutubeVideo(match[1])
+  async parse(arg: SlashArgInstaller, interaction: BaseCommandInteraction) {
+    const value = interaction.options.getString(arg.name);
+    const match = value.match(/^([\w-]{11})(?:\S+)?$/);
+    if (!match) {
+      throw new SlashArgError("Invalid YouTube video ID.");
     }
+    return new YoutubeVideo(match[1]);
+  }
 }
 ```
 
-If the argument cannot be parsed, a `SlashArgError`  can be thrown.
+If the argument cannot be parsed, a `SlashArgError` can be thrown.

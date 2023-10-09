@@ -4,9 +4,9 @@
     "gpt3Token": "you openAI token here",
     "dataDirectory": "your data directory",
     "guilds": {
-      "<guild id>": {
-        "channel": "which channel to post in",
-        "hour": "which hour to rollover"
-      }
+        "<guild id>": {
+            "channel": "which channel to post in",
+            "hour": "which hour to rollover"
+        }
     }
 }

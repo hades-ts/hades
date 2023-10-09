@@ -10,10 +10,10 @@ The DI container described in this document is based on
 
 ## What is it?
 
-DI is all about fetching *instances* of things:
+DI is all about fetching _instances_ of things:
 
-- Instances of some *concrete type*
-- Instances of some *concrete type* which *implements some interface*
+- Instances of some _concrete type_
+- Instances of some _concrete type_ which _implements some interface_
 
 After telling the DI container how create instances of our types, it takes on the
 role of passing them to the code they're needed by.
@@ -32,27 +32,24 @@ The way you tell the container how to do this is by "binding" the desired types 
 
 The basic pattern: `container.bind(WHAT).to(HOW)`
 
-**Constant values**: 
+**Constant values**:
 
 With constant values, we provide the value that will be bound to the type.
-  
+
 ```ts
-container
-  .bind(Foo)
-  .toConstantValue(new Foo())
+container.bind(Foo).toConstantValue(new Foo());
 ```
-**Constructors**: 
+
+**Constructors**:
 
 With constructors, we let the container call the type's constructor to create the new instance.
 
 ```ts
-container
-  .bind(Foo)
-  .toSelf()
+container.bind(Foo).toSelf();
 
 container // from base class to implementor
   .bind(Useful)
-  .to(Foo)
+  .to(Foo);
 ```
 
 There are actually many ways to do binding in Inversify.js. [Check out the docs.](https://github.com/inversify/InversifyJS/blob/master/wiki/readme.md#the-inversifyjs-features-and-api).
@@ -64,7 +61,9 @@ decorator to our class:
 
 ```ts
 @injectable()
-class Foo { /* ... */ }
+class Foo {
+  /* ... */
+}
 ```
 
 ## Requesting Instances
@@ -97,12 +96,12 @@ its constructor's parameters with `@inject()`:
 ```ts
 @injectable()
 class Foo {
-    constructor(
-        @inject(ILogger) logger: ILogger,
-        @inject(Number) randomNum: Number
-    ) {
-        // ...
-    }
+  constructor(
+    @inject(ILogger) logger: ILogger,
+    @inject(Number) randomNum: Number,
+  ) {
+    // ...
+  }
 }
 ```
 
@@ -128,9 +127,9 @@ If `Foo` takes an `ILogger` and an `Number` we can assume the `ILogger` interfac
 container
   .bind(Foo)
   .toDynamicValue((context: Context) => {
-      var di = context.container;
-      var logger = container.get(ILogger);
-      return new Foo(logger, randomNumber());
+    var di = context.container;
+    var logger = container.get(ILogger);
+    return new Foo(logger, randomNumber());
   })
   .inSingletonScope();
 ```
@@ -157,9 +156,9 @@ In the above example, by changing the lifetime to transient, a new random number
 container
   .bind(Foo)
   .toDynamicValue((context: Context) => {
-      var di = context.container;
-      var logger = container.get(ILogger);
-      return new Foo(logger, randomNumber());
+    var di = context.container;
+    var logger = container.get(ILogger);
+    return new Foo(logger, randomNumber());
   })
   .inTransientScope();
 ```
@@ -180,5 +179,3 @@ container
 
 In this case, we've created a binding for `Number` which is only used when
 satisfying the dependency for `Foo`.
-
-

@@ -18,7 +18,7 @@ Create this file with your details:
 
 ```json
 {
-    "discordToken": "your bot token",
-    "botOwner": "your discord id",
+  "discordToken": "your bot token",
+  "botOwner": "your discord id"
 }
 ```

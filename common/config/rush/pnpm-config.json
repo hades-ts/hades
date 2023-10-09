@@ -1,4 +1,4 @@
 {
-  "useWorkspaces": true,
-  "strictPeerDependencies": true  
+    "useWorkspaces": true,
+    "strictPeerDependencies": true
 }

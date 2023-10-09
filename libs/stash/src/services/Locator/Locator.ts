@@ -1,5 +1,4 @@
-import { injectable } from "inversify"
-
+import { injectable } from "inversify";
 
 @injectable()
 export abstract class Locator {

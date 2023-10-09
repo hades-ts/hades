@@ -2,7 +2,7 @@
 
 Pythia is a Discord bot that uses [GPT3](https://openai.com/blog/gpt-3-apps/) to generate responses to messages in a Discord channel.
 
-It can answer questions, tell jokes, and hold conversations. 
+It can answer questions, tell jokes, and hold conversations.
 
 Some major features:
 

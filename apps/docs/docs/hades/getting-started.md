@@ -8,10 +8,9 @@ import { HadesBotService, singleton } from "hades";
 
 @singleton(BotService)
 export class BotService extends HadesBotService {
-
-    async onReady() {
-        console.log(`Logged in as ${this.client.user.username}.`);
-    }
+  async onReady() {
+    console.log(`Logged in as ${this.client.user.username}.`);
+  }
 }
 ```
 
@@ -34,7 +33,7 @@ import { BotService } from "./services/BotService";
 
 const container = new HadesContainer();
 const bot = container.get(BotService);
-bot.login()
+bot.login();
 ```
 
 In order for dependency injection to work, we need to import
@@ -51,13 +50,13 @@ Add your token and user ID to `config/default.json`:
 
 ```json
 {
-    "discordToken": "your bot token here",
-    "botOwner": "your discord id here"
+  "discordToken": "your bot token here",
+  "botOwner": "your discord id here"
 }
 ```
 
-That's it. 
+That's it.
 
-If you `ts-node src/index.ts` the bot should now boot up and connect to any servers you've added it to. 
+If you `ts-node src/index.ts` the bot should now boot up and connect to any servers you've added it to.
 
 Of course it doesn't do anything...yet!

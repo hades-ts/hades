@@ -1,4 +1,4 @@
 export default {
-    src: 'img/logo.png',
-    srcDark: 'img/logo.png',
-}
+    src: "img/logo.png",
+    srcDark: "img/logo.png",
+};

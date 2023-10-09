@@ -1,19 +1,19 @@
-import { mkMenuItem } from './utils';
+import { mkMenuItem } from "./utils";
 
 export default [
-    mkMenuItem('hades'),
-    mkMenuItem('libs'),
-    mkMenuItem('bots'),
-    mkMenuItem('guides'),
+    mkMenuItem("hades"),
+    mkMenuItem("libs"),
+    mkMenuItem("bots"),
+    mkMenuItem("guides"),
     {
         to: `/blog`,
-        position: 'right',
-        label: 'blog',
+        position: "right",
+        label: "blog",
     },
     {
-        href: 'https://github.com/hades-ts/hades',
-        position: 'right',
-        className: 'header-github-link',
-        'aria-label': 'GitHub repository',
+        href: "https://github.com/hades-ts/hades",
+        position: "right",
+        className: "header-github-link",
+        "aria-label": "GitHub repository",
     },
-]
+];

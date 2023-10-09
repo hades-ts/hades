@@ -6,7 +6,6 @@
 
 - guilds: `Collection<string, Guild>`
 
-
 ## Methods
 
 - getName(guildId: string): `string | undefined`

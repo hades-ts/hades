@@ -2,14 +2,14 @@
  * @fileoverview Linting configuration for solid projects
  * @author Dustin
  */
-"use strict"
+"use strict";
 
 //------------------------------------------------------------------------------
 // Requirements
 //------------------------------------------------------------------------------
 
-const requireIndex = require("requireindex")
-const path = require("path")
+const requireIndex = require("requireindex");
+const path = require("path");
 //------------------------------------------------------------------------------
 // Plugin Definition
 //------------------------------------------------------------------------------
@@ -17,16 +17,8 @@ const path = require("path")
 module.exports = {
     configs: {
         node: {
-            ignorePatterns: [
-                "node_modules",
-                "dist",
-                "docs",
-                "deploy",
-            ],
-            extends: [
-                "plugin:@typescript-eslint/recommended",
-                "eslint:recommended",
-            ],
+            ignorePatterns: ["node_modules", "dist", "docs", "deploy"],
+            extends: ["plugin:@typescript-eslint/recommended", "eslint:recommended"],
             parser: "@typescript-eslint/parser",
             parserOptions: {
                 project: ["./tsconfig.json"],
@@ -78,10 +70,7 @@ module.exports = {
                 "@typescript-eslint/no-invalid-this": ["error"],
                 "@typescript-eslint/no-shadow": ["warn"],
                 "@typescript-eslint/interface-name-prefix": "off",
-                "@typescript-eslint/array-type": [
-                    "error",
-                    { default: "array-simple" },
-                ],
+                "@typescript-eslint/array-type": ["error", { default: "array-simple" }],
                 "@typescript-eslint/no-use-before-define": "off",
                 "@typescript-eslint/explicit-member-accessibility": "off",
                 "@typescript-eslint/explicit-function-return-type": "off",
@@ -119,4 +108,4 @@ module.exports = {
             },
         },
     },
-}
+};

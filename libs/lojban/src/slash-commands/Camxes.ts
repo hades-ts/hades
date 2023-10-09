@@ -6,17 +6,17 @@ import { HadesClient } from "@hades-ts/hades";
 
 @command("genturba'a", { description: "jarco le genturba'a lo jufra" })
 export class Genturbaha extends SlashCommand {
-  @inject(HadesClient)
-  client: HadesClient;
+    @inject(HadesClient)
+    client: HadesClient;
 
-  @arg({ description: "jufra", type: ApplicationCommandOptionType.String })
-  phrase: string;
+    @arg({ description: "jufra", type: ApplicationCommandOptionType.String })
+    phrase: string;
 
-  @inject(CamxesService)
-  camxes: CamxesService;
+    @inject(CamxesService)
+    camxes: CamxesService;
 
-  async execute() {
-    const parsed = this.camxes.getParse(this.phrase);
-    this.reply(`\`\`\`\n${parsed}\`\`\`\n`);
-  }
+    async execute() {
+        const parsed = this.camxes.getParse(this.phrase);
+        this.reply(`\`\`\`\n${parsed}\`\`\`\n`);
+    }
 }

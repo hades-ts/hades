@@ -14,7 +14,7 @@ export async function getRemotePackageMetadata(packageName: string): Promise<nul
                 resolve(null);
             }
             try {
-                const metadata = JSON.parse(stdout)
+                const metadata = JSON.parse(stdout);
                 cache.set(packageName, metadata);
                 resolve(metadata as PackageMetadata);
             } catch (e) {
@@ -23,4 +23,3 @@ export async function getRemotePackageMetadata(packageName: string): Promise<nul
         });
     });
 }
-

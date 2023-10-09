@@ -4,17 +4,17 @@
     "gpt3Token": "you openAI token here",
     "transcriptsPath": "data/transcripts",
     "quota": {
-      "quotaFile": "data/quota.json",
-      "globalDailyTokenLimit": 10000,
-      "userDailyTokenLimit": 1000
+        "quotaFile": "data/quota.json",
+        "globalDailyTokenLimit": 10000,
+        "userDailyTokenLimit": 1000
     },
     "guilds": {
-      "<guild id>": {
-        "prompt": "your GPT prompt here",
-        "roleExemptions": {
-          "users": ["<user id>"],
-          "roles": ["<role id>"]
+        "<guild id>": {
+            "prompt": "your GPT prompt here",
+            "roleExemptions": {
+                "users": ["<user id>"],
+                "roles": ["<role id>"]
+            }
         }
-      }
     }
-  }
+}

@@ -1,11 +1,19 @@
-import fs from 'fs';
-import path from 'path';
+import fs from "fs";
+import path from "path";
 
-const and = (...fns) => (...args) => fns.every(predicate => predicate(...args))
-const chain = (...fns) => val => fns.reduce((acc, fn) => fn(acc), val)
+const and =
+    (...fns) =>
+    (...args) =>
+        fns.every((predicate) => predicate(...args));
+const chain =
+    (...fns) =>
+    (val) =>
+        fns.reduce((acc, fn) => fn(acc), val);
 
-Object.defineProperty(Array.prototype, 'filters', {
-    value: function (...fns) { return this.filter(and(...fns)) }
+Object.defineProperty(Array.prototype, "filters", {
+    value: function (...fns) {
+        return this.filter(and(...fns));
+    },
 });
 
 declare global {
@@ -14,8 +22,10 @@ declare global {
     }
 }
 
-Object.defineProperty(Array.prototype, 'maps', {
-    value: function (...fns) { return this.map(chain(...fns)) }
+Object.defineProperty(Array.prototype, "maps", {
+    value: function (...fns) {
+        return this.map(chain(...fns));
+    },
 });
 
 declare global {
@@ -24,14 +34,17 @@ declare global {
     }
 }
 
-export const isFile = root => relPath => fs.statSync(path.join(root, relPath)).isFile()
-export const isDirectory = root => relPath => fs.statSync(path.join(root, relPath)).isDirectory()
-export const isMarkdown = path => path.endsWith('.md') || path.endsWith('.mdx')
-export const isntEmpty = name => !!name
-export const isntIndex = name => name !== 'index.md' && name !== 'index.mdx'
+export const isFile = (root) => (relPath) => fs.statSync(path.join(root, relPath)).isFile();
+export const isDirectory = (root) => (relPath) => fs.statSync(path.join(root, relPath)).isDirectory();
+export const isMarkdown = (path) => path.endsWith(".md") || path.endsWith(".mdx");
+export const isntEmpty = (name) => !!name;
+export const isntIndex = (name) => name !== "index.md" && name !== "index.mdx";
 
-export const join = (root: string) => (...paths: string[]) => path.join(root, ...paths)
-export const removeExtension = (entry: string) => entry.split('.').shift() || entry
-export const removeNumericPrefix = (entry: string) => entry.replace(/^\d+-/, '')
-export const removeLeadingSlashes = (entry: string) => entry.replace(/^\/+/, '')
-export const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1)
+export const join =
+    (root: string) =>
+    (...paths: string[]) =>
+        path.join(root, ...paths);
+export const removeExtension = (entry: string) => entry.split(".").shift() || entry;
+export const removeNumericPrefix = (entry: string) => entry.replace(/^\d+-/, "");
+export const removeLeadingSlashes = (entry: string) => entry.replace(/^\/+/, "");
+export const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);

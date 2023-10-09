@@ -1,2 +1,2 @@
-export * from './ITranscriptRenderer'
-export * from './SimpleTranscriptRenderer'
+export * from "./ITranscriptRenderer";
+export * from "./SimpleTranscriptRenderer";

@@ -22,10 +22,6 @@ Add `hades-linting` to the plugins section of your `.eslintrc` configuration fil
 
 ```json
 {
-    "plugins": [
-        "hades-linting"
-    ]
+  "plugins": ["hades-linting"]
 }
 ```
-
-

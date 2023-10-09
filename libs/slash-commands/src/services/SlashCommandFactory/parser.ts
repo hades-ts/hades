@@ -1,12 +1,10 @@
-import { Constructable, Constructor, Newable } from '@hades-ts/hades'
-import { injectable } from 'inversify'
+import { Constructable, Constructor, Newable } from "@hades-ts/hades";
+import { injectable } from "inversify";
 
-import { getSlashArgMeta, registerSlashParser } from '../../metadata'
-import { SlashArgParser } from './SlashArgParser'
+import { getSlashArgMeta, registerSlashParser } from "../../metadata";
+import { SlashArgParser } from "./SlashArgParser";
 
-
-export interface ParserDecorator extends ClassDecorator, PropertyDecorator { }
-
+export interface ParserDecorator extends ClassDecorator, PropertyDecorator {}
 
 /**
  * Sets the Parser to use for an argument.
@@ -15,16 +13,16 @@ export interface ParserDecorator extends ClassDecorator, PropertyDecorator { }
 export function parser(parserClass?: Newable<SlashArgParser>): ParserDecorator {
     return (target: Constructor, key?: any) => {
         if (key) {
-            const constructable = target as Constructable
-            const argMeta = getSlashArgMeta(constructable.constructor, key)
-            argMeta.parserType = parserClass
+            const constructable = target as Constructable;
+            const argMeta = getSlashArgMeta(constructable.constructor, key);
+            argMeta.parserType = parserClass;
         } else {
-            const ctor = target as Constructor
+            const ctor = target as Constructor;
             if (!(ctor.prototype instanceof SlashArgParser)) {
-                throw new Error(`@parser decorated class ${ctor.name} doesn't extend Parser.`)
+                throw new Error(`@parser decorated class ${ctor.name} doesn't extend Parser.`);
             }
-            registerSlashParser(ctor as Newable<SlashArgParser>)
-            return injectable()(target)
+            registerSlashParser(ctor as Newable<SlashArgParser>);
+            return injectable()(target);
         }
-    }
+    };
 }

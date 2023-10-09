@@ -1,13 +1,12 @@
-import { inject } from 'inversify';
-import { Interaction, Message } from 'discord.js';
+import { inject } from "inversify";
+import { Interaction, Message } from "discord.js";
 
 import { singleton, DiscordService, HadesBotService } from "@hades-ts/hades";
-import { TextCommandService } from '@hades-ts/text-commands';
-import { SlashCommandService } from '@hades-ts/slash-commands';
+import { TextCommandService } from "@hades-ts/text-commands";
+import { SlashCommandService } from "@hades-ts/slash-commands";
 
 @singleton(BotService)
 export class BotService extends HadesBotService {
-
     @inject(DiscordService)
     discord: DiscordService;
 
@@ -15,7 +14,7 @@ export class BotService extends HadesBotService {
     slashCommands: SlashCommandService;
 
     @inject(TextCommandService)
-    textCommands: TextCommandService
+    textCommands: TextCommandService;
 
     async onReady() {
         console.log(`Logged in as ${this.client.user.username}.`);

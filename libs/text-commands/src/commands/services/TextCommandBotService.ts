@@ -1,10 +1,9 @@
-import { HadesBotService } from "@hades-ts/hades"
-import { Message } from "discord.js"
-import { inject, injectable } from "inversify"
+import { HadesBotService } from "@hades-ts/hades";
+import { Message } from "discord.js";
+import { inject, injectable } from "inversify";
 
-import { TextCommandHelpService } from "./TextCommandHelpService"
-import { TextCommandService } from "./TextCommandService"
-
+import { TextCommandHelpService } from "./TextCommandHelpService";
+import { TextCommandService } from "./TextCommandService";
 
 /**
  * A base bot class with text command support.
@@ -12,12 +11,12 @@ import { TextCommandService } from "./TextCommandService"
 @injectable()
 export class TextCommandBotService extends HadesBotService {
     @inject(TextCommandService)
-    protected commandService: TextCommandService
+    protected commandService: TextCommandService;
 
     @inject(TextCommandHelpService)
-    protected helpService: TextCommandHelpService
+    protected helpService: TextCommandHelpService;
 
     async onMessage<T extends Message>(message: T) {
-        await this.commandService.dispatch(message)
+        await this.commandService.dispatch(message);
     }
 }

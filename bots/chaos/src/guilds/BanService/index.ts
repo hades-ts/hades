@@ -1,1 +1,1 @@
-export * from './BanService'
+export * from "./BanService";

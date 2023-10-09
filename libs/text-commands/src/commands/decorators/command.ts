@@ -1,7 +1,6 @@
-import { injectable } from "inversify"
+import { injectable } from "inversify";
 
-import { getTextCommandMeta } from "../metadata"
-
+import { getTextCommandMeta } from "../metadata";
 
 /**
  * Marks a TextCommand class as a command.
@@ -9,9 +8,9 @@ import { getTextCommandMeta } from "../metadata"
  */
 export function command(name: string) {
     return (target: any) => {
-        const meta = getTextCommandMeta(target)
-        meta.name = name
-        meta.target = target
-        return injectable()(target)
-    }
+        const meta = getTextCommandMeta(target);
+        meta.name = name;
+        meta.target = target;
+        return injectable()(target);
+    };
 }

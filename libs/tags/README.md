@@ -1,4 +1,3 @@
-
 # Tags
 
 Simple reusable tag database for [Hades](https://github.com/hades-ts/hades) bots.

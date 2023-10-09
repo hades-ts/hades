@@ -1,2 +1,2 @@
-export * from './renderComponents'
-export * from './renderEmbedRecord'
+export * from "./renderComponents";
+export * from "./renderEmbedRecord";

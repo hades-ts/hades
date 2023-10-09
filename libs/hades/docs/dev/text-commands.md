@@ -33,17 +33,14 @@ A high-level look at `text-commands`:
   - All arguments are injected as fields on the command instance
   - `.execute()` is called on the command instance
 
-
 ## Installer
 
 Text command support is enabled in Hades by passing an instance of its installer to the `HadesContainer` constructor options:
 
 ```ts
 const container = new HadesContainer({
-    installers: [
-        new TextCommandsInstaller()
-    ]
-})
+  installers: [new TextCommandsInstaller()],
+});
 ```
 
 ## Decorators
@@ -76,9 +73,9 @@ See `metadata/api.ts` for helpers for accessing decorator metadata.
 
 ## Argument Parsing
 
-User input is supplied as a string. If the invoked command has arguments, those need to be parsed. 
+User input is supplied as a string. If the invoked command has arguments, those need to be parsed.
 
-The idea behind parsers is that they can return values other than string. 
+The idea behind parsers is that they can return values other than string.
 
 If you had a `YoutubeIdParser` it might return `YoutubeChannel` objects as the argument value.
 
@@ -114,14 +111,12 @@ validateChannel() {
 
 Thrown `TextArgError`s will be reported back to the user.
 
-
 # Command Lifecycle
 
 There are basically two major phases to the command life-cycle:
 
 - Binding during bot startup
 - Instantiation during invocation
-
 
 ## Bot Startup
 
@@ -181,4 +176,3 @@ Finally, the factory returns the command instance back to the `TextCommandServic
 After a command instance has been created, the command service will call `.execute()` on it.
 
 The command service will handle reporting any thrown `TextArgError`s back to the user.
-

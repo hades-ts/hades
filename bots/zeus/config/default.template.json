@@ -3,9 +3,9 @@
     "botOwner": "your discord id here",
     "dataPath": "your data directory",
     "guilds": {
-      "<guild id>": {
-        "channel": "which channel to post in",
-        "hour": "which hour to rollover"
-      }
+        "<guild id>": {
+            "channel": "which channel to post in",
+            "hour": "which hour to rollover"
+        }
     }
 }

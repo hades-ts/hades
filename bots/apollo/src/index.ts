@@ -15,13 +15,13 @@ import "@hades-ts/lojban/dist/text-commands/Camxes";
 import "@hades-ts/lojban/dist/text-commands/ToLojban";
 
 (async () => {
-  const container = new HadesContainer({
-    installers: [new TextCommandsInstaller(), new SlashCommandsInstaller(), installLojbanSupport],
-  });
+    const container = new HadesContainer({
+        installers: [new TextCommandsInstaller(), new SlashCommandsInstaller(), installLojbanSupport],
+    });
 
-  const bot = container.get(BotService);
-  await bot.login();
+    const bot = container.get(BotService);
+    await bot.login();
 })().catch((e) => {
-  console.error(e);
-  process.exit(1);
+    console.error(e);
+    process.exit(1);
 });

@@ -1,1 +1,1 @@
-export * from './camelToDash'
+export * from "./camelToDash";

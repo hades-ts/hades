@@ -3,11 +3,11 @@
 Writing commands is easy. Just subclass `TextCommand` and slap the `@command` decorator on top:
 
 ```ts
-@command('hi')
+@command("hi")
 export class HiCommand extends TextCommand {
-    async execute() {
-        await this.reply('Hello!')
-    }
+  async execute() {
+    await this.reply("Hello!");
+  }
 }
 ```
 

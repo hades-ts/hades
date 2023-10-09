@@ -1,4 +1,3 @@
-
 # Hades
 
 Typescript bot framework using [Inversify.js](https://inversify.io/) and [Discord.js](https://discord.js.org/#/).

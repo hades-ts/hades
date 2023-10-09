@@ -1,4 +1,3 @@
-
 # Bypass
 
 Simple reusable authorization bypass service for [Hades](https://github.com/hades-ts/hades) bots.

@@ -1,1 +1,1 @@
-export * from './TextArgError'
+export * from "./TextArgError";

@@ -3,28 +3,27 @@ import path from "path";
 
 import { singleton } from "@hades-ts/hades";
 import { inject, postConstruct } from "inversify";
-import { parse } from 'yaml'
-
+import { parse } from "yaml";
 
 export type Factoid = {
     id: string;
     name: string;
     description: string;
     content: string;
-}
+};
 
 @singleton(LookupService)
 export class LookupService {
     /**
      * This class acts as a factoid lookup service.
-     * 
+     *
      * It reads .md files from `kardaPath` and parses their gray matter.
-     * 
+     *
      * It offers the following methods:
-     * 
+     *
      * - all(): returns all factoids
      * - get(id: string): returns a factoid by name
-     * 
+     *
      * Factoids are stored in the following format:
      * - name: string
      * - description: string
@@ -44,7 +43,7 @@ export class LookupService {
         // the files actually exist, otherwise throw an error
         const order = this.getOrder();
         if (order === null) {
-            return
+            return;
         }
         const filenames = fs.readdirSync(this.kardaPath);
         for (const name of order) {
@@ -69,7 +68,7 @@ export class LookupService {
     allFilenames(): string[] {
         const order = this.getOrder();
         if (order !== null) {
-            return order.map(name => `${name}.md`)
+            return order.map((name) => `${name}.md`);
         }
         const files = fs.readdirSync(this.kardaPath);
         return files.filter((f) => f.endsWith(".md"));
@@ -88,7 +87,6 @@ export class LookupService {
             name: `${index !== undefined ? `${index + 1}. ` : ""}${title}`,
             description,
             content,
-        }
+        };
     }
-
 }

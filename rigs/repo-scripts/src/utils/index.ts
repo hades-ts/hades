@@ -1,2 +1,2 @@
-export * from './npm';
-export * from './reflect';
+export * from "./npm";
+export * from "./reflect";

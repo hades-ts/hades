@@ -7,29 +7,27 @@ import { LookupService } from "../services";
 
 @injectable()
 class KardaResolver {
-
     @inject(LookupService)
     lookupService!: LookupService;
 
     getChoices() {
-        const choices = this.lookupService.all().map(fact => {
+        const choices = this.lookupService.all().map((fact) => {
             return {
                 name: `${fact.name}: ${fact.description}`,
                 value: fact.id,
-            }
-        })
+            };
+        });
 
-        return choices
+        return choices;
     }
 }
 
 @command("karda", { description: "Look up some Lojban grammar." })
 export class KardaCommand extends SlashCommand {
-
-    @arg({ 
-        description: "Which grammar factoid.", 
-        type: ApplicationCommandOptionType.String, 
-        required: true 
+    @arg({
+        description: "Which grammar factoid.",
+        type: ApplicationCommandOptionType.String,
+        required: true,
     })
     @resolver(KardaResolver)
     fact!: string;
@@ -44,10 +42,10 @@ export class KardaCommand extends SlashCommand {
         try {
             await this.interaction.deferReply({
                 ephemeral: true,
-            })
+            });
             await this.interaction.editReply({
                 content,
-            })
+            });
         } catch (error) {
             console.error(`Couldn't reply to user:`, error);
         }
@@ -61,10 +59,8 @@ export class KardaCommand extends SlashCommand {
                 new EmbedBuilder()
                     .setTitle(`${fact.name}: ${fact.description}`)
                     .setDescription(fact.content)
-                    .setImage("https://i.stack.imgur.com/Fzh0w.png")
-            ]
+                    .setImage("https://i.stack.imgur.com/Fzh0w.png"),
+            ],
         });
-
     }
-
 }

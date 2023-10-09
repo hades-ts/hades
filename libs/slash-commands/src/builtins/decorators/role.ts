@@ -2,11 +2,10 @@ import { Constructable } from "@hades-ts/hades";
 import { ApplicationCommandOptionType } from "discord.js";
 import { arg } from "./arg";
 
-
 export type RoleArgOptions = {
     required?: boolean;
     description: string;
-}
+};
 
 /**
  * Marks the field of a TextCommand as an argument.
@@ -20,4 +19,4 @@ export function role(info: RoleArgOptions) {
             description: info.description,
         })(target, key);
     };
-};
+}

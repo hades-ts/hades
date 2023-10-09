@@ -1,29 +1,23 @@
-import { Constructable } from "@hades-ts/hades"
-import { ApplicationCommandOptionType } from "discord.js"
-import { inject, injectable } from "inversify"
+import { Constructable } from "@hades-ts/hades";
+import { ApplicationCommandOptionType } from "discord.js";
+import { inject, injectable } from "inversify";
 
-import { SlashCommandService } from "../../services"
-import { makeArgMeta } from "."
-
+import { SlashCommandService } from "../../services";
+import { makeArgMeta } from ".";
 
 export type ChannelNameArgOptions = {
     required?: boolean;
     description: string;
-}
-
+};
 
 @injectable()
 class CommandChoicesResolver {
-
     @inject(SlashCommandService)
-    private slashCommandService!: SlashCommandService
+    private slashCommandService!: SlashCommandService;
 
     getChoices() {
-        return this.slashCommandService.factories.all().map(
-            f => ({ name: f.meta.name, value: f.meta.name })
-        )
+        return this.slashCommandService.factories.all().map((f) => ({ name: f.meta.name, value: f.meta.name }));
     }
-
 }
 
 /**
@@ -32,12 +26,16 @@ class CommandChoicesResolver {
  */
 export function commandName(info: ChannelNameArgOptions) {
     return (target: Constructable, key: string) => {
-        const meta = makeArgMeta({
-            type: ApplicationCommandOptionType.String,
-            required: info.required,
-            description: info.description,
-        }, target, key)
-        meta.choicesResolver = CommandChoicesResolver
-        inject(key)(target, key)
-    }
+        const meta = makeArgMeta(
+            {
+                type: ApplicationCommandOptionType.String,
+                required: info.required,
+                description: info.description,
+            },
+            target,
+            key,
+        );
+        meta.choicesResolver = CommandChoicesResolver;
+        inject(key)(target, key);
+    };
 }

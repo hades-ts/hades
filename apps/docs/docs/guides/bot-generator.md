@@ -20,9 +20,9 @@ yo hades-bot
 
 You will be prompted for the following information:
 
-* **Bot Name**: The name of your bot. This will be used to name the bot's directory and the bot's class.
-* **Discord Bot Token**: A Discord bot token. You can create a bot and get a token [here](https://discordapp.com/developers/applications/me).
-* **Bot Owner**: The Discord ID of the bot owner. You can get your Discord ID by enabling developer mode in Discord and right clicking your name in a chat.
+- **Bot Name**: The name of your bot. This will be used to name the bot's directory and the bot's class.
+- **Discord Bot Token**: A Discord bot token. You can create a bot and get a token [here](https://discordapp.com/developers/applications/me).
+- **Bot Owner**: The Discord ID of the bot owner. You can get your Discord ID by enabling developer mode in Discord and right clicking your name in a chat.
 
 ## Running the Bot
 

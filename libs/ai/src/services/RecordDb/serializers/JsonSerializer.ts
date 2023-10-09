@@ -1,11 +1,10 @@
-import { ISerializer } from "./ISerializer"
-
+import { ISerializer } from "./ISerializer";
 
 export class JsonSerializer extends ISerializer {
     serialize(data: any): string {
-        return JSON.stringify(data)
+        return JSON.stringify(data);
     }
     deserialize(data: string) {
-        return JSON.parse(data)
+        return JSON.parse(data);
     }
 }

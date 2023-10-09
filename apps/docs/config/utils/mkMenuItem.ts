@@ -1,5 +1,5 @@
-export const mkMenuItem = (label, position = 'left') => ({
+export const mkMenuItem = (label, position = "left") => ({
     to: `/docs/${label}`,
     position,
-    label
-})
+    label,
+});

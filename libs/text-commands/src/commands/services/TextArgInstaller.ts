@@ -1,11 +1,10 @@
-import { Constructor, InstallerFunc, Newable } from '@hades-ts/hades'
-import { Container } from 'inversify'
+import { Constructor, InstallerFunc, Newable } from "@hades-ts/hades";
+import { Container } from "inversify";
 
-import { TextArgError, TextArgMeta } from '../../arguments'
-import { TextArgParser } from '../../parsing'
-import { Validator } from '../../validation'
-import { TextCommandContext } from '../models'
-
+import { TextArgError, TextArgMeta } from "../../arguments";
+import { TextArgParser } from "../../parsing";
+import { Validator } from "../../validation";
+import { TextCommandContext } from "../models";
 
 /**
  * Binds argument values in a container.
@@ -15,35 +14,35 @@ import { TextCommandContext } from '../models'
  */
 export class TextArgInstaller {
     /** the name of the argument */
-    name: string
+    name: string;
     /** the command class */
-    type: Constructor
+    type: Constructor;
     /** the property to bind to */
-    property: string
+    property: string;
     /** the argument's description */
-    description: string
+    description: string;
 
     /** the parser instance used to get the value */
-    parser: TextArgParser
+    parser: TextArgParser;
     /** the parser type used to get the value */
-    parserType: Newable<TextArgParser>
+    parserType: Newable<TextArgParser>;
 
     /** validator installers for this argument */
-    validatorInstallers: InstallerFunc[]
+    validatorInstallers: InstallerFunc[];
     /** methods for validating this argument's value */
-    validatorMethods: any
+    validatorMethods: any;
 
     constructor(meta: TextArgMeta, parser: TextArgParser) {
-        this.name = meta.name
-        this.type = meta.type
-        this.property = meta.property
-        this.description = meta.description
+        this.name = meta.name;
+        this.type = meta.type;
+        this.property = meta.property;
+        this.description = meta.description;
 
-        this.parser = parser
-        this.parserType = meta.parserType
+        this.parser = parser;
+        this.parserType = meta.parserType;
 
-        this.validatorMethods = meta.validatorMethods
-        this.validatorInstallers = meta.validatorInstallers
+        this.validatorMethods = meta.validatorMethods;
+        this.validatorInstallers = meta.validatorInstallers;
     }
 
     /**
@@ -53,41 +52,41 @@ export class TextArgInstaller {
      */
     async install(di: Container, context: TextCommandContext) {
         // parse value
-        const value = await this.parse(context)
+        const value = await this.parse(context);
 
         // install validators
-        this.installValidators(di)
+        this.installValidators(di);
 
         // resolve and run validators
-        await this.executeValidators(di, context, value)
+        await this.executeValidators(di, context, value);
 
         // finally bind the validated value in the subcontainer
-        di.bind(this.property).toConstantValue(value)
+        di.bind(this.property).toConstantValue(value);
     }
 
     private throwIfValueIsEmpty(value: any) {
         if (value === null || value === undefined) {
-            throw new TextArgError(`argument \`${this.name}\` must be a ${this.parser.name}.`, true)
+            throw new TextArgError(`argument \`${this.name}\` must be a ${this.parser.name}.`, true);
         }
     }
 
     private async parse(context: TextCommandContext) {
-        const value = await this.parser.parse(this, context)
-        this.throwIfValueIsEmpty(value)
-        return value
+        const value = await this.parser.parse(this, context);
+        this.throwIfValueIsEmpty(value);
+        return value;
     }
 
     private installValidators(di: Container) {
         for (const installer of this.validatorInstallers) {
-            installer(di)
+            installer(di);
         }
     }
 
     private async executeValidators(di: Container, context: TextCommandContext, value: any) {
         if (di.isBoundNamed(Validator, this.property)) {
-            const validators = di.getAllNamed(Validator, this.property)
+            const validators = di.getAllNamed(Validator, this.property);
             for (const validator of validators) {
-                await validator.validate(this, context, value)
+                await validator.validate(this, context, value);
             }
         }
     }

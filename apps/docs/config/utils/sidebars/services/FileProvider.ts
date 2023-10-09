@@ -6,21 +6,19 @@ import { isMarkdown, isntEmpty, isntIndex, removeExtension, removeLeadingSlashes
 import { SectionEntryProvider } from "./EntryProvider";
 import { inject, injectable, postConstruct } from "inversify";
 
-
 @injectable()
 export class SectionFileProvider {
+    @inject("SectionRoot")
+    private sectionRoot: string;
 
-    @inject('SectionRoot')
-    private sectionRoot: string
+    @inject("RelativePath")
+    private relativePath: string;
 
-    @inject('RelativePath')
-    private relativePath: string
-
-    @inject('IsSectionFile')
+    @inject("IsSectionFile")
     isSectionFile: (relPath: any) => any;
 
-    @inject('IdMaker')
-    private makeFileId: (entry: string) => string
+    @inject("IdMaker")
+    private makeFileId: (entry: string) => string;
 
     @inject(SectionEntryProvider)
     entryProvider: SectionEntryProvider;
@@ -29,27 +27,27 @@ export class SectionFileProvider {
 
     @postConstruct()
     init() {
-        this.files = this.getFiles()
+        this.files = this.getFiles();
     }
 
     getFiles(): SidebarItemDocEntry[] {
         return this.entryProvider.entries
             .filters(this.isSectionFile, isMarkdown, isntEmpty, isntIndex)
-            .map(e => this.itemizeFile(e))
+            .map((e) => this.itemizeFile(e));
     }
 
     itemizeFile(entry: string): SidebarItemDocEntry {
-        const id = this.makeFileId(entry)
-        const fullPath = join(this.sectionRoot, this.relativePath, entry)
-        const text = readFileSync(fullPath, 'utf8')
-        const meta = matter(text) as any
-        const label = meta.data.label || undefined
+        const id = this.makeFileId(entry);
+        const fullPath = join(this.sectionRoot, this.relativePath, entry);
+        const text = readFileSync(fullPath, "utf8");
+        const meta = matter(text) as any;
+        const label = meta.data.label || undefined;
 
         return {
             id,
             label,
             name: basename(id),
-            type: 'doc',
-        }
+            type: "doc",
+        };
     }
 }

@@ -1,25 +1,23 @@
-import { BypassService } from "@hades-ts/bypass"
-import { guildSingleton, guildTokens } from "@hades-ts/guilds"
-import { GuildMember } from "discord.js"
-import { inject, postConstruct } from "inversify"
+import { BypassService } from "@hades-ts/bypass";
+import { guildSingleton, guildTokens } from "@hades-ts/guilds";
+import { GuildMember } from "discord.js";
+import { inject, postConstruct } from "inversify";
 
-import { GuildConfig } from "../config"
-
+import { GuildConfig } from "../config";
 
 @guildSingleton()
 export class QuotaBypassService {
-
     @inject(guildTokens.GuildConfig)
-    protected guildConfig!: GuildConfig
+    protected guildConfig!: GuildConfig;
 
-    protected bypass!: BypassService
+    protected bypass!: BypassService;
 
     @postConstruct()
     protected init() {
-        this.bypass = new BypassService(this.guildConfig.bypass)
+        this.bypass = new BypassService(this.guildConfig.bypass);
     }
 
     isExempted(member: GuildMember) {
-        return this.bypass.isExempted(member)
+        return this.bypass.isExempted(member);
     }
 }

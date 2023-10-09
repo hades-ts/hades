@@ -1,6 +1,6 @@
-import React from 'react';
-import clsx from 'clsx';
-import styles from './styles.module.scss';
+import React from "react";
+import clsx from "clsx";
+import styles from "./styles.module.scss";
 
 type FeatureItem = {
   title: string;
@@ -10,29 +10,24 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
-    url: 'img/boon_codex.png',
+    title: "Easy to Use",
+    url: "img/boon_codex.png",
+    description: <>Designed from the ground up to streamline bot design.</>,
+  },
+  {
+    title: "Scales with your Project",
+    url: "img/boon_heart.png",
     description: (
-      <>
-        Designed from the ground up to streamline bot design.
-      </>
+      <>As your project grows, you don't need to change your approach.</>
     ),
   },
   {
-    title: 'Scales with your Project',
-    url: 'img/boon_heart.png',
+    title: "Promotes Clean Architecture",
+    url: "img/boon_gemstone.png",
     description: (
       <>
-        As your project grows, you don't need to change your approach.
-      </>
-    ),
-  },
-  {
-    title: 'Promotes Clean Architecture',
-    url: 'img/boon_gemstone.png',
-    description: (
-      <>
-        Automatic dependency management lets you focus on your bot's business logic.
+        Automatic dependency management lets you focus on your bot's business
+        logic.
       </>
     ),
   },

@@ -35,9 +35,9 @@ With a config like:
 
 ```json
 {
-    "foo": {
-        "bar": true
-    }
+  "foo": {
+    "bar": true
+  }
 }
 ```
 
@@ -51,10 +51,8 @@ For example, text command support is added by adding the `textCommandsInstaller`
 
 ```ts
 const container = new HadesContainer({
-    installers: [
-        new TextCommandsInstaller()
-    ]
-})
+  installers: [new TextCommandsInstaller()],
+});
 ```
 
 The user may also bind their own services.

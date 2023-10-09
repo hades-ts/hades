@@ -4,8 +4,6 @@ To enable Slash Commands, add the `SlashCommandsInstaller` to your `HadesContain
 
 ```ts
 const container = new HadesContainer({
-    installers: [
-        new SlashCommandsInstaller(),
-    ],
-})
+  installers: [new SlashCommandsInstaller()],
+});
 ```

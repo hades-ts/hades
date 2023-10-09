@@ -1,23 +1,22 @@
-import { BaseAiThreadingError } from "./threading"
-
+import { BaseAiThreadingError } from "./threading";
 
 export class AiAuthzError extends BaseAiThreadingError {
     constructor(message: string) {
-        super(message)
-        this.name = "AuthzError"
+        super(message);
+        this.name = "AuthzError";
     }
 }
 
 export class AiAuthzGuildError extends AiAuthzError {
     constructor(message: string) {
-        super(message)
-        this.name = "AuthzGuildError"
+        super(message);
+        this.name = "AuthzGuildError";
     }
 }
 
 export class AiNoAuthzError extends AiAuthzError {
     constructor(message: string) {
-        super(message)
-        this.name = "NoAuthzError"
+        super(message);
+        this.name = "NoAuthzError";
     }
 }

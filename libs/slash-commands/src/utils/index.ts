@@ -1,2 +1,2 @@
-export * from './camelToDash'
-export * from './types'
+export * from "./camelToDash";
+export * from "./types";

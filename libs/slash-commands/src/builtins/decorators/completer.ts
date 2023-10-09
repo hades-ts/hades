@@ -1,8 +1,7 @@
-import { Constructable } from "@hades-ts/hades"
-import { ApplicationCommandOptionChoiceData } from "discord.js"
+import { Constructable } from "@hades-ts/hades";
+import { ApplicationCommandOptionChoiceData } from "discord.js";
 
-import { getSlashArgMeta } from "../../metadata"
-
+import { getSlashArgMeta } from "../../metadata";
 
 export interface ICompleter {
     complete(value: string): Promise<ApplicationCommandOptionChoiceData[]>;
@@ -14,7 +13,7 @@ export interface ICompleter {
  */
 export function completer(completer: any) {
     return (target: Constructable, key: string) => {
-        const meta = getSlashArgMeta(target.constructor, key)
-        meta.choicesCompleter = completer as any
-    }
+        const meta = getSlashArgMeta(target.constructor, key);
+        meta.choicesCompleter = completer as any;
+    };
 }

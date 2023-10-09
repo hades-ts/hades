@@ -1,9 +1,6 @@
-import { guildSingleton } from "@hades-ts/guilds"
+import { guildSingleton } from "@hades-ts/guilds";
 
-import { WordValidator } from "../WordValidator"
-
+import { WordValidator } from "../WordValidator";
 
 @guildSingleton()
-export class ThreadWordValidator extends WordValidator {
-
-}
+export class ThreadWordValidator extends WordValidator {}

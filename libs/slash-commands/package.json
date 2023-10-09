@@ -1,53 +1,55 @@
 {
-  "name": "@hades-ts/slash-commands",
-  "version": "0.0.5",
-  "description": "Slash-command extension for Hades",
-  "author": "",
-  "license": "ISC",
-  "homepage": "https://github.com/hades-ts/hades#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/hades-ts/hades.git"
-  },
-  "bugs": {
-    "url": "https://github.com/hades-ts/slash-commands/issues"
-  },
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "files": ["dist"],
-  "scripts": {
-    "build": "tsc -p tsconfig.json",
-    "rebuild": "rm -fr ./dist; npm run build",
-    "watch": "tsc -p tsconfig.json -w"
-  },
-  "devDependencies": {
-    "@hades-ts/hades": "workspace:^0.0.5",
-    "@types/node": "^18.11.11",
-    "eslint-plugin-hades": "workspace:^0.0.1",
-    "eslint": "^8.26.0",
-    "eslint-plugin-eslint-plugin": "^5.0.0",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-decorator-position": "^5.0.1",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-import-newlines": "^1.2.3",
-    "eslint-plugin-simple-import-sort": "^8.0.0",
-    "eslint-plugin-unused-imports": "3.x",
-    "@typescript-eslint/eslint-plugin": "6.x",
-    "@typescript-eslint/parser": "6.x",
-    "ts-node": "^10.9.1",
-    "tsconfig-paths": "^4.1.1",
-    "typescript": "^5.0.0"
-  },
-  "dependencies": {
-    "discord-command-parser": "^1.5.3"
-  },
-  "peerDependencies": {
-    "@hades-ts/hades": "workspace:^0.0.5",
-    "discord-api-types": "~0.33.5",
-    "discord.js": "^14.13.0",
-    "inversify": "^6.0.1",
-    "@ldlework/inversify-binding-decorators": "^4.0.1",
-    "@ldlework/inversify-config-injection": "~0.0.7",
-    "reflect-metadata": "~0.1.13"
-  }
+    "name": "@hades-ts/slash-commands",
+    "version": "0.0.5",
+    "description": "Slash-command extension for Hades",
+    "author": "",
+    "license": "ISC",
+    "homepage": "https://github.com/hades-ts/hades#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/hades-ts/hades.git"
+    },
+    "bugs": {
+        "url": "https://github.com/hades-ts/slash-commands/issues"
+    },
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "tsc -p tsconfig.json",
+        "rebuild": "rm -fr ./dist; npm run build",
+        "watch": "tsc -p tsconfig.json -w"
+    },
+    "devDependencies": {
+        "@hades-ts/hades": "workspace:^0.0.5",
+        "@types/node": "^18.11.11",
+        "eslint-plugin-hades": "workspace:^0.0.1",
+        "eslint": "^8.26.0",
+        "eslint-plugin-eslint-plugin": "^5.0.0",
+        "eslint-plugin-node": "^11.1.0",
+        "eslint-plugin-decorator-position": "^5.0.1",
+        "eslint-plugin-import": "^2.26.0",
+        "eslint-plugin-import-newlines": "^1.2.3",
+        "eslint-plugin-simple-import-sort": "^8.0.0",
+        "eslint-plugin-unused-imports": "3.x",
+        "@typescript-eslint/eslint-plugin": "6.x",
+        "@typescript-eslint/parser": "6.x",
+        "ts-node": "^10.9.1",
+        "tsconfig-paths": "^4.1.1",
+        "typescript": "^5.0.0"
+    },
+    "dependencies": {
+        "discord-command-parser": "^1.5.3"
+    },
+    "peerDependencies": {
+        "@hades-ts/hades": "workspace:^0.0.5",
+        "discord-api-types": "~0.33.5",
+        "discord.js": "^14.13.0",
+        "inversify": "^6.0.1",
+        "@ldlework/inversify-binding-decorators": "^4.0.1",
+        "@ldlework/inversify-config-injection": "~0.0.7",
+        "reflect-metadata": "~0.1.13"
+    }
 }

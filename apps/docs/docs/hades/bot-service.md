@@ -22,9 +22,9 @@ Once your bot is logged in, the `onReady()` method will be called.
 // src/services/BotService.ts
 @singleton()
 export class BotService extends HadesBotService {
-    async onReady() {
-        console.log(`Logged in as ${this.client.user.username}.`);
-    }
+  async onReady() {
+    console.log(`Logged in as ${this.client.user.username}.`);
+  }
 }
 ```
 
@@ -38,20 +38,19 @@ By depending on other services, your bot service can stay small and easy to unde
 // src/services/BotService.ts
 @singleton()
 export class BotService extends HadesBotService {
-    @inject(ILogger)
-    log: ILogger;
+  @inject(ILogger)
+  log: ILogger;
 
-    @inject(ICommandService)
-    commands: ICommandService;
+  @inject(ICommandService)
+  commands: ICommandService;
 
-    async onMessage(message: Message) {
-        if (message.author.bot) return;
-        await this.commands.handle(message);
-    }
-
+  async onMessage(message: Message) {
+    if (message.author.bot) return;
+    await this.commands.handle(message);
+  }
 }
 ```
 
-This convention of delegating work to other services applies to those services as well. 
+This convention of delegating work to other services applies to those services as well.
 
 This approach can help you to keep the components of your bot small and easy to understand.

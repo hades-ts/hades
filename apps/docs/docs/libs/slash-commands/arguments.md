@@ -3,16 +3,15 @@
 Commands can accept arguments. Just define a class field and slap the `@arg` decorator on top:
 
 ```ts
-@command('reverse')
+@command("reverse")
 export class ReverseCommand extends SlashCommand {
+  @arg()
+  text: string;
 
-    @arg()
-    text: string
-
-    async execute() {
-        const reversed = this.text.split('').reverse().join('')
-        await this.reply(reversed)
-    }
+  async execute() {
+    const reversed = this.text.split("").reverse().join("");
+    await this.reply(reversed);
+  }
 }
 ```
 

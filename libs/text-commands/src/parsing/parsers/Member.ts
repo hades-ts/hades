@@ -1,17 +1,16 @@
-import { TextArgInstaller, TextCommandContext } from "../../commands"
-import { parser } from "../decorators"
-import { TextArgParser } from "./TextArgParser"
-
+import { TextArgInstaller, TextCommandContext } from "../../commands";
+import { parser } from "../decorators";
+import { TextArgParser } from "./TextArgParser";
 
 @parser()
 export class MemberParser extends TextArgParser {
-    name = 'member'
-    description = 'A user on this server.'
+    name = "member";
+    description = "A user on this server.";
 
     async parse(arg: TextArgInstaller, context: TextCommandContext) {
-        const id = context.reader.getUserID()
+        const id = context.reader.getUserID();
         if (id) {
-            return context.msg.guild.members.cache.get(id)
+            return context.msg.guild.members.cache.get(id);
         }
     }
 }

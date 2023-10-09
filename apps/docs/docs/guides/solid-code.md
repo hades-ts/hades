@@ -1,6 +1,6 @@
 # Writing SOLID Code
 
-Or: *Saying what but not how*.
+Or: _Saying what but not how_.
 
 Obviously, a complete description of what makes code good is not going to fit into the following sections.
 
@@ -32,13 +32,12 @@ Most developers are familiar with the kind of "naive refactoring" we often do wh
 
 It's this kind of refactoring we'll explore. To think a bit deeper about why we do this kind of refactoring so that we can do it wittingly.
 
-
 ## The Three Spirits of Encapsulation
 
 There are two primary ways to do encapsulation in most modern languages:
 
- - Functions
- - Classes
+- Functions
+- Classes
 
 We wont get into their differences right now.
 
@@ -56,7 +55,6 @@ That a function or class' has purpose is straight-forward enough.
 
 But that it has both a strategy and an implementation of that strategy, as separate things, that's more interesting.
 
-
 ## Strategy and Implementation
 
 What makes a strategy and the implementation of that strategy different things?
@@ -69,17 +67,15 @@ Hence they're not necessarily the same thing.
 
 For trivial cases, they can be -- but it's not the trivial cases that cause us trouble.
 
-
 ### Understanding Strategy
 
 Consider this:
 
     If you have the wrong strategy, no implementation of it is helpful.
 
-You must first have a strategy which accomplishes the right goal. 
+You must first have a strategy which accomplishes the right goal.
 
 If we have the wrong strategy, it doesn't matter how correct or incorrect the implementation of that strategy is.
-
 
 ### Understanding Implementation
 
@@ -93,7 +89,6 @@ Understanding the implementation is a barrier to understanding the strategy whic
 
 There's gotta be a better way!
 
-
 ### Expressiveness
 
 Expressiveness is one of those terms that gets thrown around a lot and everyone has their own definition.
@@ -102,13 +97,11 @@ But we can now consider a very particular form of expressiveness:
 
     How readily some code says what its strategy is.
 
-
 ## Writing Expressive Code
 
 How can we address the contention between strategy and implementation?
 
 How can we write code that says what its strategy is, without the implementation getting in our way?
-
 
 ### Distillation
 
@@ -120,7 +113,6 @@ Distillation is then:
 
 This is where encapsulation comes back into the picture.
 
-
 ### Delegation
 
 We can achieve the distillation we're after through delegation.
@@ -129,10 +121,9 @@ By throwing those implementation details into some secondary encapsulation we ca
 
 By delegating to the encapsulation we replace the implementation details with a call to that delegate.
 
-Assuming we have good naming convention and style, what is left over is an artifact saying *what* we're doing but *not how*.
+Assuming we have good naming convention and style, what is left over is an artifact saying _what_ we're doing but _not how_.
 
 The "how" has been hidden inside the delegate encapsulation.
-
 
 ### Squinting
 
@@ -140,9 +131,10 @@ How do we know which bits of implementation to group together and delegate out i
 
 Well, in general, we want to capture the very highest-level description of the local strategy.
 
-Obviously, you can take this too far. 
+Obviously, you can take this too far.
 
 If you're trying to tell someone how to draw a house, giving them the single step of "1. draw the house" isn't very helpful. It's too coarse of a description.
+
 ```ts
 function() drawHouse() {
     drawHouse()
@@ -150,71 +142,73 @@ function() drawHouse() {
 ```
 
 At the opposite end of the spectrum we have the implementation itself, all the atomic steps needed to carry out the strategy.
+
 ```ts
 function drawHouse() {
-    pen.goto(0,0)
-    pen.color("blue")
-    for (let i = 0; i < 2; i++) {
-        pen.forward(100)
-        pen.left(90)
-        pen.forward(100)
-        pen.left(90)
-    }
-    pen.goto(0,100)
-    pen.color("green")
-    for (let i = 0; i < 3; i++) {
-        pen.forward(100)
-        pen.left(120)
-    }
-    pen.goto(40,0)
-    pen.color("brown")
-    for (let i = 0; i < 2; i++) {
-        pen.forward(20)
-        pen.left(90)
-        pen.forward(50)
-        pen.left(90)
-    }
+  pen.goto(0, 0);
+  pen.color("blue");
+  for (let i = 0; i < 2; i++) {
+    pen.forward(100);
+    pen.left(90);
+    pen.forward(100);
+    pen.left(90);
+  }
+  pen.goto(0, 100);
+  pen.color("green");
+  for (let i = 0; i < 3; i++) {
+    pen.forward(100);
+    pen.left(120);
+  }
+  pen.goto(40, 0);
+  pen.color("brown");
+  for (let i = 0; i < 2; i++) {
+    pen.forward(20);
+    pen.left(90);
+    pen.forward(50);
+    pen.left(90);
+  }
 }
 ```
 
 What we want is something that approaches the former without reaching it. We want to express the minimal number of steps but enough to actually differentiate this strategy from the alternatives.
+
 ```ts
 function drawTriangle(x: number, y: number, length: number, color: string) {
-    pen.goto(x,y)
-    pen.color(color)
-    for (let i = 0; i < 3; i++) {
-        pen.forward(length)
-        pen.left(120)
-    }
+  pen.goto(x, y);
+  pen.color(color);
+  for (let i = 0; i < 3; i++) {
+    pen.forward(length);
+    pen.left(120);
+  }
 }
 
 function drawRectangle(x: number, y: number, length: number, color: string) {
-    pen.goto(x,y)
-    pen.color(color)
-    for (let i = 0; i < 2; i++) {
-        pen.forward(width)
-        pen.left(90)
-        pen.forward(height)
-        pen.left(90)
-    }
+  pen.goto(x, y);
+  pen.color(color);
+  for (let i = 0; i < 2; i++) {
+    pen.forward(width);
+    pen.left(90);
+    pen.forward(height);
+    pen.left(90);
+  }
 }
 
 function drawWalls() {
-    drawRectangle(0, 0, 100, 100, "blue")
+  drawRectangle(0, 0, 100, 100, "blue");
 }
 
 function drawRoof() {
-    drawTriangle(0, 100, 100, "green")
+  drawTriangle(0, 100, 100, "green");
 }
 
 function drawDoor() {
-    drawRectangle(40, 0, 20, 50, "brown")
+  drawRectangle(40, 0, 20, 50, "brown");
 }
 
 function drawHouse() {
-    drawWalls()
-    drawRoof()
-    drawDoor()
+  drawWalls();
+  drawRoof();
+  drawDoor();
 }
 ```
 
@@ -222,13 +216,11 @@ Unfortunately there is no generalized method for deriving what level of descript
 
 You'll just have to squint.
 
-
 ## Dependencies
 
 With delegation as our approach of choice for distillation we introduce a curious problem.
 
 We introduce a dependency relationship from the distilled to the delegate.
-
 
 ### Where Do Dependencies Come From?
 
@@ -240,43 +232,44 @@ There are three primary ways we can get at dependencies:
 
 One of these is not like the other two. Can you guess which?
 
-
 ### Construction
 
 With construction, we instantiate the dependency directly ourselves. Not only do we take on providing our own dependency, but all of its constructor arguments too.
+
 ```ts
 class Foo {
-    bar: Bar = new Bar("x","y","z");
+  bar: Bar = new Bar("x", "y", "z");
 }
 ```
 
 ### Service Location
 
 Service location is any mechanism for reaching out to a parent scope in order to reference the dependency. This might be in the form of an import or a module-level local.
+
 ```ts
-const bar = new Bar("x","y","z"); // or import { bar } from "./some-module";
+const bar = new Bar("x", "y", "z"); // or import { bar } from "./some-module";
 
 class Foo {
-    bar: Bar = bar;
+  bar: Bar = bar;
 }
 ```
 
 ### Dependency Injection
 
 "Dependency Injection" means it is up to someone else to provide our dependencies to us. Usually this is in the form of function or constructor arguments.
+
 ```ts
 class Foo {
-    bar: Bar;
-    constructor(bar: Bar) {
-        this.bar = bar;
-    }
+  bar: Bar;
+  constructor(bar: Bar) {
+    this.bar = bar;
+  }
 }
 ```
 
 ## Why Dependency Injection is Best
 
 Dependency injection is the only way to obtain dependencies that embodies the principle of Inversion of Control.
-
 
 ### Inversion of Control
 
@@ -286,11 +279,9 @@ In the case of dependency injection, we are relinquishing control over where our
 
 Someone else must "inject" those dependencies into us, usually via function or constructor parameter.
 
-
 ### SOLID Principles
 
 Dependency injection helps us achieve each of the other SOLID principles.
-
 
 **Single Responsibility Principle**
 

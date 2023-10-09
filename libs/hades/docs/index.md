@@ -1,6 +1,7 @@
 # Documentation
 
 Table of Contents:
+
 - [Writing SOLID Code](./solid-code.md)
 - [Dependency Injection](./di.md)
 - [Events](./events.md)

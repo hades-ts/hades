@@ -1,2 +1,2 @@
-export * from "./installer"
-export * from "./services"
+export * from "./installer";
+export * from "./services";

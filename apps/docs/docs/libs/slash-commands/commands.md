@@ -3,13 +3,11 @@
 Writing commands is easy. Just subclass `SlashCommand` and slap the `@command` decorator on top:
 
 ```ts
-@command('hi', { description: "Say hi to me!" })
+@command("hi", { description: "Say hi to me!" })
 export class HiCommand extends SlashCommand {
-
-    async execute() {
-        await this.reply('Hello!')
-    }
-    
+  async execute() {
+    await this.reply("Hello!");
+  }
 }
 ```
 

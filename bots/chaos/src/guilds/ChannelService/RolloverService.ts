@@ -1,61 +1,59 @@
-import { guildSingleton, guildTokens } from "@hades-ts/guilds"
-import { inject } from "inversify"
-import { DateTime } from "luxon"
+import { guildSingleton, guildTokens } from "@hades-ts/guilds";
+import { inject } from "inversify";
+import { DateTime } from "luxon";
 
-import { GuildConfig } from "../../config"
-import { WithRequired } from "../../types"
-import { Data, DataService } from "./DataService"
-
+import { GuildConfig } from "../../config";
+import { WithRequired } from "../../types";
+import { Data, DataService } from "./DataService";
 
 export type EmptyRollover = {
-    type: 'empty';
-}
+    type: "empty";
+};
 
 export type PassedRollover = {
-    type: 'passed';
+    type: "passed";
     changeOver: DateTime;
-}
+};
 
 export type ScheduledRollover = {
-    type: 'scheduled';
+    type: "scheduled";
     changeOver: DateTime;
-}
+};
 
 export type RolloverStatus = EmptyRollover | PassedRollover | ScheduledRollover;
 
 @guildSingleton()
 export class RolloverService {
-
     @inject(guildTokens.GuildConfig)
-    private config!: WithRequired<GuildConfig, 'channel'>
+    private config!: WithRequired<GuildConfig, "channel">;
 
     @inject(DataService)
-    private dataService!: DataService
+    private dataService!: DataService;
 
     protected calculateChangeOver(data: Data) {
-        const period = this.config.channel.period || { days: 1 }
-        const { created } = data
-        const dateObj = DateTime.fromISO(created).toUTC()
-        return dateObj.plus(period)
+        const period = this.config.channel.period || { days: 1 };
+        const { created } = data;
+        const dateObj = DateTime.fromISO(created).toUTC();
+        return dateObj.plus(period);
     }
 
     protected changeOverPassed(changeOver: DateTime) {
-        return changeOver < DateTime.now().toUTC()
+        return changeOver < DateTime.now().toUTC();
     }
 
     async checkRollover(): Promise<RolloverStatus> {
-        const data = this.dataService.getData()
+        const data = this.dataService.getData();
 
         if (data === null) {
-            return { type: 'empty' }
+            return { type: "empty" };
         }
 
-        const changeOver = this.calculateChangeOver(data)
+        const changeOver = this.calculateChangeOver(data);
 
         if (this.changeOverPassed(changeOver)) {
-            return { type: 'passed', changeOver }
+            return { type: "passed", changeOver };
         }
 
-        return { type: 'scheduled', changeOver }
+        return { type: "scheduled", changeOver };
     }
 }
