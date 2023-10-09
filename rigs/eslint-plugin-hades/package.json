@@ -27,7 +27,8 @@
         "@typescript-eslint/eslint-plugin": "6.x",
         "@typescript-eslint/parser": "6.x",
         "mocha": "^10.0.0",
-        "requireindex": "^1.2.0"
+        "requireindex": "^1.2.0",
+        "eslint-config-prettier": "^9.0.0"
     },
     "engines": {
         "node": "^14.17.0 || ^16.0.0 || >= 18.0.0"

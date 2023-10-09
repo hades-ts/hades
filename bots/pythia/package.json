@@ -54,7 +54,8 @@
         "@typescript-eslint/parser": "6.x",
         "ts-node": "^10.9.1",
         "tsconfig-paths": "^4.1.1",
-        "typescript": "^5.0.0"
+        "typescript": "^5.0.0",
+        "eslint-config-prettier": "^9.0.0"
     },
     "repository": {
         "type": "git",
