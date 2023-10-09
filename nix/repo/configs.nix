@@ -25,7 +25,7 @@ in {
         max_line_length = "120";
       };
 
-      "*.{ts,js}" = {
+      "*.{ts,js,json}" = {
         indent_size = 4;
         max_line_length = "120";
       };
@@ -59,7 +59,18 @@ in {
       };
       prettier = {
         command = "prettier";
-        includes = ["*.ts" "*.js" "*.md" "*.json"];
+        includes = [
+          "*.ts"
+          "*.mts"
+          "*.cts"
+          "*.tsx"
+          "*.js"
+          "*.cjs"
+          "*.mjs"
+          "*.jsx"
+          "*.md"
+          "*.json"
+        ];
       };
     };
   };
