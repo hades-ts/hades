@@ -1,9 +1,9 @@
 * deprecated dependencies
-** Direct
-*** Global
-+ discordjs 14.7.1
+** Investigate
 *** apps/docs
 + babel plugins
++ trim@0.0.1
+** Direct
 ** Upstream
 *** apps/docs
 + stable@0.1.8

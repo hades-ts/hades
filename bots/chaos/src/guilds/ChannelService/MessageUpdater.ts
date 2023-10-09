@@ -1,6 +1,6 @@
 import { guildSingleton, guildTokens } from "@hades-ts/guilds"
 import { HadesClient } from "@hades-ts/hades"
-import { GuildMember, TextChannel } from "discord.js"
+import { GuildMember, TextChannel, Message } from "discord.js"
 import { inject } from "inversify"
 
 import { GuildConfig } from "../../config"
@@ -29,8 +29,8 @@ export class MessageUpdater {
     private dataService!: DataService
 
     protected async updateMessage(threadId: string, text: string) {
-        const channel = await this.client.channels.fetch(this.config.channel.id) as TextChannel
-        const message = await channel.messages.fetch(threadId)
+        const channel: TextChannel = await this.client.channels.fetch(this.config.channel.id) as TextChannel
+        const message: Message = await channel.messages.fetch(threadId)
 
         if (!message) {
             throw new Error('No message found')

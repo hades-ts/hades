@@ -44,10 +44,10 @@
   "peerDependencies": {
     "@hades-ts/hades": "workspace:^0.0.5",
     "discord-api-types": "~0.33.5",
-    "discord.js": "^14.7.1",
+    "discord.js": "^14.13.0",
     "inversify": "^6.0.1",
     "@ldlework/inversify-binding-decorators": "^4.0.1",
-    "@ldlework/inversify-config-injection": "0.0.7",
+    "@ldlework/inversify-config-injection": "~0.0.7",
     "reflect-metadata": "~0.1.13"
   }
 }

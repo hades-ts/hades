@@ -20,7 +20,7 @@ import { HadesClient } from './HadesClient'
 
 /**
  * A base service for building bots with Hades.
- * 
+ *
  * Comes with a HadesClient and EventService. The bot will automatically
  * register with the EventService.
  */

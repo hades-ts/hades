@@ -1,4 +1,4 @@
-import { EmbedBuilder, Message, MessageCreateOptions } from "discord.js"
+import { EmbedBuilder, Message, MessageCreateOptions, BaseMessageOptions } from "discord.js"
 import { injectable } from "inversify"
 
 
@@ -43,7 +43,7 @@ export abstract class BaseMessageFormatter {
         }
     }
 
-    update(message: Message, text: string): MessageCreateOptions {
+    update(message: Message, text: string): BaseMessageOptions {
         const embed = message.embeds[0]
 
         return {
