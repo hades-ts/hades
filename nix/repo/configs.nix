@@ -52,6 +52,10 @@ in {
       alejandra
       nodePackages.prettier
     ];
+    data.global.excludes = [
+      "**/common/scripts/*"
+      "**/common/temp/*"
+    ];
     data.formatter = {
       nix = {
         command = "alejandra";
