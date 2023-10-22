@@ -1,6 +1,6 @@
 {
     "name": "@hades-ts/guilds",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "description": "Guild scoped services for Hades",
     "author": "",
     "license": "ISC",
@@ -23,7 +23,7 @@
         "watch": "tsc -p tsconfig.json -w"
     },
     "devDependencies": {
-        "@hades-ts/hades": "workspace:^0.0.5",
+        "@hades-ts/hades": "workspace:^0.0.6",
         "@types/node": "^18.11.11",
         "eslint-plugin-hades": "workspace:^0.0.1",
         "eslint": "^8.26.0",

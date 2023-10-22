@@ -64,10 +64,10 @@ importers:
 
   ../../bots/apollo:
     specifiers:
-      '@hades-ts/hades': workspace:^0.0.5
-      '@hades-ts/lojban': workspace:^0.0.5
-      '@hades-ts/slash-commands': workspace:^0.0.5
-      '@hades-ts/text-commands': workspace:^0.0.5
+      '@hades-ts/hades': workspace:^0.0.6
+      '@hades-ts/lojban': workspace:^0.0.6
+      '@hades-ts/slash-commands': workspace:^0.0.6
+      '@hades-ts/text-commands': workspace:^0.0.6
       '@ldlework/categoric-containers': ~0.0.2
       '@ldlework/categoric-decorators': ^1.0.0
       '@types/common-tags': ^1.8.0
@@ -147,11 +147,11 @@ importers:
 
   ../../bots/chaos:
     specifiers:
-      '@hades-ts/guilds': workspace:^0.0.5
-      '@hades-ts/hades': workspace:^0.0.5
-      '@hades-ts/slash-commands': workspace:^0.0.5
-      '@hades-ts/tags': workspace:^0.0.5
-      '@hades-ts/text-commands': workspace:^0.0.5
+      '@hades-ts/guilds': workspace:^0.0.6
+      '@hades-ts/hades': workspace:^0.0.6
+      '@hades-ts/slash-commands': workspace:^0.0.6
+      '@hades-ts/tags': workspace:^0.0.6
+      '@hades-ts/text-commands': workspace:^0.0.6
       '@ldlework/categoric-containers': ~0.0.2
       '@ldlework/categoric-decorators': ^1.0.0
       '@ldlework/inversify-binding-decorators': ^4.0.2
@@ -232,9 +232,9 @@ importers:
 
   ../../bots/hades:
     specifiers:
-      '@hades-ts/hades': workspace:^0.0.5
-      '@hades-ts/slash-commands': workspace:^0.0.5
-      '@hades-ts/text-commands': workspace:^0.0.5
+      '@hades-ts/hades': workspace:^0.0.6
+      '@hades-ts/slash-commands': workspace:^0.0.6
+      '@hades-ts/text-commands': workspace:^0.0.6
       '@ldlework/inversify-binding-decorators': ^4.0.2
       '@types/common-tags': ^1.8.0
       '@types/node': ^18.11.11
@@ -307,13 +307,13 @@ importers:
 
   ../../bots/hypnos:
     specifiers:
-      '@hades-ts/ai': workspace:^0.0.5
-      '@hades-ts/bypass': workspace:^0.0.5
-      '@hades-ts/guilds': workspace:^0.0.5
-      '@hades-ts/hades': workspace:^0.0.5
-      '@hades-ts/slash-commands': workspace:^0.0.5
-      '@hades-ts/stash': workspace:^0.0.5
-      '@hades-ts/text-commands': workspace:^0.0.5
+      '@hades-ts/ai': workspace:^0.0.6
+      '@hades-ts/bypass': workspace:^0.0.6
+      '@hades-ts/guilds': workspace:^0.0.6
+      '@hades-ts/hades': workspace:^0.0.6
+      '@hades-ts/slash-commands': workspace:^0.0.6
+      '@hades-ts/stash': workspace:^0.0.6
+      '@hades-ts/text-commands': workspace:^0.0.6
       '@ldlework/categoric-containers': ~0.0.2
       '@ldlework/categoric-decorators': ^1.0.0
       '@ldlework/inversify-binding-decorators': ^4.0.2
@@ -402,12 +402,12 @@ importers:
 
   ../../bots/pythia:
     specifiers:
-      '@hades-ts/bypass': workspace:^0.0.5
-      '@hades-ts/guilds': workspace:^0.0.5
-      '@hades-ts/hades': workspace:^0.0.5
-      '@hades-ts/slash-commands': workspace:^0.0.5
-      '@hades-ts/stash': workspace:^0.0.5
-      '@hades-ts/text-commands': workspace:^0.0.5
+      '@hades-ts/bypass': workspace:^0.0.6
+      '@hades-ts/guilds': workspace:^0.0.6
+      '@hades-ts/hades': workspace:^0.0.6
+      '@hades-ts/slash-commands': workspace:^0.0.6
+      '@hades-ts/stash': workspace:^0.0.6
+      '@hades-ts/text-commands': workspace:^0.0.6
       '@ldlework/categoric-containers': ~0.0.2
       '@ldlework/categoric-decorators': ^1.0.0
       '@ldlework/inversify-binding-decorators': ^4.0.2
@@ -495,11 +495,11 @@ importers:
 
   ../../bots/zeus:
     specifiers:
-      '@hades-ts/guilds': workspace:^0.0.5
-      '@hades-ts/hades': workspace:^0.0.5
-      '@hades-ts/slash-commands': workspace:^0.0.5
-      '@hades-ts/stash': workspace:^0.0.5
-      '@hades-ts/text-commands': workspace:^0.0.5
+      '@hades-ts/guilds': workspace:^0.0.6
+      '@hades-ts/hades': workspace:^0.0.6
+      '@hades-ts/slash-commands': workspace:^0.0.6
+      '@hades-ts/stash': workspace:^0.0.6
+      '@hades-ts/text-commands': workspace:^0.0.6
       '@ldlework/categoric-containers': ~0.0.2
       '@ldlework/categoric-decorators': ^1.0.0
       '@ldlework/inversify-binding-decorators': ^4.0.2
@@ -580,7 +580,7 @@ importers:
 
   ../../libs/ai:
     specifiers:
-      '@hades-ts/hades': workspace:^0.0.5
+      '@hades-ts/hades': workspace:^0.0.6
       '@ldlework/inversify-binding-decorators': ^4.0.1
       '@ldlework/inversify-config-injection': ^0.0.7
       '@types/node': ^18.11.11
@@ -639,7 +639,7 @@ importers:
 
   ../../libs/bypass:
     specifiers:
-      '@hades-ts/hades': workspace:^0.0.5
+      '@hades-ts/hades': workspace:^0.0.6
       '@ldlework/inversify-binding-decorators': ^4.0.1
       '@ldlework/inversify-config-injection': ~0.0.7
       '@types/node': ^18.11.11
@@ -749,7 +749,7 @@ importers:
 
   ../../libs/guilds:
     specifiers:
-      '@hades-ts/hades': workspace:^0.0.5
+      '@hades-ts/hades': workspace:^0.0.6
       '@ldlework/categoric-containers': ~0.0.2
       '@ldlework/inversify-binding-decorators': ^4.0.1
       '@ldlework/inversify-config-injection': ~0.0.7
@@ -865,9 +865,9 @@ importers:
 
   ../../libs/lojban:
     specifiers:
-      '@hades-ts/hades': workspace:^0.0.5
-      '@hades-ts/slash-commands': workspace:^0.0.5
-      '@hades-ts/text-commands': workspace:^0.0.5
+      '@hades-ts/hades': workspace:^0.0.6
+      '@hades-ts/slash-commands': workspace:^0.0.6
+      '@hades-ts/text-commands': workspace:^0.0.6
       '@ldlework/inversify-binding-decorators': ^4.0.1
       '@ldlework/inversify-config-injection': 0.0.7
       '@types/jest': ^29.2.4
@@ -930,7 +930,7 @@ importers:
 
   ../../libs/slash-commands:
     specifiers:
-      '@hades-ts/hades': workspace:^0.0.5
+      '@hades-ts/hades': workspace:^0.0.6
       '@ldlework/inversify-binding-decorators': ^4.0.1
       '@ldlework/inversify-config-injection': ~0.0.7
       '@types/node': ^18.11.11
@@ -983,7 +983,7 @@ importers:
 
   ../../libs/stash:
     specifiers:
-      '@hades-ts/hades': workspace:^0.0.5
+      '@hades-ts/hades': workspace:^0.0.6
       '@ldlework/inversify-binding-decorators': ^4.0.1
       '@ldlework/inversify-config-injection': ~0.0.7
       '@types/node': ^18.11.11
@@ -1038,7 +1038,7 @@ importers:
 
   ../../libs/tags:
     specifiers:
-      '@hades-ts/hades': workspace:^0.0.5
+      '@hades-ts/hades': workspace:^0.0.6
       '@ldlework/inversify-binding-decorators': ^4.0.1
       '@ldlework/inversify-config-injection': ^0.0.7
       '@types/node': ^18.11.11
@@ -1095,7 +1095,7 @@ importers:
 
   ../../libs/text-commands:
     specifiers:
-      '@hades-ts/hades': workspace:^0.0.5
+      '@hades-ts/hades': workspace:^0.0.6
       '@ldlework/inversify-binding-decorators': ^4.0.1
       '@ldlework/inversify-config-injection': ~0.0.7
       '@types/node': ^18.11.11
