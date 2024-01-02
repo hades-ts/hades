@@ -55,6 +55,7 @@ in {
     data.global.excludes = [
       "**/common/scripts/*"
       "**/common/temp/*"
+      "**/CHANGELOG.*"
     ];
     data.formatter = {
       nix = {
