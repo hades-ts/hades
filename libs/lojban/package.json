@@ -1,6 +1,6 @@
 {
     "name": "@hades-ts/lojban",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "description": "Lojban stuff for Hades bots",
     "author": "",
     "license": "ISC",
@@ -25,9 +25,9 @@
         "test:watch": "jest --watch"
     },
     "devDependencies": {
-        "@hades-ts/hades": "workspace:^0.0.6",
-        "@hades-ts/text-commands": "workspace:^0.0.6",
-        "@hades-ts/slash-commands": "workspace:^0.0.6",
+        "@hades-ts/hades": "workspace:^0.0.7",
+        "@hades-ts/text-commands": "workspace:^0.0.7",
+        "@hades-ts/slash-commands": "workspace:^0.0.7",
         "@types/node": "^18.11.11",
         "eslint-plugin-hades": "workspace:^0.0.1",
         "eslint": "^8.26.0",
@@ -49,9 +49,9 @@
         "eslint-config-prettier": "^9.0.0"
     },
     "peerDependencies": {
-        "@hades-ts/hades": "workspace:^0.0.6",
-        "@hades-ts/text-commands": "workspace:^0.0.6",
-        "@hades-ts/slash-commands": "workspace:^0.0.6",
+        "@hades-ts/hades": "workspace:^0.0.7",
+        "@hades-ts/text-commands": "workspace:^0.0.7",
+        "@hades-ts/slash-commands": "workspace:^0.0.7",
         "discord-api-types": "~0.33.5",
         "discord-command-parser": "^1.5.3",
         "discord.js": "^14.13.0",

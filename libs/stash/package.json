@@ -1,6 +1,6 @@
 {
     "name": "@hades-ts/stash",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "description": "A simple file-based storage for discord.js bots",
     "author": "",
     "license": "ISC",
@@ -42,7 +42,7 @@
     },
     "peerDependencies": {
         "inversify": "^6.0.1",
-        "@hades-ts/hades": "workspace:^0.0.6",
+        "@hades-ts/hades": "workspace:^0.0.7",
         "@ldlework/inversify-binding-decorators": "^4.0.1",
         "@ldlework/inversify-config-injection": "~0.0.7",
         "reflect-metadata": "~0.1.13"
