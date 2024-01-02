@@ -7,7 +7,7 @@ import { DateTime } from "luxon";
 import { GuildConfig } from "../../config";
 import { WithRequired } from "../../types";
 import { ChannelCleaner } from "./ChannelCleaner";
-import { DataService } from "./DataService";
+import { DataService, Data } from "./DataService";
 import { ChannelMessageFormatter } from "./MessageFormatter";
 
 @guildSingleton()
@@ -38,7 +38,7 @@ export class MessageSender {
         return message;
     }
 
-    protected createData(threadId: string, created: DateTime) {
+    protected createData(threadId: string, created: DateTime<true>) {
         return {
             thread: threadId,
             created: created.toISO(),
@@ -47,14 +47,14 @@ export class MessageSender {
         };
     }
 
-    protected saveNewData(threadId: string, datetime?: DateTime) {
+    protected saveNewData(threadId: string, datetime?: DateTime<true>) {
         console.log(`[ChannelManager] Saving data for guild ${this.guildId}`);
         const created = (datetime || DateTime.now()).toUTC();
         const data = this.createData(threadId, created);
         this.dataService.saveData(data);
     }
 
-    async createMessage(datetime?: DateTime) {
+    async createMessage(datetime?: DateTime<true>) {
         const message = await this.sendNewMessage();
         this.saveNewData(message.id, datetime);
         await this.channelCleaner.cleanup();
