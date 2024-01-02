@@ -1,11 +1,7 @@
-/*
- * This is the main configuration file for Rush.
- * For full documentation, please see https://rushjs.io
- */
 {
     "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/rush.schema.json",
-    "rushVersion": "5.82.1",
-    "pnpmVersion": "7.13.4",
+    "rushVersion": "5.111.0",
+    "pnpmVersion": "8.10.5",
     "nodeSupportedVersionRange": ">=18.0.0",
     "suppressNodeLtsWarning": true,
     "ensureConsistentVersions": true,
@@ -16,62 +12,72 @@
     },
     "projects": [
         {
+            "packageName": "@hades-ts/hades",
+            "projectFolder": "libs/hades",
+            "versionPolicyName": "hades",
+            "shouldPublish": true
+        },
+        {
+            "packageName": "@hades-ts/text-commands",
+            "projectFolder": "libs/text-commands",
+            "versionPolicyName": "hades",
+            "shouldPublish": true
+        },
+        {
+            "packageName": "@hades-ts/slash-commands",
+            "projectFolder": "libs/slash-commands",
+            "versionPolicyName": "hades",
+            "shouldPublish": true
+        },
+        {
+            "packageName": "@hades-ts/stash",
+            "projectFolder": "libs/stash",
+            "versionPolicyName": "hades",
+            "shouldPublish": true
+        },
+        {
+            "packageName": "@hades-ts/bypass",
+            "projectFolder": "libs/bypass",
+            "versionPolicyName": "hades",
+            "shouldPublish": true
+        },
+        {
+            "packageName": "@hades-ts/guilds",
+            "projectFolder": "libs/guilds",
+            "versionPolicyName": "hades",
+            "shouldPublish": true
+        },
+        {
+            "packageName": "@hades-ts/tags",
+            "projectFolder": "libs/tags",
+            "versionPolicyName": "hades",
+            "shouldPublish": true
+        },
+        {
+            "packageName": "@hades-ts/ai",
+            "projectFolder": "libs/ai",
+            "versionPolicyName": "hades",
+            "shouldPublish": true
+        },
+        {
+            "packageName": "@hades-ts/lojban",
+            "projectFolder": "libs/lojban",
+            "versionPolicyName": "hades",
+            "shouldPublish": true
+        },
+        {
+            "packageName": "generator-hades-bot",
+            "projectFolder": "libs/generator",
+            "versionPolicyName": "hades",
+            "shouldPublish": true
+        },
+        {
             "packageName": "repo-scripts",
             "projectFolder": "rigs/repo-scripts"
         },
         {
             "packageName": "eslint-plugin-hades",
             "projectFolder": "rigs/eslint-plugin-hades"
-        },
-        {
-            "packageName": "@hades-ts/hades",
-            "projectFolder": "libs/hades",
-            "shouldPublish": true
-        },
-        {
-            "packageName": "@hades-ts/text-commands",
-            "projectFolder": "libs/text-commands",
-            "shouldPublish": true
-        },
-        {
-            "packageName": "@hades-ts/slash-commands",
-            "projectFolder": "libs/slash-commands",
-            "shouldPublish": true
-        },
-        {
-            "packageName": "@hades-ts/stash",
-            "projectFolder": "libs/stash",
-            "shouldPublish": true
-        },
-        {
-            "packageName": "@hades-ts/bypass",
-            "projectFolder": "libs/bypass",
-            "shouldPublish": true
-        },
-        {
-            "packageName": "@hades-ts/guilds",
-            "projectFolder": "libs/guilds",
-            "shouldPublish": true
-        },
-        {
-            "packageName": "@hades-ts/tags",
-            "projectFolder": "libs/tags",
-            "shouldPublish": true
-        },
-        {
-            "packageName": "@hades-ts/ai",
-            "projectFolder": "libs/ai",
-            "shouldPublish": true
-        },
-        {
-            "packageName": "@hades-ts/lojban",
-            "projectFolder": "libs/lojban",
-            "shouldPublish": true
-        },
-        {
-            "packageName": "generator-hades-bot",
-            "projectFolder": "libs/generator",
-            "shouldPublish": true
         },
         {
             "packageName": "@hades-ts/docs",
