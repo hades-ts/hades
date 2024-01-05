@@ -3,13 +3,14 @@
     "version": "0.0.7",
     "description": "Typescript framework using Inversify.js and Discord.js",
     "main": "dist/index.js",
+    "module": "dist/index.mjs",
     "types": "dist/index.d.ts",
     "files": [
         "dist"
     ],
     "scripts": {
-        "build": "tsc -p tsconfig.json",
-        "rebuild": "rm -fr ./dist; npm run build",
+        "build": "tsup src/index.ts --format cjs,esm --dts",
+        "rebuild": "rm -rf dist; npm run build",
         "watch": "tsc -p tsconfig.json -w"
     },
     "dependencies": {
@@ -42,7 +43,8 @@
         "tsconfig-paths": "^4.1.1",
         "typescript": "^5.0.0",
         "inversify": "^6.0.1",
-        "eslint-config-prettier": "^9.0.0"
+        "eslint-config-prettier": "^9.0.0",
+        "tsup": "~8.0.1"
     },
     "repository": {
         "type": "git",

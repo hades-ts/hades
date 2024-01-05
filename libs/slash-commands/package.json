@@ -18,8 +18,8 @@
         "dist"
     ],
     "scripts": {
-        "build": "tsc -p tsconfig.json",
-        "rebuild": "rm -fr ./dist; npm run build",
+        "build": "tsup src/index.ts --format cjs,esm --dts",
+        "rebuild": "rm -rf dist; npm run build",
         "watch": "tsc -p tsconfig.json -w"
     },
     "devDependencies": {
@@ -39,7 +39,8 @@
         "ts-node": "^10.9.1",
         "tsconfig-paths": "^4.1.1",
         "typescript": "^5.0.0",
-        "eslint-config-prettier": "^9.0.0"
+        "eslint-config-prettier": "^9.0.0",
+        "tsup": "~8.0.1"
     },
     "dependencies": {
         "discord-command-parser": "^1.5.3"
@@ -52,5 +53,6 @@
         "@ldlework/inversify-binding-decorators": "^4.0.1",
         "@ldlework/inversify-config-injection": "~0.0.7",
         "reflect-metadata": "~0.1.13"
-    }
+    },
+    "module": "dist/index.mjs"
 }

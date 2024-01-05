@@ -5,10 +5,10 @@
     "files": [
         "generators"
     ],
-    "main": "generators/index.js",
+    "main": "dist/index.js",
     "scripts": {
-        "build": "tsc && npm run copydeps && npm run lint",
-        "rebuild": "rm -fr ./generators; npm run build",
+        "build": "tsup src/app/index.ts --format cjs,esm --dts && npm run copydeps",
+        "rebuild": "rm -rf dist; npm run build",
         "copydeps": "copyfiles --up 1 'src/*/templates/**' generators",
         "lint": "eslint ./src --ext .js,.ts",
         "clean": "rimraf -rf ./generators",
@@ -43,6 +43,8 @@
         "typescript": "^5.0.0",
         "yeoman-assert": "^3.1.0",
         "yeoman-test": "^7.4.0",
-        "eslint-config-prettier": "^9.0.0"
-    }
+        "eslint-config-prettier": "^9.0.0",
+        "tsup": "~8.0.1"
+    },
+    "module": "dist/index.mjs"
 }

@@ -4,8 +4,8 @@
     "description": "Hades based rules and roles Discord bot.",
     "main": "dist/index.js",
     "scripts": {
-        "build": "tsc -p tsconfig.json",
-        "rebuild": "rm -fr ./dist; tsc -p tsconfig.json",
+        "build": "tsup src/index.ts --format cjs,esm --dts",
+        "rebuild": "rm -rf dist; npm run build",
         "start": "node dist/index.js",
         "watch": "tsc -p tsconfig.json -w"
     },
@@ -51,7 +51,8 @@
         "tsconfig-paths": "^4.1.1",
         "typescript": "^5.0.0",
         "@types/luxon": "^3.1.0",
-        "eslint-config-prettier": "^9.0.0"
+        "eslint-config-prettier": "^9.0.0",
+        "tsup": "~8.0.1"
     },
     "repository": {
         "type": "git",
@@ -62,5 +63,6 @@
     "bugs": {
         "url": "https://github.com/hades-ts/hades/issues"
     },
-    "homepage": "https://github.com/hades-ts/hades#readme"
+    "homepage": "https://github.com/hades-ts/hades#readme",
+    "module": "dist/index.mjs"
 }
