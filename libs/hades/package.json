@@ -18,12 +18,10 @@
         "config": "^3.3.3",
         "discord-api-types": "~0.33.5",
         "discord-command-parser": "^1.5.3",
-        "discord.js": "^14.13.0",
-        "googleapis": "^67.0.0",
-        "inversify": "^6.0.1",
+        "discord.js": "14.20.0",
         "@ldlework/inversify-binding-decorators": "^4.0.2",
-        "@ldlework/inversify-config-injection": "~0.0.7",
-        "reflect-metadata": "~0.1.13"
+        "reflect-metadata": "~0.1.13",
+        "@ldlework/inversify-config-injection": "~0.0.7"
     },
     "devDependencies": {
         "@types/node": "^18.11.11",

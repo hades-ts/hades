@@ -8,6 +8,7 @@ import {
     InteractionCollector,
     InteractionType,
     Message,
+    ReadonlyCollection,
 } from "discord.js";
 
 const randomId = () => {
@@ -35,7 +36,7 @@ export abstract class BaseButtonInteraction {
     protected abstract onClick(interaction: ButtonInteraction): Promise<void>;
     protected abstract cleanup(
         interaction: ButtonInteraction,
-        interactions: Collection<string, ButtonInteraction>,
+        interactions: ReadonlyCollection<string, ButtonInteraction>,
     ): Promise<void>;
 
     protected createCollector(timeout = 10000) {

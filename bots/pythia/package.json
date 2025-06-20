@@ -14,7 +14,7 @@
         "config": "^3.3.3",
         "discord-api-types": "~0.33.5",
         "discord-command-parser": "^1.5.3",
-        "discord.js": "^14.13.0",
+        "discord.js": "14.20.0",
         "googleapis": "^67.0.0",
         "@hades-ts/hades": "workspace:^0.0.7",
         "@hades-ts/text-commands": "workspace:^0.0.7",
