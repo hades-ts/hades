@@ -5,9 +5,11 @@
     "files": [
         "generators"
     ],
-    "main": "dist/index.js",
+    "keywords": [
+        "yeoman-generator"
+    ],
     "scripts": {
-        "build": "tsup src/app/index.ts --format cjs,esm --dts && npm run copydeps",
+        "build": "tsc -b",
         "rebuild": "rm -rf dist; npm run build",
         "copydeps": "copyfiles --up 1 'src/*/templates/**' generators",
         "lint": "eslint ./src --ext .js,.ts",
@@ -17,13 +19,14 @@
         "watch-tsc": "tsc-watch --onSuccess 'npm run lint --silent'"
     },
     "dependencies": {
-        "yeoman-generator": "^5.7.0",
+        "yeoman-generator": "~7.5.1",
         "chalk": "^4.1.0",
-        "yosay": "^2.0.2"
+        "yosay": "^2.0.2",
+        "yo": "5.1.0"
     },
     "devDependencies": {
         "@types/node": "^18.11.11",
-        "@types/yeoman-generator": "^5.2.11",
+        "@types/yeoman-generator": "~6.0.0",
         "@types/yosay": "^2.0.1",
         "eslint-plugin-hades": "workspace:^0.0.1",
         "eslint": "^8.26.0",
@@ -42,9 +45,9 @@
         "tsc-watch": "^4.2.9",
         "typescript": "~5.8.3",
         "yeoman-assert": "^3.1.0",
-        "yeoman-test": "^7.4.0",
         "eslint-config-prettier": "^9.0.0",
-        "tsup": "~8.0.1"
+        "tsup": "~8.0.1",
+        "mem-fs": "^4.0.0"
     },
     "module": "dist/index.mjs"
 }

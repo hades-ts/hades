@@ -29,6 +29,10 @@ const installCommandHelpers = (container: Container, metas: Metas) => {
  */
 export const installCommands = (container: Container) => {
     const metas = getSlashCommandMetas();
+    console.log("Commands:");
+    for (const meta of metas) {
+        console.log(meta);
+    }
     installCommandFactories(container, metas);
     installCommandHelpers(container, metas);
 };

@@ -118,6 +118,11 @@
             "packageName": "@hades-ts/hypnos",
             "projectFolder": "bots/hypnos",
             "shouldPublish": false
+        },
+        {
+            "packageName": "@hades-ts/test-bot",
+            "projectFolder": "bots/test-bot",
+            "shouldPublish": false
         }
     ]
 }

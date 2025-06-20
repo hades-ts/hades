@@ -3,12 +3,14 @@
         "target": "ESNext",
         "module": "commonjs",
         "outDir": "generators",
-        "rootDir": "src",
-        "sourceMap": true,
-        "declaration": true,
-        "declarationMap": true,
-        "esModuleInterop": true
+        "rootDir": "generators",
+        "sourceMap": false,
+        "declaration": false,
+        "declarationMap": false,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "skipLibCheck": true
     },
-    "include": ["src"],
-    "exclude": ["node_modules", "src/*/templates"]
+    "include": ["generators/app"],
+    "exclude": ["node_modules", "generators/*/templates"]
 }

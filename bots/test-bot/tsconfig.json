@@ -14,7 +14,7 @@
         "sourceMap": true,
         "rootDir": "src",
         "outDir": "dist/",
-        "types": ["node", "reflect-metadata"],
+        "types": ["node"],
         "typeRoots": ["node_modules/@types"]
     },
     "include": ["src/**/*.ts", "src/**/*.js"],

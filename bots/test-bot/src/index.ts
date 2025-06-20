@@ -13,7 +13,7 @@ import "./slash-commands";
 
 (async () => {
     const container = new HadesContainer({
-        installers: [new TextCommandsInstaller(), new SlashCommandsInstaller()],
+        installers: [new SlashCommandsInstaller()],
     });
 
     const bot = container.get(BotService);
