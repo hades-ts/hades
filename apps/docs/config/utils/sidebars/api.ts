@@ -1,4 +1,4 @@
-import path from "path";
+import * as path from "@reliverse/pathkit"
 import { Container } from "inversify";
 import {
     SectionFactory,
@@ -28,9 +28,9 @@ export function mkSubSection(sectionRoot, relativePath, collapsible = true): Sid
     container.bind("IsSectionDirectory").toConstantValue(isDirectory(subSectionRoot));
     container
         .bind("IdMaker")
-        .toConstantValue((entry: string) =>
-            removeLeadingSlashes(path.join(relativePath, removeNumericPrefix(removeExtension(entry)))),
-        );
+        .toConstantValue((entry: string) => {
+            return removeLeadingSlashes(path.join(relativePath, removeNumericPrefix(removeExtension(entry))));
+        });
 
     container.bind(SectionFactory).toSelf().inSingletonScope();
     container.bind(SectionEntryProvider).toSelf().inSingletonScope();

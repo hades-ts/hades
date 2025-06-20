@@ -2,7 +2,7 @@ import { readFileSync } from "fs";
 import { inject, injectable, postConstruct } from "inversify";
 import matter from "gray-matter";
 
-import { join } from "path";
+import { join } from "@reliverse/pathkit";
 import { SectionMetadata } from "../types";
 import { SectionEntryProvider } from "./EntryProvider";
 

@@ -7,7 +7,7 @@
     "editor.tabCompletion": "on",
     "editor.detectIndentation": false,
     "editor.codeActionsOnSave": {
-        "source.fixAll": true,
+        "source.fixAll": "explicit"
     },
     "cSpell.words": [
         "camxes",

@@ -78,6 +78,9 @@ common/autoinstallers/*/.npmrc
 .ignore
 **/data
 
+.cursorindexingignore
+.specstory
+
 # Nix
 /result
 /.std/

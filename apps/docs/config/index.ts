@@ -1,5 +1,4 @@
-import lightCodeTheme from "prism-react-renderer/themes/github";
-import darkCodeTheme from "prism-react-renderer/themes/dracula";
+import { themes } from "prism-react-renderer";
 import metadata from "./metadata";
 import plugins from "./plugins";
 import presets from "./presets";
@@ -37,8 +36,8 @@ async function createConfig() {
             },
             footer,
             prism: {
-                theme: lightCodeTheme,
-                darkTheme: darkCodeTheme,
+                theme: themes.github,
+                darkTheme: themes.dracula,
             },
         },
     };

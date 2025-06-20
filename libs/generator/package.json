@@ -40,7 +40,7 @@
         "onchange": "^7.1.0",
         "rimraf": "^3.0.2",
         "tsc-watch": "^4.2.9",
-        "typescript": "^5.0.0",
+        "typescript": "~5.8.3",
         "yeoman-assert": "^3.1.0",
         "yeoman-test": "^7.4.0",
         "eslint-config-prettier": "^9.0.0",

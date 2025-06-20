@@ -64,12 +64,12 @@
             "versionPolicyName": "hades",
             "shouldPublish": true
         },
-        {
-            "packageName": "@hades-ts/lojban",
-            "projectFolder": "libs/lojban",
-            "versionPolicyName": "hades",
-            "shouldPublish": true
-        },
+        // {
+        //     "packageName": "@hades-ts/lojban",
+        //     "projectFolder": "libs/lojban",
+        //     "versionPolicyName": "hades",
+        //     "shouldPublish": true
+        // },
         {
             "packageName": "generator-hades-bot",
             "projectFolder": "libs/generator",
@@ -109,11 +109,11 @@
             "projectFolder": "bots/zeus",
             "shouldPublish": false
         },
-        {
-            "packageName": "@hades-ts/apollo",
-            "projectFolder": "bots/apollo",
-            "shouldPublish": false
-        },
+        // {
+        //     "packageName": "@hades-ts/apollo",
+        //     "projectFolder": "bots/apollo",
+        //     "shouldPublish": false
+        // },
         {
             "packageName": "@hades-ts/hypnos",
             "projectFolder": "bots/hypnos",
