@@ -23,7 +23,7 @@
         "@hades-ts/guilds": "workspace:^0.0.7",
         "@hades-ts/stash": "workspace:^0.0.7",
         "@hades-ts/ai": "workspace:^0.0.7",
-        "discord.tsx": "workspace:^0.0.7",
+        "@hades-ts/tsx": "workspace:^0.0.7",
         "inversify": "^6.0.1",
         "@ldlework/categoric-decorators": "^1.0.0",
         "@ldlework/categoric-containers": "~0.0.2",

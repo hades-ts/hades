@@ -1,0 +1,32 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "tasks": {
+    "topo": {
+      "dependsOn": ["^topo"]
+    },
+    "build": {
+      "outputs": ["out/**"],
+      "dependsOn": ["^build"]
+    },
+    "lint": {
+      "dependsOn": ["^topo"]
+    },
+    "test": {
+      "dependsOn": ["test:babel", "test:ts"]
+    },
+    "test:babel": {
+      "dependsOn": ["test:babel:build"]
+    },
+    "test:babel:build": {
+      "outputs": ["test/js-out/babel.js"],
+      "dependsOn": ["build"]
+    },
+    "test:ts": {
+      "dependsOn": ["test:ts:build"]
+    },
+    "test:ts:build": {
+      "outputs": ["test/ts-out/typescript.js"],
+      "dependsOn": ["build"]
+    }
+  }
+}

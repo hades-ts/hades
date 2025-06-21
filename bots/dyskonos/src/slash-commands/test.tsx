@@ -5,7 +5,7 @@ import {
     DiscordComponents,
     ActionRow,
     Button,
-} from "discord.tsx";
+} from "@hades-ts/tsx";
 import { ButtonStyle } from "discord.js";
 
 
@@ -18,5 +18,7 @@ const ui = <>
         <Button style={ButtonStyle.Link} label="Link" url="https://discord.js.org" />
     </ActionRow>
 </>
+
+console.log(ui);
 
 export default ui;

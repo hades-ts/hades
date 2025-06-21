@@ -1,0 +1,51 @@
+{
+    "name": "@hades-ts/tsx",
+    "description": "Create Discord.js components in JSX",
+    "version": "0.0.7",
+    "type": "module",
+    "author": "hades-ts",
+    "license": "MIT-0",
+    "homepage": "https://github.com/hades-ts/hades#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/hades-ts/hades.git"
+    },
+    "bugs": {
+        "url": "https://github.com/hades-ts/hades/issues"
+    },
+    "keywords": [
+        "jsx",
+        "tsx",
+        "discord"
+    ],
+    "types": "./out/index.d.ts",
+    "exports": {
+        "import": "./out/index.js",
+        "require": "./out/index.cjs"
+    },
+    "packageManager": "pnpm@10.12.1",
+    "scripts": {
+        "build": "tsup",
+        "lint": "tsc --noEmit",
+        "test:babel": "node test/js-out/babel.js",
+        "test:babel:build": "babel test/js/babel.jsx --relative -d ../js-out",
+        "test:ts": "node test/ts-out/typescript.js",
+        "test:ts:build": "tsc -p test/tsconfig.json"
+    },
+    "files": [
+        "out"
+    ],
+    "devDependencies": {
+        "@babel/cli": "^7.27.2",
+        "@babel/core": "^7.27.4",
+        "@babel/plugin-transform-react-jsx": "^7.27.1",
+        "@babel/preset-env": "^7.27.2",
+        "@types/node": "^18.11.11",
+        "discord.js": "14.20.0",
+        "rimraf": "^6.0.1",
+        "tsup": "~8.0.1",
+        "tsx": "^4.20.3",
+        "turbo": "^2.5.4",
+        "typescript": "~5.8.3"
+    }
+}

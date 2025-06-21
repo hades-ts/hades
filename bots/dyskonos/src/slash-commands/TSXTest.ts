@@ -8,7 +8,7 @@ export class TSXTestCommand extends SlashCommand {
     async execute(): Promise<void> {
         await this.interaction.reply({
             content: "Hello, world!",
-            components: ui
+            ...ui
         });
     }
 }
