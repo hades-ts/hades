@@ -64,6 +64,12 @@
             "versionPolicyName": "hades",
             "shouldPublish": true
         },
+        {
+            "packageName": "discord.tsx",
+            "projectFolder": "libs/discord.tsx",
+            "versionPolicyName": "hades",
+            "shouldPublish": false
+        },
         // {
         //     "packageName": "@hades-ts/lojban",
         //     "projectFolder": "libs/lojban",

@@ -18,7 +18,7 @@
         "dist"
     ],
     "scripts": {
-        "build": "tsup src/index.ts --format cjs,esm --dts",
+        "build": "tsup src/index.ts --sourcemap --format cjs,esm --dts && tsc --emitDeclarationOnly --declaration",
         "rebuild": "rm -rf dist; npm run build",
         "watch": "tsc -p tsconfig.json -w"
     },
