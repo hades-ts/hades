@@ -10,11 +10,11 @@ export class SlashArgMeta {
     name?: string;
     type?: Constructor;
     property?: string;
+    parser?: SlashArgParser;
     description?: string;
     options?: ApplicationCommandOptionData;
     choicesResolver?: Constructor;
     choicesCompleter?: Constructor;
-    parserType?: Newable<SlashArgParser>;
     validatorMethods = new Set<string>();
     validatorInstallers: InstallerFunc[] = [];
 }

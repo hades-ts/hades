@@ -1,4 +1,4 @@
-import { AutocompleteInteraction, Collection, CommandInteraction } from "discord.js";
+import { AutocompleteInteraction, ChatInputCommandInteraction, Collection, CommandInteraction } from "discord.js";
 import { Container, interfaces } from "inversify";
 
 import { SlashCommandMeta } from "../../metadata";
@@ -35,9 +35,7 @@ export class SlashCommandFactory {
         this.parserService = parentContainer.get(SlashArgParserRegistry);
         // setup arguments
         for (const [argName, argMeta] of meta.args) {
-            const parserType = argMeta.parserType || this.inferenceService.infer(argMeta.type);
-            const parser = this.parserService.parserFor(parserType);
-            const arg = new SlashArgInstaller(argMeta, parser);
+            const arg = new SlashArgInstaller(argMeta);
             this.argInstallers.set(argName, arg);
         }
     }
@@ -47,7 +45,7 @@ export class SlashCommandFactory {
      * @param container Container to install into.
      * @param context The command invocation context.
      */
-    async installArguments(container: Container, interaction: CommandInteraction) {
+    async installArguments(container: Container, interaction: ChatInputCommandInteraction) {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         for (const [_, arg] of this.argInstallers) {
             await arg.install(container, interaction);
@@ -94,7 +92,7 @@ export class SlashCommandFactory {
      * @param context A command invocation context.
      * @returns A command instance.
      */
-    async create(interaction: CommandInteraction) {
+    async create(interaction: ChatInputCommandInteraction) {
         // subcontainer config
         const subContainer = this.createSubContainer(interaction);
 

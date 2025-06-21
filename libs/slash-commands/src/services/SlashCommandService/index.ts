@@ -3,6 +3,7 @@ import {
     AutocompleteInteraction,
     BaseInteraction,
     ChatInputApplicationCommandData,
+    ChatInputCommandInteraction,
     CommandInteraction,
 } from "discord.js";
 import { inject } from "inversify";
@@ -23,7 +24,7 @@ export class SlashCommandService {
     // @inject(SlashCommandHelpService)
     // help: SlashCommandHelpService
 
-    async execute(interaction: CommandInteraction) {
+    async execute(interaction: ChatInputCommandInteraction) {
         console.log("Executing command: " + interaction.commandName);
         const factory = this.factories.factoryFor(interaction.commandName);
 
@@ -70,13 +71,13 @@ export class SlashCommandService {
         }
     }
 
-    dispatch(interaction: BaseInteraction) {
+    dispatch(interaction: CommandInteraction) {
         if (interaction.isAutocomplete()) {
             return this.complete(interaction);
         }
 
         if (interaction.isCommand()) {
-            return this.execute(interaction);
+            return this.execute(interaction as ChatInputCommandInteraction);
         }
     }
 

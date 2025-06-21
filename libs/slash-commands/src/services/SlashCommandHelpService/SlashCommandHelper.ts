@@ -37,7 +37,7 @@ export class SlashCommandHelper {
     getArgFields() {
         return this.args.map((arg: SlashArgMeta) => {
             // TODO: figure out how to get at parser for arg (ParserRegistry?)
-            const parserType = arg.parserType?.name || "string";
+            const parserType = arg.parser?.name || "string";
             const description = arg.description || /* arg.parser.description || */ "";
             const value = `*${parserType}*\n${description} `.trim();
             return { name: arg.name, value };

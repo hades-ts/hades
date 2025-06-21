@@ -9,14 +9,18 @@ import { SlashArgInstaller } from "../services";
  * Base class for reusable argument validators.
  */
 @injectable()
-export class Validator {
+export class Validator<T = any> {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    public async validate(arg: SlashArgInstaller, ctx: CommandInteraction, value: any): Promise<any> {
+    public async validate(value: T) {
         return;
     }
 
-    static check() {
-        return ({ constructor }: Constructable, key: string) => {
+    static check<ValueType>() {
+        return <ClassType extends { [key: string]: ValueType }>(
+            { constructor }: ClassType,
+            key: string & keyof ClassType
+        ) => {
+            // Verify the target field has the expected type at runtime
             addSlashArgValidator(constructor, key, (container: Container) => {
                 container.bind(Validator).to(this).whenTargetNamed(key);
             });

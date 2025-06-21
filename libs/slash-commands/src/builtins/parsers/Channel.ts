@@ -1,4 +1,4 @@
-import { ChatInputCommandInteraction, CommandInteraction, GuildBasedChannel } from "discord.js";
+import { ChatInputCommandInteraction, CommandInteractionOptionResolver } from "discord.js";
 
 import { parser, SlashArgInstaller, SlashArgParser } from "../../services";
 
@@ -7,8 +7,7 @@ export class ChannelParser extends SlashArgParser {
     name = "channel";
     description = 'A guild channel."';
 
-    async parse(arg: SlashArgInstaller, interaction: ChatInputCommandInteraction) {
-        const data = interaction.options.get(arg.name);
-        return data.channel as GuildBasedChannel;
+    async parse(arg: SlashArgInstaller, interaction: ChatInputCommandInteraction): Promise<ReturnType<CommandInteractionOptionResolver['getChannel']>> {
+        return interaction.options.getChannel(arg.name);
     }
 }
