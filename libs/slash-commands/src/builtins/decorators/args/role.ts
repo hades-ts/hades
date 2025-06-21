@@ -1,9 +1,10 @@
 import { Constructable } from "@hades-ts/hades";
 import { ApplicationCommandOptionType } from "discord.js";
-
 import { arg } from "./arg";
+import { RoleParser } from "../../parsers";
+import { SlashCommand } from "../../../models";
 
-export type MemberArgOptions = {
+export type RoleArgOptions = {
     required?: boolean;
     description: string;
 };
@@ -12,12 +13,13 @@ export type MemberArgOptions = {
  * Marks the field of a TextCommand as an argument.
  * @param info Options for the decorator.
  */
-export function member(info: MemberArgOptions) {
-    return (target: Constructable, key: string) => {
+export function role<T extends SlashCommand>(info: RoleArgOptions) {
+    return (target: T, key: keyof T & string) => {
         arg({
-            type: ApplicationCommandOptionType.User,
+            type: ApplicationCommandOptionType.Role,
             required: info.required,
             description: info.description,
+            parser: new RoleParser()
         })(target, key);
     };
 }
