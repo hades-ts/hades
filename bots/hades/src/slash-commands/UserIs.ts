@@ -10,12 +10,14 @@ export class UserIsCommand extends SlashCommand {
     @inject(HadesClient)
     protected client: HadesClient;
 
-    @NotMeValidator.check()
-    @member({ description: "Who to check the role of." })
-    protected who: GuildMember;
+    @member({
+        description: "Who to check the role of.",
+        validators: [NotMeValidator]
+    })
+    who: GuildMember;
 
     @role({ description: "The role to check for." })
-    protected role: Role;
+    role: Role;
 
     async execute() {
         console.log(JSON.stringify(this.who, null, 2));

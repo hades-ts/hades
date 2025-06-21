@@ -19,7 +19,7 @@ import { Thread, ThreadMessage } from "../types";
 @command("dream", { description: "Go on a dream-like adventure." })
 export class DreamCommand extends SlashCommand {
     @arg({ description: "Context for the adventure.", type: ApplicationCommandOptionType.String })
-    protected setting!: string;
+    setting!: string;
 
     @inject(HadesClient)
     protected client!: HadesClient;

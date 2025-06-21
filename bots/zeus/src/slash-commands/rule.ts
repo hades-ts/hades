@@ -54,7 +54,7 @@ export class RuleCommand extends SlashCommand {
         required: true,
     })
     @completer(RuleCompleter)
-    protected rule!: string;
+    rule!: string;
 
     @inject(HadesClient)
     protected client!: HadesClient;

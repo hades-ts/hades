@@ -25,7 +25,8 @@
         "reflect-metadata": "~0.1.13",
         "sqlite3": "^5.0.1",
         "typeorm": "~0.2.29",
-        "dotenv": "^16.0.3"
+        "dotenv": "^16.0.3",
+        "zod": "~3.25.67"
     },
     "devDependencies": {
         "@types/common-tags": "^1.8.0",

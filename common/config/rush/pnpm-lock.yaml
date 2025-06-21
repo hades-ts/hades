@@ -153,8 +153,8 @@ importers:
         specifier: ~0.1.13
         version: 0.1.14
       zod:
-        specifier: ^3.20.2
-        version: 3.22.4
+        specifier: ~3.25.67
+        version: 3.25.67
     devDependencies:
       '@types/common-tags':
         specifier: ^1.8.0
@@ -286,7 +286,7 @@ importers:
         specifier: ~0.1.13
         version: 0.1.14
       zod:
-        specifier: ^3.20.2
+        specifier: ~3.25.67
         version: 3.25.67
     devDependencies:
       '@types/common-tags':
@@ -403,6 +403,9 @@ importers:
       typeorm:
         specifier: ~0.2.29
         version: 0.2.45(sqlite3@5.1.6)
+      zod:
+        specifier: ~3.25.67
+        version: 3.25.67
     devDependencies:
       '@types/common-tags':
         specifier: ^1.8.0
@@ -543,8 +546,8 @@ importers:
         specifier: ~0.2.29
         version: 0.2.45(sqlite3@5.1.6)
       zod:
-        specifier: ^3.20.2
-        version: 3.22.4
+        specifier: ~3.25.67
+        version: 3.25.67
     devDependencies:
       '@types/common-tags':
         specifier: ^1.8.0
@@ -682,8 +685,8 @@ importers:
         specifier: ~0.2.29
         version: 0.2.45(sqlite3@5.1.6)
       zod:
-        specifier: ^3.20.2
-        version: 3.22.4
+        specifier: ~3.25.67
+        version: 3.25.67
     devDependencies:
       '@types/common-tags':
         specifier: ^1.8.0
@@ -806,8 +809,8 @@ importers:
         specifier: ~0.1.13
         version: 0.1.14
       zod:
-        specifier: ^3.20.2
-        version: 3.22.4
+        specifier: ~3.25.67
+        version: 3.25.67
     devDependencies:
       '@types/common-tags':
         specifier: ^1.8.0
@@ -906,8 +909,8 @@ importers:
         specifier: ^2.2.0
         version: 2.3.4
       zod:
-        specifier: ^3.20.2
-        version: 3.22.4
+        specifier: ~3.25.67
+        version: 3.25.67
     devDependencies:
       '@types/node':
         specifier: ^18.11.11
@@ -988,8 +991,8 @@ importers:
         specifier: ^2.2.0
         version: 2.3.4
       zod:
-        specifier: ^3.20.2
-        version: 3.22.4
+        specifier: ~3.25.67
+        version: 3.25.67
     devDependencies:
       '@types/node':
         specifier: ^18.11.11
@@ -1155,8 +1158,8 @@ importers:
         specifier: ~0.1.13
         version: 0.1.14
       zod:
-        specifier: ^3.20.2
-        version: 3.22.4
+        specifier: ~3.25.67
+        version: 3.25.67
     devDependencies:
       '@hades-ts/hades':
         specifier: workspace:^0.0.7
@@ -1404,8 +1407,8 @@ importers:
         specifier: ^2.2.0
         version: 2.3.4
       zod:
-        specifier: ^3.20.2
-        version: 3.22.4
+        specifier: ~3.25.67
+        version: 3.25.67
     devDependencies:
       '@types/node':
         specifier: ^18.11.11
@@ -1489,8 +1492,8 @@ importers:
         specifier: ^2.2.0
         version: 2.3.4
       zod:
-        specifier: ^3.20.2
-        version: 3.22.4
+        specifier: ~3.25.67
+        version: 3.25.67
     devDependencies:
       '@types/node':
         specifier: ^18.11.11
@@ -20202,10 +20205,6 @@ packages:
       zod: ^3.24.1
     dependencies:
       zod: 3.25.67
-    dev: false
-
-  /zod@3.22.4:
-    resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
     dev: false
 
   /zod@3.25.67:

@@ -19,7 +19,7 @@ import { Thread, ThreadMessage } from "../types";
 @command("explain", { description: "Ask the bot a question." })
 export class ExplainCommand extends SlashCommand {
     @arg({ description: "Your question.", type: ApplicationCommandOptionType.String })
-    protected question!: string;
+    question!: string;
 
     @inject(HadesClient)
     protected client!: HadesClient;

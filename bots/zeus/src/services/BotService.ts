@@ -1,7 +1,7 @@
 import { GuildManager } from "@hades-ts/guilds";
 import { HadesBotService, singleton } from "@hades-ts/hades";
 import { SlashCommandService } from "@hades-ts/slash-commands";
-import { Interaction } from "discord.js";
+import { CommandInteraction, Interaction } from "discord.js";
 import { inject } from "inversify";
 
 import { GuildService } from "../guildServices";
@@ -27,6 +27,8 @@ export class BotService extends HadesBotService {
     }
 
     async onInteractionCreate<T extends Interaction>(interaction: T) {
-        await this.slashCommands.dispatch(interaction);
+        if (interaction.isCommand()) {
+            await this.slashCommands.dispatch(interaction);
+        }
     }
 }

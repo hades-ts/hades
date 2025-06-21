@@ -8,7 +8,7 @@ import { GuildServiceFactory } from "../services";
 @command("ban-user", { description: "Toggle whether a user can use Chaos." })
 export class UserBanCommand extends SlashCommand {
     @arg({ description: "User", type: ApplicationCommandOptionType.User })
-    private user!: GuildMember;
+    user!: GuildMember;
 
     @inject("cfg.guilds")
     private configGuilds!: Record<string, GuildConfig>;

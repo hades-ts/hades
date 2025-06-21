@@ -13,7 +13,7 @@ export class HiCommand extends SlashCommand {
     protected client: HadesClient;
 
     @user({ description: "Who to say hi to." })
-    protected who: GuildMember;
+    who: GuildMember;
 
     @validate("who")
     async validateWho() {

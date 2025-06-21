@@ -50,7 +50,7 @@ export class ToggleRoleCommand extends SlashCommand {
         required: true,
     })
     @completer(RoleCompleter)
-    protected role!: string;
+    role!: string;
 
     @inject(HadesClient)
     protected client!: HadesClient;

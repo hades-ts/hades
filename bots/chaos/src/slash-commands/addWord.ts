@@ -9,7 +9,7 @@ import { GuildServiceFactory } from "../services";
 @command("add-word", { description: "Add a word to a multiplayer message." })
 export class AddWordCommand extends SlashCommand {
     @arg({ description: "Your word.", type: ApplicationCommandOptionType.String })
-    protected word!: string;
+    word!: string;
 
     @inject("cfg.guilds")
     protected configGuilds!: Record<string, GuildConfig>;
