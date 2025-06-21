@@ -18,7 +18,7 @@ export class BotService extends HadesBotService {
     }
 
     async onInteractionCreate<T extends Interaction>(interaction: T) {
-        if (interaction.isCommand()) {
+        if (interaction.isChatInputCommand()) {
             this.slashCommands.dispatch(interaction);
         }
     }

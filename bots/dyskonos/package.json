@@ -1,5 +1,5 @@
 {
-    "name": "@hades-ts/test-bot",
+    "name": "@hades-ts/dyskonos",
     "version": "0.0.1",
     "description": "Hades based Discord bot",
     "main": "dist/index.js",

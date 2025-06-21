@@ -120,8 +120,8 @@
             "shouldPublish": false
         },
         {
-            "packageName": "@hades-ts/test-bot",
-            "projectFolder": "bots/test-bot",
+            "packageName": "@hades-ts/dyskonos",
+            "projectFolder": "bots/dyskonos",
             "shouldPublish": false
         }
     ]
