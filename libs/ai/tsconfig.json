@@ -13,9 +13,18 @@
         "emitDecoratorMetadata": true,
         "allowSyntheticDefaultImports": true,
         "resolveJsonModule": true,
-        "lib": ["dom", "es6"],
-        "types": ["node", "reflect-metadata"]
+        "lib": [
+            "dom",
+            "es6"
+        ],
+        "types": [
+            "node"
+        ]
     },
-    "include": ["src/**/*.ts"],
-    "exclude": ["node_modules"]
+    "include": [
+        "src/**/*.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
 }
