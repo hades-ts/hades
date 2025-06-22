@@ -6,7 +6,7 @@
     "suppressNodeLtsWarning": true,
     "ensureConsistentVersions": true,
     "projectFolderMinDepth": 2,
-    "projectFolderMaxDepth": 2,
+    "projectFolderMaxDepth": 3,
     "gitPolicy": {
         "versionBumpCommitMessage": "chore: bump versions",
         "changeLogUpdateCommitMessage": "docs: update changelogs",
@@ -106,23 +106,8 @@
             "shouldPublish": false
         },
         {
-            "packageName": "@hades-ts/chaos",
-            "projectFolder": "bots/chaos",
-            "shouldPublish": false
-        },
-        {
             "packageName": "@hades-ts/zeus",
             "projectFolder": "bots/zeus",
-            "shouldPublish": false
-        },
-        // {
-        //     "packageName": "@hades-ts/apollo",
-        //     "projectFolder": "bots/apollo",
-        //     "shouldPublish": false
-        // },
-        {
-            "packageName": "@hades-ts/hypnos",
-            "projectFolder": "bots/hypnos",
             "shouldPublish": false
         },
         {
