@@ -1,12 +1,12 @@
 import { singleton } from "@hades-ts/hades";
 import { GuildMember } from "discord.js";
 
-import { BypassConfig } from "../schema";
+import { type BypassConfig } from "../schema";
 
 @singleton(BypassService)
 export class BypassService {
     // eslint-disable-next-line no-useless-constructor
-    constructor(protected config: BypassConfig) {}
+    constructor(protected config: BypassConfig) { }
 
     isExempted(member: GuildMember) {
         const id = member.id;

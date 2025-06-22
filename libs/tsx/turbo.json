@@ -1,32 +1,39 @@
 {
-  "$schema": "https://turbo.build/schema.json",
-  "tasks": {
-    "topo": {
-      "dependsOn": ["^topo"]
-    },
-    "build": {
-      "outputs": ["out/**"],
-      "dependsOn": ["^build"]
-    },
-    "lint": {
-      "dependsOn": ["^topo"]
-    },
-    "test": {
-      "dependsOn": ["test:babel", "test:ts"]
-    },
-    "test:babel": {
-      "dependsOn": ["test:babel:build"]
-    },
-    "test:babel:build": {
-      "outputs": ["test/js-out/babel.js"],
-      "dependsOn": ["build"]
-    },
-    "test:ts": {
-      "dependsOn": ["test:ts:build"]
-    },
-    "test:ts:build": {
-      "outputs": ["test/ts-out/typescript.js"],
-      "dependsOn": ["build"]
+    "$schema": "./node_modules/turbo/schema.json",
+    "extends": [
+        "//"
+    ],
+    "tasks": {
+        "test": {
+            "dependsOn": [
+                "transit",
+                "test:babel",
+                "test:ts"
+            ]
+        },
+        "test:babel": {
+            "dependsOn": [
+                "transit",
+                "test:babel:build"
+            ]
+        },
+        "test:babel:build": {
+            "dependsOn": [
+                "transit",
+                "build"
+            ],
+            "inputs": [
+                "test/js/**"
+            ],
+            "outputs": [
+                "test/js-out/**"
+            ]
+        },
+        "test:ts": {
+            "dependsOn": [
+                "transit",
+                "build"
+            ]
+        }
     }
-  }
 }

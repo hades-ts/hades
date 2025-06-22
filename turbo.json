@@ -1,0 +1,43 @@
+{
+    "$schema": "./node_modules/turbo/schema.json",
+    "tasks": {
+        "transit": {
+            "dependsOn": [
+                "^transit"
+            ]
+        },
+        "clean": {
+            "cache": false
+        },
+        "build": {
+            "dependsOn": [
+                "^build",
+                "clean"
+            ],
+            "inputs": [
+                "$TURBO_DEFAULTS",
+                ".env*"
+            ],
+            "outputs": [
+                "dist/**"
+            ]
+        },
+        "watch": {
+            "dependsOn": [
+                "transit"
+            ],
+            "cache": false,
+            "persistent": true
+        },
+        "lint": {
+            "dependsOn": [
+                "transit"
+            ]
+        },
+        "test": {
+            "dependsOn": [
+                "transit"
+            ]
+        }
+    }
+}

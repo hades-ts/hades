@@ -5,7 +5,7 @@ import { installCommands } from "./installCommands";
 import { defaultMappedTypes, installDefaultMappedTypes, TypePair } from "./installDefaultMappedTypes";
 import { installParsers } from "./installParsers";
 
-export { defaultMappedTypes, TypePair } from "./installDefaultMappedTypes";
+export { defaultMappedTypes, type TypePair } from "./installDefaultMappedTypes";
 
 /**
  * Installs text command support in HadesContainer.

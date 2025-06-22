@@ -15,7 +15,6 @@
         "@hades-ts/slash-commands": "^0.0.4",
         "common-tags": "^1.8.0",
         "config": "^3.3.3",
-        "discord-api-types": "^0.33.5",
         "discord-command-parser": "^1.5.3",
         "discord.js": "^14.13.0",
         "googleapis": "^67.0.0",

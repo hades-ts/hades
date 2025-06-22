@@ -81,6 +81,7 @@ common/autoinstallers/*/.npmrc
 .cursorindexingignore
 .specstory
 
+
 # Nix
 /result
 /.std/
@@ -93,3 +94,4 @@ common/autoinstallers/*/.npmrc
 /treefmt.toml
 
 default.json
+.turbo

@@ -4,7 +4,7 @@ import { MultiSync } from "@hades-ts/stash";
 import { inject, postConstruct } from "inversify";
 import path from "path";
 
-import { GuildConfig } from "../config";
+import { type GuildConfig } from "../config";
 
 @guildSingleton()
 export class GuildStashChannels {

@@ -1,5 +1,5 @@
 import { text, command, SlashCommand, channel, arg, SlashArgError, SlashArgInstaller, Validator, boolean } from "@hades-ts/slash-commands";
-import { ApplicationCommandOptionType, ChannelType, CommandInteraction, GuildBasedChannel } from "discord.js";
+import { ApplicationCommandOptionType, ChannelType, CommandInteraction, type GuildBasedChannel } from "discord.js";
 import { injectable, interfaces } from "inversify";
 
 @injectable()

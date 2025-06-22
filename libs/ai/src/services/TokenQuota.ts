@@ -4,7 +4,7 @@ import GPT3Tokenizer from "gpt3-tokenizer";
 import { inject } from "inversify";
 
 import { AiGlobalQuotaError, AiUserQuotaError } from "../errors";
-import { QuotaConfig } from "../schema";
+import { type QuotaConfig } from "../schema";
 import { aiTokens } from "../tokens";
 
 export type Quota = {
