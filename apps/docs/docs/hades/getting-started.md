@@ -17,7 +17,7 @@ boot(BotService)
 The `boot` function will connect the bot service to Discord.
 
 `BotService.onReady()` will be called when the associated Discord.js event is
-fired and in this case log a message to the console.
+fired.
 
 ## Bot Configuration
 
@@ -62,6 +62,4 @@ boot(BotService)
 
 Now the bot will respond when you highlight it.
 
-There are many events that you can handle. 
-
-The next section shows a listing.
+There are many events that you can handle. The next section shows a listing.
