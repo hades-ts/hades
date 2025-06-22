@@ -2,7 +2,7 @@
   description = "A DI Discord bot framework";
 
   inputs = {
-    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.0.tar.gz";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     devshell.url = "github:numtide/devshell";
     nixago.url = "github:nix-community/nixago";

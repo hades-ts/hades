@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@hades-ts/hades",
+      "comment": "Add missing dependency",
+      "type": "none"
+    }
+  ],
+  "packageName": "@hades-ts/hades"
+}

@@ -22,7 +22,8 @@
         "@ldlework/inversify-binding-decorators": "^4.0.2",
         "reflect-metadata": "0.2.2",
         "@ldlework/inversify-config-injection": "~0.0.7",
-        "@docusaurus/babel": "~3.8.1"
+        "@docusaurus/babel": "~3.8.1",
+        "acorn": "^8.0.0"
     },
     "devDependencies": {
         "@types/node": "^18.11.11",
