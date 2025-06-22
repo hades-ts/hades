@@ -23,6 +23,7 @@
         "watch": "tsc -p tsconfig.json -w"
     },
     "devDependencies": {
+        "@hades-ts/hades": "workspace:^0.0.7",
         "@types/node": "^18.11.11",
         "eslint-plugin-hades": "workspace:^0.0.1",
         "eslint": "^8.26.0",
