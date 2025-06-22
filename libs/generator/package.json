@@ -10,7 +10,7 @@
     ],
     "scripts": {
         "build": "tsc -b",
-        "rebuild": "rm -rf dist && npm run build",
+        "rebuild": "rm generators/index.js && npm run build",
         "copydeps": "copyfiles --up 1 'src/*/templates/**' generators",
         "lint": "eslint ./src --ext .js,.ts",
         "clean": "rimraf -rf ./generators",
