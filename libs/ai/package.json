@@ -45,8 +45,8 @@
         "inversify": "^6.0.1",
         "@hades-ts/hades": "workspace:^0.0.7",
         "@ldlework/inversify-binding-decorators": "^4.0.1",
-        "@ldlework/inversify-config-injection": "^0.0.7",
-        "reflect-metadata": "^0.1.13"
+        "@ldlework/inversify-config-injection": "0.0.8",
+        "reflect-metadata": "0.2.2"
     },
     "dependencies": {
         "gpt3-tokenizer": "^1.1.4",

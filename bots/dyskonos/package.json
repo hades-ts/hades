@@ -29,7 +29,7 @@
         "@ldlework/categoric-containers": "~0.0.2",
         "@ldlework/inversify-binding-decorators": "^4.0.2",
         "node-schedule": "^1.3.2",
-        "reflect-metadata": "0.2.2",
+        "reflect-metadata": "~0.2.2",
         "zod": "~3.25.67",
         "dotenv": "^16.0.3"
     },
