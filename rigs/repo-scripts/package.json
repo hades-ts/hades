@@ -1,43 +1,42 @@
 {
+    "private": true,
     "name": "repo-scripts",
     "version": "0.0.1",
     "description": "Local repository scripts",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "scripts": {
-        "build": "",
-        "rebuild": "",
         "generate-snippets": "ts-node src/generateSnippets.ts",
         "versions": "ts-node src/versions.ts",
         "eject": "ts-node src/eject.ts"
     },
     "dependencies": {
         "@microsoft/rush-lib": "5.82.1",
-        "source-map-support": "~0.5.20",
         "colors": "^1.4.0",
-        "table": "^6.8.1",
-        "prompts": "^2.4.2"
+        "prompts": "^2.4.2",
+        "source-map-support": "~0.5.21",
+        "table": "^6.9.0"
     },
     "devDependencies": {
-        "@types/node": "^18.11.11",
-        "@types/source-map-support": "~0.5.4",
-        "@typescript-eslint/eslint-plugin": "6.x",
-        "@typescript-eslint/parser": "6.x",
-        "eslint-plugin-hades": "workspace:^0.0.1",
-        "eslint": "^8.26.0",
-        "eslint-plugin-import": "^2.26.0",
-        "eslint-plugin-import-newlines": "^1.2.3",
+        "@types/node": "catalog:",
+        "@types/prompts": "^2.4.9",
+        "@types/source-map-support": "~0.5.10",
+        "@typescript-eslint/eslint-plugin": "~6.21.0",
+        "@typescript-eslint/parser": "~6.21.0",
+        "eslint": "^8.57.1",
+        "eslint-config-prettier": "^9.1.0",
+        "eslint-plugin-hades": "workspace:^",
+        "eslint-plugin-import": "^2.32.0",
+        "eslint-plugin-import-newlines": "^1.4.0",
         "eslint-plugin-json": "^3.1.0",
-        "eslint-plugin-promise": "^6.0.1",
+        "eslint-plugin-promise": "^6.6.0",
         "eslint-plugin-simple-import-sort": "^8.0.0",
-        "eslint-plugin-unused-imports": "3.x",
-        "prettier": "^2.7.1",
-        "ts-node": "^10.9.1",
+        "eslint-plugin-unused-imports": "~3.2.0",
+        "prettier": "^2.8.8",
+        "ts-node": "^10.9.2",
         "ts-node-dev": "^2.0.0",
-        "typescript": "~5.8.3",
-        "@types/prompts": "^2.4.2",
-        "eslint-config-prettier": "^9.0.0",
-        "tsup": "~8.0.1"
+        "tsup": "catalog:",
+        "typescript": "catalog:"
     },
     "engines": {
         "node": "^14.17.0 || ^16.0.0 || >= 18.0.0"

@@ -1,0 +1,13 @@
+{
+    "private": true,
+    "packageManager": "pnpm@10.12.1",
+    "scripts": {
+        "build": "turbo run build",
+        "test": "turbo run test",
+        "publish-packages": "turbo run build lint test && changeset version && changeset publish"
+    },
+    "devDependencies": {
+        "@changesets/cli": "^2.29.5",
+        "turbo": "^2.5.4"
+    }
+}

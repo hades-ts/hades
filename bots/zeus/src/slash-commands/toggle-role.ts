@@ -3,7 +3,7 @@ import { arg, command, completer, ICompleter, SlashCommand } from "@hades-ts/sla
 import { ApplicationCommandOptionType, AutocompleteInteraction, GuildMember, GuildMemberRoleManager } from "discord.js";
 import { inject, injectable } from "inversify";
 
-import { Config } from "../config";
+import { type Config } from "../config";
 import { GuildServiceFactory } from "../services";
 
 @injectable()

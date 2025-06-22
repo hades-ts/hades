@@ -1,5 +1,4 @@
-import { Client } from "discord.js";
-import { GatewayIntentBits } from "discord-api-types/v10";
+import { Client, GatewayIntentBits } from "discord.js";
 
 import { singleton } from "../decorators";
 

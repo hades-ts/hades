@@ -1,0 +1,16 @@
+{
+    "$schema": "./node_modules/turbo/schema.json",
+    "extends": [
+        "//"
+    ],
+    "tasks": {
+        "build": {
+            "inputs": [
+                "generators/**"
+            ],
+            "outputs": [
+                "generators/index.js"
+            ]
+        }
+    }
+}

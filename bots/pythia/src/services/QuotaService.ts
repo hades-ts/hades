@@ -3,7 +3,7 @@ import fs from "fs";
 import GPT3Tokenizer from "gpt3-tokenizer";
 import { inject } from "inversify";
 
-import { ConfigQuota } from "../config";
+import { type ConfigQuota } from "../config";
 import { GlobalQuotaError, UserQuotaError } from "../errors";
 
 export type Quota = {

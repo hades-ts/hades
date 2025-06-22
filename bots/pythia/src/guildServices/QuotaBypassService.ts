@@ -3,7 +3,7 @@ import { guildSingleton, guildTokens } from "@hades-ts/guilds";
 import { GuildMember } from "discord.js";
 import { inject, postConstruct } from "inversify";
 
-import { GuildConfig } from "../config";
+import { type GuildConfig } from "../config";
 
 @guildSingleton()
 export class QuotaBypassService {
