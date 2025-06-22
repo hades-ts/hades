@@ -45,8 +45,7 @@
         "inversify": "^6.0.1",
         "@hades-ts/hades": "workspace:^0.0.7",
         "@ldlework/inversify-binding-decorators": "^4.0.1",
-        "@ldlework/inversify-config-injection": "~0.0.7",
-        "reflect-metadata": "~0.1.13"
+        "@ldlework/inversify-config-injection": "0.0.8"
     },
     "dependencies": {
         "zod": "~3.25.67",

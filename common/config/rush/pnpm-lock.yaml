@@ -4,7 +4,7 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-packageExtensionsChecksum: sha256-idMstkNgah7VmMuFmyXi/r670p7/+xkU3CeQlLD8MWw=
+packageExtensionsChecksum: sha256-XtDqkgnQcJr0Xocv0pwGDRzcopVItYT+VrhdpP3aeeY=
 
 pnpmfileChecksum: sha256-XTeZQwJtKk4dimqf7175GhJCXrnq3Yh7+kwb86Bwcdo=
 
@@ -79,7 +79,7 @@ importers:
         specifier: ^9.2.2
         version: 9.4.3
       reflect-metadata:
-        specifier: 0.2.2
+        specifier: ~0.2.2
         version: 0.2.2
       sass:
         specifier: ^1.56.1
@@ -166,7 +166,7 @@ importers:
         specifier: ^1.3.2
         version: 1.3.3
       reflect-metadata:
-        specifier: 0.2.2
+        specifier: ~0.2.2
         version: 0.2.2
       zod:
         specifier: ~3.25.67
@@ -278,7 +278,7 @@ importers:
         specifier: ^1.3.2
         version: 1.3.3
       reflect-metadata:
-        specifier: 0.2.2
+        specifier: ~0.2.2
         version: 0.2.2
       sqlite3:
         specifier: ^5.0.1
@@ -414,7 +414,7 @@ importers:
         specifier: ^1.3.2
         version: 1.3.3
       reflect-metadata:
-        specifier: 0.2.2
+        specifier: ~0.2.2
         version: 0.2.2
       rxjs:
         specifier: ^7.6.0
@@ -547,7 +547,7 @@ importers:
         specifier: ^1.3.2
         version: 1.3.3
       reflect-metadata:
-        specifier: 0.2.2
+        specifier: ~0.2.2
         version: 0.2.2
       zod:
         specifier: ~3.25.67
@@ -626,8 +626,8 @@ importers:
         specifier: ^4.0.1
         version: 4.0.2
       '@ldlework/inversify-config-injection':
-        specifier: ^0.0.7
-        version: 0.0.7(inversify@6.2.2(reflect-metadata@0.1.14))(reflect-metadata@0.1.14)
+        specifier: 0.0.8
+        version: 0.0.8(inversify@6.2.2(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
       axios:
         specifier: ^1.2.1
         version: 1.10.0
@@ -642,10 +642,10 @@ importers:
         version: 4.0.3
       inversify:
         specifier: ^6.0.1
-        version: 6.2.2(reflect-metadata@0.1.14)
+        version: 6.2.2(reflect-metadata@0.2.2)
       reflect-metadata:
-        specifier: ^0.1.13
-        version: 0.1.14
+        specifier: 0.2.2
+        version: 0.2.2
       yaml:
         specifier: ^2.2.0
         version: 2.8.0
@@ -714,8 +714,8 @@ importers:
         specifier: ^4.0.1
         version: 4.0.2
       '@ldlework/inversify-config-injection':
-        specifier: ~0.0.7
-        version: 0.0.7(inversify@6.2.2(reflect-metadata@0.1.14))(reflect-metadata@0.1.14)
+        specifier: 0.0.8
+        version: 0.0.8(inversify@6.2.2(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
       discord.js:
         specifier: 14.20.0
         version: 14.20.0
@@ -724,10 +724,7 @@ importers:
         version: 4.0.3
       inversify:
         specifier: ^6.0.1
-        version: 6.2.2(reflect-metadata@0.1.14)
-      reflect-metadata:
-        specifier: ~0.1.13
-        version: 0.1.14
+        version: 6.2.2(reflect-metadata@0.2.2)
       yaml:
         specifier: ^2.2.0
         version: 2.8.0
@@ -799,7 +796,7 @@ importers:
         specifier: ^6.0.1
         version: 6.2.2(reflect-metadata@0.2.2)
       reflect-metadata:
-        specifier: 0.2.2
+        specifier: ~0.2.2
         version: 0.2.2
     devDependencies:
       '@docusaurus/plugin-content-docs':
@@ -946,13 +943,13 @@ importers:
     dependencies:
       '@ldlework/categoric-containers':
         specifier: ~0.0.2
-        version: 0.0.2(inversify@6.2.2(reflect-metadata@0.1.14))
+        version: 0.0.2(inversify@6.2.2(reflect-metadata@0.2.2))
       '@ldlework/inversify-binding-decorators':
         specifier: ^4.0.1
         version: 4.0.2
       '@ldlework/inversify-config-injection':
-        specifier: ~0.0.7
-        version: 0.0.7(inversify@6.2.2(reflect-metadata@0.1.14))(reflect-metadata@0.1.14)
+        specifier: 0.0.8
+        version: 0.0.8(inversify@6.2.2(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
       discord-api-types:
         specifier: ~0.33.5
         version: 0.33.5
@@ -964,10 +961,7 @@ importers:
         version: 14.20.0
       inversify:
         specifier: ^6.0.1
-        version: 6.2.2(reflect-metadata@0.1.14)
-      reflect-metadata:
-        specifier: ~0.1.13
-        version: 0.1.14
+        version: 6.2.2(reflect-metadata@0.2.2)
       zod:
         specifier: ~3.25.67
         version: 3.25.67
@@ -1036,8 +1030,8 @@ importers:
         specifier: ^4.0.2
         version: 4.0.2
       '@ldlework/inversify-config-injection':
-        specifier: ~0.0.7
-        version: 0.0.7(inversify@6.2.2(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
+        specifier: 0.0.8
+        version: 0.0.8(inversify@6.2.2(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
       acorn:
         specifier: ^8.0.0
         version: 8.15.0
@@ -1057,7 +1051,7 @@ importers:
         specifier: 14.20.0
         version: 14.20.0
       reflect-metadata:
-        specifier: 0.2.2
+        specifier: ~0.2.2
         version: 0.2.2
     devDependencies:
       '@babel/plugin-proposal-class-properties':
@@ -1133,8 +1127,8 @@ importers:
         specifier: ^4.0.1
         version: 4.0.2
       '@ldlework/inversify-config-injection':
-        specifier: ~0.0.7
-        version: 0.0.7(inversify@6.2.2(reflect-metadata@0.1.14))(reflect-metadata@0.1.14)
+        specifier: 0.0.8
+        version: 0.0.8(inversify@6.2.2(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
       discord-api-types:
         specifier: ~0.33.5
         version: 0.33.5
@@ -1146,10 +1140,10 @@ importers:
         version: 14.20.0
       inversify:
         specifier: ^6.0.1
-        version: 6.2.2(reflect-metadata@0.1.14)
+        version: 6.2.2(reflect-metadata@0.2.2)
       reflect-metadata:
-        specifier: ~0.1.13
-        version: 0.1.14
+        specifier: 0.2.2
+        version: 0.2.2
     devDependencies:
       '@hades-ts/hades':
         specifier: workspace:^0.0.7
@@ -1212,8 +1206,8 @@ importers:
         specifier: ^4.0.1
         version: 4.0.2
       '@ldlework/inversify-config-injection':
-        specifier: ~0.0.7
-        version: 0.0.7(inversify@6.2.2(reflect-metadata@0.1.14))(reflect-metadata@0.1.14)
+        specifier: 0.0.8
+        version: 0.0.8(inversify@6.2.2(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
       discord.js:
         specifier: 14.20.0
         version: 14.20.0
@@ -1222,10 +1216,7 @@ importers:
         version: 4.0.3
       inversify:
         specifier: ^6.0.1
-        version: 6.2.2(reflect-metadata@0.1.14)
-      reflect-metadata:
-        specifier: ~0.1.13
-        version: 0.1.14
+        version: 6.2.2(reflect-metadata@0.2.2)
       yaml:
         specifier: ^2.2.0
         version: 2.8.0
@@ -1294,8 +1285,8 @@ importers:
         specifier: ^4.0.1
         version: 4.0.2
       '@ldlework/inversify-config-injection':
-        specifier: ^0.0.7
-        version: 0.0.7(inversify@6.2.2(reflect-metadata@0.1.14))(reflect-metadata@0.1.14)
+        specifier: 0.0.8
+        version: 0.0.8(inversify@6.2.2(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
       discord.js:
         specifier: 14.20.0
         version: 14.20.0
@@ -1304,13 +1295,13 @@ importers:
         version: 4.0.3
       inversify:
         specifier: ^6.0.1
-        version: 6.2.2(reflect-metadata@0.1.14)
+        version: 6.2.2(reflect-metadata@0.2.2)
       luxon:
         specifier: ^3.1.1
         version: 3.6.1
       reflect-metadata:
-        specifier: ^0.1.13
-        version: 0.1.14
+        specifier: 0.2.2
+        version: 0.2.2
       yaml:
         specifier: ^2.2.0
         version: 2.8.0
@@ -1379,8 +1370,8 @@ importers:
         specifier: ^4.0.1
         version: 4.0.2
       '@ldlework/inversify-config-injection':
-        specifier: ~0.0.7
-        version: 0.0.7(inversify@6.2.2(reflect-metadata@0.1.14))(reflect-metadata@0.1.14)
+        specifier: 0.0.8
+        version: 0.0.8(inversify@6.2.2(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
       discord-api-types:
         specifier: ~0.33.5
         version: 0.33.5
@@ -1392,10 +1383,7 @@ importers:
         version: 14.20.0
       inversify:
         specifier: ^6.0.1
-        version: 6.2.2(reflect-metadata@0.1.14)
-      reflect-metadata:
-        specifier: ~0.1.13
-        version: 0.1.14
+        version: 6.2.2(reflect-metadata@0.2.2)
     devDependencies:
       '@hades-ts/hades':
         specifier: workspace:^0.0.7
@@ -3484,12 +3472,12 @@ packages:
   '@ldlework/inversify-binding-decorators@4.0.2':
     resolution: {integrity: sha512-j7VTdeCz+DHOlqMLsCP6C0UtD7K/z88tfQRS7K/Pc1xscYsvkDyXy+AOs/VjXcpi2HP0TPPRPlGG5nBpdq4oLw==}
 
-  '@ldlework/inversify-config-injection@0.0.7':
-    resolution: {integrity: sha512-+2ZXZZwmoG5Fq1ENmCZ5kSdLc/WRHZ+lS7c/QBYi6tVS08NKxohlFodtjQ4EVpjIF4VY8uDSJg0Fuomi/V5hhA==}
-    engines: {node: '>=4.0.0'}
+  '@ldlework/inversify-config-injection@0.0.8':
+    resolution: {integrity: sha512-os5kpr/tT23tBgm4EVobvpH5O+Ix3A5Fy6zNTrMPJrtmCN9GSZKUBLDRear24DhkCXUCnocIBpmumRoNdH39+Q==}
+    engines: {node: '>=22.0.0'}
     peerDependencies:
-      inversify: ^6.0.1
-      reflect-metadata: ^0.1.13
+      inversify: ^6.2.2
+      reflect-metadata: ~0.2.2
 
   '@leichtgewicht/ip-codec@2.0.5':
     resolution: {integrity: sha512-Vo+PSpZG2/fmgmiNzYK9qWRh8h/CHrwD0mo1h1DzL4yzHNSfWYujGTYsWGreD000gcgmZ7K4Ys6Tx9TxtsKdDw==}
@@ -15286,23 +15274,12 @@ snapshots:
 
   '@inversifyjs/common@1.4.0': {}
 
-  '@inversifyjs/core@1.3.5(reflect-metadata@0.1.14)':
-    dependencies:
-      '@inversifyjs/common': 1.4.0
-      '@inversifyjs/reflect-metadata-utils': 0.2.4(reflect-metadata@0.1.14)
-    transitivePeerDependencies:
-      - reflect-metadata
-
   '@inversifyjs/core@1.3.5(reflect-metadata@0.2.2)':
     dependencies:
       '@inversifyjs/common': 1.4.0
       '@inversifyjs/reflect-metadata-utils': 0.2.4(reflect-metadata@0.2.2)
     transitivePeerDependencies:
       - reflect-metadata
-
-  '@inversifyjs/reflect-metadata-utils@0.2.4(reflect-metadata@0.1.14)':
-    dependencies:
-      reflect-metadata: 0.1.14
 
   '@inversifyjs/reflect-metadata-utils@0.2.4(reflect-metadata@0.2.2)':
     dependencies:
@@ -15373,12 +15350,6 @@ snapshots:
 
   '@kwsites/promise-deferred@1.1.1': {}
 
-  '@ldlework/categoric-containers@0.0.2(inversify@6.2.2(reflect-metadata@0.1.14))':
-    dependencies:
-      '@ldlework/categoric-decorators': 1.0.1
-      inversify: 6.2.2(reflect-metadata@0.1.14)
-      uuid: 8.3.2
-
   '@ldlework/categoric-containers@0.0.2(inversify@6.2.2(reflect-metadata@0.2.2))':
     dependencies:
       '@ldlework/categoric-decorators': 1.0.1
@@ -15392,14 +15363,7 @@ snapshots:
 
   '@ldlework/inversify-binding-decorators@4.0.2': {}
 
-  '@ldlework/inversify-config-injection@0.0.7(inversify@6.2.2(reflect-metadata@0.1.14))(reflect-metadata@0.1.14)':
-    dependencies:
-      config: 1.31.0
-      inversify: 6.2.2(reflect-metadata@0.1.14)
-      reflect-metadata: 0.1.14
-      zod: 3.25.67
-
-  '@ldlework/inversify-config-injection@0.0.7(inversify@6.2.2(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)':
+  '@ldlework/inversify-config-injection@0.0.8(inversify@6.2.2(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)':
     dependencies:
       config: 1.31.0
       inversify: 6.2.2(reflect-metadata@0.2.2)
@@ -20627,12 +20591,6 @@ snapshots:
   invariant@2.2.4:
     dependencies:
       loose-envify: 1.4.0
-
-  inversify@6.2.2(reflect-metadata@0.1.14):
-    dependencies:
-      '@inversifyjs/common': 1.4.0
-      '@inversifyjs/core': 1.3.5(reflect-metadata@0.1.14)
-      reflect-metadata: 0.1.14
 
   inversify@6.2.2(reflect-metadata@0.2.2):
     dependencies:

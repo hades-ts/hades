@@ -20,8 +20,8 @@
         "discord-command-parser": "^1.5.3",
         "discord.js": "14.20.0",
         "@ldlework/inversify-binding-decorators": "^4.0.2",
-        "reflect-metadata": "0.2.2",
-        "@ldlework/inversify-config-injection": "~0.0.7",
+        "reflect-metadata": "~0.2.2",
+        "@ldlework/inversify-config-injection": "0.0.8",
         "@docusaurus/babel": "~3.8.1",
         "acorn": "^8.0.0"
     },
