@@ -1,4 +1,4 @@
-import * as path from "@reliverse/pathkit"
+const path = require("@reliverse/pathkit")
 import { Container } from "inversify";
 import {
     SectionFactory,
