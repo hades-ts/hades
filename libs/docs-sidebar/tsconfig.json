@@ -18,8 +18,7 @@
             "es6"
         ],
         "types": [
-            "node",
-            "reflect-metadata"
+            "node"
         ],
         "strict": true,
         "forceConsistentCasingInFileNames": true

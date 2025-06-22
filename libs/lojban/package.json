@@ -59,7 +59,7 @@
         "inversify": "^6.0.1",
         "@ldlework/inversify-binding-decorators": "^4.0.1",
         "@ldlework/inversify-config-injection": "0.0.8",
-        "reflect-metadata": "~0.1.13"
+        "reflect-metadata": "0.2.2"
     },
     "dependencies": {
         "camxes": "github:Lord-Valen/camxes.js"

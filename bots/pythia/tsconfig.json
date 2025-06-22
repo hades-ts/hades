@@ -11,12 +11,22 @@
         "resolveJsonModule": true,
         "skipLibCheck": true,
         "allowJs": true,
-        "lib": ["dom", "es6"],
+        "lib": [
+            "dom",
+            "es6"
+        ],
         "sourceMap": true,
         "rootDir": "src",
         "outDir": "dist/",
-        "types": ["node", "reflect-metadata"]
+        "types": [
+            "node"
+        ]
     },
-    "include": ["src/**/*.ts", "src/**/*.js"],
-    "exclude": ["node_modules"]
+    "include": [
+        "src/**/*.ts",
+        "src/**/*.js"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
 }
