@@ -1,7 +1,7 @@
 # Client Events
 
 `HadesBotService` has a number of methods you can override to handle the
-various [Discord.js client events](https://discord.js.org/#/docs/main/main/class/Client):
+various [Discord.js client events](https://discord.js.org/docs/packages/discord.js/main/Client:Class):
 
 ## logging
 

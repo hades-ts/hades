@@ -25,6 +25,7 @@ export class SectionItemProvider {
 
         if (order) {
             for (const id of order) {
+                console.log(id);
                 const item = allItems.find((item) => item.name === id);
                 if (item) {
                     sortedItems.push(item);

@@ -91,3 +91,5 @@ common/autoinstallers/*/.npmrc
 /.conform.yaml
 /lefthook.yml
 /treefmt.toml
+
+default.json

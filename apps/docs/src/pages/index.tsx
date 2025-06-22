@@ -7,8 +7,7 @@ import clsx from "clsx";
 import styles from "./index.module.scss";
 import HomepageFeatures from "../components/HomepageFeatures";
 
-const snippet = `@singleton()
-export class BotService extends HadesBotService {
+const snippet = `class BotService extends HadesBotService {
 
     @inject(ILogger) log: ILogger;
 
@@ -18,41 +17,39 @@ export class BotService extends HadesBotService {
         );
     }
 
-    async onMessage({ content, reply }: Message) {
-        if (this.isHighlight(content))) {
-            await reply('Hello!');
-        }
+    async onMessage(msg: Message) {
+        if (this.isHighlight(msg.content)))
+            await msg.reply('Hello!');
     }
 }`;
 
 function HomepageHeader() {
-  const { siteConfig } = useDocusaurusContext();
-  return (
-    <div className={clsx(styles.heroBanner)}>
-      <img src="/img/hades.png" />
-      <div className={styles.container}>
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <h1 className={`hero__title ${styles.hero__title}`}>
-            {siteConfig.title}
-          </h1>
-          <p className={`hero__subtitle ${styles.hero__subtitle}`}>
-            {siteConfig.tagline}
-          </p>
-          <div className={styles.snippet}>
-            <CodeBlock language="jsx">{snippet}</CodeBlock>
-          </div>
-          <HomepageFeatures />
+    const { siteConfig } = useDocusaurusContext();
+    return (
+        <div className={clsx(styles.heroBanner)}>
+            <img src="/img/hades.png" />
+            <div className={styles.container}>
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                    <h1 className={`hero__title ${styles.hero__title}`}>
+                        {siteConfig.title}
+                    </h1>
+                    <p className={`hero__subtitle ${styles.hero__subtitle}`}>
+                        {siteConfig.tagline}
+                    </p>
+                    <div className={styles.snippet}>
+                        <CodeBlock language="jsx">{snippet}</CodeBlock>
+                    </div>
+                    <HomepageFeatures />
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 }
 
 export default function Home(): JSX.Element {
-  const { siteConfig } = useDocusaurusContext();
-  return (
-    <Layout title={`@hades-ts/hades`} description="Build SOLID Discord bots.">
-      <HomepageHeader />
-    </Layout>
-  );
+    return (
+        <Layout>
+            <HomepageHeader />
+        </Layout>
+    );
 }

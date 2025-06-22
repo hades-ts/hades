@@ -1,3 +1,9 @@
 {
-    "order": ["ejecting-a-bot", "bot-generator", "solid-code", "di"]
+    "order": [
+        "bot-generator",
+        "hades-container",
+        "solid-code",
+        "di",
+        "ejecting-a-bot"
+    ]
 }

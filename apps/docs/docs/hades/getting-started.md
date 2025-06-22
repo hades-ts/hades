@@ -1,50 +1,25 @@
 # Getting Started
 
-The basic bot starts with extending `HadesBotService`:
+This is a minimal but working bot:
 
 ```ts
-// src/services/BotService.ts
-import { HadesBotService, singleton } from "hades";
+import { boot, HadesBotService, singleton } from "hades";
 
-@singleton(BotService)
 export class BotService extends HadesBotService {
   async onReady() {
     console.log(`Logged in as ${this.client.user.username}.`);
   }
 }
+
+boot(BotService)
 ```
+
+The `boot` function will connect the bot service to Discord.
 
 `BotService.onReady()` will be called when the associated Discord.js event is
 fired and in this case log a message to the console.
 
-We're using the `@singleton()` decorator here to bind `BotService` to itself
-within the container as a singleton.
-
-## Container Setup
-
-In our `index.ts` we can configure the container:
-
-```ts
-// src/index.ts
-import "reflect-metadata";
-import { HadesContainer } from "hades";
-
-import { BotService } from "./services/BotService";
-
-const container = new HadesContainer();
-const bot = container.get(BotService);
-bot.login();
-```
-
-In order for dependency injection to work, we need to import
-`reflect-metadata`. Just a fact of life.
-
-After creating the `HadesContainer` we can then request an instance of our
-`BotService`.
-
-We can finally login to Discord as the bot.
-
-## Writing the Config
+## Bot Configuration
 
 Add your token and user ID to `config/default.json`:
 
@@ -55,8 +30,38 @@ Add your token and user ID to `config/default.json`:
 }
 ```
 
-That's it.
+## Starting the bot
 
-If you `ts-node src/index.ts` the bot should now boot up and connect to any servers you've added it to.
+You can use [tsx](https://www.npmjs.com/package/tsx) to run your script:
 
-Of course it doesn't do anything...yet!
+```
+npx tsx src/index.ts
+```
+
+## Listening to Events
+
+The `onReady` method is not the only event handler you can provide:
+
+```ts
+import { boot, HadesBotService, singleton } from "hades";
+
+export class BotService extends HadesBotService {
+  async onReady() {
+    console.log(`Logged in as ${this.client.user.username}.`);
+  }
+
+  async onMessage(message: Message) {
+      if (this.isHighlight(message.content)) {
+        await message.reply('Hello!');
+      }
+  }
+}
+
+boot(BotService)
+```
+
+Now the bot will respond when you highlight it.
+
+There are many events that you can handle. 
+
+The next section shows a listing.

@@ -1,0 +1,9 @@
+{
+    "name": "services",
+    "label": "Built-in Services",
+    "order": [
+        "hades-client",
+        "discord-service",
+        "hades-container"
+    ]
+}
