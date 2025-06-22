@@ -6,8 +6,6 @@ import {
     ComponentPropTypes,
     FragmentResolvable,
 } from "../typings/types";
-import handleActionRow from "./ActionRowHandler.js";
-import handleEmbed from "./EmbedHandler.js";
 
 export class DiscordComponents {
     static createComponent<P = ComponentPropTypes>(
@@ -39,10 +37,10 @@ export class DiscordComponents {
 
             switch (atom.type) {
                 case "ActionRow":
-                    components.push(handleActionRow(atom));
+                    components.push(atom.resolve(atom.props, atom.children));
                     break;
                 case "Embed":
-                    embeds.push(handleEmbed(atom));
+                    embeds.push(atom.resolve(atom.props, atom.children));
                     break;
                 default:
                     throw new TypeError(`Unsupported parent component: "${atom}"!`);

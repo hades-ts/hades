@@ -25,7 +25,7 @@
     },
     "packageManager": "pnpm@10.12.1",
     "scripts": {
-        "build": "tsup",
+        "build": "tsup && tsc --emitDeclarationOnly --declaration",
         "lint": "tsc --noEmit",
         "test:babel": "node test/js-out/babel.js",
         "test:babel:build": "babel test/js/babel.jsx --relative -d ../js-out",

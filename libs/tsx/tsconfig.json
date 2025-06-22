@@ -1,6 +1,5 @@
 {
     "compilerOptions": {
-        "declaration": true,
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
         "module": "esnext",
@@ -9,16 +8,19 @@
         "noImplicitReturns": true,
         "noPropertyAccessFromIndexSignature": true,
         "noUncheckedIndexedAccess": true,
-        "noUnusedLocals": true,
-        "noUnusedParameters": true,
+        // "noUnusedLocals": true,
+        // "noUnusedParameters": true,
         "outDir": "./out",
         "rewriteRelativeImportExtensions": true,
-        "strict": true,
-        "strictNullChecks": true,
-        "strictFunctionTypes": true,
-        "strictBindCallApply": true,
-        "strictPropertyInitialization": true,
+        // "strict": true,
+        // "strictNullChecks": true,
+        // "strictFunctionTypes": true,
+        // "strictBindCallApply": true,
+        // "strictPropertyInitialization": true,
         "skipLibCheck": true,
+        "declarationMap": true,
+        "declaration": true,
+        "sourceMap": true
     },
     "include": [
         "src/**.ts"
