@@ -4,9 +4,9 @@ import { readdirSync } from "fs";
 @injectable()
 export class SectionEntryProvider {
     @inject("SubSectionRoot")
-    subSectionRoot: string;
+    subSectionRoot!: string;
 
-    public entries: string[];
+    public entries!: string[];
 
     @postConstruct()
     init() {

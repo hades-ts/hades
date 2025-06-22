@@ -53,7 +53,7 @@ various [Discord.js client events](https://discord.js.org/docs/packages/discord.
 
 - async **onMessage**(message: Message) [?](https://discord.js.org/#/docs/main/main/class/Client?scrollTo=e-message)
 - async **onMessageDelete**(message: Message) [?](https://discord.js.org/#/docs/main/main/class/Client?scrollTo=e-messageDelete)
-- async **onMessageDeleteBulk**(messages: Collection<Snowflake, Message>) [?](https://discord.js.org/#/docs/main/main/class/Client?scrollTo=e-messageDeleteBulk)
+- async **onMessageDeleteBulk**(messages: Collection&lt;Snowflake, Message&gt;) [?](https://discord.js.org/#/docs/main/main/class/Client?scrollTo=e-messageDeleteBulk)
 - async **onMessageReactionAdd**(reaction: MessageReaction, user: User) [?](https://discord.js.org/#/docs/main/main/class/Client?scrollTo=e-messageReactionAdd)
 - async **onMessageReactionRemove**(reaction: MessageReaction, user: User) [?](https://discord.js.org/#/docs/main/main/class/Client?scrollTo=e-messageReactionRemove)
 - async **onMessageReactionRemoveAll**(message: Message) [?](https://discord.js.org/#/docs/main/main/class/Client?scrollTo=e-messageReactionRemoveAll)

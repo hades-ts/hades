@@ -1,7 +1,17 @@
 {
-    "name": "@hades-ts/hades",
-    "version": "0.0.7",
-    "description": "Typescript framework using Inversify.js and Discord.js",
+    "name": "@hades-ts/docs-sidebar",
+    "version": "0.0.1",
+    "description": "Documentation sidebar generation library with inversify DI",
+    "author": "",
+    "license": "ISC",
+    "homepage": "https://github.com/hades-ts/hades#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/hades-ts/hades.git"
+    },
+    "bugs": {
+        "url": "https://github.com/hades-ts/hades/issues"
+    },
     "main": "dist/index.js",
     "module": "dist/index.mjs",
     "types": "dist/index.d.ts",
@@ -11,18 +21,8 @@
     "scripts": {
         "build": "tsup src/index.ts --sourcemap --format cjs,esm --dts && tsc --emitDeclarationOnly --declaration",
         "rebuild": "rm -rf dist && npm run build",
+        "dev": "tsup src/index.ts --watch --format cjs,esm --dts",
         "watch": "tsc -p tsconfig.json -w"
-    },
-    "dependencies": {
-        "common-tags": "^1.8.0",
-        "config": "^3.3.3",
-        "discord-api-types": "~0.33.5",
-        "discord-command-parser": "^1.5.3",
-        "discord.js": "14.20.0",
-        "@ldlework/inversify-binding-decorators": "^4.0.2",
-        "reflect-metadata": "0.2.2",
-        "@ldlework/inversify-config-injection": "~0.0.7",
-        "@docusaurus/babel": "~3.8.1"
     },
     "devDependencies": {
         "@types/node": "^18.11.11",
@@ -37,25 +37,17 @@
         "eslint-plugin-unused-imports": "3.x",
         "@typescript-eslint/eslint-plugin": "6.x",
         "@typescript-eslint/parser": "6.x",
-        "commander": "^7.2.0",
         "ts-node": "^10.9.1",
         "tsconfig-paths": "^4.1.1",
         "typescript": "~5.8.3",
-        "inversify": "^6.0.1",
         "eslint-config-prettier": "^9.0.0",
         "tsup": "~8.0.1",
-        "@babel/plugin-transform-class-properties": "~7.27.1",
-        "@babel/plugin-proposal-decorators": "~7.27.1",
-        "@babel/plugin-proposal-class-properties": "~7.18.6"
+        "@docusaurus/plugin-content-docs": "~3.8.1"
     },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/hades-ts/hades.git"
-    },
-    "author": "",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/hades-ts/hades/issues"
-    },
-    "homepage": "https://github.com/hades-ts/hades#readme"
+    "dependencies": {
+        "inversify": "^6.0.1",
+        "reflect-metadata": "0.2.2",
+        "@reliverse/pathkit": "~1.3.4",
+        "gray-matter": "^4.0.3"
+    }
 }

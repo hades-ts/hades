@@ -2,17 +2,17 @@ import fs from "fs";
 import * as path from "@reliverse/pathkit";
 
 const and =
-    (...fns) =>
-        (...args) =>
+    (...fns: ((...args: any[]) => boolean)[]) =>
+        (...args: any[]) =>
             fns.every((predicate) => predicate(...args));
 const chain =
-    (...fns) =>
-        (val) =>
+    (...fns: ((...args: any[]) => any)[]) =>
+        (val: any) =>
             fns.reduce((acc, fn) => fn(acc), val);
 
 if (!Array.prototype.filters) {
     Object.defineProperty(Array.prototype, "filters", {
-        value: function (...fns) {
+        value: function (...fns: ((...args: any[]) => boolean)[]) {
             return this.filter(and(...fns));
         },
     });
@@ -26,7 +26,7 @@ declare global {
 
 if (!Array.prototype.maps) {
     Object.defineProperty(Array.prototype, "maps", {
-        value: function (...fns) {
+        value: function (...fns: ((...args: any[]) => any)[]) {
             return this.map(chain(...fns));
         },
     });
@@ -38,11 +38,11 @@ declare global {
     }
 }
 
-export const isFile = (root) => (relPath) => fs.statSync(path.join(root, relPath)).isFile();
-export const isDirectory = (root) => (relPath) => fs.statSync(path.join(root, relPath)).isDirectory();
-export const isMarkdown = (path) => path.endsWith(".md") || path.endsWith(".mdx");
-export const isntEmpty = (name) => !!name;
-export const isntIndex = (name) => name !== "index.md" && name !== "index.mdx";
+export const isFile = (root: string) => (relPath: string) => fs.statSync(path.join(root, relPath)).isFile();
+export const isDirectory = (root: string) => (relPath: string) => fs.statSync(path.join(root, relPath)).isDirectory();
+export const isMarkdown = (path: string) => path.endsWith(".md") || path.endsWith(".mdx");
+export const isntEmpty = (name: string) => !!name;
+export const isntIndex = (name: string) => name !== "index.md" && name !== "index.mdx";
 
 export const join =
     (root: string) =>

@@ -8,7 +8,7 @@ export const mkSection = async (name) => {
             path: `./docs/${name}/`,
             routeBasePath: `docs/${name}`,
             sidebarPath: require.resolve(`../sidebars/${name}.ts`),
-            remarkPlugins: [mdxMermaid.default],
+            // remarkPlugins: [mdxMermaid.default],
         },
     ];
 };

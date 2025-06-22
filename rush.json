@@ -70,6 +70,12 @@
             "versionPolicyName": "hades",
             "shouldPublish": false
         },
+        {
+            "packageName": "@hades-ts/docs-sidebar",
+            "projectFolder": "libs/docs-sidebar",
+            "versionPolicyName": "hades",
+            "shouldPublish": false
+        },
         // {
         //     "packageName": "@hades-ts/lojban",
         //     "projectFolder": "libs/lojban",

@@ -1,2 +1,2 @@
-import { mkSidebar } from "../utils";
+import { mkSidebar } from "@hades-ts/docs-sidebar";
 module.exports = mkSidebar("./docs/libs");

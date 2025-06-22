@@ -1,4 +1,17 @@
 {
     "useWorkspaces": true,
-    "strictPeerDependencies": true
+    "strictPeerDependencies": true,
+    "globalPeerDependencyRules": {
+        "allowAny": [
+            "reflect-metadata",
+            "@docusaurus/core"
+        ]
+    },
+    "globalPackageExtensions": {
+        "@cmfcmf/docusaurus-search-local": {
+            "peerDependencies": {
+                "@docusaurus/core": "3.8.1"
+            }
+        }
+    }
 }

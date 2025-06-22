@@ -6,8 +6,8 @@ It is a wrapper around [Inversify.js](https://inversify.io/) and exposes largely
 
 To learn more about dependency injection, check out our guides:
 
-- [Writing SOLID Code](/guides/solid-code)
-- [Dependency Injection](/guides/di)
+- [Writing SOLID Code](/docs/guides/solid-code)
+- [Dependency Injection](/docs/guides/di)
 
 ## Binding Services
 
