@@ -5,7 +5,7 @@
     "main": "dist/index.js",
     "scripts": {
         "build": "tsc -p tsconfig.json",
-        "rebuild": "rm -fr ./dist; tsc -p tsconfig.json",
+        "rebuild": "rm -fr ./dist && npm run build",
         "start": "node dist/index.js",
         "watch": "tsc -p tsconfig.json -w"
     },

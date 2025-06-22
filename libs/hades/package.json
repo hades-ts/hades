@@ -10,7 +10,7 @@
     ],
     "scripts": {
         "build": "tsup src/index.ts --sourcemap --format cjs,esm --dts && tsc --emitDeclarationOnly --declaration",
-        "rebuild": "rm -rf dist; npm run build",
+        "rebuild": "rm -rf dist && npm run build",
         "watch": "tsc -p tsconfig.json -w"
     },
     "dependencies": {

@@ -19,7 +19,7 @@
     ],
     "scripts": {
         "build": "tsup src/index.ts --format cjs,esm --dts",
-        "rebuild": "rm -rf dist; npm run build",
+        "rebuild": "rm -rf dist && npm run build",
         "watch": "tsc -p tsconfig.json -w"
     },
     "devDependencies": {
