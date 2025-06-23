@@ -1,8 +1,0 @@
-[
-    {
-        "policyName": "hades",
-        "definitionName": "lockStepVersion",
-        "version": "0.0.7",
-        "nextBump": "patch"
-    }
-]
