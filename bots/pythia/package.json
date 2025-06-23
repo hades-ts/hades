@@ -54,7 +54,7 @@
         "eslint-plugin-node": "^11.1.0",
         "eslint-plugin-simple-import-sort": "^8.0.0",
         "eslint-plugin-unused-imports": "~3.2.0",
-        "pkgroll": "^2.13.1",
+        "pkgroll": "catalog:",
         "rimraf": "^6.0.1",
         "ts-node": "^10.9.2",
         "tsconfig-paths": "^4.2.0",
