@@ -5,7 +5,7 @@
     "description": "Hades based Discord bot",
     "main": "dist/index.js",
     "scripts": {
-        "build": "tsup --clean --format cjs,esm src/index.ts",
+        "build": "pkgroll --sourcemap && tsc --emitDeclarationOnly --declaration",
         "lint": "tsc --noEmit",
         "start": "node dist/index.js",
         "watch": "tsc -p tsconfig.json -w"
@@ -50,6 +50,7 @@
         "eslint-plugin-node": "^11.1.0",
         "eslint-plugin-simple-import-sort": "^8.0.0",
         "eslint-plugin-unused-imports": "~3.2.0",
+        "pkgroll": "^2.13.1",
         "ts-node": "^10.9.2",
         "tsconfig-paths": "^4.2.0",
         "tsup": "catalog:",

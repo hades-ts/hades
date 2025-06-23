@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "outFile": "dist/index.js",
         "module": "esnext",
         "moduleResolution": "bundler",
         "esModuleInterop": true,
@@ -28,6 +29,7 @@
         "jsxFragmentFactory": "DiscordComponents.Fragment"
     },
     "include": [
+        "src/**/*.tsx",
         "src/**/*.ts",
         "src/**/*.js"
     ],
