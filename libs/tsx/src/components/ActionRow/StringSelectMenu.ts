@@ -1,11 +1,10 @@
 import {
     SelectMenuComponentOptionData,
-    SelectMenuOptionBuilder,
     StringSelectMenuBuilder,
     StringSelectMenuComponentData,
     StringSelectMenuOptionBuilder,
 } from "discord.js";
-import { BuilderComponent, Component } from "../../typings/types.js";
+import { BuilderComponent } from "../../typings/types.js";
 
 export type StringSelectMenuOptions = Omit<StringSelectMenuComponentData, "type" | "options">;
 
@@ -16,43 +15,42 @@ export type StringSelectMenuComponent =
         SelectMenuOptionComponent[] | SelectMenuOptionComponent[][]
     > & { type: "StringSelectMenu" };
 
-function extractOptions(children: any): StringSelectMenuOptionBuilder[] {
-    if (!children) return [];
+// function extractOptions(children: any): StringSelectMenuOptionBuilder[] {
+//   if (!children) return [];
 
-    const childArray = Array.isArray(children) ? children : [children];
-    return childArray.map(createOption);
-}
+//   const childArray = Array.isArray(children) ? children : [children];
+//   return childArray.map(createOption);
+// }
 
-function createOption(option: SelectMenuOptionComponent): StringSelectMenuOptionBuilder {
-    const builder = new StringSelectMenuOptionBuilder();
-    const { default: isDefault, description, label, value, emoji } = option.props;
+// function createOption(option: SelectMenuOptionComponent): StringSelectMenuOptionBuilder {
+//   const builder = new StringSelectMenuOptionBuilder();
+//   const { default: isDefault, description, label, value, emoji } = option.props;
 
-    if (isDefault) builder.setDefault(isDefault);
-    if (description) builder.setDescription(description);
-    if (label) builder.setLabel(label);
-    if (value) builder.setValue(value);
-    if (emoji) builder.setEmoji(emoji);
+//   if (isDefault) builder.setDefault(isDefault);
+//   if (description) builder.setDescription(description);
+//   if (label) builder.setLabel(label);
+//   if (value) builder.setValue(value);
+//   if (emoji) builder.setEmoji(emoji);
 
-    return builder;
-}
+//   return builder;
+// }
 
-export const StringSelectMenuResolver = (props: StringSelectMenuOptions, children: SelectMenuOptionComponent[] | SelectMenuOptionComponent[][]) => {
+export const StringSelectMenuResolver = (props: StringSelectMenuOptions, children?: SelectMenuOptionComponent[] | SelectMenuOptionComponent[][]) => {
     const selectMenu = new StringSelectMenuBuilder();
     const { customId, placeholder } = props;
 
     // Set properties if they exist
     if (customId) selectMenu.setCustomId(customId);
-    if (placeholder) selectMenu.setPlaceholder(placeholder);
+    placeholder
+        ? selectMenu.setPlaceholder(placeholder)
+        : selectMenu.setPlaceholder("Select an option!!");
 
-    const options = children.map(child => child.resolve(child.props));
+    if (!children?.length) return selectMenu;
+
+    const options = children.flat().map(child => child.resolve(child.props));
 
     if (options.length > 0) {
         selectMenu.addOptions(options);
-    }
-
-    // Only set default placeholder if none was provided
-    if (!placeholder) {
-        selectMenu.setPlaceholder("Select an option!!");
     }
 
     return selectMenu;

@@ -1,4 +1,4 @@
-import { BuilderComponent, Component } from "../../typings/types.js";
+import { BuilderComponent } from "../../typings/types.js";
 import { ButtonComponent } from "./Button.js";
 import { StringSelectMenuComponent } from "./StringSelectMenu.js";
 import { UserSelectMenuComponent } from "./UserSelectMenu.js";
@@ -20,8 +20,10 @@ export type ActionRowComponent =
         ActionRowResolvable[] | ActionRowResolvable[][]
     > & { type: "ActionRow" };
 
-export const ActionRowResolver = (props: {}, children: ActionRowResolvable[] | ActionRowResolvable[][]) => {
+export const ActionRowResolver = (_props: {}, children?: ActionRowResolvable[] | ActionRowResolvable[][]) => {
     const actionRow = new ActionRowBuilder();
+
+    if (!children?.length) return actionRow;
 
     for (const child of children) {
         if (typeof child === "object" && "type" in child) {

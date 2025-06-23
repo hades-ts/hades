@@ -1,27 +1,13 @@
 {
+  "extends": [
+    "../tsconfig.json"
+  ],
   "compilerOptions": {
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
     "jsx": "react",
     "jsxFactory": "DiscordComponents.createComponent",
-    "jsxFragmentFactory": "DiscordComponents.Fragment",
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "noImplicitOverride": true,
-    "noImplicitReturns": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "noUncheckedIndexedAccess": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "outDir": "./ts-out",
-    "rewriteRelativeImportExtensions": true,
-    "strict": true,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "strictBindCallApply": true,
-    "strictPropertyInitialization": true,
-    "skipLibCheck": true,
-    "target": "es2024"
+    "jsxFragmentFactory": "DiscordComponents.Fragment"
   },
-  "include": ["ts/**/*.tsx"]
+  "include": [
+    "ts/**/*.tsx"
+  ]
 }

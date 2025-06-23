@@ -4,7 +4,6 @@ import type {
     EmbedField,
     EmbedImageData,
     SelectMenuComponentOptionData,
-    ButtonBuilder,
     EmbedBuilder,
 } from "discord.js";
 import {

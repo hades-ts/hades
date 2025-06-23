@@ -156,9 +156,6 @@ importers:
       '@hades-ts/text-commands':
         specifier: workspace:^
         version: link:../../libs/text-commands
-      '@hades-ts/tsx':
-        specifier: workspace:^
-        version: link:../../libs/tsx
       '@ldlework/categoric-containers':
         specifier: ~0.0.2
         version: 0.0.2(inversify@6.2.2(reflect-metadata@0.2.2))
@@ -199,6 +196,9 @@ importers:
         specifier: ~3.25.67
         version: 3.25.67
     devDependencies:
+      '@hades-ts/tsx':
+        specifier: workspace:^
+        version: link:../../libs/tsx
       '@types/common-tags':
         specifier: ^1.8.4
         version: 1.8.4
@@ -17421,7 +17421,7 @@ snapshots:
 
   '@reliverse/pathkit@1.3.4':
     dependencies:
-      '@reliverse/cfg': 1.7.58(@types/node@24.0.3)(picomatch@4.0.2)(typescript@5.8.3)(ws@8.18.2)
+      '@reliverse/cfg': 1.7.58(@types/node@18.19.112)(picomatch@4.0.2)(typescript@5.8.3)(ws@8.18.2)
 
   '@reliverse/pathkit@1.3.4(@types/node@18.19.112)(picomatch@4.0.2)(typescript@5.8.3)(ws@8.18.2)':
     dependencies:

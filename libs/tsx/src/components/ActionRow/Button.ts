@@ -1,5 +1,5 @@
-import { ButtonBuilder, ButtonComponentData, InteractionButtonComponentData, LinkButtonComponentData } from "discord.js";
-import { BuilderComponent, Component } from "../../typings/types.js";
+import { ButtonBuilder, InteractionButtonComponentData, LinkButtonComponentData } from "discord.js";
+import { BuilderComponent } from "../../typings/types.js";
 
 export type ButtonOptions = Omit<InteractionButtonComponentData, "type">;
 

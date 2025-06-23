@@ -23,7 +23,7 @@ export class DiscordService {
     constructor(
         @inject(HadesClient)
         private client: HadesClient,
-    ) {}
+    ) { }
 
     /**
      * Get all guilds the bot is in.
@@ -42,6 +42,7 @@ export class DiscordService {
         if (guild !== undefined) {
             return guild.name;
         }
+        return undefined;
     }
 
     /**
@@ -54,6 +55,7 @@ export class DiscordService {
         if (guild !== undefined) {
             return guild.members.cache;
         }
+        return undefined;
     }
 
     /**
@@ -67,6 +69,7 @@ export class DiscordService {
         if (members !== undefined) {
             return members.get(memberId);
         }
+        return undefined;
     }
 
     /**
@@ -79,6 +82,7 @@ export class DiscordService {
         if (guild !== undefined) {
             return guild.ownerId;
         }
+        return undefined;
     }
 
     /**
@@ -93,6 +97,7 @@ export class DiscordService {
         if (guild !== undefined) {
             return guild.channels.cache.filter((chan) => chan.type === type).mapValues((chan) => chan as T);
         }
+        return undefined;
     }
 
     /**
@@ -124,6 +129,7 @@ export class DiscordService {
         if (guild !== undefined) {
             return guild.channels.cache.get(channelId);
         }
+        return undefined;
     }
 
     /**
@@ -136,5 +142,6 @@ export class DiscordService {
         if (guild !== undefined) {
             return guild.roles.cache;
         }
+        return undefined;
     }
 }
