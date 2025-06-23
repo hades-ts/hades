@@ -5,7 +5,9 @@
     "description": "Hades based Discord bot",
     "main": "dist/index.js",
     "scripts": {
+        "clean": "rimraf dist",
         "build": "pkgroll --sourcemap && tsc --emitDeclarationOnly --declaration",
+        "rebuild": "pnpm run clean && pnpm run build",
         "lint": "tsc --noEmit",
         "start": "node dist/index.js",
         "watch": "tsc -p tsconfig.json -w"
@@ -35,7 +37,7 @@
     "devDependencies": {
         "@hades-ts/tsx": "workspace:^",
         "@types/common-tags": "^1.8.4",
-        "@types/node": "catalog:",
+        "@types/node": "^24.0.3",
         "@types/node-schedule": "^1.3.2",
         "@types/ws": "^8.18.1",
         "@typescript-eslint/eslint-plugin": "~6.21.0",
@@ -51,6 +53,7 @@
         "eslint-plugin-simple-import-sort": "^8.0.0",
         "eslint-plugin-unused-imports": "~3.2.0",
         "pkgroll": "^2.13.1",
+        "rimraf": "^6.0.1",
         "ts-node": "^10.9.2",
         "tsconfig-paths": "^4.2.0",
         "tsup": "catalog:",

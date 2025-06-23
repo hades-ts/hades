@@ -7,7 +7,7 @@
         "docusaurus": "docusaurus",
         "start": "docusaurus start",
         "build": "docusaurus build",
-        "rebuild": "rimraf build && pnpm run build",
+        "rebuild": "pnpm run clean && pnpm run build",
         "swizzle": "docusaurus swizzle",
         "deploy": "docusaurus deploy",
         "clear": "docusaurus clear",

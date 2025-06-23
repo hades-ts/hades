@@ -24,7 +24,7 @@
     },
     "devDependencies": {
         "@hades-ts/hades": "workspace:^",
-        "@types/node": "catalog:",
+        "@types/node": "^24.0.3",
         "eslint": "^8.57.1",
         "eslint-plugin-eslint-plugin": "^5.5.1",
         "eslint-plugin-hades": "workspace:^",

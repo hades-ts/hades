@@ -39,7 +39,7 @@
         "@babel/core": "^7.27.4",
         "@babel/plugin-transform-react-jsx": "^7.27.1",
         "@babel/preset-env": "^7.27.2",
-        "@types/node": "catalog:",
+        "@types/node": "^24.0.3",
         "discord.js": "catalog:",
         "tsup": "catalog:",
         "tsx": "^4.20.3",
