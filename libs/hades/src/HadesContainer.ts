@@ -21,7 +21,7 @@ export class HadesContainer extends Container {
         super({ ...containerOptions, skipBaseClassChecks: true });
         this.bind(HadesContainer).toConstantValue(this);
         this.load(buildProviderModule()); // binding-decorators support
-        this.loadConfigurationModule(options.configOptions);
+        this.loadConfigurationModule(options?.configOptions);
         for (const installer of installers || []) {
             if (installer instanceof Installer) {
                 void installer.install(this); // TODO: get this out of the constructor?

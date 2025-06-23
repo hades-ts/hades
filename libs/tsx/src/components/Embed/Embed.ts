@@ -27,7 +27,7 @@ export type EmbedComponent = BuilderComponent<EmbedBuilder, EmbedProps, EmbedRes
     type: "Embed";
 };
 
-export const EmbedResolver = (props: EmbedProps, children: EmbedResolvable[]) => {
+export const EmbedResolver = (props: EmbedProps, children?: EmbedResolvable[]) => {
     const embed = new EmbedBuilder();
     const { color, timestamp, description, title, url } = props;
 
@@ -37,6 +37,7 @@ export const EmbedResolver = (props: EmbedProps, children: EmbedResolvable[]) =>
     if (title) embed.setTitle(title);
     if (url) embed.setURL(url);
 
+    if (!children?.length) return embed;
     for (const child of children) {
         if (typeof child === "object" && "type" in child) {
             child.resolve(embed, child.props as any, child.children as any);
@@ -96,13 +97,14 @@ export type EmbedFieldsComponent = EmbedPropertyComponent<{}, EmbedPropertyCompo
 
 export function EmbedFields(
     _props: any,
-    children: EmbedFieldComponent[] | EmbedFieldComponent[][]
+    _children: EmbedFieldComponent[] | EmbedFieldComponent[][]
 ): EmbedFieldsComponent {
     return {
         type: "EmbedFields",
         props: {},
-        resolve: (builder: EmbedBuilder, props: {}, children: EmbedPropertyComponent[]) => {
-            children.forEach(child => child.resolve(builder, child.props as any, child.children as any))
+        resolve: (builder: EmbedBuilder, _props: {}, children?: EmbedPropertyComponent[]) => {
+            if (!children?.length) return;
+            children.forEach(child => child.resolve(builder, child.props, child.children))
         },
     };
 }

@@ -7,17 +7,17 @@ import {
   ActionRow,
   StringSelectMenu,
   SelectMenuOption,
-  MessageButton,
+  Button,
   Embed,
   EmbedFields,
   EmbedField,
-} from "../../out/index.js";
+} from "../../dist/index.js";
 
 const components = (
   <>
     <ActionRow>
       {Array.from({ length: 5 }, (_, i) => (
-        <MessageButton
+        <Button
           style={ButtonStyle["Primary"]}
           label={`Button ${++i}`}
           customId={`btn_${i}`}
