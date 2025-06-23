@@ -24,7 +24,7 @@
         "yosay": "^2.0.2"
     },
     "devDependencies": {
-        "@types/node": "catalog:",
+        "@types/node": "^24.0.3",
         "@types/yeoman-generator": "~6.0.0",
         "@types/yosay": "^2.0.3",
         "@typescript-eslint/eslint-plugin": "~6.21.0",

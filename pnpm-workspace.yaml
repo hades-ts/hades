@@ -6,7 +6,7 @@ packages:
 
 catalog:
   '@ldlework/inversify-config-injection': 0.0.8
-  '@types/node': ^18.19.112
+  '@types/node': ^24.0.3
   discord.js: 14.20.0
   inversify: 6.2.2
   reflect-metadata: ~0.2.2

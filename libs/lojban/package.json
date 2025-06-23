@@ -28,7 +28,7 @@
         "@hades-ts/slash-commands": "workspace:^",
         "@hades-ts/text-commands": "workspace:^",
         "@types/jest": "^29.5.14",
-        "@types/node": "^18.19.112",
+        "@types/node": "catalog:",
         "@typescript-eslint/eslint-plugin": "~6.21.0",
         "@typescript-eslint/parser": "~6.21.0",
         "discord.js": "catalog:",
