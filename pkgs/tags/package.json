@@ -18,8 +18,9 @@
         "dist"
     ],
     "scripts": {
-        "build": "tsup src/index.ts --format cjs,esm --dts",
-        "rebuild": "rm -rf dist && npm run build",
+        "map": "tsc --emitDeclarationOnly --declaration --declarationMap",
+        "build": "pkgroll --sourcemap",
+        "clean": "rimraf dist",
         "watch": "tsc -p tsconfig.json -w"
     },
     "devDependencies": {
@@ -33,10 +34,11 @@
         "eslint-plugin-node": "^11.1.0",
         "eslint-plugin-simple-import-sort": "^8.0.0",
         "eslint-plugin-unused-imports": "~3.2.0",
+        "pkgroll": "catalog:",
         "reflect-metadata": "catalog:",
+        "rimraf": "catalog:",
         "ts-node": "^10.9.2",
         "tsconfig-paths": "^4.2.0",
-        "tsup": "catalog:",
         "typescript": "catalog:"
     },
     "peerDependencies": {

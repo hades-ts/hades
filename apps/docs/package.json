@@ -3,15 +3,15 @@
     "version": "0.0.1",
     "private": true,
     "scripts": {
-        "clean": "rimraf build",
+        "clean": "rimraf build; docusaurus clear",
         "docusaurus": "docusaurus",
         "start": "docusaurus start",
-        "build": "docusaurus build",
+        "build": "docusaurus build --out-dir dist",
         "rebuild": "pnpm run clean && pnpm run build",
         "swizzle": "docusaurus swizzle",
         "deploy": "docusaurus deploy",
         "clear": "docusaurus clear",
-        "serve": "docusaurus serve",
+        "serve": "docusaurus serve --out-dir dist",
         "write-translations": "docusaurus write-translations",
         "write-heading-ids": "docusaurus write-heading-ids"
     },

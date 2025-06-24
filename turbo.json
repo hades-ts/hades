@@ -11,8 +11,8 @@
         },
         "build": {
             "dependsOn": [
-                "^build",
-                "clean"
+                "clean",
+                "^build"
             ],
             "inputs": [
                 "$TURBO_DEFAULTS",

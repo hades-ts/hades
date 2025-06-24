@@ -6,7 +6,7 @@
     "type": "commonjs",
     "main": "./dist/index.js",
     "scripts": {
-        "build": "pkgroll --clean-dist",
+        "build": "pkgroll",
         "clean": "rimraf dist",
         "lint": "tsc --noEmit",
         "start": "node dist/index.js",

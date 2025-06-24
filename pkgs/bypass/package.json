@@ -21,6 +21,7 @@
         "dist"
     ],
     "scripts": {
+        "map": "tsc --emitDeclarationOnly --declaration --declarationMap",
         "build": "pkgroll --clean-dits --sourcemap",
         "clean": "rimraf dist",
         "lint": "tsc --no-emit",
@@ -47,7 +48,6 @@
         "rimraf": "^6.0.1",
         "ts-node": "^10.9.2",
         "tsconfig-paths": "^4.2.0",
-        "tsup": "catalog:",
         "typescript": "catalog:"
     },
     "peerDependencies": {

@@ -40,7 +40,7 @@ export function mkSubSection(sectionRoot: string, relativePath: string, collapsi
     container.bind(SectionLinkProvider).toSelf().inSingletonScope();
     container.bind(SectionItemProvider).toSelf().inSingletonScope();
 
-    const factory = container.get(SectionFactory);
+    const factory = container.get<SectionFactory>(SectionFactory);
     return factory.create();
 }
 
