@@ -1,8 +1,7 @@
 {
     "compilerOptions": {
-        "target": "es6",
-        "module": "commonjs",
-        "moduleResolution": "node",
+        "module": "esnext",
+        "moduleResolution": "bundler",
         "strict": true,
         "esModuleInterop": true,
         "experimentalDecorators": true,
