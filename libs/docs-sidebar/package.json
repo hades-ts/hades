@@ -1,4 +1,5 @@
 {
+    "private": true,
     "name": "@hades-ts/docs-sidebar",
     "version": "0.0.1",
     "description": "Documentation sidebar generation library with inversify DI",
