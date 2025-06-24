@@ -17,7 +17,8 @@
             "es6"
         ],
         "types": [
-            "node"
+            "node",
+            "reflect-metadata"
         ]
     },
     "include": [

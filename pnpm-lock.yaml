@@ -1569,15 +1569,6 @@ importers:
       discord-command-parser:
         specifier: ^1.5.3
         version: 1.5.3
-      discord.js:
-        specifier: 'catalog:'
-        version: 14.20.0
-      inversify:
-        specifier: 'catalog:'
-        version: 6.2.2(reflect-metadata@0.2.2)
-      reflect-metadata:
-        specifier: 'catalog:'
-        version: 0.2.2
     devDependencies:
       '@hades-ts/hades':
         specifier: workspace:^
@@ -1591,6 +1582,9 @@ importers:
       '@typescript-eslint/parser':
         specifier: ~6.21.0
         version: 6.21.0(eslint@8.57.1)(typescript@5.8.3)
+      discord.js:
+        specifier: 'catalog:'
+        version: 14.20.0
       eslint:
         specifier: ^8.57.1
         version: 8.57.1
@@ -1621,9 +1615,15 @@ importers:
       eslint-plugin-unused-imports:
         specifier: ~3.2.0
         version: 3.2.0(@typescript-eslint/eslint-plugin@6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)
+      inversify:
+        specifier: 'catalog:'
+        version: 6.2.2(reflect-metadata@0.2.2)
       pkgroll:
         specifier: 'catalog:'
         version: 2.13.1(typescript@5.8.3)
+      reflect-metadata:
+        specifier: 'catalog:'
+        version: 0.2.2
       rimraf:
         specifier: ^6.0.1
         version: 6.0.1
