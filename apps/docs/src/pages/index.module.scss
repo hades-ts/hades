@@ -41,8 +41,40 @@
   z-index: 2;
 }
 
+/* Wide screens - center content in available space */
+@media screen and (min-width: 1600px) {
+  .heroBanner {
+    display: flex;
+    position: static; /* Use flexbox instead of absolute positioning */
+    
+    & > img {
+      position: static;
+      flex: 0 0 auto; /* Size by content */
+      height: calc(100vh - 60px);
+      width: auto;
+    }
+  }
+  
+  .container {
+    position: static;
+    flex: 1; /* Take remaining space */
+    width: auto; /* Let it size naturally */
+    max-width: 800px; /* Maximum width for readability */
+    margin: 0 auto; /* Center within the flex area */
+    background: transparent; /* No background needed */
+  }
+}
+
 [data-theme="dark"] .container {
   background: rgba(13, 13, 13, 0.95);
+}
+
+[data-theme="dark"] {
+  @media screen and (min-width: 1600px) {
+    .container {
+      background: transparent; /* No background on wide screens */
+    }
+  }
 }
 
 .snippet {
