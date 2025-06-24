@@ -30,6 +30,7 @@
         "@types/node": "catalog:",
         "@typescript-eslint/eslint-plugin": "~6.21.0",
         "@typescript-eslint/parser": "~6.21.0",
+        "discord.js": "catalog:",
         "eslint": "^8.57.1",
         "eslint-config-prettier": "^9.1.0",
         "eslint-plugin-decorator-position": "^5.0.2",
@@ -40,20 +41,22 @@
         "eslint-plugin-node": "^11.1.0",
         "eslint-plugin-simple-import-sort": "^8.0.0",
         "eslint-plugin-unused-imports": "~3.2.0",
+        "inversify": "catalog:",
         "pkgroll": "catalog:",
+        "reflect-metadata": "catalog:",
         "rimraf": "^6.0.1",
         "tsconfig-paths": "^4.2.0",
         "typescript": "catalog:"
     },
     "dependencies": {
-        "discord-command-parser": "^1.5.3",
-        "discord.js": "catalog:",
-        "inversify": "catalog:",
-        "reflect-metadata": "catalog:"
+        "discord-command-parser": "^1.5.3"
     },
     "peerDependencies": {
         "@hades-ts/hades": "workspace:^",
         "@ldlework/inversify-binding-decorators": "^4.0.1",
-        "@ldlework/inversify-config-injection": "catalog:"
+        "@ldlework/inversify-config-injection": "catalog:",
+        "discord.js": "catalog:",
+        "inversify": "catalog:",
+        "reflect-metadata": "catalog:"
     }
 }
