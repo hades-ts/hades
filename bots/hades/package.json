@@ -3,16 +3,22 @@
     "name": "@hades-ts/hades-bot",
     "version": "0.0.0",
     "description": "Example Discord bot",
-    "main": "dist/index.cjs",
-    "types": "dist/index.d.ts",
+    "type": "commonjs",
+    "exports": {
+        "require": "./dist/index.cjs",
+        "import": "./dist/index.mjs"
+    },
     "scripts": {
+        "build": "pkgroll --clean-dist",
         "clean": "rimraf dist",
-        "build": "pkgroll --sourcemap",
-        "rebuild": "pnpm run clean && pnpm run build",
+        "lint": "tsc --noEmit",
         "start": "node dist/index.js",
         "watch": "tsc -p tsconfig.json -w"
     },
     "dependencies": {
+        "@hades-ts/hades": "workspace:^",
+        "@hades-ts/slash-commands": "workspace:^",
+        "@hades-ts/text-commands": "workspace:^",
         "@ldlework/inversify-binding-decorators": "^4.0.2",
         "common-tags": "^1.8.2",
         "config": "^3.3.12",
@@ -20,10 +26,7 @@
         "discord.js": "catalog:",
         "dotenv": "^16.5.0",
         "inversify": "catalog:",
-        "reflect-metadata": "catalog:",
-        "@hades-ts/hades": "workspace:^",
-        "@hades-ts/slash-commands": "workspace:^",
-        "@hades-ts/text-commands": "workspace:^"
+        "reflect-metadata": "catalog:"
     },
     "devDependencies": {
         "@types/common-tags": "^1.8.4",
@@ -43,19 +46,8 @@
         "eslint-plugin-simple-import-sort": "^8.0.0",
         "eslint-plugin-unused-imports": "~3.2.0",
         "pkgroll": "^2.13.1",
-        "rimraf": "^6.0.1",
+        "rimraf": "catalog:",
         "tsconfig-paths": "^4.2.0",
         "typescript": "catalog:"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/hades-ts/hades.git"
-    },
-    "author": "",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/hades-ts/hades/issues"
-    },
-    "homepage": "https://github.com/hades-ts/hades#readme",
-    "module": "dist/index.mjs"
+    }
 }
