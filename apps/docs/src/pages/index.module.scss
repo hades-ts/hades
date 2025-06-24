@@ -64,7 +64,8 @@
     width: auto;
     max-width: none; /* Remove max-width constraint */
     display: flex;
-    justify-content: center; /* Center content within remaining space */
+    justify-content: flex-start; /* Keep content at top, not centered */
+    align-items: center; /* Center horizontally instead */
     background: transparent;
   }
   
