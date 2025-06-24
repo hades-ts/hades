@@ -1,9 +1,8 @@
 {
     "compilerOptions": {
         "outDir": "dist/",
-        "module": "commonjs",
-        "moduleResolution": "node",
-        "target": "es6",
+        "module": "esnext",
+        "moduleResolution": "bundler",
         "lib": [
             "dom",
             "es6"

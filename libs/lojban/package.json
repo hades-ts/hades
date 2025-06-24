@@ -12,13 +12,18 @@
     "bugs": {
         "url": "https://github.com/hades-ts/text-commands/issues"
     },
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
+    "type": "commonjs",
+    "exports": {
+        "require": "./dist/index.cjs",
+        "import": "./dist/index.mjs",
+        "types": "./dist/index.d.ts"
+    },
     "files": [
         "dist"
     ],
     "scripts": {
-        "build": "tsup src/index.ts --format cjs,esm --dts",
+        "build": "pkgroll --clean-dist --sourcemap",
+        "clean": "rimraf dist",
         "watch": "tsc -p tsconfig.json -w",
         "test": "jest --passWithNoTests",
         "test:watch": "jest --watch"
@@ -44,10 +49,10 @@
         "eslint-plugin-unused-imports": "~3.2.0",
         "inversify": "catalog:",
         "jest": "^29.7.0",
+        "pkgroll": "catalog:",
+        "rimraf": "^6.0.1",
         "ts-jest": "^29.4.0",
-        "ts-node": "^10.9.2",
         "tsconfig-paths": "^4.2.0",
-        "tsup": "~8.0.2",
         "typescript": "^5.8.3"
     },
     "peerDependencies": {
@@ -62,6 +67,5 @@
     },
     "dependencies": {
         "camxes": "github:Lord-Valen/camxes.js"
-    },
-    "module": "dist/index.mjs"
+    }
 }
