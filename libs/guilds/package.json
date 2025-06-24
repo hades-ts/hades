@@ -14,7 +14,7 @@
     },
     "type": "commonjs",
     "exports": {
-        "require": "./dist/index.js",
+        "require": "./dist/index.cjs",
         "import": "./dist/index.mjs",
         "types": "./dist/index.d.ts"
     },
