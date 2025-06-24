@@ -1,11 +1,16 @@
-import { arg, command, description, TextArgError, TextCommand, validate } from "@hades-ts/text-commands";
+import { arg, command, SlashArgError, SlashCommand, text, validate } from "@hades-ts/slash-commands";
 import { inject, postConstruct } from "inversify";
 
-@command("lojban")
-@description("Get definition of a lojban word.")
-export class Lojban extends TextCommand {
-    @arg()
-    @description("Word to lookup.")
+@command(
+    "lojban",
+    {
+        description: "Get definition of a lojban word.",
+    }
+)
+export class Lojban extends SlashCommand {
+    @text({
+        description: "Word to lookup.",
+    })
     word!: string;
 
     @inject("LOJBAN_DICT")
@@ -37,7 +42,7 @@ export class Lojban extends TextCommand {
     @validate("word")
     public async validate() {
         if (!this.data) {
-            throw new TextArgError(`I don't know ${this.word} to be a Lojban word.`);
+            throw new SlashArgError(`I don't know ${this.word} to be a Lojban word.`);
         }
     }
 }

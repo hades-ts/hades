@@ -1,14 +1,16 @@
 import { ChatInputCommandInteraction } from "discord.js";
 
-import { parser, SlashArgInstaller, SlashArgParser } from "../../services";
+import { SlashArgInstaller, SlashArgParser } from "../../services";
 
-@parser()
 export class UserParser extends SlashArgParser {
-    name = "user";
-    description = "A guild user.";
+    override name = "user";
+    override description = "A guild user.";
 
-    async parse(arg: SlashArgInstaller, interaction: ChatInputCommandInteraction) {
+    override async parse(arg: SlashArgInstaller, interaction: ChatInputCommandInteraction) {
         const data = interaction.options.get(arg.name);
+        if (!data) {
+            throw new Error(`User ${arg.name} not found`);
+        }
         return data.user;
     }
 }

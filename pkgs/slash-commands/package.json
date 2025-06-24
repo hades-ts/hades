@@ -50,7 +50,8 @@
         "reflect-metadata": "catalog:",
         "rimraf": "^6.0.1",
         "tsconfig-paths": "^4.2.0",
-        "typescript": "catalog:"
+        "typescript": "catalog:",
+        "@hades-ts/tsconfig": "workspace:*"
     },
     "dependencies": {
         "discord-command-parser": "^1.5.3"

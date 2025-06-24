@@ -12,7 +12,7 @@ export class SlashCommandHelperRegistry {
     map = new Collection<string, SlashCommandHelper>();
 
     @multiInject(SlashCommandHelper)
-    public helpers: SlashCommandHelper[];
+    public helpers!: SlashCommandHelper[];
 
     @postConstruct()
     init() {

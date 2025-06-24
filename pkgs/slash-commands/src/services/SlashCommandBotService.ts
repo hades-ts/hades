@@ -7,17 +7,17 @@ import { SlashCommandService } from "./SlashCommandService";
 @injectable()
 export class SlashCommandBotService extends HadesBotService {
     @inject(SlashCommandService)
-    protected commandService: SlashCommandService;
+    protected commandService!: SlashCommandService;
 
     // @inject(SlashCommandHelpService)
     // helpService: SlashCommandHelpService
 
-    async onReady() {
+    override async onReady() {
         console.log("Executing onReady...");
         await this.commandService.registerCommands(this.client);
     }
 
-    async onInteractionCreate<T extends BaseInteraction<CacheType>>(interaction: T) {
+    override async onInteractionCreate<T extends BaseInteraction<CacheType>>(interaction: T) {
         console.log("Executing onInteractionCreate...");
 
         if (!interaction.isCommand()) {

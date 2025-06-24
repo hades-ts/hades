@@ -1,11 +1,16 @@
-import { arg, command, description, TextCommand } from "@hades-ts/text-commands";
+import { arg, command, SlashCommand, text } from "@hades-ts/slash-commands";
 import { inject, postConstruct } from "inversify";
 
-@command("lj")
-@description("Translate english word into Lojban.")
-export class ToLojban extends TextCommand {
-    @arg()
-    @description("Word to lookup.")
+@command(
+    "lj",
+    {
+        description: "Translate english word into Lojban.",
+    },
+)
+export class ToLojban extends SlashCommand {
+    @text({
+        description: "Word to lookup.",
+    })
     word!: string;
 
     @inject("LOJBAN_DICT")
@@ -27,9 +32,5 @@ export class ToLojban extends TextCommand {
 
     async execute() {
         throw new Error("lj is unimplemented!");
-        const candidates = [];
-
-        for (const [word, data] of this.dict) {
-        }
     }
 }

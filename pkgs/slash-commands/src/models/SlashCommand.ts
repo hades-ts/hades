@@ -9,11 +9,11 @@ import { inject, injectable } from "inversify";
 export abstract class SlashCommand {
     /** information on the current command invocation */
     @inject("Interaction")
-    protected interaction: CommandInteraction;
+    protected interaction!: CommandInteraction;
 
     /** service for getting data from discord */
     @inject(DiscordService)
-    protected discord: DiscordService;
+    protected discord!: DiscordService;
 
     /** main command logic handler */
     abstract execute(): Promise<void>;

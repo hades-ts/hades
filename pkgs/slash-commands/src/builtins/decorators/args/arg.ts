@@ -42,9 +42,9 @@ export const makeArgMeta = <TField>(info: ArgConfig<TField>, target: Constructab
         name: info.name || meta.name,
     } as ApplicationCommandOptionData;
     meta.property = key;
-    meta.parser = info.parser;
+    meta.parser = info.parser!;
     meta.validatorInstallers = info.validators?.map(
-        (validator: interfaces.Newable<Validator<TField>>) =>
+        (validator: Validator<TField> | interfaces.Newable<Validator<TField>>) =>
             (container: Container) => {
                 if (validator instanceof Validator) {
                     container.bind(Validator).toConstantValue(validator).whenTargetNamed(key);

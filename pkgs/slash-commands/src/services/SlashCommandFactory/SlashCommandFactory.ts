@@ -4,8 +4,6 @@ import { Container, interfaces } from "inversify";
 import { SlashCommandMeta } from "../../metadata";
 import { SlashCommand } from "../../models";
 import { SlashArgInstaller } from "./SlashArgInstaller";
-import { SlashArgParserRegistry } from "./SlashArgParserRegistry";
-import { SlashArgParserResolver } from "./SlashArgParserResolver";
 
 /**
  * Instantiates commands on invocation.
@@ -20,19 +18,12 @@ export class SlashCommandFactory {
     /** the meta of the associated command */
     meta: SlashCommandMeta;
 
-    /** service for looking up parsers based on argument type */
-    inferenceService: SlashArgParserResolver;
-    /** service for easy lookup of parsers */
-    parserService: SlashArgParserRegistry;
     /** arguments of the associated command */
     argInstallers = new Collection<string, SlashArgInstaller>();
 
     constructor(parentContainer: Container, meta: SlashCommandMeta) {
         this.parentContainer = parentContainer;
         this.meta = meta;
-
-        this.inferenceService = parentContainer.get(SlashArgParserResolver);
-        this.parserService = parentContainer.get(SlashArgParserRegistry);
         // setup arguments
         for (const [argName, argMeta] of meta.args) {
             const arg = new SlashArgInstaller(argMeta);
@@ -116,7 +107,7 @@ export class SlashCommandFactory {
         }
         const di = this.parentContainer.createChild({ skipBaseClassChecks: true });
         di.bind(AutocompleteInteraction).toConstantValue(interaction);
-        const completer = di.resolve(argMeta.choicesCompleter);
+        const completer = di.resolve(argMeta.choicesCompleter!);
         const choices = await completer.complete(value);
         return choices;
     }

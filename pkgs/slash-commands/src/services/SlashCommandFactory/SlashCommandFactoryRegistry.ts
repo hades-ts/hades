@@ -12,7 +12,7 @@ export class SlashCommandFactoryRegistry {
     map = new Collection<string, SlashCommandFactory>();
 
     @multiInject(SlashCommandFactory)
-    protected factories: SlashCommandFactory[];
+    protected factories!: SlashCommandFactory[];
 
     @postConstruct()
     init() {

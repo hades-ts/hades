@@ -5,8 +5,6 @@ import { SlashArgParser } from "../services";
 import { SlashArgParserMeta } from "./SlashArgParserMeta";
 import { SlashCommandMeta } from "./SlashCommandMeta";
 
-// key where @parser metadata is stored
-const PARSER_METADATA = Symbol("Hades:ParserMetadata");
 // key where @command metadata is stored
 const COMMAND_METADATA = Symbol("Hades:CommandMetadata");
 
@@ -57,39 +55,6 @@ export function getSlashCommandMeta(target: Newable) {
 export function getSlashArgMeta(target: Newable, argName: string) {
     const meta = getSlashCommandMeta(target);
     return meta.getArgMeta(argName);
-}
-
-/**
- * Get all @parser metas.
- * @returns A Collection of all Parser metas.
- */
-export function getSlashParserMetas(): Set<SlashArgParserMeta> {
-    let metas = Reflect.getMetadata(PARSER_METADATA, SlashArgParserMeta);
-    if (metas === undefined) {
-        metas = new Set<SlashArgParserMeta>();
-        setSlashParserMetas(metas);
-    }
-    return metas;
-}
-
-/**
- * Update the set of @parser metas.
- * @param metas Collection of @parser metas.
- * @returns
- */
-export function setSlashParserMetas(metas: Collection<string, SlashArgParserMeta>) {
-    return Reflect.defineMetadata(PARSER_METADATA, metas, SlashArgParserMeta);
-}
-
-/**
- * Register a class as a parser.
- * @param target Target parser class.
- */
-export function registerSlashParser(target: Newable<SlashArgParser>) {
-    const metas = getSlashParserMetas();
-    const meta = new SlashArgParserMeta();
-    meta.type = target;
-    metas.add(meta);
 }
 
 /**

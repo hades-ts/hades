@@ -15,11 +15,11 @@ import { SlashCommandFactoryRegistry } from "../SlashCommandFactory";
 @singleton(SlashCommandService)
 export class SlashCommandService {
     @inject(HadesContainer)
-    protected container: HadesContainer;
+    protected container!: HadesContainer;
 
     /** factories for creating command instances */
     @inject(SlashCommandFactoryRegistry)
-    public factories: SlashCommandFactoryRegistry;
+    public factories!: SlashCommandFactoryRegistry;
 
     // @inject(SlashCommandHelpService)
     // help: SlashCommandHelpService
@@ -79,12 +79,14 @@ export class SlashCommandService {
         if (interaction.isCommand()) {
             return this.execute(interaction as ChatInputCommandInteraction);
         }
+
+        return;
     }
 
     async registerCommands(client: HadesClient) {
         const config = this.getCommandRegistrationMeta();
         console.log(JSON.stringify(config, null, 2));
-        await client.application.commands.set(config);
+        await client.application?.commands.set(config);
     }
 
     protected getCommandRegistrationMeta(): ChatInputApplicationCommandData[] {
@@ -111,6 +113,7 @@ export class SlashCommandService {
                 }),
             };
         });
-        return commands;
+        // TODO: fix this
+        return commands as unknown as ChatInputApplicationCommandData[];
     }
 }

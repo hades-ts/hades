@@ -1,14 +1,16 @@
 import { ChatInputCommandInteraction, Role } from "discord.js";
 
-import { parser, SlashArgInstaller, SlashArgParser } from "../../services";
+import { SlashArgInstaller, SlashArgParser } from "../../services";
 
-@parser()
 export class RoleParser extends SlashArgParser {
-    name = "role";
-    description = 'A guild role."';
+    override name = "role";
+    override description = 'A guild role."';
 
-    async parse(arg: SlashArgInstaller, interaction: ChatInputCommandInteraction) {
+    override async parse(arg: SlashArgInstaller, interaction: ChatInputCommandInteraction) {
         const data = interaction.options.get(arg.name);
-        return data.role as Role;
+        if (!data) {
+            throw new Error(`Role ${arg.name} not found`);
+        }
+        return data.role;
     }
 }

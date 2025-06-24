@@ -7,10 +7,10 @@ import { SlashArgMeta } from "./SlashArgMeta";
  * Decorator metadata for @command
  */
 export class SlashCommandMeta {
-    name: string;
-    target: Newable;
+    name!: string;
+    target!: Newable;
     args = new Collection<string, SlashArgMeta>();
-    description?: string;
+    description!: string;
     registrationDetails?: ChatInputApplicationCommandData;
 
     getArgMeta(name: string) {

@@ -8,7 +8,7 @@ import { SlashCommandHelperRegistry } from "./SlashCommandHelperRegistry";
 @singleton(SlashCommandHelpService)
 export class SlashCommandHelpService {
     @inject(SlashCommandHelperRegistry)
-    protected helpers: SlashCommandHelperRegistry;
+    protected helpers!: SlashCommandHelperRegistry;
 
     getHelpEmbed(command: string) {
         const helper = this.helpers.helperFor(command);
@@ -16,6 +16,8 @@ export class SlashCommandHelpService {
         if (helper) {
             return helper.getHelpEmbed();
         }
+
+        return new EmbedBuilder().setDescription("Command not found");
     }
 
     getCommandsEmbed() {
