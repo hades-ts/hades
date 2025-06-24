@@ -29,6 +29,8 @@
     "devDependencies": {
         "@hades-ts/guilds": "workspace:^",
         "@hades-ts/hades": "workspace:^",
+        "@ldlework/inversify-binding-decorators": "^4.0.2",
+        "@ldlework/inversify-config-injection": "catalog:",
         "@types/node": "catalog:",
         "discord.js": "catalog:",
         "eslint": "^8.57.1",
@@ -41,9 +43,7 @@
         "pkgroll": "catalog:",
         "rimraf": "^6.0.1",
         "tsconfig-paths": "^4.2.0",
-        "typescript": "catalog:",
-        "@ldlework/inversify-binding-decorators": "^4.0.1",
-        "@ldlework/inversify-config-injection": "catalog:"
+        "typescript": "catalog:"
     },
     "peerDependencies": {
         "@hades-ts/hades": "workspace:^",

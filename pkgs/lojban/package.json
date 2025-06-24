@@ -32,6 +32,8 @@
         "@hades-ts/hades": "workspace:^",
         "@hades-ts/slash-commands": "workspace:^",
         "@hades-ts/text-commands": "workspace:^",
+        "@ldlework/inversify-binding-decorators": "^4.0.2",
+        "@ldlework/inversify-config-injection": "catalog:",
         "@types/jest": "^29.5.14",
         "@types/node": "catalog:",
         "@typescript-eslint/eslint-plugin": "~6.21.0",
@@ -50,13 +52,11 @@
         "inversify": "catalog:",
         "jest": "^29.7.0",
         "pkgroll": "catalog:",
+        "reflect-metadata": "catalog:",
         "rimraf": "^6.0.1",
         "ts-jest": "^29.4.0",
         "tsconfig-paths": "^4.2.0",
-        "typescript": "^5.8.3",
-        "@ldlework/inversify-binding-decorators": "^4.0.1",
-        "@ldlework/inversify-config-injection": "catalog:",
-        "reflect-metadata": "catalog:"
+        "typescript": "^5.8.3"
     },
     "peerDependencies": {
         "@hades-ts/hades": "workspace:^",

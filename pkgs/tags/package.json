@@ -24,6 +24,8 @@
     },
     "devDependencies": {
         "@hades-ts/hades": "workspace:^",
+        "@ldlework/inversify-binding-decorators": "^4.0.2",
+        "@ldlework/inversify-config-injection": "catalog:",
         "@types/node": "^24.0.3",
         "eslint": "^8.57.1",
         "eslint-plugin-eslint-plugin": "^5.5.1",
@@ -31,13 +33,11 @@
         "eslint-plugin-node": "^11.1.0",
         "eslint-plugin-simple-import-sort": "^8.0.0",
         "eslint-plugin-unused-imports": "~3.2.0",
+        "reflect-metadata": "catalog:",
         "ts-node": "^10.9.2",
         "tsconfig-paths": "^4.2.0",
         "tsup": "catalog:",
-        "typescript": "catalog:",
-        "@ldlework/inversify-binding-decorators": "^4.0.1",
-        "@ldlework/inversify-config-injection": "catalog:",
-        "reflect-metadata": "catalog:"
+        "typescript": "catalog:"
     },
     "peerDependencies": {
         "@hades-ts/hades": "workspace:^",
