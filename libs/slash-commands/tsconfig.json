@@ -1,8 +1,7 @@
 {
     "compilerOptions": {
-        "target": "es6",
-        "module": "commonjs",
-        "moduleResolution": "node",
+        "module": "esnext",
+        "moduleResolution": "bundler",
         "esModuleInterop": true,
         "declaration": true,
         "declarationMap": true,
@@ -18,7 +17,8 @@
             "es6"
         ],
         "types": [
-            "node"
+            "node",
+            "reflect-metadata"
         ]
     },
     "include": [
