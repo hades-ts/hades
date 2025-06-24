@@ -12,7 +12,8 @@
         "dist"
     ],
     "scripts": {
-        "build": "pkgroll --clean-dist --sourcemap",
+        "map": "tsc --emitDeclarationOnly --declaration --declarationMap",
+        "build": "pkgroll --sourcemap",
         "clean": "rimraf dist",
         "watch": "tsc -p tsconfig.json -w"
     },
@@ -20,9 +21,7 @@
         "@docusaurus/babel": "~3.8.1",
         "@ldlework/inversify-binding-decorators": "^4.0.2",
         "@ldlework/inversify-config-injection": "catalog:",
-        "acorn": "^8.15.0",
-        "undici": "^7.10.0",
-        "zlib-sync": "^0.1.10"
+        "acorn": "^8.15.0"
     },
     "devDependencies": {
         "@types/node": "^24.0.3",

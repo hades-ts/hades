@@ -22,7 +22,8 @@
         "dist"
     ],
     "scripts": {
-        "build": "pkgroll --clean-dist --sourcemap",
+        "map": "tsc --emitDeclarationOnly --declaration --declarationMap",
+        "build": "pkgroll --sourcemap",
         "clean": "rimraf dist",
         "watch": "tsc -p tsconfig.json -w",
         "test": "jest --passWithNoTests",

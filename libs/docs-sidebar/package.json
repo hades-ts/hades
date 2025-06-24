@@ -13,20 +13,26 @@
     "bugs": {
         "url": "https://github.com/hades-ts/hades/issues"
     },
-    "main": "dist/index.js",
-    "module": "dist/index.mjs",
+    "main": "dist/index.mjs",
+    "type": "module",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.mjs",
+            "default": "./dist/index.mjs"
+        }
+    },
     "types": "dist/index.d.ts",
     "files": [
         "dist"
     ],
     "scripts": {
-        "build": "tsup src/index.ts --sourcemap --format cjs,esm --dts && tsc --emitDeclarationOnly --declaration",
-        "rebuild": "rm -rf dist && npm run build",
-        "dev": "tsup src/index.ts --watch --format cjs,esm --dts",
+        "map": "tsc --emitDeclarationOnly --declaration --declarationMap",
+        "build": "pkgroll --sourcemap",
+        "clean": "rimraf dist",
         "watch": "tsc -p tsconfig.json -w"
     },
     "devDependencies": {
-        "@docusaurus/plugin-content-docs": "~3.8.1",
         "@types/node": "catalog:",
         "@typescript-eslint/eslint-plugin": "~6.21.0",
         "@typescript-eslint/parser": "~6.21.0",
@@ -40,12 +46,14 @@
         "eslint-plugin-node": "^11.1.0",
         "eslint-plugin-simple-import-sort": "^8.0.0",
         "eslint-plugin-unused-imports": "~3.2.0",
+        "pkgroll": "catalog:",
+        "rimraf": "catalog:",
         "ts-node": "^10.9.2",
         "tsconfig-paths": "^4.2.0",
-        "tsup": "~8.0.2",
         "typescript": "~5.8.3"
     },
     "dependencies": {
+        "@docusaurus/plugin-content-docs": "~3.8.1",
         "@reliverse/pathkit": "~1.3.4",
         "gray-matter": "^4.0.3",
         "inversify": "catalog:",

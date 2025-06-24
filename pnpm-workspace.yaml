@@ -11,13 +11,17 @@ catalog:
   discord.js: 14.20.0
   inversify: 6.2.2
   reflect-metadata: 0.2.2
-  tsup: ^8.5.0
   turbo: 2.5.4
   typescript: ~5.8.3
   pkgroll: 2.13.1
   tsx: ^4.20.3
-  rimraf: ^6.0.1
+  rimraf: 6.0.1
 
 linkWorkspacePackages: true
+
+patchedDependencies:
+  undici@6.21.3: patches/undici@6.21.3.patch
+  '@discordjs/ws@1.2.3': patches/@discordjs__ws@1.2.3.patch
+  '@docusaurus/plugin-content-docs': patches/@docusaurus__plugin-content-docs.patch
 
 strictPeerDependencies: true

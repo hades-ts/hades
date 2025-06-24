@@ -44,7 +44,6 @@
         "onchange": "^7.1.0",
         "rimraf": "^6.0.1",
         "tsc-watch": "^4.6.2",
-        "tsup": "catalog:",
         "turbo": "catalog:",
         "typescript": "catalog:",
         "yeoman-assert": "^3.1.1"

@@ -1,8 +1,8 @@
 {
     "compilerOptions": {
         "target": "es6",
-        "module": "commonjs",
-        "moduleResolution": "node",
+        "module": "esnext",
+        "moduleResolution": "bundler",
         "esModuleInterop": true,
         "declaration": true,
         "declarationMap": true,
@@ -20,7 +20,6 @@
         "types": [
             "node"
         ],
-        "strict": true,
         "forceConsistentCasingInFileNames": true
     },
     "include": [

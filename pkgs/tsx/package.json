@@ -2,7 +2,6 @@
     "name": "@hades-ts/tsx",
     "description": "Create Discord.js components in JSX",
     "version": "0.0.7",
-    "type": "module",
     "author": "hades-ts",
     "license": "MIT-0",
     "homepage": "https://github.com/hades-ts/hades#readme",
@@ -18,22 +17,23 @@
         "tsx",
         "discord"
     ],
-    "types": "./dist/index.d.ts",
+    "type": "commonjs",
     "exports": {
-        "import": "./dist/index.js",
-        "require": "./dist/index.cjs"
-    },
-    "packageManager": "pnpm@10.12.1",
-    "scripts": {
-        "build": "tsup",
-        "lint": "tsc --noEmit",
-        "test:babel": "node test/js-out/babel.js",
-        "test:babel:build": "babel test/js/babel.jsx --relative -d ../js-out",
-        "test:ts": "tsx --tsconfig test/tsconfig.json test/ts/typescript.tsx"
+        "require": "./dist/index.js",
+        "module": "./dist/index.mjs",
+        "types": "./dist/index.d.ts"
     },
     "files": [
         "dist"
     ],
+    "scripts": {
+        "map": "tsc --emitDeclarationOnly --declaration --declarationMap",
+        "build": "pkgroll --sourcemap",
+        "clean": "rimraf dist"
+    },
+    "peerDependencies": {
+        "discord.js": "catalog:"
+    },
     "devDependencies": {
         "@babel/cli": "^7.27.2",
         "@babel/core": "^7.27.4",
@@ -41,7 +41,8 @@
         "@babel/preset-env": "^7.27.2",
         "@types/node": "^24.0.3",
         "discord.js": "catalog:",
-        "tsup": "catalog:",
+        "pkgroll": "catalog:",
+        "rimraf": "catalog:",
         "tsx": "^4.20.3",
         "turbo": "catalog:",
         "typescript": "catalog:"
