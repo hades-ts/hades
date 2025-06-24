@@ -3,6 +3,7 @@ packages:
   - apps/*
   - libs/*
   - rigs/*
+  - pkgs/*
 
 catalog:
   '@ldlework/inversify-config-injection': 0.0.8
