@@ -16,6 +16,8 @@ jobs:
           node-version: 18
       # - name: Verify Change Logs
       #   run: node common/scripts/install-run-rush.js change --verify
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
       - name: Install
         run: pnpm install
       - name: Build
