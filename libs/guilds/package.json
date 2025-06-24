@@ -12,22 +12,26 @@
     "bugs": {
         "url": "https://github.com/hades-ts/guilds/issues"
     },
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
+    "type": "commonjs",
+    "exports": {
+        "require": "./dist/index.js",
+        "import": "./dist/index.mjs",
+        "types": "./dist/index.d.ts"
+    },
     "files": [
         "dist"
     ],
     "scripts": {
-        "build": "tsup src/index.ts --format cjs,esm --dts",
+        "build": "pkgroll --clean-dist --sourcemap",
+        "clean": "rimraf dist",
         "rebuild": "rm -rf dist && npm run build",
         "watch": "tsc -p tsconfig.json -w"
     },
     "devDependencies": {
         "@hades-ts/hades": "workspace:^",
-        "@types/node": "^24.0.3",
+        "@types/node": "catalog:",
         "@typescript-eslint/eslint-plugin": "~6.21.0",
         "@typescript-eslint/parser": "~6.21.0",
-        "discord.js": "catalog:",
         "eslint": "^8.57.1",
         "eslint-config-prettier": "^9.1.0",
         "eslint-plugin-decorator-position": "^5.0.2",
@@ -38,7 +42,8 @@
         "eslint-plugin-node": "^11.1.0",
         "eslint-plugin-simple-import-sort": "^8.0.0",
         "eslint-plugin-unused-imports": "~3.2.0",
-        "inversify": "catalog:",
+        "pkgroll": "catalog:",
+        "rimraf": "^6.0.1",
         "ts-node": "^10.9.2",
         "tsconfig-paths": "^4.2.0",
         "tsup": "catalog:",
@@ -47,14 +52,13 @@
     "dependencies": {
         "@ldlework/categoric-containers": "~0.0.2",
         "discord-command-parser": "^1.5.3",
+        "discord.js": "catalog:",
+        "inversify": "catalog:",
         "zod": "~3.25.67"
     },
     "peerDependencies": {
         "@hades-ts/hades": "workspace:^",
         "@ldlework/inversify-binding-decorators": "^4.0.1",
-        "@ldlework/inversify-config-injection": "catalog:",
-        "discord.js": "catalog:",
-        "inversify": "catalog:"
-    },
-    "module": "dist/index.mjs"
+        "@ldlework/inversify-config-injection": "catalog:"
+    }
 }
