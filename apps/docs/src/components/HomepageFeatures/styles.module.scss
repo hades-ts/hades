@@ -2,59 +2,60 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  flex-wrap: wrap;
-  gap: 2rem;
-  padding: 2rem 0;
+  flex-wrap: nowrap !important;
+  gap: 0;
+  padding: 0rem 0;
   width: 100%;
   margin: auto;
 }
 
 .featureSvg {
-  height: 150px;
-  width: 150px;
+  height: 70px;
+  width: 70px;
+  flex-shrink: 0;
 }
 
 .feature {
-  flex: 1 1 250px;
-  max-width: 300px;
+  flex: 1 1 0;
+  min-width: 0;
   text-align: center;
+  font-size: 0.8rem;
+  padding: 0 0.5rem;
+  
   code {
     color: black;
   }
-}
-
-// Tablet styles - MUST come before smaller breakpoints
-@media screen and (max-width: 996px) {
-  .features {
-    width: 90%;
-    flex-wrap: wrap;
-    gap: 1rem;
+  
+  h3 {
+    font-size: 1rem;
+    margin: 0.5rem 0;
   }
-
-  .feature {
-    max-width: 45%;
+  
+  p {
+    margin: 0.5rem 0;
+    line-height: 1.3;
   }
 }
 
-@media screen and (max-width: 768px) {
-  .featureSvg {
-    height: 100px;
-    width: 100px;
-  }
-}
-
-// Mobile styles - MUST come last to override tablet styles
 @media screen and (max-width: 680px) {
   .features {
     flex-direction: column;
     align-items: center;
-    width: 100%; /* Override the 90% from tablet */
-    padding: 2rem 1rem; /* Add horizontal padding */
+    width: 100%;
+    padding: 2rem 1rem;
+    flex-wrap: wrap;
+    gap: 2rem;
   }
 
   .feature {
-    flex: 0 0 auto; /* Reset all flex properties */
-    width: 100%; /* Take full width */
-    max-width: none; /* Remove ALL max-width constraints */
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: none;
+    padding: 0;
+  }
+  
+  .featureSvg {
+    height: 100px;
+    width: 100px;
   }
 }

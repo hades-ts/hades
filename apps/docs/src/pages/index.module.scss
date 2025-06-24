@@ -7,31 +7,49 @@
   display: flex;
   flex-direction: row;
   align-items: stretch;
-  min-height: calc(100vh - 60px); /* navbar height */
+  min-height: calc(100vh - 60px);
+  position: relative;
+  overflow: hidden;
 
   & > img {
-    /* Desktop: Image is a flexible panel on the left */
-    flex-basis: 50%;
-    max-width: 50%;
-    object-fit: cover;
-    object-position: 25% 50%; /* Focus on Hades's face */
+    /* Hades image - sized by height, positioned left */
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%; /* Full container height */
+    width: auto; /* Let width be determined by aspect ratio */
+    object-fit: contain; /* Maintain aspect ratio */
+    object-position: left top; /* Align to top-left */
+    z-index: 1;
   }
 }
 
 .container {
-  flex-basis: 50%;
+  /* Wider fixed-width content panel */
+  position: absolute;
+  right: 0; /* Stay at right edge always */
+  top: 0;
+  width: 750px; /* Increased from 650px */
+  height: calc(100vh - 60px);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   padding: 2rem;
+  overflow-y: auto;
+  background: rgba(255, 255, 255, 0.95);
+  z-index: 2;
+}
+
+[data-theme="dark"] .container {
+  background: rgba(13, 13, 13, 0.95);
 }
 
 .snippet {
   width: 100%;
-  max-width: 600px; /* Prevent code from being too wide on desktop */
+  max-width: 650px; /* Increased to fit wider container */
+  margin: 1rem 0;
   
-  /* THIS IS THE FIX for the code block overflow */
   pre {
     overflow-x: auto;
   }
@@ -57,7 +75,7 @@
   }
 }
 
-/* Mobile & Tablet */
+/* Mobile & Tablet - Switch to vertical layout */
 @media screen and (max-width: 1100px) {
   .heroBanner {
     flex-direction: column;
@@ -66,31 +84,26 @@
     padding: 2rem 1rem;
     gap: 1rem;
     align-items: center;
+    overflow: visible;
     
     & > img {
-      flex-basis: auto;
-      max-width: 70%;
+      /* Reset positioning for vertical mode */
+      position: static;
+      width: 70%;
+      height: auto;
       max-height: 30vh;
       object-fit: contain;
+      object-position: center;
     }
   }
 
   .container {
-    flex-basis: auto;
+    /* Reset positioning for vertical mode */
+    position: static;
     width: 100%;
+    height: auto;
     padding: 0;
-  }
-
-  .snippet {
-    max-width: 100%;
-    text-align: left;
-  }
-
-  .hero__title {
-    font-size: clamp(1.8rem, 7.2vw, 2.2rem) !important; /* Reaches minimum at 400px */
-    width: 100%; /* Take full width */
-    margin: 0; /* Remove any default margins */
-    padding: 0 0.5rem; /* Small padding to prevent touching edges */
+    background: transparent;
   }
 
   .snippet {
@@ -98,9 +111,16 @@
     text-align: left;
     
     pre {
-      font-size: clamp(0.6rem, 2.4vw, 0.75rem) !important; /* Reaches minimum at 400px */
-      padding: clamp(0.75rem, 2.5vw, 1rem) !important; /* Scale padding proportionally */
+      font-size: clamp(0.6rem, 2.4vw, 0.75rem) !important;
+      padding: clamp(0.75rem, 2.5vw, 1rem) !important;
     }
+  }
+
+  .hero__title {
+    font-size: clamp(1.8rem, 7.2vw, 2.2rem) !important;
+    width: 100%;
+    margin: 0;
+    padding: 0 0.5rem;
   }
 }
 
