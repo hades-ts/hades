@@ -41,11 +41,14 @@
   z-index: 2;
 }
 
-/* Wide screens - center content in available space */
+/* Very wide screens - fixed width centered layout */
 @media screen and (min-width: 1600px) {
   .heroBanner {
+    /* Center the entire layout */
+    width: 1400px; /* Fixed width for the entire hero */
+    margin: 0 auto; /* Center on page */
+    position: static;
     display: flex;
-    position: static; /* Use flexbox instead of absolute positioning */
     
     & > img {
       position: static;
@@ -57,11 +60,18 @@
   
   .container {
     position: static;
-    flex: 1; /* Take remaining space */
-    width: auto; /* Let it size naturally */
-    max-width: 800px; /* Maximum width for readability */
-    margin: 0 auto; /* Center within the flex area */
-    background: transparent; /* No background needed */
+    flex: 1; /* Take remaining space in the 1400px container */
+    width: auto;
+    max-width: none; /* Remove max-width constraint */
+    display: flex;
+    justify-content: center; /* Center content within remaining space */
+    background: transparent;
+  }
+  
+  /* Center the content within the container */
+  .container > div {
+    width: 100%;
+    max-width: 600px; /* Reasonable max-width for readability */
   }
 }
 
@@ -72,14 +82,14 @@
 [data-theme="dark"] {
   @media screen and (min-width: 1600px) {
     .container {
-      background: transparent; /* No background on wide screens */
+      background: transparent;
     }
   }
 }
 
 .snippet {
   width: 100%;
-  max-width: 650px; /* Increased to fit wider container */
+  max-width: 650px;
   margin: 1rem 0;
   
   pre {
@@ -119,7 +129,6 @@
     overflow: visible;
     
     & > img {
-      /* Reset positioning for vertical mode */
       position: static;
       width: 70%;
       height: auto;
@@ -130,7 +139,6 @@
   }
 
   .container {
-    /* Reset positioning for vertical mode */
     position: static;
     width: 100%;
     height: auto;
