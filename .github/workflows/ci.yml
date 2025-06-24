@@ -16,12 +16,13 @@ jobs:
           node-version: 18
       # - name: Verify Change Logs
       #   run: node common/scripts/install-run-rush.js change --verify
-      - name: Rush Update
-        run: node common/scripts/install-run-rush.js update
-      - name: Rush rebuild
-        run: node common/scripts/install-run-rush.js rebuild
+      - name: Install
+        run: pnpm install
+      - name: Build
+        run: npx turbo build
       # take apps/docs/build as github pages
       - name: Deploy
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: peaceiris/actions-gh-pages@v4
         with:
           deploy_key: ${{ secrets.DEPLOY_KEY_PRIVATE }}
