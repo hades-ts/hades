@@ -53,7 +53,10 @@
         "rimraf": "^6.0.1",
         "ts-jest": "^29.4.0",
         "tsconfig-paths": "^4.2.0",
-        "typescript": "^5.8.3"
+        "typescript": "^5.8.3",
+        "@ldlework/inversify-binding-decorators": "^4.0.1",
+        "@ldlework/inversify-config-injection": "catalog:",
+        "reflect-metadata": "catalog:"
     },
     "peerDependencies": {
         "@hades-ts/hades": "workspace:^",

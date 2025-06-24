@@ -45,7 +45,10 @@
         "pkgroll": "catalog:",
         "rimraf": "catalog:",
         "tsconfig-paths": "^4.2.0",
-        "typescript": "catalog:"
+        "typescript": "catalog:",
+        "@hades-ts/hades": "workspace:^",
+        "@ldlework/inversify-binding-decorators": "^4.0.1",
+        "@ldlework/inversify-config-injection": "catalog:"
     },
     "peerDependencies": {
         "@hades-ts/hades": "workspace:^",

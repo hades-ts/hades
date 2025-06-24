@@ -47,7 +47,9 @@
         "ts-node": "^10.9.2",
         "tsconfig-paths": "^4.2.0",
         "tsup": "catalog:",
-        "typescript": "catalog:"
+        "typescript": "catalog:",
+        "@ldlework/inversify-binding-decorators": "^4.0.1",
+        "@ldlework/inversify-config-injection": "catalog:"
     },
     "dependencies": {
         "@ldlework/categoric-containers": "~0.0.2",

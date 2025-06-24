@@ -4,7 +4,7 @@
     "description": "Typescript framework using Inversify.js and Discord.js",
     "type": "commonjs",
     "exports": {
-        "require": "./dist/index.cjs",
+        "require": "./dist/index.js",
         "module": "./dist/index.mjs",
         "types": "./dist/index.d.ts"
     },
@@ -44,9 +44,7 @@
         "pkgroll": "catalog:",
         "reflect-metadata": "catalog:",
         "rimraf": "^6.0.1",
-        "ts-node": "^10.9.2",
         "tsconfig-paths": "^4.2.0",
-        "tsup": "catalog:",
         "typescript": "catalog:"
     },
     "repository": {
