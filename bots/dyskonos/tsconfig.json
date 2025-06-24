@@ -1,6 +1,5 @@
 {
     "compilerOptions": {
-        "outFile": "dist/index.js",
         "module": "esnext",
         "moduleResolution": "bundler",
         "esModuleInterop": true,
