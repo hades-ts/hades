@@ -4,14 +4,11 @@
     "version": "0.0.0",
     "description": "Hades based rules and roles Discord bot.",
     "type": "commonjs",
-    "exports": {
-        "require": "./dist/index.cjs",
-        "import": "./dist/index.mjs"
-    },
+    "main": "./dist/index.js",
     "scripts": {
         "build": "pkgroll --clean-dist",
         "clean": "rimraf dist",
-        "start": "node ./dist/index.mjs",
+        "start": "node ./dist/index.js",
         "lint": "tsc --noEmit",
         "watch": "tsc -p tsconfig.json -w"
     },

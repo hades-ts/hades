@@ -3,15 +3,13 @@
     "name": "@hades-ts/dyskonos",
     "version": "0.0.1",
     "description": "Hades based Discord bot",
-    "exports": {
-        "require": "./dist/index.cjs",
-        "import": "./dist/index.mjs"
-    },
+    "type": "commonjs",
+    "main": "./dist/index.js",
     "scripts": {
         "build": "pkgroll --clean-dist",
         "clean": "rimraf dist",
         "lint": "tsc --noEmit",
-        "start": "node dist/index.mjs",
+        "start": "node dist/index.js",
         "watch": "tsc -p tsconfig.json -w"
     },
     "dependencies": {
