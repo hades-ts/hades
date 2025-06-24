@@ -1176,7 +1176,7 @@ importers:
     dependencies:
       '@docusaurus/babel':
         specifier: ~3.8.1
-        version: 3.8.1(@swc/core@1.12.5)(acorn@8.15.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 3.8.1(@swc/core@1.12.5)(acorn@8.15.0)(esbuild@0.25.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@ldlework/inversify-binding-decorators':
         specifier: ^4.0.2
         version: 4.0.2
@@ -1186,12 +1186,6 @@ importers:
       acorn:
         specifier: ^8.15.0
         version: 8.15.0
-      discord.js:
-        specifier: 'catalog:'
-        version: 14.20.0
-      inversify:
-        specifier: 'catalog:'
-        version: 6.2.2(reflect-metadata@0.2.2)
       undici:
         specifier: ^7.10.0
         version: 7.10.0
@@ -1211,6 +1205,9 @@ importers:
       commander:
         specifier: ^7.2.0
         version: 7.2.0
+      discord.js:
+        specifier: 'catalog:'
+        version: 14.20.0
       eslint:
         specifier: ^8.57.1
         version: 8.57.1
@@ -1241,6 +1238,9 @@ importers:
       eslint-plugin-unused-imports:
         specifier: ~3.2.0
         version: 3.2.0(@typescript-eslint/eslint-plugin@6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)
+      inversify:
+        specifier: 'catalog:'
+        version: 6.2.2(reflect-metadata@0.2.2)
       pkgroll:
         specifier: 'catalog:'
         version: 2.13.1(typescript@5.8.3)
@@ -15044,6 +15044,33 @@ snapshots:
       - uglify-js
       - webpack-cli
 
+  '@docusaurus/babel@3.8.1(@swc/core@1.12.5)(acorn@8.15.0)(esbuild@0.25.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@babel/core': 7.27.4
+      '@babel/generator': 7.27.5
+      '@babel/plugin-syntax-dynamic-import': 7.8.3(@babel/core@7.27.4)
+      '@babel/plugin-transform-runtime': 7.27.4(@babel/core@7.27.4)
+      '@babel/preset-env': 7.27.2(@babel/core@7.27.4)
+      '@babel/preset-react': 7.27.1(@babel/core@7.27.4)
+      '@babel/preset-typescript': 7.27.1(@babel/core@7.27.4)
+      '@babel/runtime': 7.27.6
+      '@babel/runtime-corejs3': 7.27.6
+      '@babel/traverse': 7.27.4
+      '@docusaurus/logger': 3.8.1
+      '@docusaurus/utils': 3.8.1(@swc/core@1.12.5)(acorn@8.15.0)(esbuild@0.25.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      babel-plugin-dynamic-import-node: 2.3.3
+      fs-extra: 11.3.0
+      tslib: 2.8.1
+    transitivePeerDependencies:
+      - '@swc/core'
+      - acorn
+      - esbuild
+      - react
+      - react-dom
+      - supports-color
+      - uglify-js
+      - webpack-cli
+
   '@docusaurus/babel@3.8.1(@swc/core@1.12.5)(acorn@8.15.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/core': 7.27.4
@@ -15979,6 +16006,27 @@ snapshots:
       - uglify-js
       - webpack-cli
 
+  '@docusaurus/types@3.8.1(@swc/core@1.12.5)(acorn@8.15.0)(esbuild@0.25.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@mdx-js/mdx': 3.1.0(acorn@8.15.0)
+      '@types/history': 4.7.11
+      '@types/react': 19.1.8
+      commander: 5.1.0
+      joi: 17.13.3
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+      react-helmet-async: '@slorber/react-helmet-async@1.3.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)'
+      utility-types: 3.11.0
+      webpack: 5.99.9(@swc/core@1.12.5)(esbuild@0.25.5)
+      webpack-merge: 5.10.0
+    transitivePeerDependencies:
+      - '@swc/core'
+      - acorn
+      - esbuild
+      - supports-color
+      - uglify-js
+      - webpack-cli
+
   '@docusaurus/types@3.8.1(@swc/core@1.12.5)(acorn@8.15.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@mdx-js/mdx': 3.1.0(acorn@8.15.0)
@@ -16003,6 +16051,20 @@ snapshots:
   '@docusaurus/utils-common@3.8.1(@swc/core@1.12.5)(acorn@8.15.0)(esbuild@0.19.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@docusaurus/types': 3.8.1(@swc/core@1.12.5)(acorn@8.15.0)(esbuild@0.19.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      tslib: 2.8.1
+    transitivePeerDependencies:
+      - '@swc/core'
+      - acorn
+      - esbuild
+      - react
+      - react-dom
+      - supports-color
+      - uglify-js
+      - webpack-cli
+
+  '@docusaurus/utils-common@3.8.1(@swc/core@1.12.5)(acorn@8.15.0)(esbuild@0.25.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@docusaurus/types': 3.8.1(@swc/core@1.12.5)(acorn@8.15.0)(esbuild@0.25.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       tslib: 2.8.1
     transitivePeerDependencies:
       - '@swc/core'
@@ -16091,6 +16153,39 @@ snapshots:
       url-loader: 4.1.1(file-loader@6.2.0(webpack@5.99.9(@swc/core@1.12.5)(esbuild@0.19.12)))(webpack@5.99.9(@swc/core@1.12.5)(esbuild@0.19.12))
       utility-types: 3.11.0
       webpack: 5.99.9(@swc/core@1.12.5)(esbuild@0.19.12)
+    transitivePeerDependencies:
+      - '@swc/core'
+      - acorn
+      - esbuild
+      - react
+      - react-dom
+      - supports-color
+      - uglify-js
+      - webpack-cli
+
+  '@docusaurus/utils@3.8.1(@swc/core@1.12.5)(acorn@8.15.0)(esbuild@0.25.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@docusaurus/logger': 3.8.1
+      '@docusaurus/types': 3.8.1(@swc/core@1.12.5)(acorn@8.15.0)(esbuild@0.25.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@docusaurus/utils-common': 3.8.1(@swc/core@1.12.5)(acorn@8.15.0)(esbuild@0.25.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      escape-string-regexp: 4.0.0
+      execa: 5.1.1
+      file-loader: 6.2.0(webpack@5.99.9(@swc/core@1.12.5)(esbuild@0.25.5))
+      fs-extra: 11.3.0
+      github-slugger: 1.5.0
+      globby: 11.1.0
+      gray-matter: 4.0.3
+      jiti: 1.21.7
+      js-yaml: 4.1.0
+      lodash: 4.17.21
+      micromatch: 4.0.8
+      p-queue: 6.6.2
+      prompts: 2.4.2
+      resolve-pathname: 3.0.0
+      tslib: 2.8.1
+      url-loader: 4.1.1(file-loader@6.2.0(webpack@5.99.9(@swc/core@1.12.5)(esbuild@0.25.5)))(webpack@5.99.9(@swc/core@1.12.5)(esbuild@0.25.5))
+      utility-types: 3.11.0
+      webpack: 5.99.9(@swc/core@1.12.5)(esbuild@0.25.5)
     transitivePeerDependencies:
       - '@swc/core'
       - acorn
@@ -21103,6 +21198,12 @@ snapshots:
       loader-utils: 2.0.4
       schema-utils: 3.3.0
       webpack: 5.99.9(@swc/core@1.12.5)(esbuild@0.19.12)
+
+  file-loader@6.2.0(webpack@5.99.9(@swc/core@1.12.5)(esbuild@0.25.5)):
+    dependencies:
+      loader-utils: 2.0.4
+      schema-utils: 3.3.0
+      webpack: 5.99.9(@swc/core@1.12.5)(esbuild@0.25.5)
 
   file-loader@6.2.0(webpack@5.99.9(@swc/core@1.12.5)):
     dependencies:
@@ -27430,6 +27531,18 @@ snapshots:
       '@swc/core': 1.12.5
       esbuild: 0.19.12
 
+  terser-webpack-plugin@5.3.14(@swc/core@1.12.5)(esbuild@0.25.5)(webpack@5.99.9(@swc/core@1.12.5)(esbuild@0.25.5)):
+    dependencies:
+      '@jridgewell/trace-mapping': 0.3.25
+      jest-worker: 27.5.1
+      schema-utils: 4.3.2
+      serialize-javascript: 6.0.2
+      terser: 5.43.1
+      webpack: 5.99.9(@swc/core@1.12.5)(esbuild@0.25.5)
+    optionalDependencies:
+      '@swc/core': 1.12.5
+      esbuild: 0.25.5
+
   terser-webpack-plugin@5.3.14(@swc/core@1.12.5)(webpack@5.99.9(@swc/core@1.12.5)):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.25
@@ -28085,6 +28198,15 @@ snapshots:
     optionalDependencies:
       file-loader: 6.2.0(webpack@5.99.9(@swc/core@1.12.5)(esbuild@0.19.12))
 
+  url-loader@4.1.1(file-loader@6.2.0(webpack@5.99.9(@swc/core@1.12.5)(esbuild@0.25.5)))(webpack@5.99.9(@swc/core@1.12.5)(esbuild@0.25.5)):
+    dependencies:
+      loader-utils: 2.0.4
+      mime-types: 2.1.35
+      schema-utils: 3.3.0
+      webpack: 5.99.9(@swc/core@1.12.5)(esbuild@0.25.5)
+    optionalDependencies:
+      file-loader: 6.2.0(webpack@5.99.9(@swc/core@1.12.5)(esbuild@0.25.5))
+
   url-loader@4.1.1(file-loader@6.2.0(webpack@5.99.9(@swc/core@1.12.5)))(webpack@5.99.9(@swc/core@1.12.5)):
     dependencies:
       loader-utils: 2.0.4
@@ -28448,6 +28570,37 @@ snapshots:
       schema-utils: 4.3.2
       tapable: 2.2.2
       terser-webpack-plugin: 5.3.14(@swc/core@1.12.5)(esbuild@0.19.12)(webpack@5.99.9(@swc/core@1.12.5)(esbuild@0.19.12))
+      watchpack: 2.4.4
+      webpack-sources: 3.3.3
+    transitivePeerDependencies:
+      - '@swc/core'
+      - esbuild
+      - uglify-js
+
+  webpack@5.99.9(@swc/core@1.12.5)(esbuild@0.25.5):
+    dependencies:
+      '@types/eslint-scope': 3.7.7
+      '@types/estree': 1.0.8
+      '@types/json-schema': 7.0.15
+      '@webassemblyjs/ast': 1.14.1
+      '@webassemblyjs/wasm-edit': 1.14.1
+      '@webassemblyjs/wasm-parser': 1.14.1
+      acorn: 8.15.0
+      browserslist: 4.25.0
+      chrome-trace-event: 1.0.4
+      enhanced-resolve: 5.18.1
+      es-module-lexer: 1.7.0
+      eslint-scope: 5.1.1
+      events: 3.3.0
+      glob-to-regexp: 0.4.1
+      graceful-fs: 4.2.11
+      json-parse-even-better-errors: 2.3.1
+      loader-runner: 4.3.0
+      mime-types: 2.1.35
+      neo-async: 2.6.2
+      schema-utils: 4.3.2
+      tapable: 2.2.2
+      terser-webpack-plugin: 5.3.14(@swc/core@1.12.5)(esbuild@0.25.5)(webpack@5.99.9(@swc/core@1.12.5)(esbuild@0.25.5))
       watchpack: 2.4.4
       webpack-sources: 3.3.3
     transitivePeerDependencies:
