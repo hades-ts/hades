@@ -4,10 +4,7 @@
     "version": "0.0.0",
     "description": "Hades based GPT3 Discord bot",
     "type": "commonjs",
-    "exports": {
-        "require": "./dist/index.cjs",
-        "import": "./dist/index.mjs"
-    },
+    "main": "./dist/index.js",
     "scripts": {
         "build": "pkgroll --clean-dist",
         "clean": "rimraf dist",
