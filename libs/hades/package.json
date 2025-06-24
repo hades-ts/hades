@@ -2,16 +2,18 @@
     "name": "@hades-ts/hades",
     "version": "0.0.7",
     "description": "Typescript framework using Inversify.js and Discord.js",
-    "main": "dist/index.js",
-    "module": "dist/index.mjs",
-    "types": "dist/index.d.ts",
+    "type": "commonjs",
+    "exports": {
+        "main": "./dist/index.cjs",
+        "module": "./dist/index.mjs",
+        "types": "./dist/index.d.ts"
+    },
     "files": [
         "dist"
     ],
     "scripts": {
+        "build": "pkgroll --clean-dist --sourcemap",
         "clean": "rimraf dist",
-        "build": "pkgroll --sourcemap && tsc --emitDeclarationOnly --declaration",
-        "rebuild": "pnpm run clean && pnpm run build",
         "watch": "tsc -p tsconfig.json -w"
     },
     "dependencies": {
@@ -19,6 +21,8 @@
         "@ldlework/inversify-binding-decorators": "^4.0.2",
         "@ldlework/inversify-config-injection": "catalog:",
         "acorn": "^8.15.0",
+        "discord.js": "catalog:",
+        "inversify": "catalog:",
         "reflect-metadata": "catalog:",
         "undici": "^7.10.0",
         "zlib-sync": "^0.1.10"
@@ -28,7 +32,6 @@
         "@typescript-eslint/eslint-plugin": "~6.21.0",
         "@typescript-eslint/parser": "~6.21.0",
         "commander": "^7.2.0",
-        "discord.js": "catalog:",
         "eslint": "^8.57.1",
         "eslint-config-prettier": "^9.1.0",
         "eslint-plugin-decorator-position": "^5.0.2",
@@ -39,7 +42,6 @@
         "eslint-plugin-node": "^11.1.0",
         "eslint-plugin-simple-import-sort": "^8.0.0",
         "eslint-plugin-unused-imports": "~3.2.0",
-        "inversify": "catalog:",
         "pkgroll": "catalog:",
         "rimraf": "^6.0.1",
         "ts-node": "^10.9.2",
