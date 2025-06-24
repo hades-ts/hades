@@ -1,9 +1,11 @@
 .features {
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 2rem;
   padding: 2rem 0;
-  width: 46vw;
+  width: 100%;
   margin: auto;
 }
 
@@ -13,8 +15,46 @@
 }
 
 .feature {
-  max-width: 33%;
+  flex: 1 1 250px;
+  max-width: 300px;
+  text-align: center;
   code {
     color: black;
+  }
+}
+
+// Tablet styles - MUST come before smaller breakpoints
+@media screen and (max-width: 996px) {
+  .features {
+    width: 90%;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .feature {
+    max-width: 45%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .featureSvg {
+    height: 100px;
+    width: 100px;
+  }
+}
+
+// Mobile styles - MUST come last to override tablet styles
+@media screen and (max-width: 680px) {
+  .features {
+    flex-direction: column;
+    align-items: center;
+    width: 100%; /* Override the 90% from tablet */
+    padding: 2rem 1rem; /* Add horizontal padding */
+  }
+
+  .feature {
+    flex: 0 0 auto; /* Reset all flex properties */
+    width: 100%; /* Take full width */
+    max-width: none; /* Remove ALL max-width constraints */
   }
 }

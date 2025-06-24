@@ -4,50 +4,40 @@
  */
 
 .heroBanner {
-  text-align: center;
-
   display: flex;
   flex-direction: row;
   align-items: stretch;
+  min-height: calc(100vh - 60px); /* navbar height */
 
+  & > img {
+    /* Desktop: Image is a flexible panel on the left */
+    flex-basis: 50%;
+    max-width: 50%;
+    object-fit: cover;
+    object-position: 25% 50%; /* Focus on Hades's face */
+  }
+}
+
+.container {
+  flex-basis: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.snippet {
   width: 100%;
-  height: calc(100vh - 60px);
-
-  background-repeat: no-repeat !important;
-  background-position-y: bottom !important;
-  background-position-x: left !important;
-  background-size: contain !important;
-  // background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.1) ), url("/img/hades.png");
-
-  .hero__title,
-  .hero__subtitle {
-    color: black;
-  }
-
-  .container {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-
-    .snippet {
-      display: flex;
-      justify-content: center;
-      pre {
-        text-align: left;
-        border: 1px solid var(--ifm-color-primary-light);
-      }
-    }
-  }
-
-  &>img {
-    height: 100%;
+  max-width: 600px; /* Prevent code from being too wide on desktop */
+  
+  /* THIS IS THE FIX for the code block overflow */
+  pre {
+    overflow-x: auto;
   }
 }
 
 [data-theme="dark"] {
-
   .hero__title,
   .hero__subtitle {
     color: white;
@@ -55,9 +45,62 @@
   }
 }
 
-@media screen and (max-width: 996px) {
+/* Tablet - center the code block but keep text left-aligned */
+@media screen and (max-width: 1100px) and (min-width: 681px) {
+  .snippet {
+    display: flex;
+    justify-content: center;
+    
+    pre {
+      text-align: left;
+    }
+  }
+}
+
+/* Mobile & Tablet */
+@media screen and (max-width: 1100px) {
   .heroBanner {
-    // padding: 2rem;
+    flex-direction: column;
+    min-height: auto;
+    text-align: center;
+    padding: 2rem 1rem;
+    gap: 1rem;
+    align-items: center;
+    
+    & > img {
+      flex-basis: auto;
+      max-width: 70%;
+      max-height: 30vh;
+      object-fit: contain;
+    }
+  }
+
+  .container {
+    flex-basis: auto;
+    width: 100%;
+    padding: 0;
+  }
+
+  .snippet {
+    max-width: 100%;
+    text-align: left;
+  }
+
+  .hero__title {
+    font-size: clamp(1.8rem, 7.2vw, 2.2rem) !important; /* Reaches minimum at 400px */
+    width: 100%; /* Take full width */
+    margin: 0; /* Remove any default margins */
+    padding: 0 0.5rem; /* Small padding to prevent touching edges */
+  }
+
+  .snippet {
+    max-width: 100%;
+    text-align: left;
+    
+    pre {
+      font-size: clamp(0.6rem, 2.4vw, 0.75rem) !important; /* Reaches minimum at 400px */
+      padding: clamp(0.75rem, 2.5vw, 1rem) !important; /* Scale padding proportionally */
+    }
   }
 }
 

@@ -29,26 +29,28 @@ function HomepageHeader() {
         <div className={clsx(styles.heroBanner)}>
             <img src="/img/hades.png" />
             <div className={styles.container}>
-                <div style={{ display: "flex", flexDirection: "column" }}>
-                    <h1 className={`hero__title ${styles.hero__title}`}>
-                        {siteConfig.title}
-                    </h1>
-                    <p className={`hero__subtitle ${styles.hero__subtitle}`}>
-                        {siteConfig.tagline}
-                    </p>
-                    <div className={styles.snippet}>
-                        <CodeBlock language="jsx">{snippet}</CodeBlock>
-                    </div>
-                    <HomepageFeatures />
+                <h1 className={`hero__title ${styles.hero__title}`}>
+                    {siteConfig.title}
+                </h1>
+                <p className={`hero__subtitle ${styles.hero__subtitle}`}>
+                    {siteConfig.tagline}
+                </p>
+                <div className={styles.snippet}>
+                    <CodeBlock language="jsx">{snippet}</CodeBlock>
                 </div>
+                <HomepageFeatures />
             </div>
         </div>
     );
 }
 
 export default function Home(): JSX.Element {
+    const { siteConfig } = useDocusaurusContext();
     return (
-        <Layout>
+        <Layout
+            title={`${siteConfig.title}`}
+            description="Discord bot framework built with Inversify and Discord.js."
+        >
             <HomepageHeader />
         </Layout>
     );
