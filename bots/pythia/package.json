@@ -3,11 +3,15 @@
     "name": "@hades-ts/pythia",
     "version": "0.0.0",
     "description": "Hades based GPT3 Discord bot",
-    "main": "dist/index.js",
+    "type": "commonjs",
+    "exports": {
+        "require": "./dist/index.cjs",
+        "import": "./dist/index.mjs"
+    },
     "scripts": {
+        "build": "pkgroll --clean-dist",
         "clean": "rimraf dist",
-        "build": "pkgroll --sourcemap && tsc --emitDeclarationOnly --declaration",
-        "rebuild": "pnpm run clean && pnpm run build",
+        "lint": "tsc --noEmit",
         "start": "node dist/index.js",
         "watch": "tsc -p tsconfig.json -w"
     },
@@ -55,21 +59,8 @@
         "eslint-plugin-simple-import-sort": "^8.0.0",
         "eslint-plugin-unused-imports": "~3.2.0",
         "pkgroll": "catalog:",
-        "rimraf": "^6.0.1",
-        "ts-node": "^10.9.2",
+        "rimraf": "catalog:",
         "tsconfig-paths": "^4.2.0",
-        "tsup": "catalog:",
         "typescript": "catalog:"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/hades-ts/hades.git"
-    },
-    "author": "",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/hades-ts/hades/issues"
-    },
-    "homepage": "https://github.com/hades-ts/hades#readme",
-    "module": "dist/index.mjs"
+    }
 }
