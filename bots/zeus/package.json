@@ -17,7 +17,6 @@
         "@hades-ts/hades": "workspace:^",
         "@hades-ts/slash-commands": "workspace:^",
         "@hades-ts/stash": "workspace:^",
-        "@hades-ts/text-commands": "workspace:^",
         "@ldlework/categoric-containers": "~0.0.2",
         "@ldlework/categoric-decorators": "^1.0.1",
         "@ldlework/inversify-binding-decorators": "^4.0.2",

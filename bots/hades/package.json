@@ -15,7 +15,6 @@
     "dependencies": {
         "@hades-ts/hades": "workspace:^",
         "@hades-ts/slash-commands": "workspace:^",
-        "@hades-ts/text-commands": "workspace:^",
         "@ldlework/inversify-binding-decorators": "^4.0.2",
         "common-tags": "^1.8.2",
         "config": "^3.3.12",

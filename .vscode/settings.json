@@ -67,10 +67,6 @@
             "changeProcessCWD": true
         },
         {
-            "directory": "libs/text-commands",
-            "changeProcessCWD": true
-        },
-        {
             "directory": "bots/apollo",
             "changeProcessCWD": true
         },

@@ -50,7 +50,8 @@
         "rimraf": "catalog:",
         "ts-node": "^10.9.2",
         "tsconfig-paths": "^4.2.0",
-        "typescript": "~5.8.3"
+        "typescript": "~5.8.3",
+        "@hades-ts/tsconfig": "workspace:*"
     },
     "dependencies": {
         "@docusaurus/plugin-content-docs": "~3.8.1",

@@ -725,6 +725,9 @@ importers:
         specifier: 'catalog:'
         version: 0.2.2
     devDependencies:
+      '@hades-ts/tsconfig':
+        specifier: workspace:*
+        version: link:../tsconfig
       '@types/node':
         specifier: 'catalog:'
         version: 24.0.3
@@ -819,6 +822,8 @@ importers:
         specifier: ^1.2.0
         version: 1.2.0
 
+  libs/tsconfig: {}
+
   pkgs/ai:
     dependencies:
       axios:
@@ -840,6 +845,9 @@ importers:
       '@hades-ts/hades':
         specifier: workspace:^
         version: link:../hades
+      '@hades-ts/tsconfig':
+        specifier: workspace:*
+        version: link:../../libs/tsconfig
       '@ldlework/inversify-binding-decorators':
         specifier: ^4.0.2
         version: 4.0.2
@@ -922,6 +930,9 @@ importers:
       '@hades-ts/hades':
         specifier: workspace:^
         version: link:../hades
+      '@hades-ts/tsconfig':
+        specifier: workspace:*
+        version: link:../../libs/tsconfig
       '@ldlework/inversify-binding-decorators':
         specifier: ^4.0.2
         version: 4.0.2
@@ -1089,6 +1100,9 @@ importers:
       '@hades-ts/hades':
         specifier: workspace:^
         version: link:../hades
+      '@hades-ts/tsconfig':
+        specifier: workspace:*
+        version: link:../../libs/tsconfig
       '@ldlework/inversify-binding-decorators':
         specifier: ^4.0.2
         version: 4.0.2
@@ -1165,6 +1179,9 @@ importers:
         specifier: ^8.15.0
         version: 8.15.0
     devDependencies:
+      '@hades-ts/tsconfig':
+        specifier: workspace:*
+        version: link:../../libs/tsconfig
       '@types/node':
         specifier: ^24.0.3
         version: 24.0.3
@@ -1244,6 +1261,9 @@ importers:
       '@hades-ts/text-commands':
         specifier: workspace:^
         version: link:../text-commands
+      '@hades-ts/tsconfig':
+        specifier: workspace:*
+        version: link:../../libs/tsconfig
       '@ldlework/inversify-binding-decorators':
         specifier: ^4.0.2
         version: 4.0.2
@@ -1329,6 +1349,9 @@ importers:
       '@hades-ts/hades':
         specifier: workspace:^
         version: link:../hades
+      '@hades-ts/tsconfig':
+        specifier: workspace:*
+        version: link:../../libs/tsconfig
       '@ldlework/inversify-binding-decorators':
         specifier: ^4.0.2
         version: 4.0.2
@@ -1414,6 +1437,9 @@ importers:
       '@hades-ts/hades':
         specifier: workspace:^
         version: link:../hades
+      '@hades-ts/tsconfig':
+        specifier: workspace:*
+        version: link:../../libs/tsconfig
       '@ldlework/inversify-binding-decorators':
         specifier: ^4.0.2
         version: 4.0.2
@@ -1481,12 +1507,18 @@ importers:
       '@hades-ts/hades':
         specifier: workspace:^
         version: link:../hades
+      '@hades-ts/tsconfig':
+        specifier: workspace:*
+        version: link:../../libs/tsconfig
       '@ldlework/inversify-binding-decorators':
         specifier: ^4.0.2
         version: 4.0.2
       '@ldlework/inversify-config-injection':
         specifier: 'catalog:'
         version: 0.0.8(inversify@6.2.2(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
+      '@types/luxon':
+        specifier: ^3.6.2
+        version: 3.6.2
       '@types/node':
         specifier: ^24.0.3
         version: 24.0.3
@@ -1536,6 +1568,9 @@ importers:
       '@hades-ts/hades':
         specifier: workspace:^
         version: link:../hades
+      '@hades-ts/tsconfig':
+        specifier: workspace:*
+        version: link:../../libs/tsconfig
       '@ldlework/inversify-binding-decorators':
         specifier: ^4.0.2
         version: 4.0.2
@@ -1617,6 +1652,9 @@ importers:
       '@babel/preset-env':
         specifier: ^7.27.2
         version: 7.27.2(@babel/core@7.27.4)
+      '@hades-ts/tsconfig':
+        specifier: workspace:*
+        version: link:../../libs/tsconfig
       '@types/node':
         specifier: ^24.0.3
         version: 24.0.3

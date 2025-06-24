@@ -1,0 +1,16 @@
+{
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "compilerOptions": {
+        "esModuleInterop": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "resolveJsonModule": true,
+        "skipLibCheck": true,
+        "allowJs": true,
+        "allowSyntheticDefaultImports": true,
+        "lib": [
+            "dom",
+            "es6"
+        ]
+    }
+}

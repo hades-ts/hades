@@ -5,8 +5,8 @@ import { BaseFiletypeStash } from "./BaseFiletypeStash";
 
 export class YamlStash<T extends z.ZodTypeAny> extends BaseFiletypeStash<T> {
     constructor(
-        public readonly path: string,
-        public readonly schema: T,
+        public override readonly path: string,
+        public override readonly schema: T,
     ) {
         super(path, "yaml", schema);
     }

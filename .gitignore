@@ -95,3 +95,4 @@ common/autoinstallers/*/.npmrc
 
 default.json
 .turbo
+llm

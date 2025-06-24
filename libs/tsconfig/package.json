@@ -1,0 +1,20 @@
+{
+    "private": true,
+    "name": "@hades-ts/tsconfig",
+    "version": "0.0.1",
+    "description": "Shared TypeScript configurations for Hades monorepo",
+    "author": "",
+    "license": "ISC",
+    "homepage": "https://github.com/hades-ts/hades#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/hades-ts/hades.git"
+    },
+    "bugs": {
+        "url": "https://github.com/hades-ts/hades/issues"
+    },
+    "files": [
+        "aspects/**/*.json",
+        "*.json"
+    ]
+}

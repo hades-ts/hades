@@ -3,7 +3,6 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 import { HadesContainer } from "@hades-ts/hades";
-import { TextCommandsInstaller } from "@hades-ts/text-commands";
 import { SlashCommandsInstaller } from "@hades-ts/slash-commands";
 
 import "@hades-ts/slash-commands/dist/builtins/commands/HelpCommand";
@@ -14,9 +13,10 @@ import "./slash-commands";
 
 import { configSchema } from "./config";
 
+// TODO: use boot
 (async () => {
     const container = new HadesContainer({
-        installers: [new TextCommandsInstaller(), new SlashCommandsInstaller()],
+        installers: [new SlashCommandsInstaller()],
         configOptions: {
             schema: configSchema,
         },

@@ -1,27 +1,12 @@
 {
+    "extends": "@hades-ts/tsconfig/pkg.json",
     "compilerOptions": {
-        "module": "esnext",
-        "moduleResolution": "bundler",
-        "esModuleInterop": true,
-        "declaration": true,
-        "declarationMap": true,
-        "sourceMap": true,
-        "outDir": "dist/",
-        "skipLibCheck": true,
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true,
-        "allowSyntheticDefaultImports": true,
-        "resolveJsonModule": true,
-        "lib": [
-            "dom",
-            "es6"
-        ],
-        "types": [
-            "node"
-        ]
+        "rootDir": "src",
+        "outDir": "./dist"
     },
     "include": [
-        "src/**/*.ts"
+        "src/**/*.ts",
+        "src/**/*.js"
     ],
     "exclude": [
         "node_modules"

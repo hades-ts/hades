@@ -10,7 +10,7 @@
         "url": "git+https://github.com/hades-ts/hades.git"
     },
     "bugs": {
-        "url": "https://github.com/hades-ts/text-commands/issues"
+        "url": "https://github.com/hades-ts/hades-ts/issues"
     },
     "type": "commonjs",
     "exports": {
@@ -32,7 +32,6 @@
     "devDependencies": {
         "@hades-ts/hades": "workspace:^",
         "@hades-ts/slash-commands": "workspace:^",
-        "@hades-ts/text-commands": "workspace:^",
         "@ldlework/inversify-binding-decorators": "^4.0.2",
         "@ldlework/inversify-config-injection": "catalog:",
         "@types/jest": "^29.5.14",
@@ -57,12 +56,12 @@
         "rimraf": "^6.0.1",
         "ts-jest": "^29.4.0",
         "tsconfig-paths": "^4.2.0",
-        "typescript": "^5.8.3"
+        "typescript": "^5.8.3",
+        "@hades-ts/tsconfig": "workspace:*"
     },
     "peerDependencies": {
         "@hades-ts/hades": "workspace:^",
         "@hades-ts/slash-commands": "workspace:^",
-        "@hades-ts/text-commands": "workspace:^",
         "@ldlework/inversify-binding-decorators": "^4.0.1",
         "@ldlework/inversify-config-injection": "catalog:",
         "discord.js": "catalog:",

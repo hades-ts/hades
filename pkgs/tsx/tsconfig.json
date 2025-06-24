@@ -1,28 +1,14 @@
 {
+    "extends": "@hades-ts/tsconfig/pkg.json",
     "compilerOptions": {
-        "esModuleInterop": true,
-        "forceConsistentCasingInFileNames": true,
-        "module": "esnext",
-        "moduleResolution": "bundler",
-        "noImplicitOverride": true,
-        "noImplicitReturns": true,
-        "noPropertyAccessFromIndexSignature": true,
-        "noUncheckedIndexedAccess": true,
-        "noUnusedLocals": true,
-        "noUnusedParameters": true,
-        "outDir": "./dist",
-        "rewriteRelativeImportExtensions": true,
-        "strict": true,
-        "strictNullChecks": true,
-        "strictFunctionTypes": true,
-        "strictBindCallApply": true,
-        "strictPropertyInitialization": true,
-        "skipLibCheck": true,
-        "declarationMap": true,
-        "declaration": true,
-        "sourceMap": true
+        "rootDir": "src",
+        "outDir": "./dist"
     },
     "include": [
-        "src/**.ts"
+        "src/**/*.ts",
+        "src/**/*.js"
+    ],
+    "exclude": [
+        "node_modules"
     ]
 }

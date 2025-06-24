@@ -46,7 +46,7 @@ export abstract class BaseFiletypeStash<T extends z.ZodTypeAny> {
 
     find(query: (data: z.TypeOf<T>) => boolean): Array<ZodWithId<T>> {
         const ids = this.index();
-        return ids.map((id) => this.get(id)).find(query);
+        return ids.map((id) => this.get(id)).find(query)!;
     }
 
     filter(query: (data: z.TypeOf<T>) => boolean): Array<ZodWithId<T>> {

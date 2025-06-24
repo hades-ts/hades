@@ -20,7 +20,7 @@ export class TokenQuota {
 
     protected getToday() {
         const today = new Date();
-        return today.toISOString().split("T")[0];
+        return today.toISOString().split("T")[0] as string;
     }
 
     protected isToday(date: string) {

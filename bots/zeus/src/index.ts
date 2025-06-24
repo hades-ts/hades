@@ -3,7 +3,6 @@ import "./slash-commands";
 
 import { HadesContainer } from "@hades-ts/hades";
 import { SlashCommandsInstaller } from "@hades-ts/slash-commands";
-import { TextCommandsInstaller } from "@hades-ts/text-commands";
 import { GuildManager } from "discord.js";
 import * as dotenv from "dotenv";
 
@@ -12,9 +11,11 @@ import { BotService } from "./services/BotService";
 
 dotenv.config();
 
+
+// TODO: use boot
 (async () => {
     const container = new HadesContainer({
-        installers: [new TextCommandsInstaller(), new SlashCommandsInstaller()],
+        installers: [new SlashCommandsInstaller()],
         configOptions: {
             schema: configSchema,
         },

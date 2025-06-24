@@ -1,13 +1,13 @@
 import { z } from "zod";
 
 import { BaseFiletypeStash } from "./BaseFiletypeStash";
-import matter = require("gray-matter");
+import matter from "gray-matter";
 import yaml from "yaml";
 
 export class MarkdownStash<T extends z.ZodTypeAny> extends BaseFiletypeStash<T> {
     constructor(
-        public readonly path: string,
-        public readonly schema: T,
+        public override readonly path: string,
+        public override readonly schema: T,
     ) {
         super(path, "md", schema);
     }

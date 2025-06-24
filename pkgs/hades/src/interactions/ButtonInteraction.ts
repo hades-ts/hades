@@ -59,7 +59,9 @@ export abstract class BaseButtonInteraction {
         });
 
         collector.on("end", async (interactions) => {
-            await this.cleanup(this.interaction, interactions);
+            if (this.interaction) {
+                await this.cleanup(this.interaction, interactions);
+            }
         });
 
         return collector;

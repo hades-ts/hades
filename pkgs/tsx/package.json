@@ -45,6 +45,7 @@
         "rimraf": "catalog:",
         "tsx": "^4.20.3",
         "turbo": "catalog:",
-        "typescript": "catalog:"
+        "typescript": "catalog:",
+        "@hades-ts/tsconfig": "workspace:*"
     }
 }

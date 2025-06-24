@@ -4,13 +4,26 @@ import {
     Collection,
     Emoji,
     Guild,
+    GuildBan,
     GuildMember,
+    GuildMembersChunk,
+    GuildTextBasedChannel,
     Interaction,
     Message,
     MessageReaction,
+    MessageReactionEventDetails,
+    OmitPartialGroupDMChannel,
+    PartialGuildMember,
+    PartialMessage,
+    PartialMessageReaction,
+    PartialUser,
+    Presence,
+    ReadonlyCollection,
     Role,
     Snowflake,
+    Typing,
     User,
+    VoiceState,
 } from "discord.js";
 import { inject, postConstruct } from "inversify";
 
@@ -28,19 +41,19 @@ export class HadesBotService {
      * The Discord client.
      */
     @inject(HadesClient)
-    protected client: HadesClient;
+    protected client!: HadesClient;
 
     /**
      * The Discord bot token.
      */
     @inject("cfg.discordToken")
-    protected token: String;
+    protected token!: String;
 
     /**
      * Used to receive Discord events.
      */
     @inject(EventService)
-    protected eventService: EventService;
+    protected eventService!: EventService;
 
     @postConstruct()
     postConstruct() {
@@ -56,7 +69,7 @@ export class HadesBotService {
     }
 
     get highlight() {
-        return `<@${this.client.user.id}>`;
+        return `<@${this.client.user?.id}>`;
     }
 
     protected isHighlight(content: string) {
@@ -75,63 +88,80 @@ export class HadesBotService {
     }
 
     /* channels */
-    async onChannelCreate(channel: Channel) {}
-    async onChannelDelete(channel: Channel) {}
-    async onChannelPinsUpdate(channel: Channel, time: Date) {}
-    async onChannelUpdate(oldChannel: Channel, newChannel: Channel) {}
+    async onChannelCreate(channel: Channel) { }
+    async onChannelDelete(channel: Channel) { }
+    async onChannelPinsUpdate(channel: Channel, time: Date) { }
+    async onChannelUpdate(oldChannel: Channel, newChannel: Channel) { }
 
     /* connection */
-    async onReady() {}
-    async onReconnecting() {}
-    async onDisconnect(event: CloseEvent) {}
+    async onReady() { }
+    async onReconnecting() { }
+    async onDisconnect(event: CloseEvent) { }
 
     /* emoji */
-    async onEmojiCreate(emoji: Emoji) {}
-    async onEmojiDelete(emoji: Emoji) {}
-    async onEmojiUpdate(emoji: Emoji) {}
+    async onEmojiCreate(emoji: Emoji) { }
+    async onEmojiDelete(emoji: Emoji) { }
+    async onEmojiUpdate(emoji: Emoji) { }
 
     /* bans */
-    async onGuildBanAdd(guild: Guild, user: User) {}
-    async onGuildBanRemove(guild: Guild, user: User) {}
+    async onGuildBanAdd(ban: GuildBan) { }
+    async onGuildBanRemove(ban: GuildBan) { }
 
     /* bot guilds */
-    async onGuildCreate(guild: Guild) {}
-    async onGuildDelete(guild: Guild) {}
-    async onGuildUnavailable(guild: Guild) {}
+    async onGuildCreate(guild: Guild) { }
+    async onGuildDelete(guild: Guild) { }
+    async onGuildUnavailable(guild: Guild) { }
 
     /* guild members */
-    async onGuildMemberAdd(member: GuildMember) {}
-    async onGuildMemberAvailable(member: GuildMember) {}
-    async onGuildMemberRemove(member: GuildMember) {}
-    async onGuildMemberSpeaking(member: GuildMember, isSpeaking: boolean) {}
-    async onGuildMemberUpdate(oldMember: GuildMember, newMember: GuildMember) {}
-    async onGuildMembersChunk(members: GuildMember[], guild: Guild) {}
-    async onGuildUpdate(oldGuild: Guild, newGuild: Guild) {}
+    async onGuildMemberAdd(member: GuildMember) { }
+    async onGuildMemberAvailable(member: GuildMember | PartialGuildMember) { }
+    async onGuildMemberRemove(member: GuildMember | PartialGuildMember) { }
+    async onGuildMemberSpeaking(member: GuildMember, isSpeaking: boolean) { }
+    async onGuildMemberUpdate(oldMember: GuildMember | PartialGuildMember, newMember: GuildMember | PartialGuildMember) { }
+    async onGuildMembersChunk(members: ReadonlyCollection<Snowflake, GuildMember>, guild: Guild, data: GuildMembersChunk) { }
+    async onGuildUpdate(oldGuild: Guild, newGuild: Guild) { }
 
     /* interactions */
-    async onInteractionCreate<T extends Interaction>(interaction: T) {}
+    async onInteractionCreate<T extends Interaction>(interaction: T) { }
 
     /* messages */
-    async onMessage<T extends Message>(message: T) {}
-    async onMessageDelete(message: Message) {}
-    async onMessageDeleteBulk(messages: Collection<Snowflake, Message>) {}
-    async onMessageReactionAdd(reaction: MessageReaction, user: User) {}
-    async onMessageReactionRemove(reaction: MessageReaction, user: User) {}
-    async onMessageReactionRemoveAll(message: Message) {}
-    async onMessageUpdate(oldMessage: Message, newMessage: Message) {}
+    async onMessage<T extends Message>(message: T) { }
+    async onMessageDelete(message: OmitPartialGroupDMChannel<Message | PartialMessage>) { }
+    async onMessageDeleteBulk(
+        messages: ReadonlyCollection<Snowflake, OmitPartialGroupDMChannel<Message | PartialMessage>>,
+        channel: GuildTextBasedChannel,
+    ) { }
+    async onMessageReactionAdd(
+        reaction: MessageReaction | PartialMessageReaction,
+        user: User | PartialUser,
+        details: MessageReactionEventDetails,
+    ) { }
+    async onMessageReactionRemove(
+        reaction: MessageReaction | PartialMessageReaction,
+        user: User | PartialUser,
+        details: MessageReactionEventDetails,
+    ) { }
+    async onMessageReactionRemoveAll(
+        message: OmitPartialGroupDMChannel<Message | PartialMessage>,
+        reactions: ReadonlyCollection<string | Snowflake, MessageReaction>,
+    ) { }
+    async onMessageUpdate(
+        oldMessage: OmitPartialGroupDMChannel<Message | PartialMessage>,
+        newMessage: OmitPartialGroupDMChannel<Message>,
+    ) { }
 
     /* prescence */
-    async onPresenceUpdate(oldMember: GuildMember, newMember: GuildMember) {}
-    async onTypingStart(channel: Channel, user: User) {}
-    async onTypingStop(channel: Channel, user: User) {}
+    async onPresenceUpdate(oldPresence: Presence | null, newPresence: Presence) { }
+    async onTypingStart(typing: Typing) { }
+    async onTypingStop(channel: Channel, user: User) { }
 
     /* roles */
-    async onRoleCreate(role: Role) {}
-    async onRoleDelete(role: Role) {}
-    async onRoleUpdate(oldRole: Role, newRole: Role) {}
+    async onRoleCreate(role: Role) { }
+    async onRoleDelete(role: Role) { }
+    async onRoleUpdate(oldRole: Role, newRole: Role) { }
 
     /* users */
-    async onUserNoteUpdate(user: User, oldNote: string, newNote: string) {}
-    async onUserUpdate(oldUser: User, newUser: User) {}
-    async onVoiceStateUpdate(oldMember: GuildMember, newMember: GuildMember) {}
+    async onUserNoteUpdate(user: User, oldNote: string, newNote: string) { }
+    async onUserUpdate(oldUser: User | PartialUser, newUser: User) { }
+    async onVoiceStateUpdate(oldState: VoiceState, newState: VoiceState) { }
 }

@@ -181,7 +181,7 @@ export class CamxesService {
             const [first, ...rest] = node[0] as unknown as ParseNode[];
             console.log("First");
             console.log(JSON.stringify(first, null, 2));
-            const firstKind = first[0];
+            const firstKind = first![0];
             if (firstKind === "gihek") {
                 console.log("Found gihek!");
                 const gihek = this.convertParse(first);

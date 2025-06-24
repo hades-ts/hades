@@ -10,7 +10,7 @@ import { HadesClient } from "./HadesClient";
 @singleton(EventService)
 export abstract class EventService {
     @inject(HadesClient)
-    protected client: HadesClient;
+    protected client!: HadesClient;
 
     /**
      * Register a bot for event callbacks.

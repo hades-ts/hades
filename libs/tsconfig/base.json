@@ -1,0 +1,10 @@
+{
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "extends": [
+        "./aspects/features.json",
+        "./aspects/strictness.json",
+        "./aspects/sourcemaps.json",
+        "./aspects/types.json",
+        "./aspects/output.json"
+    ]
+}
