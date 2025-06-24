@@ -1,39 +1,43 @@
 {
-  description = "A DI Discord bot framework";
+  description = "Description for the project";
 
-  inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-
-    devshell.url = "github:numtide/devshell";
-    nixago.url = "github:nix-community/nixago";
-    std = {
-      url = "github:divnix/std";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        devshell.follows = "devshell";
-        nixago.follows = "nixago";
-      };
-    };
+  nixConfig = {
+    extra-trusted-public-keys = "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=";
+    extra-substituters = "https://devenv.cachix.org";
   };
 
-  outputs = {
-    std,
-    self,
-    ...
-  } @ inputs:
-    std.growOn {
-      inherit inputs;
-      cellsFrom = ./nix;
-      cellBlocks = with std.blockTypes; [
-        (devshells "devshells")
-        (nixago "configs")
-        (functions "utils")
-        (installables "packages")
-        (functions "operables")
-        (containers "containers")
+  outputs =
+    inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [
+        (inputs.import-tree ./nix)
       ];
-    }
-    {
-      devShells = std.harvest self ["repo" "devshells"];
+      systems = [
+        "x86_64-linux"
+        "i686-linux"
+        "x86_64-darwin"
+        "aarch64-linux"
+        "aarch64-darwin"
+      ];
     };
+
+  inputs = {
+    nixpkgs.url = "github:cachix/devenv-nixpkgs/rolling";
+
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    import-tree.url = "github:vic/import-tree";
+
+    treefmt-nix.url = "github:numtide/treefmt-nix";
+    files.url = "github:mightyiam/files";
+
+    # devenv
+    devenv-root = {
+      url = "file+file:///dev/null";
+      flake = false;
+    };
+    devenv.url = "github:cachix/devenv";
+    nix2container.url = "github:nlewo/nix2container";
+    nix2container.inputs.nixpkgs.follows = "nixpkgs";
+    mk-shell-bin.url = "github:rrbutani/nix-mk-shell-bin";
+  };
 }

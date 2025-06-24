@@ -1,9 +1,7 @@
 {
     "editor.formatOnSave": true,
     "editor.tabSize": 4,
-    "editor.rulers": [
-        100
-    ],
+    "editor.rulers": [100, 120],
     "editor.tabCompletion": "on",
     "editor.detectIndentation": false,
     "editor.codeActionsOnSave": {
@@ -20,15 +18,7 @@
         "subcontainer",
         "usertags"
     ],
-    "exportall.config.folderListener": [
-        "/bots/ares/src/utils",
-        "/bots/chaos/src/guilds/services/ChannelService"
-    ],
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-    "eslint.format.enable": true,
-    "files.associations": {
-        "*.json": "jsonc"
-    },
+    "exportall.config.folderListener": ["/bots/ares/src/utils", "/bots/chaos/src/guilds/services/ChannelService"],
     "eslint.workingDirectories": [
         {
             "directory": "libs/bypass",
@@ -96,15 +86,18 @@
         }
     ],
     "[typescript]": {
-        "editor.defaultFormatter": "vscode.typescript-language-features"
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-    "[jsonc]": {
-        "editor.defaultFormatter": "vscode.json-language-features"
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "[typescriptreact]": {
-        "editor.defaultFormatter": "vscode.typescript-language-features"
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "[javascript]": {
-        "editor.defaultFormatter": "vscode.typescript-language-features"
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
+    "[nix]": {
+        "editor.defaultFormatter": "jnoortheen.nix-ide"
+    }
 }
