@@ -22,7 +22,7 @@ catalogs:
       specifier: 2.13.1
       version: 2.13.1
     reflect-metadata:
-      specifier: ~0.2.2
+      specifier: 0.2.2
       version: 0.2.2
     tsup:
       specifier: ^8.5.0
@@ -1192,9 +1192,6 @@ importers:
       inversify:
         specifier: 'catalog:'
         version: 6.2.2(reflect-metadata@0.2.2)
-      reflect-metadata:
-        specifier: 'catalog:'
-        version: 0.2.2
       undici:
         specifier: ^7.10.0
         version: 7.10.0
@@ -1247,6 +1244,9 @@ importers:
       pkgroll:
         specifier: 'catalog:'
         version: 2.13.1(typescript@5.8.3)
+      reflect-metadata:
+        specifier: 'catalog:'
+        version: 0.2.2
       rimraf:
         specifier: ^6.0.1
         version: 6.0.1
@@ -1569,12 +1569,21 @@ importers:
       discord-command-parser:
         specifier: ^1.5.3
         version: 1.5.3
+      discord.js:
+        specifier: 'catalog:'
+        version: 14.20.0
+      inversify:
+        specifier: 'catalog:'
+        version: 6.2.2(reflect-metadata@0.2.2)
+      reflect-metadata:
+        specifier: 'catalog:'
+        version: 0.2.2
     devDependencies:
       '@hades-ts/hades':
         specifier: workspace:^
         version: link:../hades
       '@types/node':
-        specifier: ^24.0.3
+        specifier: 'catalog:'
         version: 24.0.3
       '@typescript-eslint/eslint-plugin':
         specifier: ~6.21.0
@@ -1582,9 +1591,6 @@ importers:
       '@typescript-eslint/parser':
         specifier: ~6.21.0
         version: 6.21.0(eslint@8.57.1)(typescript@5.8.3)
-      discord.js:
-        specifier: 'catalog:'
-        version: 14.20.0
       eslint:
         specifier: ^8.57.1
         version: 8.57.1
@@ -1615,18 +1621,15 @@ importers:
       eslint-plugin-unused-imports:
         specifier: ~3.2.0
         version: 3.2.0(@typescript-eslint/eslint-plugin@6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)
-      inversify:
+      pkgroll:
         specifier: 'catalog:'
-        version: 6.2.2(reflect-metadata@0.2.2)
-      ts-node:
-        specifier: ^10.9.2
-        version: 10.9.2(@swc/core@1.12.5)(@types/node@24.0.3)(typescript@5.8.3)
+        version: 2.13.1(typescript@5.8.3)
+      rimraf:
+        specifier: ^6.0.1
+        version: 6.0.1
       tsconfig-paths:
         specifier: ^4.2.0
         version: 4.2.0
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.0(@swc/core@1.12.5)(jiti@2.4.2)(postcss@8.5.6)(tsx@4.20.3)(typescript@5.8.3)(yaml@2.8.0)
       typescript:
         specifier: 'catalog:'
         version: 5.8.3
@@ -18148,7 +18151,7 @@ snapshots:
 
   '@types/sax@1.2.7':
     dependencies:
-      '@types/node': 17.0.45
+      '@types/node': 24.0.3
 
   '@types/semver@7.7.0': {}
 
