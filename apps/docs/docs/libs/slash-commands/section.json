@@ -1,3 +1,10 @@
 {
-    "order": ["installation", "configuration", "commands", "arguments", "parsers", "validation"]
+    "order": [
+        "installation",
+        "configuration",
+        "commands",
+        "arguments",
+        "parsers",
+        "validation"
+    ]
 }

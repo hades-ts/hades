@@ -26,8 +26,8 @@ export class SectionMetadataProvider {
         const indexPath = this.entryProvider.entries.includes("index.md")
             ? join(this.subSectionRoot, "index.md")
             : this.entryProvider.entries.includes("index.mdx")
-            ? join(this.subSectionRoot, "index.mdx")
-            : null;
+              ? join(this.subSectionRoot, "index.mdx")
+              : null;
 
         if (indexPath) {
             const indexContent = readFileSync(indexPath, "utf-8");
@@ -39,7 +39,8 @@ export class SectionMetadataProvider {
     }
 
     getSectionMeta() {
-        const hasSectionFile = this.entryProvider.entries.includes("section.json");
+        const hasSectionFile =
+            this.entryProvider.entries.includes("section.json");
 
         if (hasSectionFile) {
             return JSON.parse(readFileSync(this.metadataPath, "utf-8"));

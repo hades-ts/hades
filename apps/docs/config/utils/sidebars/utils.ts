@@ -40,9 +40,12 @@ declare global {
     }
 }
 
-export const isFile = (root) => (relPath) => fs.statSync(path.join(root, relPath)).isFile();
-export const isDirectory = (root) => (relPath) => fs.statSync(path.join(root, relPath)).isDirectory();
-export const isMarkdown = (path) => path.endsWith(".md") || path.endsWith(".mdx");
+export const isFile = (root) => (relPath) =>
+    fs.statSync(path.join(root, relPath)).isFile();
+export const isDirectory = (root) => (relPath) =>
+    fs.statSync(path.join(root, relPath)).isDirectory();
+export const isMarkdown = (path) =>
+    path.endsWith(".md") || path.endsWith(".mdx");
 export const isntEmpty = (name) => !!name;
 export const isntIndex = (name) => name !== "index.md" && name !== "index.mdx";
 
@@ -50,7 +53,10 @@ export const join =
     (root: string) =>
     (...paths: string[]) =>
         path.join(root, ...paths);
-export const removeExtension = (entry: string) => entry.split(".").shift() || entry;
-export const removeNumericPrefix = (entry: string) => entry.replace(/^\d+-/, "");
-export const removeLeadingSlashes = (entry: string) => entry.replace(/^\/+/, "");
+export const removeExtension = (entry: string) =>
+    entry.split(".").shift() || entry;
+export const removeNumericPrefix = (entry: string) =>
+    entry.replace(/^\d+-/, "");
+export const removeLeadingSlashes = (entry: string) =>
+    entry.replace(/^\/+/, "");
 export const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);

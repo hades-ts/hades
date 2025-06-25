@@ -10,9 +10,15 @@
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "resolveJsonModule": true,
-    "types": ["node"]
+        "types": ["node"]
     },
-    "include": ["config/**/*.ts", "docs/**/*.ts", "docs/**/*.tsx", "src/**/*.ts", "src/**/*.tsx"],
+    "include": [
+        "config/**/*.ts",
+        "docs/**/*.ts",
+        "docs/**/*.tsx",
+        "src/**/*.ts",
+        "src/**/*.tsx"
+    ],
     "ts-node": {
         "compilerOptions": {
             "module": "NodeNext",
