@@ -1,6 +1,6 @@
 import { EmbedBuilder } from "discord.js";
 
-import { EmbedSchema } from "../schemas";
+import type { EmbedSchema } from "../schemas";
 
 export const renderEmbedRecord = async (embedRecord: EmbedSchema) => {
     const embed = new EmbedBuilder();

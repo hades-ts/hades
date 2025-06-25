@@ -1,8 +1,7 @@
 {
     "recommendations": [
-        "dbaeumer.vscode-eslint",
-        "esbenp.prettier-vscode",
         "editorconfig.editorconfig",
-        "jnoortheen.nix-ide"
+        "jnoortheen.nix-ide",
+        "biomejs.biome"
     ]
 }

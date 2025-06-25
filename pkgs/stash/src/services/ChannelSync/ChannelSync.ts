@@ -1,12 +1,12 @@
-import { HadesClient } from "@hades-ts/hades";
-import { ChannelType, GuildTextBasedChannel, MessageCreateOptions } from "discord.js";
+import type { HadesClient } from "@hades-ts/hades";
+import { ChannelType, type GuildTextBasedChannel, type MessageCreateOptions } from "discord.js";
 import fs from "fs";
 import path from "path";
 import { z } from "zod";
 
-import { EmbedSchema, embedSchema } from "../../schemas";
+import { type EmbedSchema, embedSchema } from "../../schemas";
 import { renderComponents, renderEmbedRecord } from "../../utils";
-import { BaseFiletypeStash, MarkdownStash } from "../Stash";
+import { type BaseFiletypeStash, MarkdownStash } from "../Stash";
 
 export class ChannelSync {
     // eslint-disable-next-line no-useless-constructor

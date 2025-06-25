@@ -1,7 +1,7 @@
 import fs from "fs";
 import { injectable } from "inversify";
 
-import { Locator } from "./Locator";
+import type { Locator } from "./Locator";
 
 @injectable()
 export class ExtensionLocator implements Locator {
