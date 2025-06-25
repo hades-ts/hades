@@ -12,8 +12,7 @@ import "./slash-commands";
 import { ILogger } from "./services/logs/ILogger";
 import { ConsoleLogger } from "./services/logs/ConsoleLogger";
 
-
 boot(BotService, [
     new SlashCommandsInstaller(),
-    c => c.bind(ILogger).to(ConsoleLogger).inSingletonScope()
+    (c) => c.bind(ILogger).to(ConsoleLogger).inSingletonScope(),
 ]);
