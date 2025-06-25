@@ -30,18 +30,23 @@ export class SectionLinkProvider {
 
     getLink() {
         const hasIndex =
-            this.entryProvider.entries.includes("index.md") || this.entryProvider.entries.includes("index.mdx");
+            this.entryProvider.entries.includes("index.md") ||
+            this.entryProvider.entries.includes("index.mdx");
 
-        const { label, description, image, keywords } = this.metadataProvider.metadata;
+        const { label, description, image, keywords } =
+            this.metadataProvider.metadata;
 
         return hasIndex
-            ? ({ type: "doc", id: this.subSectionId } as SidebarItemCategoryLinkDoc)
+            ? ({
+                  type: "doc",
+                  id: this.subSectionId,
+              } as SidebarItemCategoryLinkDoc)
             : ({
-                type: "generated-index",
-                title: label || `${capitalize(this.subSectionName)} Index`,
-                description,
-                image,
-                keywords,
-            } as unknown as SidebarItemCategoryLinkGeneratedIndex);
+                  type: "generated-index",
+                  title: label || `${capitalize(this.subSectionName)} Index`,
+                  description,
+                  image,
+                  keywords,
+              } as unknown as SidebarItemCategoryLinkGeneratedIndex);
     }
 }

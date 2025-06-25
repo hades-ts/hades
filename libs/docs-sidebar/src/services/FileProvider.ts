@@ -2,7 +2,14 @@ import matter from "gray-matter";
 import { readFileSync } from "fs";
 import { basename, join } from "@reliverse/pathkit";
 import type { SidebarItemDocEntry } from "../types";
-import { isMarkdown, isntEmpty, isntIndex, removeExtension, removeLeadingSlashes, removeNumericPrefix } from "../utils";
+import {
+    isMarkdown,
+    isntEmpty,
+    isntIndex,
+    removeExtension,
+    removeLeadingSlashes,
+    removeNumericPrefix,
+} from "../utils";
 import { SectionEntryProvider } from "./EntryProvider";
 import { inject, injectable, postConstruct } from "inversify";
 

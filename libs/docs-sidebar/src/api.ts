@@ -1,4 +1,4 @@
-const path = require("@reliverse/pathkit")
+const path = require("@reliverse/pathkit");
 import { Container } from "inversify";
 import {
     SectionFactory,
@@ -10,9 +10,20 @@ import {
     SectionItemProvider,
 } from "./services";
 import type { SidebarItemCategoryEntry } from "./types";
-import { join, removeLeadingSlashes, isFile, isDirectory, removeNumericPrefix, removeExtension } from "./utils";
+import {
+    join,
+    removeLeadingSlashes,
+    isFile,
+    isDirectory,
+    removeNumericPrefix,
+    removeExtension,
+} from "./utils";
 
-export function mkSubSection(sectionRoot: string, relativePath: string, collapsible = true): SidebarItemCategoryEntry {
+export function mkSubSection(
+    sectionRoot: string,
+    relativePath: string,
+    collapsible = true,
+): SidebarItemCategoryEntry {
     const subSectionRoot = path.resolve(path.join(sectionRoot, relativePath));
     const relativizer = join(relativePath);
 
@@ -20,17 +31,26 @@ export function mkSubSection(sectionRoot: string, relativePath: string, collapsi
     container.bind("SectionRoot").toConstantValue(sectionRoot);
     container.bind("RelativePath").toConstantValue(relativePath);
     container.bind("SubSectionRoot").toConstantValue(subSectionRoot);
-    container.bind("SubSectionName").toConstantValue(path.basename(subSectionRoot));
+    container
+        .bind("SubSectionName")
+        .toConstantValue(path.basename(subSectionRoot));
     container.bind("Collapsible").toConstantValue(collapsible);
     container.bind("Relativizer").toConstantValue(relativizer);
-    container.bind("SubSectionId").toConstantValue(removeLeadingSlashes(relativizer("index")));
-    container.bind("IsSectionFile").toConstantValue(isFile(subSectionRoot));
-    container.bind("IsSectionDirectory").toConstantValue(isDirectory(subSectionRoot));
     container
-        .bind("IdMaker")
-        .toConstantValue((entry: string) => {
-            return removeLeadingSlashes(path.join(relativePath, removeNumericPrefix(removeExtension(entry))));
-        });
+        .bind("SubSectionId")
+        .toConstantValue(removeLeadingSlashes(relativizer("index")));
+    container.bind("IsSectionFile").toConstantValue(isFile(subSectionRoot));
+    container
+        .bind("IsSectionDirectory")
+        .toConstantValue(isDirectory(subSectionRoot));
+    container.bind("IdMaker").toConstantValue((entry: string) => {
+        return removeLeadingSlashes(
+            path.join(
+                relativePath,
+                removeNumericPrefix(removeExtension(entry)),
+            ),
+        );
+    });
 
     container.bind(SectionFactory).toSelf().inSingletonScope();
     container.bind(SectionEntryProvider).toSelf().inSingletonScope();
