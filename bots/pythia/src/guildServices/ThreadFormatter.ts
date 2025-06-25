@@ -18,7 +18,9 @@ export class ThreadFormatter {
     }
 
     protected formatMessages(thread: Thread) {
-        const messages = thread.messages.map((message) => this.formatMessage(message));
+        const messages = thread.messages.map((message) =>
+            this.formatMessage(message),
+        );
         return messages.join("\n");
     }
 

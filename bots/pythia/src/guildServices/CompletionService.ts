@@ -39,7 +39,11 @@ export class CompletionService {
      * @param author ID of the user who sent the message
      * @param content Content of the message
      */
-    async check(threadId: string | undefined, author: GuildMember, content: string) {
+    async check(
+        threadId: string | undefined,
+        author: GuildMember,
+        content: string,
+    ) {
         const thread = this.getThread(threadId, author);
         this.addThreadMessage(thread, author, content);
 
@@ -89,7 +93,10 @@ export class CompletionService {
      * @param author Author of thread
      * @returns thread
      */
-    protected getThread(threadId: string | undefined, author: GuildMember): Thread {
+    protected getThread(
+        threadId: string | undefined,
+        author: GuildMember,
+    ): Thread {
         return this.records.getThread(author.guild.id, threadId);
     }
 
@@ -100,7 +107,11 @@ export class CompletionService {
      * @param author Author of the message
      * @param content Content of the message
      */
-    protected addThreadMessage(thread: Thread, author: GuildMember, content: string): void {
+    protected addThreadMessage(
+        thread: Thread,
+        author: GuildMember,
+        content: string,
+    ): void {
         thread.messages.push({
             authorId: author.id,
             authorName: author.user.username,
