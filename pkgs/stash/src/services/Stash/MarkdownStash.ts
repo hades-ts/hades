@@ -4,7 +4,9 @@ import { BaseFiletypeStash } from "./BaseFiletypeStash";
 import matter from "gray-matter";
 import yaml from "yaml";
 
-export class MarkdownStash<T extends z.ZodTypeAny> extends BaseFiletypeStash<T> {
+export class MarkdownStash<
+    T extends z.ZodTypeAny,
+> extends BaseFiletypeStash<T> {
     constructor(
         public override readonly path: string,
         public override readonly schema: T,

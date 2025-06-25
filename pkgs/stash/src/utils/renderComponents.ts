@@ -2,7 +2,9 @@ import { ActionRowBuilder, ButtonBuilder, ButtonStyle } from "discord.js";
 
 import type { EmbedSchema } from "../schemas";
 
-export const renderComponents = (embedRecord: EmbedSchema): ActionRowBuilder<ButtonBuilder> => {
+export const renderComponents = (
+    embedRecord: EmbedSchema,
+): ActionRowBuilder<ButtonBuilder> => {
     const rowBuilder = new ActionRowBuilder<ButtonBuilder>();
 
     if (embedRecord.buttons) {

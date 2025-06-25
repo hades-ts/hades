@@ -34,7 +34,10 @@ export const embedSchema = z.object({
             z.object({
                 label: z.string(),
                 emoji: z.string().optional(),
-                style: z.enum(["PRIMARY", "SECONDARY", "SUCCESS", "DANGER", "LINK"]).optional().default("PRIMARY"),
+                style: z
+                    .enum(["PRIMARY", "SECONDARY", "SUCCESS", "DANGER", "LINK"])
+                    .optional()
+                    .default("PRIMARY"),
                 url: z.string().optional(),
                 customId: z.string(),
             }),
