@@ -1,12 +1,16 @@
-import { arg, command, SlashArgError, SlashCommand, text, validate } from "@hades-ts/slash-commands";
+import {
+    arg,
+    command,
+    SlashArgError,
+    SlashCommand,
+    text,
+    validate,
+} from "@hades-ts/slash-commands";
 import { inject, postConstruct } from "inversify";
 
-@command(
-    "lojban",
-    {
-        description: "Get definition of a lojban word.",
-    }
-)
+@command("lojban", {
+    description: "Get definition of a lojban word.",
+})
 export class Lojban extends SlashCommand {
     @text({
         description: "Word to lookup.",
@@ -42,7 +46,9 @@ export class Lojban extends SlashCommand {
     @validate("word")
     public async validate() {
         if (!this.data) {
-            throw new SlashArgError(`I don't know ${this.word} to be a Lojban word.`);
+            throw new SlashArgError(
+                `I don't know ${this.word} to be a Lojban word.`,
+            );
         }
     }
 }
