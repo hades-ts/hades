@@ -1,6 +1,17 @@
 import { HadesClient } from "@hades-ts/hades";
-import { arg, command, completer, type ICompleter, SlashCommand } from "@hades-ts/slash-commands";
-import { ApplicationCommandOptionType, AutocompleteInteraction, type GuildMember, type GuildMemberRoleManager } from "discord.js";
+import {
+    arg,
+    command,
+    completer,
+    type ICompleter,
+    SlashCommand,
+} from "@hades-ts/slash-commands";
+import {
+    ApplicationCommandOptionType,
+    AutocompleteInteraction,
+    type GuildMember,
+    type GuildMemberRoleManager,
+} from "discord.js";
 import { inject, injectable } from "inversify";
 
 import type { Config } from "../config";
@@ -19,7 +30,8 @@ class RoleCompleter implements ICompleter {
 
     async complete(value: string) {
         const guild = this.interaction.guild!;
-        const guildService = await this.guildServiceFactory.getGuildService(guild);
+        const guildService =
+            await this.guildServiceFactory.getGuildService(guild);
         const choices = guildService.roles.stash
             .index()
             .map((key) => guildService.roles.stash.get(key))
@@ -84,12 +96,18 @@ export class ToggleRoleCommand extends SlashCommand {
         return hasRole;
     }
 
-    protected async addRole(roleManager: GuildMemberRoleManager, roleId: string) {
+    protected async addRole(
+        roleManager: GuildMemberRoleManager,
+        roleId: string,
+    ) {
         await roleManager.add(roleId);
         await this.giveRoleUpdateReply("added");
     }
 
-    protected async removeRole(roleManager: GuildMemberRoleManager, roleId: string) {
+    protected async removeRole(
+        roleManager: GuildMemberRoleManager,
+        roleId: string,
+    ) {
         await roleManager.remove(roleId);
         await this.giveRoleUpdateReply("removed");
     }
@@ -101,7 +119,9 @@ export class ToggleRoleCommand extends SlashCommand {
     }
 
     async execute(): Promise<void> {
-        const guildService = await this.guildServiceFactory.getGuildService(this.interaction.guild!);
+        const guildService = await this.guildServiceFactory.getGuildService(
+            this.interaction.guild!,
+        );
         const roleInfo = guildService.roles.stash.get(this.role);
 
         const guild = await this.client.guilds.fetch(this.interaction.guildId!);

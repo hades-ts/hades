@@ -16,6 +16,9 @@ export class GuildRoleStash {
         @inject(guildTokens.GuildId)
         protected readonly guildId: string,
     ) {
-        this.stash = new MarkdownStash<typeof roleSchema>(path.join(this.dataPath, this.guildId, "roles"), roleSchema);
+        this.stash = new MarkdownStash<typeof roleSchema>(
+            path.join(this.dataPath, this.guildId, "roles"),
+            roleSchema,
+        );
     }
 }

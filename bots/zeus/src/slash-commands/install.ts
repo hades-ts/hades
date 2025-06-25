@@ -30,7 +30,9 @@ export class InstallRoleChannelCommand extends SlashCommand {
     }
 
     async execute(): Promise<void> {
-        const guildService = await this.guildServiceFactory.getGuildService(this.interaction.guild!);
+        const guildService = await this.guildServiceFactory.getGuildService(
+            this.interaction.guild!,
+        );
 
         await this.interaction.deferReply({
             ephemeral: true,
