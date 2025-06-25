@@ -11,7 +11,6 @@ import { BotService } from "./services/BotService";
 
 dotenv.config();
 
-
 // TODO: use boot
 (async () => {
     const container = new HadesContainer({

@@ -1,6 +1,16 @@
 import { HadesClient } from "@hades-ts/hades";
-import { arg, command, completer, type ICompleter, SlashCommand } from "@hades-ts/slash-commands";
-import { ApplicationCommandOptionType, AutocompleteInteraction, EmbedBuilder } from "discord.js";
+import {
+    arg,
+    command,
+    completer,
+    type ICompleter,
+    SlashCommand,
+} from "@hades-ts/slash-commands";
+import {
+    ApplicationCommandOptionType,
+    AutocompleteInteraction,
+    EmbedBuilder,
+} from "discord.js";
 import { inject, injectable } from "inversify";
 
 import type { RuleConfig } from "../config";
@@ -21,7 +31,9 @@ class RuleCompleter implements ICompleter {
     }
 
     protected compare(tokens: string[], searchTokens: string[]) {
-        return searchTokens.every((searchToken) => tokens.some((token) => token.includes(searchToken)));
+        return searchTokens.every((searchToken) =>
+            tokens.some((token) => token.includes(searchToken)),
+        );
     }
 
     protected makeChoices(rules: Array<RuleConfig & { id: string }>) {
@@ -32,7 +44,9 @@ class RuleCompleter implements ICompleter {
     }
 
     async complete(value: string) {
-        const guildService = await this.guildServiceFactory.getGuildService(this.interaction.guild!);
+        const guildService = await this.guildServiceFactory.getGuildService(
+            this.interaction.guild!,
+        );
         const rules = guildService.rules.stash.filter((rule) => {
             if (value.trim() === "") {
                 return true;
@@ -76,7 +90,9 @@ export class RuleCommand extends SlashCommand {
     }
 
     async execute(): Promise<void> {
-        const guildService = await this.guildServiceFactory.getGuildService(this.interaction.guild!);
+        const guildService = await this.guildServiceFactory.getGuildService(
+            this.interaction.guild!,
+        );
         const rule = await guildService.rules.stash.get(this.rule);
 
         if (!rule) {
@@ -86,9 +102,12 @@ export class RuleCommand extends SlashCommand {
 
         await this.interaction.reply({
             embeds: [
-                new EmbedBuilder().setTitle(rule.title).setDescription(rule.content).setFooter({
-                    text: rule.description,
-                }),
+                new EmbedBuilder()
+                    .setTitle(rule.title)
+                    .setDescription(rule.content)
+                    .setFooter({
+                        text: rule.description,
+                    }),
             ],
         });
     }
