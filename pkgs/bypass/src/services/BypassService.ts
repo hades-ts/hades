@@ -6,7 +6,7 @@ import type { BypassConfig } from "../schema";
 @singleton(BypassService)
 export class BypassService {
     // eslint-disable-next-line no-useless-constructor
-    constructor(protected config: BypassConfig) { }
+    constructor(protected config: BypassConfig) {}
 
     isExempted(member: GuildMember) {
         const id = member.id;
@@ -19,7 +19,9 @@ export class BypassService {
         const exemptedRoles = this.config.roles || [];
 
         const exemptedUser = exemptedUsers.includes(id);
-        const exemptedRole = exemptedRoles.some((roleId) => member.roles.cache.has(roleId));
+        const exemptedRole = exemptedRoles.some((roleId) =>
+            member.roles.cache.has(roleId),
+        );
 
         return Boolean(exemptedUser || exemptedRole);
     }
