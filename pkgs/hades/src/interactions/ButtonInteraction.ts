@@ -1,14 +1,14 @@
 import {
     ActionRowBuilder,
-    ButtonBuilder,
-    ButtonInteraction,
+    type ButtonBuilder,
+    type ButtonInteraction,
     Collection,
-    CollectorFilter,
-    ComponentType,
-    InteractionCollector,
+    type CollectorFilter,
+    type ComponentType,
+    type InteractionCollector,
     InteractionType,
-    Message,
-    ReadonlyCollection,
+    type Message,
+    type ReadonlyCollection,
 } from "discord.js";
 
 const randomId = () => {

@@ -1,7 +1,7 @@
 import { inject } from "inversify";
 
 import { singleton } from "../decorators";
-import { HadesBotService } from "./HadesBotService";
+import type { HadesBotService } from "./HadesBotService";
 import { HadesClient } from "./HadesClient";
 
 /**
