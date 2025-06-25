@@ -2,7 +2,7 @@ import type {
     SidebarItem,
     SidebarItemCategory,
     SidebarItemDoc,
-} from "@docusaurus/plugin-content-docs/src/sidebars/types";
+} from "@docusaurus/plugin-content-docs/src/sidebars/types.js";
 
 export type SidebarItemCategoryEntry = SidebarItemCategory & {
     id: string;

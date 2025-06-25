@@ -1,7 +1,7 @@
 import type {
     SidebarItemCategoryLinkDoc,
     SidebarItemCategoryLinkGeneratedIndex,
-} from "@docusaurus/plugin-content-docs/src/sidebars/types";
+} from "@docusaurus/plugin-content-docs/src/sidebars/types.js";
 import { inject, injectable, postConstruct } from "inversify";
 import { capitalize } from "../utils";
 import { SectionEntryProvider } from "./EntryProvider";
