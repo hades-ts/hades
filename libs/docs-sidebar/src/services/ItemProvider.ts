@@ -1,6 +1,6 @@
-import { SidebarItem } from "@docusaurus/plugin-content-docs/src/sidebars/types";
+import type { SidebarItem } from "@docusaurus/plugin-content-docs/src/sidebars/types";
 import { inject, injectable } from "inversify";
-import { SidebarEntry } from "../types";
+import type { SidebarEntry } from "../types";
 import { SectionDirectoryProvider } from "./DirectoryProvider";
 import { SectionFileProvider } from "./FileProvider";
 import { SectionMetadataProvider } from "./MetadataProvider";
