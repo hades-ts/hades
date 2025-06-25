@@ -16,7 +16,7 @@ export type RecordData = z.infer<typeof recordSchema>;
 
 export class TagDb {
     // eslint-disable-next-line no-useless-constructor
-    constructor(protected dataRoot: string) { }
+    constructor(protected dataRoot: string) {}
 
     protected ensureDataRoot() {
         if (!fs.existsSync(this.dataRoot)) {
@@ -62,7 +62,9 @@ export class TagDb {
 
         if (existingTag) {
             if (expiry && existingTag.expiry) {
-                const existingExpiry = DateTime.fromISO(existingTag.expiry ?? "");
+                const existingExpiry = DateTime.fromISO(
+                    existingTag.expiry ?? "",
+                );
                 if (existingExpiry < expiry) {
                     existingTag.expiry = expiry.toISO() ?? undefined;
                     this.saveTags(id, tags);
