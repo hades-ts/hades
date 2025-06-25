@@ -37,11 +37,11 @@ function readAndParseSnippetFile(filename: string) {
 }
 
 function extractPrefix(prefix: string) {
-    return prefix.replace(/^(\/\/\s*)?prefix\:\s*/, "");
+    return prefix.replace(/^(\/\/\s*)?prefix:\s*/, "");
 }
 
 function extractDescription(description: string) {
-    return description.replace(/^(\/\/\s*)?description\:\s*/, "");
+    return description.replace(/^(\/\/\s*)?description:\s*/, "");
 }
 
 function generateSnippetTemplateBody(prefix: string, description: string, body: string[]) {

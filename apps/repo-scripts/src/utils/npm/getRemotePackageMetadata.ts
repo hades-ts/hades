@@ -1,5 +1,5 @@
-import { exec } from "child_process";
-import { PackageMetadata } from "./PackageMetadata";
+import { exec } from "node:child_process";
+import type { PackageMetadata } from "./PackageMetadata";
 
 const cache = new Map<string, PackageMetadata>();
 
@@ -17,7 +17,7 @@ export async function getRemotePackageMetadata(packageName: string): Promise<nul
                 const metadata = JSON.parse(stdout);
                 cache.set(packageName, metadata);
                 resolve(metadata as PackageMetadata);
-            } catch (e) {
+            } catch (_e) {
                 resolve(null);
             }
         });
