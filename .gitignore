@@ -81,18 +81,26 @@ common/autoinstallers/*/.npmrc
 .cursorindexingignore
 .specstory
 
-
-# Nix
-/result
-/.std/
-/.direnv/
-/.data/
-
-# nixago: ignore-linked-files
-/.conform.yaml
-/lefthook.yml
-/treefmt.toml
-
 default.json
 .turbo
 llm
+
+# Devenv
+.devenv*
+devenv.local.nix
+
+# direnv
+.direnv
+
+# pre-commit
+.pre-commit-config.yaml
+
+# Devenv
+.devenv*
+devenv.local.nix
+
+# direnv
+.direnv
+
+# pre-commit
+.pre-commit-config.yaml

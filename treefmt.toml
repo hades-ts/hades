@@ -1,0 +1,43 @@
+### THIS FILE IS AUTO-GENERATED. SEE 'nix/devenv.nix' ###
+[formatter.nixfmt]
+command = "/nix/store/is564by3v63jz3gvrz9wizd0l3ghqj4g-nixfmt-unstable-2025-04-04/bin/nixfmt"
+excludes = []
+includes = ["*.nix"]
+options = []
+
+[formatter.prettier]
+command = "/nix/store/kixsi0a8b9flwrdl5cp1rxcvhzcw4mim-prettier-3.5.3/bin/prettier"
+excludes = []
+includes = [
+    "*.cjs",
+    "*.css",
+    "*.html",
+    "*.js",
+    "*.json",
+    "*.json5",
+    "*.jsx",
+    "*.md",
+    "*.mdx",
+    "*.mjs",
+    "*.scss",
+    "*.ts",
+    "*.tsx",
+    "*.vue",
+    "*.yaml",
+    "*.yml",
+]
+options = ["--write"]
+
+[global]
+excludes = [
+    "*.lock",
+    "*.patch",
+    "package-lock.json",
+    "go.mod",
+    "go.sum",
+    ".gitignore",
+    ".gitmodules",
+    ".hgignore",
+    ".svnignore",
+]
+on-unmatched = "warn"
