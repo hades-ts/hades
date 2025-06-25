@@ -1,13 +1,14 @@
 import { ButtonStyle } from "discord.js";
 import {
-    DiscordComponents,
     ActionRow,
-    StringSelectMenu,
-    SelectMenuOption,
     Button,
+    // biome-ignore lint/correctness/noUnusedImports: JSX
+    DiscordComponents,
     Embed,
-    EmbedFields,
     EmbedField,
+    EmbedFields,
+    SelectMenuOption,
+    StringSelectMenu,
 } from "../../dist/index.js";
 
 const components = (
@@ -15,7 +16,7 @@ const components = (
         <ActionRow>
             {Array.from({ length: 5 }, (_, i) => (
                 <Button
-                    style={ButtonStyle["Primary"]}
+                    style={ButtonStyle.Primary}
                     label={`Button ${++i}`}
                     customId={`btn_${i}`}
                 />
