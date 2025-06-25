@@ -44,7 +44,7 @@
       };
 
       treefmt.programs = {
-        prettier.enable = true;
+        biome.enable = true;
         nixfmt.enable = true;
       };
     };
