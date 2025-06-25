@@ -1,7 +1,7 @@
 import { guildSingleton, guildTokens } from "@hades-ts/guilds";
 import { inject } from "inversify";
 
-import { type GuildConfig } from "../config";
+import type { GuildConfig } from "../config";
 import { GuildRoleStash } from "./GuildRoleStash";
 import { GuildRuleStash } from "./GuildRuleStash";
 import { GuildStashChannels } from "./GuildStashChannels";

@@ -1,6 +1,6 @@
 import { guildSingleton, guildTokens } from "@hades-ts/guilds";
 import { HadesClient } from "@hades-ts/hades";
-import { ButtonInteraction, CacheType, GuildMemberRoleManager, Interaction, Role } from "discord.js";
+import type { ButtonInteraction, CacheType, GuildMemberRoleManager, Interaction, Role } from "discord.js";
 import { inject, postConstruct } from "inversify";
 
 @guildSingleton()

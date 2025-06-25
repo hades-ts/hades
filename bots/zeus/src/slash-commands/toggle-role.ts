@@ -1,9 +1,9 @@
 import { HadesClient } from "@hades-ts/hades";
-import { arg, command, completer, ICompleter, SlashCommand } from "@hades-ts/slash-commands";
-import { ApplicationCommandOptionType, AutocompleteInteraction, GuildMember, GuildMemberRoleManager } from "discord.js";
+import { arg, command, completer, type ICompleter, SlashCommand } from "@hades-ts/slash-commands";
+import { ApplicationCommandOptionType, AutocompleteInteraction, type GuildMember, type GuildMemberRoleManager } from "discord.js";
 import { inject, injectable } from "inversify";
 
-import { type Config } from "../config";
+import type { Config } from "../config";
 import { GuildServiceFactory } from "../services";
 
 @injectable()
