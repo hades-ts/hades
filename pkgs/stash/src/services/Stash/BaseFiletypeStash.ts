@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { z } from "zod";
+import type { z } from "zod";
 
 import { ExtensionLocator } from "../Locator/SimpleLocator";
 
