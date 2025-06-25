@@ -31,3 +31,10 @@ You can try a simple example bot here:
 Check out the core library here:
 
 <https://github.com/hades-ts/hades/tree/main/libs/hades>
+
+## Building
+
+```
+pnpm i -r
+pnpm run build
+```
