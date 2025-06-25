@@ -6,14 +6,16 @@ import {
 } from "discord.js";
 import { BuilderComponent } from "../../typings/types.js";
 
-export type StringSelectMenuOptions = Omit<StringSelectMenuComponentData, "type" | "options">;
+export type StringSelectMenuOptions = Omit<
+    StringSelectMenuComponentData,
+    "type" | "options"
+>;
 
-export type StringSelectMenuComponent =
-    BuilderComponent<
-        StringSelectMenuBuilder,
-        StringSelectMenuOptions,
-        SelectMenuOptionComponent[] | SelectMenuOptionComponent[][]
-    > & { type: "StringSelectMenu" };
+export type StringSelectMenuComponent = BuilderComponent<
+    StringSelectMenuBuilder,
+    StringSelectMenuOptions,
+    SelectMenuOptionComponent[] | SelectMenuOptionComponent[][]
+> & { type: "StringSelectMenu" };
 
 // function extractOptions(children: any): StringSelectMenuOptionBuilder[] {
 //   if (!children) return [];
@@ -35,7 +37,10 @@ export type StringSelectMenuComponent =
 //   return builder;
 // }
 
-export const StringSelectMenuResolver = (props: StringSelectMenuOptions, children?: SelectMenuOptionComponent[] | SelectMenuOptionComponent[][]) => {
+export const StringSelectMenuResolver = (
+    props: StringSelectMenuOptions,
+    children?: SelectMenuOptionComponent[] | SelectMenuOptionComponent[][],
+) => {
     const selectMenu = new StringSelectMenuBuilder();
     const { customId, placeholder } = props;
 
@@ -47,18 +52,18 @@ export const StringSelectMenuResolver = (props: StringSelectMenuOptions, childre
 
     if (!children?.length) return selectMenu;
 
-    const options = children.flat().map(child => child.resolve(child.props));
+    const options = children.flat().map((child) => child.resolve(child.props));
 
     if (options.length > 0) {
         selectMenu.addOptions(options);
     }
 
     return selectMenu;
-}
+};
 
 export function StringSelectMenu(
     props: StringSelectMenuOptions,
-    children: SelectMenuOptionComponent[] | SelectMenuOptionComponent[][]
+    children: SelectMenuOptionComponent[] | SelectMenuOptionComponent[][],
 ): StringSelectMenuComponent {
     return {
         type: "StringSelectMenu",
@@ -70,9 +75,15 @@ export function StringSelectMenu(
 
 export type SelectMenuOptionOptions = SelectMenuComponentOptionData;
 
-export type SelectMenuOptionComponent = BuilderComponent<StringSelectMenuOptionBuilder, SelectMenuComponentOptionData, undefined> & { type: "SelectMenuOption" };
+export type SelectMenuOptionComponent = BuilderComponent<
+    StringSelectMenuOptionBuilder,
+    SelectMenuComponentOptionData,
+    undefined
+> & { type: "SelectMenuOption" };
 
-export const SelectMenuOptionResolver = (props: SelectMenuComponentOptionData) => {
+export const SelectMenuOptionResolver = (
+    props: SelectMenuComponentOptionData,
+) => {
     const selectMenuOption = new StringSelectMenuOptionBuilder();
     const { label, value, description, emoji } = props;
 
@@ -82,9 +93,11 @@ export const SelectMenuOptionResolver = (props: SelectMenuComponentOptionData) =
     if (emoji) selectMenuOption.setEmoji(emoji);
 
     return selectMenuOption;
-}
+};
 
-export function SelectMenuOption(props: SelectMenuComponentOptionData): SelectMenuOptionComponent {
+export function SelectMenuOption(
+    props: SelectMenuComponentOptionData,
+): SelectMenuOptionComponent {
     return {
         type: "SelectMenuOption",
         props,

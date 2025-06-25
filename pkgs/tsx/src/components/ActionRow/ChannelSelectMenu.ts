@@ -4,13 +4,18 @@ import {
 } from "discord.js";
 import { BuilderComponent } from "../../typings/types.js";
 
-export type ChannelSelectMenuOptions =
-    Omit<ChannelSelectMenuComponentData, "type" | "options">;
+export type ChannelSelectMenuOptions = Omit<
+    ChannelSelectMenuComponentData,
+    "type" | "options"
+>;
 
-export type ChannelSelectMenuComponent =
-    BuilderComponent<ChannelSelectMenuBuilder, ChannelSelectMenuOptions, undefined> & {
-        type: "ChannelSelectMenu";
-    };
+export type ChannelSelectMenuComponent = BuilderComponent<
+    ChannelSelectMenuBuilder,
+    ChannelSelectMenuOptions,
+    undefined
+> & {
+    type: "ChannelSelectMenu";
+};
 
 export const ChannelSelectMenuResolver = (props: ChannelSelectMenuOptions) => {
     const channelSelectMenu = new ChannelSelectMenuBuilder();
@@ -28,8 +33,14 @@ export const ChannelSelectMenuResolver = (props: ChannelSelectMenuOptions) => {
     if (channelTypes) channelSelectMenu.addChannelTypes(...channelTypes);
 
     return channelSelectMenu;
-}
+};
 
-export function ChannelSelectMenu(props: ChannelSelectMenuOptions): ChannelSelectMenuComponent {
-    return { type: "ChannelSelectMenu", props, resolve: ChannelSelectMenuResolver };
+export function ChannelSelectMenu(
+    props: ChannelSelectMenuOptions,
+): ChannelSelectMenuComponent {
+    return {
+        type: "ChannelSelectMenu",
+        props,
+        resolve: ChannelSelectMenuResolver,
+    };
 }

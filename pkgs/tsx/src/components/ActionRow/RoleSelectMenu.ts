@@ -1,12 +1,16 @@
-import {
-    RoleSelectMenuBuilder,
-    RoleSelectMenuComponentData,
-} from "discord.js";
+import { RoleSelectMenuBuilder, RoleSelectMenuComponentData } from "discord.js";
 import { BuilderComponent } from "../../typings/types.js";
 
-export type RoleSelectMenuOptions = Omit<RoleSelectMenuComponentData, "type" | "options">;
+export type RoleSelectMenuOptions = Omit<
+    RoleSelectMenuComponentData,
+    "type" | "options"
+>;
 
-export type RoleSelectMenuComponent = BuilderComponent<RoleSelectMenuBuilder, RoleSelectMenuOptions, undefined> & {
+export type RoleSelectMenuComponent = BuilderComponent<
+    RoleSelectMenuBuilder,
+    RoleSelectMenuOptions,
+    undefined
+> & {
     type: "RoleSelectMenu";
 };
 
@@ -22,7 +26,7 @@ export const RoleSelectMenuResolver = (props: RoleSelectMenuOptions) => {
     }
 
     return roleSelectMenu;
-}
+};
 
 export function RoleSelectMenu(
     props: RoleSelectMenuOptions,

@@ -1,39 +1,20 @@
 {
     "$schema": "./node_modules/turbo/schema.json",
-    "extends": [
-        "//"
-    ],
+    "extends": ["//"],
     "tasks": {
         "test": {
-            "dependsOn": [
-                "transit",
-                "test:babel",
-                "test:ts"
-            ]
+            "dependsOn": ["transit", "test:babel", "test:ts"]
         },
         "test:babel": {
-            "dependsOn": [
-                "transit",
-                "test:babel:build"
-            ]
+            "dependsOn": ["transit", "test:babel:build"]
         },
         "test:babel:build": {
-            "dependsOn": [
-                "transit",
-                "build"
-            ],
-            "inputs": [
-                "test/js/**"
-            ],
-            "outputs": [
-                "test/js-out/**"
-            ]
+            "dependsOn": ["transit", "build"],
+            "inputs": ["test/js/**"],
+            "outputs": ["test/js-out/**"]
         },
         "test:ts": {
-            "dependsOn": [
-                "transit",
-                "build"
-            ]
+            "dependsOn": ["transit", "build"]
         }
     }
 }

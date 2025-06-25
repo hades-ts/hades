@@ -6,7 +6,10 @@ import {
     APIEmbedField,
     EmbedBuilder,
 } from "discord.js";
-import { BuilderComponent, EmbedPropertyComponent } from "../../typings/types.js";
+import {
+    BuilderComponent,
+    EmbedPropertyComponent,
+} from "../../typings/types.js";
 
 export type EmbedResolvable =
     | EmbedAuthorComponent
@@ -23,11 +26,18 @@ export interface EmbedProps {
     url?: string;
 }
 
-export type EmbedComponent = BuilderComponent<EmbedBuilder, EmbedProps, EmbedResolvable[]> & {
+export type EmbedComponent = BuilderComponent<
+    EmbedBuilder,
+    EmbedProps,
+    EmbedResolvable[]
+> & {
     type: "Embed";
 };
 
-export const EmbedResolver = (props: EmbedProps, children?: EmbedResolvable[]) => {
+export const EmbedResolver = (
+    props: EmbedProps,
+    children?: EmbedResolvable[],
+) => {
     const embed = new EmbedBuilder();
     const { color, timestamp, description, title, url } = props;
 
@@ -45,11 +55,11 @@ export const EmbedResolver = (props: EmbedProps, children?: EmbedResolvable[]) =
     }
 
     return embed;
-}
+};
 
 export function Embed(
     props: EmbedProps,
-    children: EmbedResolvable[]
+    children: EmbedResolvable[],
 ): EmbedComponent {
     return {
         type: "Embed" as const,
@@ -59,13 +69,14 @@ export function Embed(
     };
 }
 
-export type EmbedAuthorComponent = EmbedPropertyComponent<EmbedAuthorOptions> & {
-    type: "EmbedAuthor";
-};
+export type EmbedAuthorComponent =
+    EmbedPropertyComponent<EmbedAuthorOptions> & {
+        type: "EmbedAuthor";
+    };
 
 export function EmbedAuthor(
     props: EmbedAuthorOptions,
-    _children: undefined
+    _children: undefined,
 ): EmbedAuthorComponent {
     return {
         type: "EmbedAuthor",
@@ -76,13 +87,14 @@ export function EmbedAuthor(
     };
 }
 
-export type EmbedFooterComponent = EmbedPropertyComponent<EmbedFooterOptions> & {
-    type: "EmbedFooter";
-};
+export type EmbedFooterComponent =
+    EmbedPropertyComponent<EmbedFooterOptions> & {
+        type: "EmbedFooter";
+    };
 
 export function EmbedBuilderFooter(
     props: EmbedFooterOptions,
-    _children: undefined
+    _children: undefined,
 ): EmbedFooterComponent {
     return {
         type: "EmbedFooter",
@@ -93,18 +105,27 @@ export function EmbedBuilderFooter(
     };
 }
 
-export type EmbedFieldsComponent = EmbedPropertyComponent<{}, EmbedPropertyComponent[]> & { type: "EmbedFields" };
+export type EmbedFieldsComponent = EmbedPropertyComponent<
+    {},
+    EmbedPropertyComponent[]
+> & { type: "EmbedFields" };
 
 export function EmbedFields(
     _props: any,
-    _children: EmbedFieldComponent[] | EmbedFieldComponent[][]
+    _children: EmbedFieldComponent[] | EmbedFieldComponent[][],
 ): EmbedFieldsComponent {
     return {
         type: "EmbedFields",
         props: {},
-        resolve: (builder: EmbedBuilder, _props: {}, children?: EmbedPropertyComponent[]) => {
+        resolve: (
+            builder: EmbedBuilder,
+            _props: {},
+            children?: EmbedPropertyComponent[],
+        ) => {
             if (!children?.length) return;
-            children.forEach(child => child.resolve(builder, child.props, child.children))
+            children.forEach((child) =>
+                child.resolve(builder, child.props, child.children),
+            );
         },
     };
 }
@@ -115,7 +136,7 @@ export type EmbedFieldComponent = EmbedPropertyComponent<APIEmbedField> & {
 
 export function EmbedField(
     props: APIEmbedField,
-    _children: undefined
+    _children: undefined,
 ): EmbedFieldComponent {
     return {
         type: "EmbedField",
@@ -131,7 +152,7 @@ export type EmbedThumbnailComponent = EmbedPropertyComponent<EmbedImageData> & {
 };
 export function EmbedBuilderThumbnail(
     props: EmbedImageData,
-    _children: undefined
+    _children: undefined,
 ): EmbedThumbnailComponent {
     return {
         type: "EmbedThumbnail",
@@ -147,7 +168,7 @@ export type EmbedImageComponent = EmbedPropertyComponent<EmbedImageData> & {
 };
 export function EmbedBuilderImage(
     props: EmbedImageData,
-    _children: undefined
+    _children: undefined,
 ): EmbedImageComponent {
     return {
         type: "EmbedImage",
