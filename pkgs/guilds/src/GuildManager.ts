@@ -25,13 +25,19 @@ export class GuildManager {
     protected async setupGuild(guild: Guild) {
         const subContainer: Container = makeGuildContainer(this.container);
 
-        subContainer.bind(guildTokens.GuildContainer).toConstantValue(subContainer);
+        subContainer
+            .bind(guildTokens.GuildContainer)
+            .toConstantValue(subContainer);
 
         subContainer.bind(guildTokens.GuildId).toConstantValue(guild.id);
 
-        subContainer.bind(guildTokens.GuildOwnerId).toConstantValue(guild.ownerId);
+        subContainer
+            .bind(guildTokens.GuildOwnerId)
+            .toConstantValue(guild.ownerId);
 
-        subContainer.bind(guildTokens.GuildFetcher).toConstantValue(async () => this.client.guilds.fetch(guild.id));
+        subContainer
+            .bind(guildTokens.GuildFetcher)
+            .toConstantValue(async () => this.client.guilds.fetch(guild.id));
 
         this.guildContainers[guild.id] = subContainer;
         return subContainer;
