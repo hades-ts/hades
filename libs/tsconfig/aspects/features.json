@@ -8,9 +8,6 @@
         "skipLibCheck": true,
         "allowJs": true,
         "allowSyntheticDefaultImports": true,
-        "lib": [
-            "dom",
-            "es6"
-        ]
+        "lib": ["dom", "es6"]
     }
 }
