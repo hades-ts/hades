@@ -12,7 +12,13 @@ export class MultiSync {
         channels: Record<string, string>,
     ) {
         for (const [channelId, stashPath] of Object.entries(channels)) {
-            this.channels.push(new ChannelSync(this.client, channelId, path.join(this.dataPath, stashPath)));
+            this.channels.push(
+                new ChannelSync(
+                    this.client,
+                    channelId,
+                    path.join(this.dataPath, stashPath),
+                ),
+            );
         }
     }
 

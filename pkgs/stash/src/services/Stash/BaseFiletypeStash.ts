@@ -21,7 +21,9 @@ export abstract class BaseFiletypeStash<T extends z.ZodTypeAny> {
     abstract serialize(content: z.TypeOf<T>): string;
 
     index(): string[] {
-        return this.locator.findAllSync().map((filepath) => path.basename(filepath, `.${this.extension}`));
+        return this.locator
+            .findAllSync()
+            .map((filepath) => path.basename(filepath, `.${this.extension}`));
     }
 
     filepathFor(id: string): string {

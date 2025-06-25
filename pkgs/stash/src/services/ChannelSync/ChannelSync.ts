@@ -1,5 +1,9 @@
 import type { HadesClient } from "@hades-ts/hades";
-import { ChannelType, type GuildTextBasedChannel, type MessageCreateOptions } from "discord.js";
+import {
+    ChannelType,
+    type GuildTextBasedChannel,
+    type MessageCreateOptions,
+} from "discord.js";
 import fs from "fs";
 import path from "path";
 import { z } from "zod";
@@ -36,9 +40,13 @@ export class ChannelSync {
         return stash.index();
     }
 
-    protected async sendMessage(channel: GuildTextBasedChannel, embedRecord: EmbedSchema) {
+    protected async sendMessage(
+        channel: GuildTextBasedChannel,
+        embedRecord: EmbedSchema,
+    ) {
         const embed = await renderEmbedRecord(embedRecord);
-        const hasButtons = embedRecord.buttons && embedRecord.buttons.length > 0;
+        const hasButtons =
+            embedRecord.buttons && embedRecord.buttons.length > 0;
 
         const messageOptions: MessageCreateOptions = {
             embeds: [embed],
