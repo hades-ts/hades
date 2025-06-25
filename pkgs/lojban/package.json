@@ -32,6 +32,7 @@
     "devDependencies": {
         "@hades-ts/hades": "workspace:^",
         "@hades-ts/slash-commands": "workspace:^",
+        "@hades-ts/tsconfig": "workspace:*",
         "@ldlework/inversify-binding-decorators": "^4.0.2",
         "@ldlework/inversify-config-injection": "catalog:",
         "@types/jest": "^29.5.14",
@@ -43,7 +44,6 @@
         "eslint-config-prettier": "^9.1.0",
         "eslint-plugin-decorator-position": "^5.0.2",
         "eslint-plugin-eslint-plugin": "^5.5.1",
-        "eslint-plugin-hades": "workspace:^",
         "eslint-plugin-import": "^2.32.0",
         "eslint-plugin-import-newlines": "^1.4.0",
         "eslint-plugin-node": "^11.1.0",
@@ -56,8 +56,7 @@
         "rimraf": "^6.0.1",
         "ts-jest": "^29.4.0",
         "tsconfig-paths": "^4.2.0",
-        "typescript": "^5.8.3",
-        "@hades-ts/tsconfig": "workspace:*"
+        "typescript": "^5.8.3"
     },
     "peerDependencies": {
         "@hades-ts/hades": "workspace:^",
