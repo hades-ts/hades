@@ -1,6 +1,6 @@
-import { RecordDb } from "../RecordDb";
-import { ITranscriptRenderer } from "./renderers/ITranscriptRenderer";
-import { Transcript } from "./types";
+import type { RecordDb } from "../RecordDb";
+import type { ITranscriptRenderer } from "./renderers/ITranscriptRenderer";
+import type { Transcript } from "./types";
 
 export class TranscriptError extends Error {}
 

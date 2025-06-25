@@ -1,5 +1,5 @@
-import { Transcript } from "../types";
-import { ITranscriptRenderer } from "./ITranscriptRenderer";
+import type { Transcript } from "../types";
+import type { ITranscriptRenderer } from "./ITranscriptRenderer";
 
 export class SimpleTranscriptRenderer implements ITranscriptRenderer {
     render(transcript: Transcript): string {

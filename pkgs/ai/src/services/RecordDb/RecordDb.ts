@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 
-import { ISerializer, JsonSerializer } from "./serializers";
+import { type ISerializer, JsonSerializer } from "./serializers";
 
 export class RecordDbError extends Error {
     constructor(message: string) {
