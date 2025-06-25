@@ -1,4 +1,7 @@
-import { type ApplicationCommandOptionChoiceData, ApplicationCommandOptionType } from "discord.js";
+import {
+    type ApplicationCommandOptionChoiceData,
+    ApplicationCommandOptionType,
+} from "discord.js";
 
 import { arg } from "./arg";
 import type { SlashCommand } from "../../../models";

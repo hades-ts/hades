@@ -9,7 +9,9 @@ import type { Validator } from "../../../validators";
 type TextArgOptions = {
     required?: boolean;
     description: string;
-    validators?: Array<interfaces.Newable<Validator<string>> | Validator<string>>;
+    validators?: Array<
+        interfaces.Newable<Validator<string>> | Validator<string>
+    >;
 };
 
 /**

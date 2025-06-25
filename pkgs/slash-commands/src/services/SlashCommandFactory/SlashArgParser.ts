@@ -9,5 +9,8 @@ export class SlashArgParser {
     description!: string;
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    async parse(arg: SlashArgInstaller, interaction: CommandInteraction): Promise<any> { }
+    async parse(
+        arg: SlashArgInstaller,
+        interaction: CommandInteraction,
+    ): Promise<any> {}
 }

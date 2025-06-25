@@ -2,7 +2,11 @@ import { Installer } from "@hades-ts/hades";
 import type { Container } from "inversify";
 
 import { installCommands } from "./installCommands";
-import { defaultMappedTypes, installDefaultMappedTypes, type TypePair } from "./installDefaultMappedTypes";
+import {
+    defaultMappedTypes,
+    installDefaultMappedTypes,
+    type TypePair,
+} from "./installDefaultMappedTypes";
 
 /**
  * Installs slash command support in HadesContainer.

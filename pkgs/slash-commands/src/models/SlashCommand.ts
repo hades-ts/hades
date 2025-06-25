@@ -1,5 +1,9 @@
 import { DiscordService } from "@hades-ts/hades";
-import type { CommandInteraction, InteractionReplyOptions, Message } from "discord.js";
+import type {
+    CommandInteraction,
+    InteractionReplyOptions,
+    Message,
+} from "discord.js";
 import { inject, injectable } from "inversify";
 
 /**
@@ -23,7 +27,10 @@ export abstract class SlashCommand {
     }
 
     public followUp(content: string, options?: InteractionReplyOptions) {
-        return this.interaction.followUp({ ...options, content }) as Promise<Message>;
+        return this.interaction.followUp({
+            ...options,
+            content,
+        }) as Promise<Message>;
     }
 
     public async deferReply() {

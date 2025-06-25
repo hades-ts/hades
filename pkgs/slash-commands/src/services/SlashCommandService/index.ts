@@ -47,7 +47,8 @@ export class SlashCommandService {
                     }
                 } else {
                     await interaction.reply({
-                        content: "Erm, uh well something went wrong. Dunno what though.",
+                        content:
+                            "Erm, uh well something went wrong. Dunno what though.",
                         ephemeral: true,
                     });
                     console.error(e);
@@ -95,7 +96,9 @@ export class SlashCommandService {
                 ...meta.registrationDetails,
                 options: meta.args.map((arg) => {
                     if (arg.choicesResolver) {
-                        const resolver = this.container.resolve(arg.choicesResolver);
+                        const resolver = this.container.resolve(
+                            arg.choicesResolver,
+                        );
                         const choices = (resolver as any).getChoices();
                         arg.options = {
                             ...arg.options,

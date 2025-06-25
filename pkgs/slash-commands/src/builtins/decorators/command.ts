@@ -1,9 +1,15 @@
-import { ApplicationCommandType, type ChatInputApplicationCommandData } from "discord.js";
+import {
+    ApplicationCommandType,
+    type ChatInputApplicationCommandData,
+} from "discord.js";
 import { injectable } from "inversify";
 
 import { getSlashCommandMeta } from "../../metadata";
 
-export type CommandOptions = Omit<ChatInputApplicationCommandData, "name" | "type">;
+export type CommandOptions = Omit<
+    ChatInputApplicationCommandData,
+    "name" | "type"
+>;
 
 /**
  * Marks a SlashCommand class as a command.

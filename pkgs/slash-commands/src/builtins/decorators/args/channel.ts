@@ -1,5 +1,9 @@
 import { Constructable } from "@hades-ts/hades";
-import { type ApplicationCommandChannelOptionData, ApplicationCommandOptionType, type GuildBasedChannel } from "discord.js";
+import {
+    type ApplicationCommandChannelOptionData,
+    ApplicationCommandOptionType,
+    type GuildBasedChannel,
+} from "discord.js";
 
 import { arg } from "./arg";
 import { ChannelParser } from "../../parsers";

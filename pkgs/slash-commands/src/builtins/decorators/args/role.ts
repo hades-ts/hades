@@ -19,7 +19,7 @@ export function role<T extends SlashCommand>(info: RoleArgOptions) {
             type: ApplicationCommandOptionType.Role,
             required: info.required,
             description: info.description,
-            parser: new RoleParser()
+            parser: new RoleParser(),
         })(target, key);
     };
 }

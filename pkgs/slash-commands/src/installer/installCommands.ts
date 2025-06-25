@@ -5,9 +5,14 @@ import { SlashCommandFactory, SlashCommandHelper } from "../services";
 
 type Metas = ReturnType<typeof getSlashCommandMetas>;
 
-const installCommandFactory = (container: Container, meta: SlashCommandMeta) => {
+const installCommandFactory = (
+    container: Container,
+    meta: SlashCommandMeta,
+) => {
     const factory = new SlashCommandFactory(container, meta);
-    container.bind<SlashCommandFactory>(SlashCommandFactory).toConstantValue(factory);
+    container
+        .bind<SlashCommandFactory>(SlashCommandFactory)
+        .toConstantValue(factory);
 };
 
 const installCommandFactories = (container: Container, metas: Metas) => {

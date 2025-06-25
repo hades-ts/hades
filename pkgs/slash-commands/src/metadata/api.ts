@@ -26,7 +26,9 @@ export function getSlashCommandMetas(): Collection<Newable, SlashCommandMeta> {
  * @param metas All SlashCommandMeta objects.
  * @returns
  */
-export function setSlashCommandMetas(metas: Collection<Newable, SlashCommandMeta>) {
+export function setSlashCommandMetas(
+    metas: Collection<Newable, SlashCommandMeta>,
+) {
     return Reflect.defineMetadata(COMMAND_METADATA, metas, SlashCommandMeta);
 }
 
@@ -64,7 +66,11 @@ export function getSlashArgMeta(target: Newable, argName: string) {
  * @param methodName Validator method name.
  * @returns
  */
-export function addSlashValidatorMethod(target: Newable, argName: string, methodName: string) {
+export function addSlashValidatorMethod(
+    target: Newable,
+    argName: string,
+    methodName: string,
+) {
     const meta = getSlashArgMeta(target, argName);
     return meta.validatorMethods.add(methodName);
 }
@@ -75,7 +81,11 @@ export function addSlashValidatorMethod(target: Newable, argName: string, method
  * @param argName Target argument field name.
  * @param installer Validator installer.
  */
-export function addSlashArgValidator(target: Newable, argName: string, installer: InstallerFunc) {
+export function addSlashArgValidator(
+    target: Newable,
+    argName: string,
+    installer: InstallerFunc,
+) {
     const meta = getSlashArgMeta(target, argName);
     meta.validatorInstallers.push(installer);
 }

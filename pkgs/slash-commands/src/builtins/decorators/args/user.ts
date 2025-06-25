@@ -19,7 +19,7 @@ export function user<T extends SlashCommand>(info: UserArgOptions) {
             type: ApplicationCommandOptionType.User,
             required: info.required,
             description: info.description,
-            parser: new UserParser()
+            parser: new UserParser(),
         })(target, key);
     };
 }

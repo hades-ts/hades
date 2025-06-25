@@ -1,5 +1,11 @@
 import { HadesBotService } from "@hades-ts/hades";
-import { type BaseInteraction, type CacheType, ChatInputCommandInteraction, CommandInteraction, Interaction } from "discord.js";
+import {
+    type BaseInteraction,
+    type CacheType,
+    ChatInputCommandInteraction,
+    CommandInteraction,
+    Interaction,
+} from "discord.js";
 import { inject, injectable } from "inversify";
 
 import { SlashCommandService } from "./SlashCommandService";
@@ -17,7 +23,9 @@ export class SlashCommandBotService extends HadesBotService {
         await this.commandService.registerCommands(this.client);
     }
 
-    override async onInteractionCreate<T extends BaseInteraction<CacheType>>(interaction: T) {
+    override async onInteractionCreate<T extends BaseInteraction<CacheType>>(
+        interaction: T,
+    ) {
         console.log("Executing onInteractionCreate...");
 
         if (!interaction.isCommand()) {
