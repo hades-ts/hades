@@ -15,7 +15,9 @@ function readSnippetsDirectory() {
     return snippetsFiles;
 }
 
-function generateSnippetDefinitions(snippetsFiles: string[]): Record<string, unknown> {
+function generateSnippetDefinitions(
+    snippetsFiles: string[],
+): Record<string, unknown> {
     return snippetsFiles.reduce(parseSnippet, {}) as Record<string, unknown>;
 }
 
@@ -24,14 +26,21 @@ function parseSnippet(allSnippetDefinitions: {}, filename: string) {
 
     const cleanedPrefix = extractPrefix(prefix);
     const cleanedDescription = extractDescription(description);
-    const snippetTemplateBody = generateSnippetTemplateBody(cleanedPrefix, cleanedDescription, lines);
+    const snippetTemplateBody = generateSnippetTemplateBody(
+        cleanedPrefix,
+        cleanedDescription,
+        lines,
+    );
     const snippetName = parse(filename).name;
 
     return { ...allSnippetDefinitions, [snippetName]: snippetTemplateBody };
 }
 
 function readAndParseSnippetFile(filename: string) {
-    const snippetText = fs.readFileSync(`../../.vscode/snippets/${filename}`, "utf8");
+    const snippetText = fs.readFileSync(
+        `../../.vscode/snippets/${filename}`,
+        "utf8",
+    );
     const [prefix, description, ...lines] = snippetText.split("\n");
     return [prefix, description, ...lines];
 }
@@ -44,7 +53,11 @@ function extractDescription(description: string) {
     return description.replace(/^(\/\/\s*)?description:\s*/, "");
 }
 
-function generateSnippetTemplateBody(prefix: string, description: string, body: string[]) {
+function generateSnippetTemplateBody(
+    prefix: string,
+    description: string,
+    body: string[],
+) {
     return {
         scope: "javascript,typescript",
         prefix,

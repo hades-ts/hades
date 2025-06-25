@@ -2,7 +2,14 @@ import * as child from "node:child_process";
 import prompts from "prompts";
 import { allProjects } from "./utils";
 
-const FILES_TO_REMOVE: string[] = [".rush", "*.build.log", "*.build.error.log", "dist", "data", "deploy"];
+const FILES_TO_REMOVE: string[] = [
+    ".rush",
+    "*.build.log",
+    "*.build.error.log",
+    "dist",
+    "data",
+    "deploy",
+];
 
 // const FILES_TO_RENAME: string[][] = [
 //     // [".gitignore.template", ".gitignore"],

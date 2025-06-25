@@ -7,7 +7,9 @@ function run() {
 }
 
 function getPackagePath(packageName: string) {
-    const library = allLibraries().find((lib) => lib.packageName === packageName);
+    const library = allLibraries().find(
+        (lib) => lib.packageName === packageName,
+    );
 
     if (!library) {
         throw new Error(`Could not find library named: ${packageName}`);

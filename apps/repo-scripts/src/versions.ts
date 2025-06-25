@@ -1,4 +1,7 @@
-import { RushConfiguration, type RushConfigurationProject as RCP } from "@microsoft/rush-lib";
+import {
+    RushConfiguration,
+    type RushConfigurationProject as RCP,
+} from "@microsoft/rush-lib";
 import { green, yellow } from "colors";
 import { table } from "table";
 import { allLibraries, getRemotePackageVersion } from "./utils";
@@ -22,7 +25,8 @@ async function getPackageVersions(project: RCP): Promise<PackageInfo> {
 
 function toArray(info: PackageInfo) {
     const { name, localVersion, publishedVersion } = info;
-    const title = localVersion === publishedVersion ? green(name) : yellow(name);
+    const title =
+        localVersion === publishedVersion ? green(name) : yellow(name);
     return [title, localVersion, publishedVersion];
 }
 

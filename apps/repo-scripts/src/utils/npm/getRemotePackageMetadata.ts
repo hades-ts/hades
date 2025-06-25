@@ -3,7 +3,9 @@ import type { PackageMetadata } from "./PackageMetadata";
 
 const cache = new Map<string, PackageMetadata>();
 
-export async function getRemotePackageMetadata(packageName: string): Promise<null | PackageMetadata> {
+export async function getRemotePackageMetadata(
+    packageName: string,
+): Promise<null | PackageMetadata> {
     if (cache.has(packageName)) {
         return cache.get(packageName)!;
     }
