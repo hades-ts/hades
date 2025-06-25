@@ -8,6 +8,6 @@ export abstract class ILogger {
     static install(logger: interfaces.Newable<ILogger>) {
         return (container: Container) => {
             container.bind(ILogger).to(logger).inSingletonScope();
-        }
+        };
     }
 }

@@ -1,4 +1,3 @@
-
 import { singleton } from "@hades-ts/hades";
 import { SlashCommandBotService } from "@hades-ts/slash-commands";
 import { inject, injectable } from "inversify";
@@ -16,7 +15,7 @@ export class BotService extends SlashCommandBotService {
 
     async onMessage(message: Message) {
         if (this.isHighlight(message.content)) {
-            await message.reply('Hello!');
+            await message.reply("Hello!");
         }
     }
 }
