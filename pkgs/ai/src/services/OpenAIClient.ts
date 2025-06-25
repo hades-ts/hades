@@ -35,7 +35,9 @@ export class OpenAIClient {
     }
 
     protected getCompletion(prompt: string, response: AxiosResponse) {
-        const completion = response.data.choices[0].text.replace(prompt, "").trim();
+        const completion = response.data.choices[0].text
+            .replace(prompt, "")
+            .trim();
         const tokens = response.data.usage.total_tokens;
         return { completion, tokens };
     }
@@ -45,7 +47,9 @@ export class OpenAIClient {
             const response = await this.postRequest(prompt, stop);
             return this.getCompletion(prompt, response);
         } catch (error) {
-            console.error(`Failed to get open ai completion response: ${error}`);
+            console.error(
+                `Failed to get open ai completion response: ${error}`,
+            );
             throw error;
         }
     }
