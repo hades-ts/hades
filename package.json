@@ -8,6 +8,7 @@
         "publish-packages": "turbo run build lint test && changeset version && changeset publish"
     },
     "devDependencies": {
+        "@biomejs/biome": "^2.0.5",
         "@changesets/cli": "^2.29.5",
         "turbo": "^2.5.4"
     }
