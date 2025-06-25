@@ -38,7 +38,11 @@ module.exports = class extends Generator {
 
     // copy all files in __dirname/templates to destination path recursively
     async _copy_all() {
-        this.fs.copyTpl(this.templatePath("**/*"), this.destinationPath(this.answers["botName"]), this.answers);
+        this.fs.copyTpl(
+            this.templatePath("**/*"),
+            this.destinationPath(this.answers["botName"]),
+            this.answers,
+        );
     }
 
     async writing() {
