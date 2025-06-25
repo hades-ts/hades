@@ -3,7 +3,7 @@ import { inject, injectable, postConstruct } from "inversify";
 import matter from "gray-matter";
 
 import { join } from "@reliverse/pathkit";
-import { SectionMetadata } from "../types";
+import type { SectionMetadata } from "../types";
 import { SectionEntryProvider } from "./EntryProvider";
 
 @injectable()
@@ -50,7 +50,7 @@ export class SectionMetadataProvider {
     }
 
     protected getMetadata() {
-        let meta: any = {
+        const meta: any = {
             ...this.getSectionMeta(),
             ...this.getIndexMeta(),
         };

@@ -9,7 +9,7 @@ import {
     SectionLinkProvider,
     SectionItemProvider,
 } from "./services";
-import { SidebarItemCategoryEntry } from "./types";
+import type { SidebarItemCategoryEntry } from "./types";
 import { join, removeLeadingSlashes, isFile, isDirectory, removeNumericPrefix, removeExtension } from "./utils";
 
 export function mkSubSection(sectionRoot: string, relativePath: string, collapsible = true): SidebarItemCategoryEntry {

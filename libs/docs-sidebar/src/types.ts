@@ -1,4 +1,4 @@
-import { SidebarItem, SidebarItemCategory, SidebarItemDoc } from "@docusaurus/plugin-content-docs/src/sidebars/types";
+import type { SidebarItem, SidebarItemCategory, SidebarItemDoc } from "@docusaurus/plugin-content-docs/src/sidebars/types";
 
 export type SidebarItemCategoryEntry = SidebarItemCategory & {
     id: string;
