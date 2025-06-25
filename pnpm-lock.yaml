@@ -195,9 +195,6 @@ importers:
       eslint-config-prettier:
         specifier: ^9.1.0
         version: 9.1.0(eslint@8.57.1)
-      eslint-plugin-hades:
-        specifier: workspace:^
-        version: link:../../libs/eslint-plugin-hades
       eslint-plugin-import:
         specifier: ^2.32.0
         version: 2.32.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)
@@ -322,9 +319,6 @@ importers:
       eslint-plugin-eslint-plugin:
         specifier: ^5.5.1
         version: 5.5.1(eslint@8.57.1)
-      eslint-plugin-hades:
-        specifier: workspace:^
-        version: link:../../libs/eslint-plugin-hades
       eslint-plugin-import:
         specifier: ^2.32.0
         version: 2.32.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)
@@ -416,9 +410,6 @@ importers:
       eslint-plugin-eslint-plugin:
         specifier: ^5.5.1
         version: 5.5.1(eslint@8.57.1)
-      eslint-plugin-hades:
-        specifier: workspace:^
-        version: link:../../libs/eslint-plugin-hades
       eslint-plugin-import:
         specifier: ^2.32.0
         version: 2.32.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)
@@ -549,9 +540,6 @@ importers:
       eslint-plugin-eslint-plugin:
         specifier: ^5.5.1
         version: 5.5.1(eslint@8.57.1)
-      eslint-plugin-hades:
-        specifier: workspace:^
-        version: link:../../libs/eslint-plugin-hades
       eslint-plugin-import:
         specifier: ^2.32.0
         version: 2.32.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)
@@ -670,9 +658,6 @@ importers:
       eslint-plugin-eslint-plugin:
         specifier: ^5.5.1
         version: 5.5.1(eslint@8.57.1)
-      eslint-plugin-hades:
-        specifier: workspace:^
-        version: link:../../libs/eslint-plugin-hades
       eslint-plugin-import:
         specifier: ^2.32.0
         version: 2.32.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)
@@ -743,9 +728,6 @@ importers:
       eslint-plugin-eslint-plugin:
         specifier: ^5.5.1
         version: 5.5.1(eslint@8.57.1)
-      eslint-plugin-hades:
-        specifier: workspace:^
-        version: link:../eslint-plugin-hades
       eslint-plugin-import:
         specifier: ^2.32.0
         version: 2.32.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)
@@ -776,45 +758,6 @@ importers:
       typescript:
         specifier: ~5.8.3
         version: 5.8.3
-
-  libs/eslint-plugin-hades:
-    devDependencies:
-      '@typescript-eslint/eslint-plugin':
-        specifier: ~6.21.0
-        version: 6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)(typescript@5.8.3)
-      '@typescript-eslint/parser':
-        specifier: ~6.21.0
-        version: 6.21.0(eslint@8.57.1)(typescript@5.8.3)
-      eslint:
-        specifier: ^8.57.1
-        version: 8.57.1
-      eslint-config-prettier:
-        specifier: ^9.1.0
-        version: 9.1.0(eslint@8.57.1)
-      eslint-plugin-decorator-position:
-        specifier: ^5.0.2
-        version: 5.0.2(eslint@8.57.1)
-      eslint-plugin-eslint-plugin:
-        specifier: ^5.5.1
-        version: 5.5.1(eslint@8.57.1)
-      eslint-plugin-import:
-        specifier: ^2.32.0
-        version: 2.32.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)
-      eslint-plugin-import-newlines:
-        specifier: ^1.4.0
-        version: 1.4.0(eslint@8.57.1)
-      eslint-plugin-node:
-        specifier: ^11.1.0
-        version: 11.1.0(eslint@8.57.1)
-      eslint-plugin-simple-import-sort:
-        specifier: ^8.0.0
-        version: 8.0.0(eslint@8.57.1)
-      eslint-plugin-unused-imports:
-        specifier: ~3.2.0
-        version: 3.2.0(@typescript-eslint/eslint-plugin@6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)
-      requireindex:
-        specifier: ^1.2.0
-        version: 1.2.0
 
   libs/tsconfig: {}
 
@@ -872,9 +815,6 @@ importers:
       eslint-plugin-eslint-plugin:
         specifier: ^5.5.1
         version: 5.5.1(eslint@8.57.1)
-      eslint-plugin-hades:
-        specifier: workspace:^
-        version: link:../../libs/eslint-plugin-hades
       eslint-plugin-import:
         specifier: ^2.32.0
         version: 2.32.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)
@@ -954,9 +894,6 @@ importers:
       eslint-plugin-eslint-plugin:
         specifier: ^5.5.1
         version: 5.5.1(eslint@8.57.1)
-      eslint-plugin-hades:
-        specifier: workspace:^
-        version: link:../../libs/eslint-plugin-hades
       eslint-plugin-import:
         specifier: ^2.32.0
         version: 2.32.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)
@@ -1033,9 +970,6 @@ importers:
       eslint-plugin-eslint-plugin:
         specifier: ^5.5.1
         version: 5.5.1(eslint@8.57.1)
-      eslint-plugin-hades:
-        specifier: workspace:^
-        version: link:../../libs/eslint-plugin-hades
       eslint-plugin-import:
         specifier: ^2.32.0
         version: 2.32.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)
@@ -1124,9 +1058,6 @@ importers:
       eslint-plugin-eslint-plugin:
         specifier: ^5.5.1
         version: 5.5.1(eslint@8.57.1)
-      eslint-plugin-hades:
-        specifier: workspace:^
-        version: link:../../libs/eslint-plugin-hades
       eslint-plugin-import:
         specifier: ^2.32.0
         version: 2.32.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)
@@ -1203,9 +1134,6 @@ importers:
       eslint-plugin-eslint-plugin:
         specifier: ^5.5.1
         version: 5.5.1(eslint@8.57.1)
-      eslint-plugin-hades:
-        specifier: workspace:^
-        version: link:../../libs/eslint-plugin-hades
       eslint-plugin-import:
         specifier: ^2.32.0
         version: 2.32.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)
@@ -1288,9 +1216,6 @@ importers:
       eslint-plugin-eslint-plugin:
         specifier: ^5.5.1
         version: 5.5.1(eslint@8.57.1)
-      eslint-plugin-hades:
-        specifier: workspace:^
-        version: link:../../libs/eslint-plugin-hades
       eslint-plugin-import:
         specifier: ^2.32.0
         version: 2.32.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)
@@ -1373,9 +1298,6 @@ importers:
       eslint-plugin-eslint-plugin:
         specifier: ^5.5.1
         version: 5.5.1(eslint@8.57.1)
-      eslint-plugin-hades:
-        specifier: workspace:^
-        version: link:../../libs/eslint-plugin-hades
       eslint-plugin-import:
         specifier: ^2.32.0
         version: 2.32.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)
@@ -1449,9 +1371,6 @@ importers:
       eslint-plugin-eslint-plugin:
         specifier: ^5.5.1
         version: 5.5.1(eslint@8.57.1)
-      eslint-plugin-hades:
-        specifier: workspace:^
-        version: link:../../libs/eslint-plugin-hades
       eslint-plugin-node:
         specifier: ^11.1.0
         version: 11.1.0(eslint@8.57.1)
@@ -1519,9 +1438,6 @@ importers:
       eslint-plugin-eslint-plugin:
         specifier: ^5.5.1
         version: 5.5.1(eslint@8.57.1)
-      eslint-plugin-hades:
-        specifier: workspace:^
-        version: link:../../libs/eslint-plugin-hades
       eslint-plugin-node:
         specifier: ^11.1.0
         version: 11.1.0(eslint@8.57.1)
@@ -11152,10 +11068,6 @@ packages:
 
   require-like@0.1.2:
     resolution: {integrity: sha512-oyrU88skkMtDdauHDuKVrgR+zuItqr6/c//FXzvmxRGMexSDc6hNvJInGW3LL46n+8b50RykrvwSUIIQH2LQ5A==}
-
-  requireindex@1.2.0:
-    resolution: {integrity: sha512-L9jEkOi3ASd9PYit2cwRfyppc9NoABujTP8/5gFcbERmo5jUoAKovIC3fsF17pkTnGsrByysqX+Kxd2OTNI1ww==}
-    engines: {node: '>=0.10.5'}
 
   requires-port@1.0.0:
     resolution: {integrity: sha512-KigOCHcocU3XODJxsu8i/j8T9tzT4adHiecwORRQ0ZZFcp7ahwXuRU1m+yuO90C5ZUyGeGfocHDI14M3L3yDAQ==}
@@ -25714,8 +25626,6 @@ snapshots:
   require-from-string@2.0.2: {}
 
   require-like@0.1.2: {}
-
-  requireindex@1.2.0: {}
 
   requires-port@1.0.0: {}
 
