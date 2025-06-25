@@ -1,4 +1,9 @@
-import { arg, command, description, TextCommand } from "@hades-ts/text-commands";
+import {
+    arg,
+    command,
+    description,
+    TextCommand,
+} from "@hades-ts/text-commands";
 import { inject, postConstruct } from "inversify";
 
 @command("lj")

@@ -1,12 +1,9 @@
 import { arg, command, SlashCommand, text } from "@hades-ts/slash-commands";
 import { inject, postConstruct } from "inversify";
 
-@command(
-    "lj",
-    {
-        description: "Translate english word into Lojban.",
-    },
-)
+@command("lj", {
+    description: "Translate english word into Lojban.",
+})
 export class ToLojban extends SlashCommand {
     @text({
         description: "Word to lookup.",
