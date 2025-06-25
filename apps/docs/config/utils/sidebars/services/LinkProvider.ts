@@ -1,4 +1,4 @@
-import {
+import type {
     SidebarItemCategoryLinkDoc,
     SidebarItemCategoryLinkGeneratedIndex,
 } from "@docusaurus/plugin-content-docs/src/sidebars/types";

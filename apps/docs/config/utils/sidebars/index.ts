@@ -1,4 +1,4 @@
-import { SidebarConfig } from "@site/node_modules/@docusaurus/plugin-content-docs/src/sidebars/types";
+import type { SidebarConfig } from "@site/node_modules/@docusaurus/plugin-content-docs/src/sidebars/types";
 import { mkSection } from "./api";
 
 import path from "path";

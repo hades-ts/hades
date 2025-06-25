@@ -1,14 +1,14 @@
-import fs from "fs";
 import * as path from "@reliverse/pathkit";
+import fs from "fs";
 
 const and =
     (...fns) =>
-        (...args) =>
-            fns.every((predicate) => predicate(...args));
+    (...args) =>
+        fns.every((predicate) => predicate(...args));
 const chain =
     (...fns) =>
-        (val) =>
-            fns.reduce((acc, fn) => fn(acc), val);
+    (val) =>
+        fns.reduce((acc, fn) => fn(acc), val);
 
 if (!Array.prototype.filters) {
     Object.defineProperty(Array.prototype, "filters", {
@@ -20,6 +20,7 @@ if (!Array.prototype.filters) {
 
 declare global {
     interface Array<T> {
+        // biome-ignore lint/suspicious/noExplicitAny: ¯\_(ツ)_/¯
         filters(...fns: ((...args: any[]) => boolean)[]): T[];
     }
 }
@@ -34,6 +35,7 @@ if (!Array.prototype.maps) {
 
 declare global {
     interface Array<T> {
+        // biome-ignore lint/suspicious/noExplicitAny: ¯\_(ツ)_/¯
         maps(...fns: ((...args: any[]) => any)[]): T[];
     }
 }
@@ -46,8 +48,8 @@ export const isntIndex = (name) => name !== "index.md" && name !== "index.mdx";
 
 export const join =
     (root: string) =>
-        (...paths: string[]) =>
-            path.join(root, ...paths);
+    (...paths: string[]) =>
+        path.join(root, ...paths);
 export const removeExtension = (entry: string) => entry.split(".").shift() || entry;
 export const removeNumericPrefix = (entry: string) => entry.replace(/^\d+-/, "");
 export const removeLeadingSlashes = (entry: string) => entry.replace(/^\/+/, "");

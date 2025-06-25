@@ -1,10 +1,10 @@
-import matter from "gray-matter";
-import { readFileSync } from "fs";
+import { readFileSync } from "node:fs";
 import { basename, join } from "@reliverse/pathkit";
-import { SidebarItemDocEntry } from "../types";
-import { isMarkdown, isntEmpty, isntIndex, removeExtension, removeLeadingSlashes, removeNumericPrefix } from "../utils";
-import { SectionEntryProvider } from "./EntryProvider";
+import matter from "gray-matter";
 import { inject, injectable, postConstruct } from "inversify";
+import type { SidebarItemDocEntry } from "../types";
+import { isMarkdown, isntEmpty, isntIndex } from "../utils";
+import { SectionEntryProvider } from "./EntryProvider";
 
 @injectable()
 export class SectionFileProvider {
