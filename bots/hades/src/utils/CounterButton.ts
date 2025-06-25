@@ -1,11 +1,19 @@
 import { BaseButtonInteraction } from "@hades-ts/hades";
-import { ButtonBuilder, type ButtonInteraction, ButtonStyle, type Collection } from "discord.js";
+import {
+    ButtonBuilder,
+    type ButtonInteraction,
+    ButtonStyle,
+    type Collection,
+} from "discord.js";
 
 export class CounterButton extends BaseButtonInteraction {
     private count = 0;
 
     build() {
-        return new ButtonBuilder().setCustomId(this.id).setLabel("Click me!").setStyle(ButtonStyle.Primary);
+        return new ButtonBuilder()
+            .setCustomId(this.id)
+            .setLabel("Click me!")
+            .setStyle(ButtonStyle.Primary);
     }
 
     protected async onClick(interaction: ButtonInteraction<"cached">) {

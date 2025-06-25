@@ -1,10 +1,20 @@
 import { HadesClient } from "@hades-ts/hades";
-import { command, SlashArgError, SlashCommand, user, validate } from "@hades-ts/slash-commands";
+import {
+    command,
+    SlashArgError,
+    SlashCommand,
+    user,
+    validate,
+} from "@hades-ts/slash-commands";
 import { EmbedBuilder, type GuildMember } from "discord.js";
 import { inject } from "inversify";
 
 const avatarEmbed = (member: GuildMember) => ({
-    embeds: [new EmbedBuilder().setDescription(`Avatar of <@!${member.id}>`).setImage(member.user.displayAvatarURL())],
+    embeds: [
+        new EmbedBuilder()
+            .setDescription(`Avatar of <@!${member.id}>`)
+            .setImage(member.user.displayAvatarURL()),
+    ],
 });
 
 @command("hi", { description: "Say hi to the bot." })
