@@ -1,32 +1,30 @@
 ### THIS FILE IS AUTO-GENERATED. SEE 'nix/devenv.nix' ###
+[formatter.biome]
+command = "/nix/store/qpkbida3knr3h509hc8pjhi6yi329v5z-biome-1.9.4/bin/biome"
+excludes = []
+includes = [
+    "*.js",
+    "*.ts",
+    "*.mjs",
+    "*.mts",
+    "*.cjs",
+    "*.cts",
+    "*.jsx",
+    "*.tsx",
+    "*.d.ts",
+    "*.d.cts",
+    "*.d.mts",
+    "*.json",
+    "*.jsonc",
+    "*.css",
+]
+options = ["format", "--write", "--no-errors-on-unmatched"]
+
 [formatter.nixfmt]
 command = "/nix/store/is564by3v63jz3gvrz9wizd0l3ghqj4g-nixfmt-unstable-2025-04-04/bin/nixfmt"
 excludes = []
 includes = ["*.nix"]
 options = []
-
-[formatter.prettier]
-command = "/nix/store/kixsi0a8b9flwrdl5cp1rxcvhzcw4mim-prettier-3.5.3/bin/prettier"
-excludes = []
-includes = [
-    "*.cjs",
-    "*.css",
-    "*.html",
-    "*.js",
-    "*.json",
-    "*.json5",
-    "*.jsx",
-    "*.md",
-    "*.mdx",
-    "*.mjs",
-    "*.scss",
-    "*.ts",
-    "*.tsx",
-    "*.vue",
-    "*.yaml",
-    "*.yml",
-]
-options = ["--write"]
 
 [global]
 excludes = [
