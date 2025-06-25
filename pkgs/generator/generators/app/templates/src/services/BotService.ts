@@ -1,5 +1,5 @@
 import { inject } from "inversify";
-import { Interaction } from "discord.js";
+import type { Interaction } from "discord.js";
 
 import { singleton, HadesBotService } from "@hades-ts/hades";
 import { SlashCommandService } from "@hades-ts/slash-commands";
