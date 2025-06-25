@@ -1,4 +1,4 @@
-import { RushConfiguration, RushConfigurationProject as RCP } from "@microsoft/rush-lib";
+import { RushConfiguration, type RushConfigurationProject as RCP } from "@microsoft/rush-lib";
 import { green, yellow } from "colors";
 import { table } from "table";
 import { allLibraries, getRemotePackageVersion } from "./utils";
