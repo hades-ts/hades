@@ -1,16 +1,17 @@
-const path = require("@reliverse/pathkit")
+const path = require("@reliverse/pathkit");
+
 import { Container } from "inversify";
 import {
-    SectionFactory,
-    SectionEntryProvider,
-    SectionFileProvider,
     SectionDirectoryProvider,
-    SectionMetadataProvider,
-    SectionLinkProvider,
+    SectionEntryProvider,
+    SectionFactory,
+    SectionFileProvider,
     SectionItemProvider,
+    SectionLinkProvider,
+    SectionMetadataProvider,
 } from "./services";
-import { SidebarItemCategoryEntry } from "./types";
-import { join, removeLeadingSlashes, isFile, isDirectory, removeNumericPrefix, removeExtension } from "./utils";
+import type { SidebarItemCategoryEntry } from "./types";
+import { isDirectory, isFile, join, removeExtension, removeLeadingSlashes, removeNumericPrefix } from "./utils";
 
 export function mkSubSection(sectionRoot, relativePath, collapsible = true): SidebarItemCategoryEntry {
     const subSectionRoot = path.resolve(path.join(sectionRoot, relativePath));
@@ -26,11 +27,9 @@ export function mkSubSection(sectionRoot, relativePath, collapsible = true): Sid
     container.bind("SubSectionId").toConstantValue(removeLeadingSlashes(relativizer("index")));
     container.bind("IsSectionFile").toConstantValue(isFile(subSectionRoot));
     container.bind("IsSectionDirectory").toConstantValue(isDirectory(subSectionRoot));
-    container
-        .bind("IdMaker")
-        .toConstantValue((entry: string) => {
-            return removeLeadingSlashes(path.join(relativePath, removeNumericPrefix(removeExtension(entry))));
-        });
+    container.bind("IdMaker").toConstantValue((entry: string) => {
+        return removeLeadingSlashes(path.join(relativePath, removeNumericPrefix(removeExtension(entry))));
+    });
 
     container.bind(SectionFactory).toSelf().inSingletonScope();
     container.bind(SectionEntryProvider).toSelf().inSingletonScope();

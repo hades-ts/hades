@@ -1,10 +1,7 @@
-import { readdirSync } from "fs";
-import path from "path";
-
 import { inject, injectable, postConstruct } from "inversify";
 import { mkSubSection } from "../api";
-import { SidebarItemCategoryEntry } from "../types";
-import { removeLeadingSlashes, isntEmpty } from "../utils";
+import type { SidebarItemCategoryEntry } from "../types";
+import { removeLeadingSlashes } from "../utils";
 import { SectionEntryProvider } from "./EntryProvider";
 
 @injectable()

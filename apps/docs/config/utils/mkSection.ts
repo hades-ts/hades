@@ -1,5 +1,5 @@
 export const mkSection = async (name) => {
-    const mdxMermaid = await import("mdx-mermaid");
+    // const mdxMermaid = await import("mdx-mermaid");
 
     return [
         "@docusaurus/plugin-content-docs",
