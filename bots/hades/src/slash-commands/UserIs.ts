@@ -1,6 +1,6 @@
 import { HadesClient } from "@hades-ts/hades";
 import { command, member, role, SlashCommand } from "@hades-ts/slash-commands";
-import { GuildMember, Role } from "discord.js";
+import type { GuildMember, Role } from "discord.js";
 import { inject } from "inversify";
 
 import { NotMeValidator } from "./validators/NotMeValidator";
