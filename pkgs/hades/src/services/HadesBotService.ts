@@ -1,29 +1,29 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import {
-    Channel,
+    type Channel,
     Collection,
-    Emoji,
-    Guild,
-    GuildBan,
-    GuildMember,
-    GuildMembersChunk,
-    GuildTextBasedChannel,
-    Interaction,
-    Message,
-    MessageReaction,
-    MessageReactionEventDetails,
-    OmitPartialGroupDMChannel,
-    PartialGuildMember,
-    PartialMessage,
-    PartialMessageReaction,
-    PartialUser,
-    Presence,
-    ReadonlyCollection,
-    Role,
-    Snowflake,
-    Typing,
-    User,
-    VoiceState,
+    type Emoji,
+    type Guild,
+    type GuildBan,
+    type GuildMember,
+    type GuildMembersChunk,
+    type GuildTextBasedChannel,
+    type Interaction,
+    type Message,
+    type MessageReaction,
+    type MessageReactionEventDetails,
+    type OmitPartialGroupDMChannel,
+    type PartialGuildMember,
+    type PartialMessage,
+    type PartialMessageReaction,
+    type PartialUser,
+    type Presence,
+    type ReadonlyCollection,
+    type Role,
+    type Snowflake,
+    type Typing,
+    type User,
+    type VoiceState,
 } from "discord.js";
 import { inject, postConstruct } from "inversify";
 
@@ -47,7 +47,7 @@ export class HadesBotService {
      * The Discord bot token.
      */
     @inject("cfg.discordToken")
-    protected token!: String;
+    protected token!: string;
 
     /**
      * Used to receive Discord events.

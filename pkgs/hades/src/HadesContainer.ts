@@ -1,9 +1,9 @@
 import { buildProviderModule } from "@ldlework/inversify-binding-decorators";
-import { EagerBinder, EagerBinderSettings } from "@ldlework/inversify-config-injection";
-import { Container, ContainerModule, interfaces } from "inversify";
+import { EagerBinder, type EagerBinderSettings } from "@ldlework/inversify-config-injection";
+import { Container, ContainerModule, type interfaces } from "inversify";
 
 import { Installer } from "./Installer";
-import { InstallerFunc } from "./utils";
+import type { InstallerFunc } from "./utils";
 
 export type ConfigOptions = EagerBinderSettings;
 

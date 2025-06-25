@@ -1,4 +1,11 @@
-import { CategoryChannel, ChannelType, Collection, Guild, GuildBasedChannel, TextChannel } from "discord.js";
+import {
+    type CategoryChannel,
+    ChannelType,
+    type Collection,
+    type Guild,
+    type GuildBasedChannel,
+    type TextChannel,
+} from "discord.js";
 import { inject } from "inversify";
 
 import { singleton } from "../decorators";
@@ -19,11 +26,10 @@ export type ChannelTypes =
  */
 @singleton(DiscordService)
 export class DiscordService {
-    // eslint-disable-next-line no-useless-constructor
     constructor(
         @inject(HadesClient)
         private client: HadesClient,
-    ) { }
+    ) {}
 
     /**
      * Get all guilds the bot is in.
@@ -91,11 +97,16 @@ export class DiscordService {
      * @param guildId The ID of the guild.
      * @returns Collection<string, GuildChannel>
      */
-    getChansOf<T extends GuildBasedChannel>(type: ChannelType, guildId: string) {
+    getChansOf<T extends GuildBasedChannel>(
+        type: ChannelType,
+        guildId: string,
+    ) {
         console.log(`Grabbing channels of type ${type} for guild ${guildId}`);
         const guild = this.guilds.get(guildId);
         if (guild !== undefined) {
-            return guild.channels.cache.filter((chan) => chan.type === type).mapValues((chan) => chan as T);
+            return guild.channels.cache
+                .filter((chan) => chan.type === type)
+                .mapValues((chan) => chan as T);
         }
         return undefined;
     }
@@ -106,7 +117,10 @@ export class DiscordService {
      * @returns Collection<string, CategoryChannel>
      */
     getCategories(guildId: string) {
-        return this.getChansOf<CategoryChannel>(ChannelType.GuildCategory, guildId);
+        return this.getChansOf<CategoryChannel>(
+            ChannelType.GuildCategory,
+            guildId,
+        );
     }
 
     /**

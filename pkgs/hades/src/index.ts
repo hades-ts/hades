@@ -1,8 +1,8 @@
-import { interfaces } from "inversify";
-import { HadesBotService } from "./services";
-import { Installer } from "./Installer";
+import type { interfaces } from "inversify";
+import type { HadesBotService } from "./services";
+import type { Installer } from "./Installer";
 import { HadesContainer } from "./HadesContainer";
-import { InstallerFunc } from "./utils";
+import type { InstallerFunc } from "./utils";
 
 export * from "./decorators";
 export * from "./HadesContainer";
