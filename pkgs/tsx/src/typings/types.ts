@@ -1,20 +1,20 @@
 import type {
     EmbedAuthorOptions,
-    EmbedFooterOptions,
+    EmbedBuilder,
     EmbedField,
+    EmbedFooterOptions,
     EmbedImageData,
     SelectMenuComponentOptionData,
-    EmbedBuilder,
 } from "discord.js";
-import {
-    EmbedProps,
+import type {
     ActionRowComponent,
-    EmbedComponent,
     ButtonOptions,
+    ChannelSelectMenuOptions,
+    EmbedComponent,
+    EmbedProps,
+    RoleSelectMenuOptions,
     StringSelectMenuOptions,
     UserSelectMenuOptions,
-    RoleSelectMenuOptions,
-    ChannelSelectMenuOptions,
 } from "../index.js";
 
 // This sucks
@@ -62,9 +62,10 @@ export type Atom =
     | null
     | undefined;
 
-export interface ComponentFactory<P = ComponentPropTypes, C = Atom[]> {
-    (props?: P, children?: C): Component<P, C>;
-}
+export type ComponentFactory<P = ComponentPropTypes, C = Atom[]> = (
+    props?: P,
+    children?: C,
+) => Component<P, C>;
 
 export interface Component<P = ComponentPropTypes, C = Atom[]> {
     type: ElementType;
