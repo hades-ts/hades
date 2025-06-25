@@ -40,7 +40,11 @@ export class SectionFactory {
         return this.itemProvider.getItems();
     }
     private get label() {
-        return this.meta.label || this.meta.title || capitalize(this.subSectionName);
+        return (
+            this.meta.label ||
+            this.meta.title ||
+            capitalize(this.subSectionName)
+        );
     }
     private get id() {
         return this.subSectionId;
@@ -58,8 +62,14 @@ export class SectionFactory {
             },
             link: this.link,
             items: this.items,
-            collapsible: collapsible === null || collapsible === undefined ? true : !!collapsible,
-            collapsed: collapsed === null || collapsed === undefined ? true : !!collapsed,
+            collapsible:
+                collapsible === null || collapsible === undefined
+                    ? true
+                    : !!collapsible,
+            collapsed:
+                collapsed === null || collapsed === undefined
+                    ? true
+                    : !!collapsed,
         };
     }
 }
