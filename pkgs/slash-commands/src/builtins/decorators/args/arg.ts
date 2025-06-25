@@ -1,4 +1,8 @@
-import { type Constructable, Constructor, InstallerFunc } from "@hades-ts/hades";
+import {
+    type Constructable,
+    Constructor,
+    InstallerFunc,
+} from "@hades-ts/hades";
 import type {
     ApplicationCommandAutocompleteStringOption,
     ApplicationCommandChannelOptionData,
@@ -19,21 +23,27 @@ import type { SlashArgParser } from "../../../services";
 import { Validator } from "../../../validators";
 
 export type ArgOptions =
-    Optional<ApplicationCommandSubGroupData, "name">
+    | Optional<ApplicationCommandSubGroupData, "name">
     | Optional<ApplicationCommandNonOptionsData, "name">
     | Optional<ApplicationCommandChannelOptionData, "name">
     | Optional<ApplicationCommandChoicesData, "name">
     | Optional<ApplicationCommandAutocompleteStringOption, "name">
     | Optional<ApplicationCommandNumericOptionData, "name">
     | Optional<ApplicationCommandStringOptionData, "name">
-    | Optional<ApplicationCommandSubCommandData, "name">
+    | Optional<ApplicationCommandSubCommandData, "name">;
 
 export type ArgConfig<TField = any> = {
-    parser?: SlashArgParser,
-    validators?: Array<interfaces.Newable<Validator<TField>> | Validator<TField>>
+    parser?: SlashArgParser;
+    validators?: Array<
+        interfaces.Newable<Validator<TField>> | Validator<TField>
+    >;
 } & ArgOptions;
 
-export const makeArgMeta = <TField>(info: ArgConfig<TField>, target: Constructable, key: string) => {
+export const makeArgMeta = <TField>(
+    info: ArgConfig<TField>,
+    target: Constructable,
+    key: string,
+) => {
     const meta = getSlashArgMeta(target.constructor, key);
     meta.name = camelToDash(key);
     meta.options = {
@@ -43,15 +53,27 @@ export const makeArgMeta = <TField>(info: ArgConfig<TField>, target: Constructab
     } as ApplicationCommandOptionData;
     meta.property = key;
     meta.parser = info.parser!;
-    meta.validatorInstallers = info.validators?.map(
-        (validator: Validator<TField> | interfaces.Newable<Validator<TField>>) =>
-            (container: Container) => {
-                if (validator instanceof Validator) {
-                    container.bind(Validator).toConstantValue(validator).whenTargetNamed(key);
-                } else {
-                    container.bind(Validator).to(validator).whenTargetNamed(key);
-                }
-            }) || [];
+    meta.validatorInstallers =
+        info.validators?.map(
+            (
+                validator:
+                    | Validator<TField>
+                    | interfaces.Newable<Validator<TField>>,
+            ) =>
+                (container: Container) => {
+                    if (validator instanceof Validator) {
+                        container
+                            .bind(Validator)
+                            .toConstantValue(validator)
+                            .whenTargetNamed(key);
+                    } else {
+                        container
+                            .bind(Validator)
+                            .to(validator)
+                            .whenTargetNamed(key);
+                    }
+                },
+        ) || [];
     return meta;
 };
 
@@ -62,7 +84,7 @@ export const makeArgMeta = <TField>(info: ArgConfig<TField>, target: Constructab
 export function arg<TField = any>(info: ArgConfig<TField>) {
     return <T extends SlashCommand, K extends keyof T & string>(
         target: T,
-        key: K
+        key: K,
     ): void => {
         // Now TypeScript will enforce T[K] extends TField
         const _typeCheck: T[K] extends TField ? true : never = true as any;

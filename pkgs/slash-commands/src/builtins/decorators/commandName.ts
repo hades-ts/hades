@@ -16,7 +16,9 @@ class CommandChoicesResolver {
     private slashCommandService!: SlashCommandService;
 
     getChoices() {
-        return this.slashCommandService.factories.all().map((f) => ({ name: f.meta.name, value: f.meta.name }));
+        return this.slashCommandService.factories
+            .all()
+            .map((f) => ({ name: f.meta.name, value: f.meta.name }));
     }
 }
 

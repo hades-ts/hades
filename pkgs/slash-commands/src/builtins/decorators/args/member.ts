@@ -22,7 +22,7 @@ export function member<T extends SlashCommand>(info: MemberArgOptions) {
             type: ApplicationCommandOptionType.User,
             required: info.required,
             description: info.description,
-            parser: new MemberParser()
+            parser: new MemberParser(),
         })(target, key);
     };
 }

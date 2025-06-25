@@ -1,4 +1,9 @@
-import { AutocompleteInteraction, type ChatInputCommandInteraction, Collection, type CommandInteraction } from "discord.js";
+import {
+    AutocompleteInteraction,
+    type ChatInputCommandInteraction,
+    Collection,
+    type CommandInteraction,
+} from "discord.js";
 import type { Container, interfaces } from "inversify";
 
 import type { SlashCommandMeta } from "../../metadata";
@@ -36,7 +41,10 @@ export class SlashCommandFactory {
      * @param container Container to install into.
      * @param context The command invocation context.
      */
-    async installArguments(container: Container, interaction: ChatInputCommandInteraction) {
+    async installArguments(
+        container: Container,
+        interaction: ChatInputCommandInteraction,
+    ) {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         for (const [_, arg] of this.argInstallers) {
             await arg.install(container, interaction);
@@ -65,7 +73,9 @@ export class SlashCommandFactory {
      * @returns A sub-container.
      */
     createSubContainer(interaction: CommandInteraction) {
-        const di = this.parentContainer.createChild({ skipBaseClassChecks: true });
+        const di = this.parentContainer.createChild({
+            skipBaseClassChecks: true,
+        });
 
         // bind the command class
         di.bind(this.meta.target as interfaces.ServiceIdentifier).toSelf();
@@ -91,7 +101,9 @@ export class SlashCommandFactory {
         await this.installArguments(subContainer, interaction);
 
         // resolve command instance
-        const inst = subContainer.get<SlashCommand>(this.meta.target as interfaces.ServiceIdentifier<SlashCommand>);
+        const inst = subContainer.get<SlashCommand>(
+            this.meta.target as interfaces.ServiceIdentifier<SlashCommand>,
+        );
 
         // run instance-method validators
         await this.runMethodValidators(inst);
@@ -105,7 +117,9 @@ export class SlashCommandFactory {
         if (!argMeta) {
             return;
         }
-        const di = this.parentContainer.createChild({ skipBaseClassChecks: true });
+        const di = this.parentContainer.createChild({
+            skipBaseClassChecks: true,
+        });
         di.bind(AutocompleteInteraction).toConstantValue(interaction);
         const completer = di.resolve(argMeta.choicesCompleter!);
         const choices = await completer.complete(value);

@@ -63,7 +63,10 @@ export class SlashArgInstaller {
 
     private throwIfValueIsEmpty(value: any) {
         if (value === null || value === undefined) {
-            throw new SlashArgError(`argument \`${this.name}\` must be a ${this.parser.name}.`, true);
+            throw new SlashArgError(
+                `argument \`${this.name}\` must be a ${this.parser.name}.`,
+                true,
+            );
         }
     }
 

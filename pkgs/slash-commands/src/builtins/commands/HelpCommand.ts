@@ -38,7 +38,9 @@ export class HelpCommand extends SlashCommand {
         this.helpEmbed = this.helpService.getHelpEmbed(this.commandName);
 
         if (!this.helpEmbed) {
-            throw new SlashArgError(`Couldn't find a "${this.commandName}" command. :weary:`);
+            throw new SlashArgError(
+                `Couldn't find a "${this.commandName}" command. :weary:`,
+            );
         }
     }
 
