@@ -25,7 +25,9 @@ function isSimpleNode(node: ParseNode): node is SimpleNode {
 }
 
 function isSpreadNode(node: ParseNode): node is SpreadNode {
-    return Array.isArray(node) && typeof node[0] === "string" && node.length > 2;
+    return (
+        Array.isArray(node) && typeof node[0] === "string" && node.length > 2
+    );
 }
 
 function isListNode(node: ParseNode): node is ListNode {
@@ -62,32 +64,53 @@ export class CamxesService {
         return `<${rest} ${converted}>`;
     }
 
-    protected convertSimpleNode(node: SimpleNode, render: (value: string) => string = (value) => value) {
+    protected convertSimpleNode(
+        node: SimpleNode,
+        render: (value: string) => string = (value) => value,
+    ) {
         const [_, child] = node;
         const result: string = this.convertParse(child);
         return render(result);
     }
 
-    protected convertSpreadNode(node: SpreadNode, merge: (...args: string[]) => string = (...args) => args.join(" ")) {
+    protected convertSpreadNode(
+        node: SpreadNode,
+        merge: (...args: string[]) => string = (...args) => args.join(" "),
+    ) {
         const [_, ...children] = node;
-        const results: string[] = children.map((child) => this.convertParse(child));
+        const results: string[] = children.map((child) =>
+            this.convertParse(child),
+        );
         return merge(...results);
     }
 
-    protected convertListNode(node: ListNode, merge: (...args: string[]) => string = (...args) => args.join(" ")) {
+    protected convertListNode(
+        node: ListNode,
+        merge: (...args: string[]) => string = (...args) => args.join(" "),
+    ) {
         const [_, children] = node;
-        const results: string[] = children.map((child) => this.convertParse(child));
+        const results: string[] = children.map((child) =>
+            this.convertParse(child),
+        );
         return merge(...results);
     }
 
-    protected convertAtom(node: ListNode, render: (values: string[]) => string = (values) => values.join(" ")) {
+    protected convertAtom(
+        node: ListNode,
+        render: (values: string[]) => string = (values) => values.join(" "),
+    ) {
         const [_, children] = node;
-        const results: string[] = children.map((child) => this.convertParse(child));
+        const results: string[] = children.map((child) =>
+            this.convertParse(child),
+        );
         return render(results);
     }
 
     protected bridiTerm(node: ParseNode) {
-        return this.convertSpreadNode(node as SpreadNode, (...vals) => `{ ${vals.join(" ")} }`);
+        return this.convertSpreadNode(
+            node as SpreadNode,
+            (...vals) => `{ ${vals.join(" ")} }`,
+        );
     }
 
     protected parenCmavo(node: ParseNode) {
@@ -103,13 +126,19 @@ export class CamxesService {
         }
 
         if (children.length === 2) {
-            return this.convertSpreadNode(node, (...vals) => `[${vals.join(" ")}]`);
+            return this.convertSpreadNode(
+                node,
+                (...vals) => `[${vals.join(" ")}]`,
+            );
         }
 
         return this.convertParse(children[0]);
     }
 
-    protected convertParse(node: ParseNode | undefined, parens?: Parens): string {
+    protected convertParse(
+        node: ParseNode | undefined,
+        parens?: Parens,
+    ): string {
         if (node === undefined) {
             return "";
         }
@@ -130,17 +159,24 @@ export class CamxesService {
                     return `<${node[1][1]}>`;
 
                 case kind.startsWith("selbri"):
-                    return this.convertSelbriArray(node.slice(1) as ParseNode[]);
+                    return this.convertSelbriArray(
+                        node.slice(1) as ParseNode[],
+                    );
 
                 case kind.startsWith("sumti"):
                     return this.convertSumti(node as SpreadNode);
 
                 case kind.startsWith("tanru"):
                     // return this.convertSpreadNode(node as SpreadNode, (...vals) => `<${vals.join(" ")}>`)
-                    return this.convertSelbriArray(node.slice(1) as ParseNode[]);
+                    return this.convertSelbriArray(
+                        node.slice(1) as ParseNode[],
+                    );
 
                 case ["KOhA_clause"].includes(kind):
-                    return this.convertAtom(node as ListNode, (...vals) => `[${vals.join(" ")}]`);
+                    return this.convertAtom(
+                        node as ListNode,
+                        (...vals) => `[${vals.join(" ")}]`,
+                    );
 
                 case [
                     "UI_clause",
@@ -156,7 +192,7 @@ export class CamxesService {
                     return this.parenCmavo(node);
             }
 
-            if (node.length == 2 && typeof node[1] === "string") {
+            if (node.length === 2 && typeof node[1] === "string") {
                 return node[1];
             }
 
@@ -191,7 +227,9 @@ export class CamxesService {
         }
 
         if (isNodeArray(node)) {
-            return (node as ParseNode[]).map((child) => this.convertParse(child)).join(" ");
+            return (node as ParseNode[])
+                .map((child) => this.convertParse(child))
+                .join(" ");
         }
 
         console.log(`Defaulted on ${kind}.`);
