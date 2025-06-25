@@ -38,7 +38,11 @@ export class RecordService {
         }
 
         this.ensureGuildDir(thread.guildId);
-        const threadPath = path.join(this.dataDir, thread.guildId, thread.threadId);
+        const threadPath = path.join(
+            this.dataDir,
+            thread.guildId,
+            thread.threadId,
+        );
         fs.writeFileSync(threadPath, JSON.stringify(thread, null, 4));
     }
 

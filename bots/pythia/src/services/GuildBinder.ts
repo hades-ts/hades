@@ -13,6 +13,8 @@ export class ZeusGuildBinder implements GuildBinder {
         const guildId = guildContainer.get<string>(guildTokens.GuildId);
         const guildConfig = this.guilds[guildId] || null;
 
-        guildContainer.bind(guildTokens.GuildConfig).toConstantValue(guildConfig);
+        guildContainer
+            .bind(guildTokens.GuildConfig)
+            .toConstantValue(guildConfig);
     }
 }

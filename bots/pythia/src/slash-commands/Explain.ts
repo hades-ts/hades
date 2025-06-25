@@ -18,7 +18,10 @@ import type { Thread, ThreadMessage } from "../types";
 
 @command("explain", { description: "Ask the bot a question." })
 export class ExplainCommand extends SlashCommand {
-    @arg({ description: "Your question.", type: ApplicationCommandOptionType.String })
+    @arg({
+        description: "Your question.",
+        type: ApplicationCommandOptionType.String,
+    })
     question!: string;
 
     @inject(HadesClient)
@@ -48,15 +51,21 @@ export class ExplainCommand extends SlashCommand {
 
     async handleError(error: Error) {
         if (error instanceof GlobalQuotaError) {
-            await this.reject(`Sorry, I'm out of tokens for the day. Ask again tomorrow!`);
+            await this.reject(
+                `Sorry, I'm out of tokens for the day. Ask again tomorrow!`,
+            );
             return;
         }
         if (error instanceof UserQuotaError) {
-            await this.reject(`Sorry, you're out of tokens for the day. Ask again tomorrow!`);
+            await this.reject(
+                `Sorry, you're out of tokens for the day. Ask again tomorrow!`,
+            );
             return;
         }
 
-        await this.reject(`Sorry, I'm having trouble right now. Try again later!`);
+        await this.reject(
+            `Sorry, I'm having trouble right now. Try again later!`,
+        );
         return;
     }
 
@@ -68,7 +77,9 @@ export class ExplainCommand extends SlashCommand {
     }
 
     async getGuildService() {
-        const service = await this.guildServiceFactory.getGuildService(this.interaction.guild!);
+        const service = await this.guildServiceFactory.getGuildService(
+            this.interaction.guild!,
+        );
         return service;
     }
 
@@ -120,11 +131,15 @@ export class ExplainCommand extends SlashCommand {
         const threadStarter = await textChannel.fetchStarterMessage();
 
         if (!threadStarter) {
-            return this.reject("You can only use `/explain` in threads I started.");
+            return this.reject(
+                "You can only use `/explain` in threads I started.",
+            );
         }
 
         if (threadStarter.author.id !== this.client.user!.id) {
-            return this.reject("You can only use `/explain` in threads I started.");
+            return this.reject(
+                "You can only use `/explain` in threads I started.",
+            );
         }
 
         let thread: Thread;
