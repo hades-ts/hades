@@ -13,7 +13,7 @@
     ],
     "scripts": {
         "map": "tsc --emitDeclarationOnly --declaration --declarationMap",
-        "build": "pkgroll --sourcemap",
+        "build": "pkgroll --sourcemap && npm run map",
         "clean": "rimraf dist",
         "watch": "tsc -p tsconfig.json -w"
     },
@@ -46,6 +46,11 @@
         "tsconfig-paths": "^4.2.0",
         "typescript": "catalog:"
     },
+    "peerDependencies": {
+        "discord.js": "catalog:",
+        "inversify": "catalog:",
+        "reflect-metadata": "catalog:"
+    },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/hades-ts/hades.git"
@@ -55,10 +60,5 @@
     "bugs": {
         "url": "https://github.com/hades-ts/hades/issues"
     },
-    "homepage": "https://github.com/hades-ts/hades#readme",
-    "peerDependencies": {
-        "discord.js": "catalog:",
-        "inversify": "catalog:",
-        "reflect-metadata": "catalog:"
-    }
+    "homepage": "https://github.com/hades-ts/hades#readme"
 }

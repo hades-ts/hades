@@ -1,7 +1,9 @@
+import "reflect-metadata";
+
 import type { interfaces } from "inversify";
-import type { HadesBotService } from "./services";
-import type { Installer } from "./Installer";
 import { HadesContainer } from "./HadesContainer";
+import type { Installer } from "./Installer";
+import type { HadesBotService } from "./services";
 import type { InstallerFunc } from "./utils";
 
 export * from "./decorators";

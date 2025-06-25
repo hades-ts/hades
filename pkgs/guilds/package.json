@@ -23,7 +23,7 @@
     ],
     "scripts": {
         "map": "tsc --emitDeclarationOnly --declaration --declarationMap",
-        "build": "pkgroll --sourcemap",
+        "build": "pkgroll --sourcemap && pnpm run map",
         "clean": "rimraf dist",
         "rebuild": "rm -rf dist && npm run build",
         "watch": "tsc -p tsconfig.json -w"

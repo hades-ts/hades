@@ -26,12 +26,12 @@ export class HelpCommand extends SlashCommand {
     //         { name: "Hi", value: "hi" },
     //     ],
     // })
-    protected commandName: string;
+    protected commandName!: string;
 
     @inject(SlashCommandHelpService)
-    protected helpService: SlashCommandHelpService;
+    protected helpService!: SlashCommandHelpService;
 
-    private helpEmbed: EmbedBuilder;
+    private helpEmbed!: EmbedBuilder;
 
     @validate("commandName")
     validateCommandName() {
