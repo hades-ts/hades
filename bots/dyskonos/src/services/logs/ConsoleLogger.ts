@@ -1,5 +1,5 @@
 import { injectable } from "inversify";
-import { ILogger } from "./ILogger";
+import type { ILogger } from "./ILogger";
 
 @injectable()
 export class ConsoleLogger implements ILogger {
