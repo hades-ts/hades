@@ -39,13 +39,13 @@
         "@babel/core": "^7.27.4",
         "@babel/plugin-transform-react-jsx": "^7.27.1",
         "@babel/preset-env": "^7.27.2",
-        "@types/node": "^24.0.3",
+        "@hades-ts/tsconfig": "workspace:*",
+        "@types/node": "^24.0.4",
         "discord.js": "catalog:",
         "pkgroll": "catalog:",
         "rimraf": "catalog:",
         "tsx": "^4.20.3",
         "turbo": "catalog:",
-        "typescript": "catalog:",
-        "@hades-ts/tsconfig": "workspace:*"
+        "typescript": "catalog:"
     }
 }
