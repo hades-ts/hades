@@ -1,7 +1,7 @@
 import { singleton } from "@hades-ts/hades";
-import { GuildMember } from "discord.js";
+import type { GuildMember } from "discord.js";
 
-import { type BypassConfig } from "../schema";
+import type { BypassConfig } from "../schema";
 
 @singleton(BypassService)
 export class BypassService {
