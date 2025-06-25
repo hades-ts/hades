@@ -1,17 +1,17 @@
 import { injectable } from "inversify";
-import { ILogger } from "./ILogger";
+import type { ILogger } from "./ILogger";
 
 @injectable()
 export class NullLogger implements ILogger {
-    info(message: string): void {
+    info(_message: string): void {
         return;
     }
 
-    warn(message: string): void {
+    warn(_message: string): void {
         return;
     }
 
-    error(message: string): void {
+    error(_message: string): void {
         return;
     }
 }

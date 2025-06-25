@@ -3,7 +3,7 @@ import { singleton } from "@hades-ts/hades";
 import { SlashCommandBotService } from "@hades-ts/slash-commands";
 import { inject, injectable } from "inversify";
 import { ILogger } from "./logs/ILogger";
-import { Message } from "discord.js";
+import type { Message } from "discord.js";
 
 export class BotService extends SlashCommandBotService {
     @inject(ILogger)

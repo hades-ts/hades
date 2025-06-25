@@ -1,4 +1,4 @@
-import { Container, interfaces } from "inversify";
+import type { Container, interfaces } from "inversify";
 
 export abstract class ILogger {
     abstract info(message: string): void;

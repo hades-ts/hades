@@ -9,8 +9,7 @@ export class ButtonPingCommand extends SlashCommand {
             .setLabel("Ping")
             .setStyle(ButtonStyle.Primary);
 
-        const row = new ActionRowBuilder<ButtonBuilder>()
-            .addComponents(button);
+        const row = new ActionRowBuilder<ButtonBuilder>().addComponents(button);
 
         const response = await this.interaction.reply({
             content: "Click to ping!",
@@ -18,7 +17,7 @@ export class ButtonPingCommand extends SlashCommand {
             withResponse: true,
         });
 
-        const filter = i => i.user.id === this.interaction.user.id
+        const filter = (i) => i.user.id === this.interaction.user.id;
 
         try {
             const ping = await response.resource.message.awaitMessageComponent({
@@ -32,7 +31,7 @@ export class ButtonPingCommand extends SlashCommand {
                     components: [],
                 });
             }
-        } catch (error) {
+        } catch (_error) {
             await this.interaction.editReply({
                 content: "You took too long to respond!",
                 components: [],
