@@ -31,8 +31,12 @@ function HomepageHeader() {
                 alt="Hades standing - staring accusingly with a papyrus scroll gripped in hand."
             />
             <div className={styles.container}>
-                <h1 className={`hero__title ${styles.hero__title}`}>{siteConfig.title}</h1>
-                <p className={`hero__subtitle ${styles.hero__subtitle}`}>{siteConfig.tagline}</p>
+                <h1 className={`hero__title ${styles.hero__title}`}>
+                    {siteConfig.title}
+                </h1>
+                <p className={`hero__subtitle ${styles.hero__subtitle}`}>
+                    {siteConfig.tagline}
+                </p>
                 <div className={styles.snippet}>
                     <CodeBlock language="jsx">{snippet}</CodeBlock>
                 </div>
@@ -45,7 +49,10 @@ function HomepageHeader() {
 export default function Home(): JSX.Element {
     const { siteConfig } = useDocusaurusContext();
     return (
-        <Layout title={`${siteConfig.title}`} description="Discord bot framework built with Inversify and Discord.js.">
+        <Layout
+            title={`${siteConfig.title}`}
+            description="Discord bot framework built with Inversify and Discord.js."
+        >
             <HomepageHeader />
         </Layout>
     );

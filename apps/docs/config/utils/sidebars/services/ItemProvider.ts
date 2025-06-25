@@ -17,7 +17,10 @@ export class SectionItemProvider {
     private directoryProvider: SectionDirectoryProvider;
 
     getItems(): SidebarItem[] {
-        const allItems: SidebarEntry[] = [...this.fileProvider.files, ...this.directoryProvider.directories];
+        const allItems: SidebarEntry[] = [
+            ...this.fileProvider.files,
+            ...this.directoryProvider.directories,
+        ];
 
         const sortedItems: SidebarEntry[] = [];
 
