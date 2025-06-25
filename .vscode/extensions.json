@@ -2,6 +2,7 @@
     "recommendations": [
         "editorconfig.editorconfig",
         "jnoortheen.nix-ide",
-        "biomejs.biome"
+        "biomejs.biome",
+        "vercel.turbo-vsc"
     ]
 }
