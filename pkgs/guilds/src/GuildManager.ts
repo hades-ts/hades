@@ -1,9 +1,9 @@
 import { HadesClient, HadesContainer, singleton } from "@hades-ts/hades";
-import { Guild } from "discord.js";
-import { Container, inject, optional } from "inversify";
+import type { Guild } from "discord.js";
+import { type Container, inject, optional } from "inversify";
 
 import { makeGuildContainer } from "./decorators";
-import { GuildBinder } from "./GuildBinder";
+import type { GuildBinder } from "./GuildBinder";
 import { guildTokens } from "./tokens";
 
 export type GuildFetcher = () => Promise<Guild>;
