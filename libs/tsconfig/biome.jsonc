@@ -1,10 +1,10 @@
 {
-    "$schema": "https://biomejs.dev/schemas/2.0.5/schema.json",
-    "extends": "//",
-    "json": {
-        "parser": {
-            "allowComments": true,
-            "allowTrailingCommas": true
-        }
+  "$schema": "https://biomejs.dev/schemas/2.0.5/schema.json",
+  "extends": "//",
+  "json": {
+    "parser": {
+      "allowComments": true,
+      "allowTrailingCommas": true
     }
+  }
 }
