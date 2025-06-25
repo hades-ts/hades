@@ -2,7 +2,7 @@ import { guildSingleton } from "@hades-ts/guilds";
 import { HadesClient } from "@hades-ts/hades";
 import { inject } from "inversify";
 
-import { Thread, ThreadMessage } from "../types";
+import type { Thread, ThreadMessage } from "../types";
 import { PromptService } from "./PromptService";
 
 @guildSingleton()

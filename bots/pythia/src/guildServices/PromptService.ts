@@ -2,7 +2,7 @@ import { guildSingleton, guildTokens } from "@hades-ts/guilds";
 import fs from "fs";
 import { inject } from "inversify";
 
-import { type GuildConfig } from "../config";
+import type { GuildConfig } from "../config";
 
 export class NoPromptConfiguredError extends Error {
     constructor(guildId: string) {

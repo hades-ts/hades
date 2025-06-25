@@ -7,14 +7,14 @@ import {
     ButtonStyle,
     ChannelType,
     EmbedBuilder,
-    GuildMember,
-    ThreadChannel,
+    type GuildMember,
+    type ThreadChannel,
 } from "discord.js";
 import { inject } from "inversify";
 
 import { GlobalQuotaError, UserQuotaError } from "../errors";
 import { GuildServiceFactory } from "../services";
-import { Thread, ThreadMessage } from "../types";
+import type { Thread, ThreadMessage } from "../types";
 
 @command("explain", { description: "Ask the bot a question." })
 export class ExplainCommand extends SlashCommand {

@@ -1,11 +1,11 @@
 import { guildSingleton } from "@hades-ts/guilds";
 import { HadesClient } from "@hades-ts/hades";
-import { GuildMember } from "discord.js";
+import type { GuildMember } from "discord.js";
 import { inject } from "inversify";
 
 import { OpenAIClient } from "../services/OpenAIClient";
 import { QuotaService } from "../services/QuotaService";
-import { Thread } from "../types";
+import type { Thread } from "../types";
 import { QuotaBypassService } from "./QuotaBypassService";
 import { RecordService } from "./RecordService";
 import { ThreadFormatter } from "./ThreadFormatter";

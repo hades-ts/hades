@@ -1,5 +1,5 @@
 import { singleton } from "@hades-ts/hades";
-import axios, { AxiosResponse } from "axios";
+import axios, { type AxiosResponse } from "axios";
 import { inject } from "inversify";
 
 import { QuotaService } from "./QuotaService";
