@@ -1,10 +1,10 @@
-import { HadesClient, HadesContainer, singleton } from "@hades-ts/hades";
+import { type HadesClient, HadesContainer, singleton } from "@hades-ts/hades";
 import {
-    AutocompleteInteraction,
+    type AutocompleteInteraction,
     BaseInteraction,
-    ChatInputApplicationCommandData,
-    ChatInputCommandInteraction,
-    CommandInteraction,
+    type ChatInputApplicationCommandData,
+    type ChatInputCommandInteraction,
+    type CommandInteraction,
 } from "discord.js";
 import { inject } from "inversify";
 

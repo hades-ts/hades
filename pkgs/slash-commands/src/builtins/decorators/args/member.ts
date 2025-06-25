@@ -1,10 +1,10 @@
 import { Constructable } from "@hades-ts/hades";
-import { ApplicationCommandOptionType, GuildMember } from "discord.js";
+import { ApplicationCommandOptionType, type GuildMember } from "discord.js";
 
 import { arg } from "./arg";
 import { MemberParser } from "../../parsers";
-import { SlashCommand } from "../../../models";
-import { Validators } from "../../../validators";
+import type { SlashCommand } from "../../../models";
+import type { Validators } from "../../../validators";
 
 export type MemberArgOptions = {
     required?: boolean;

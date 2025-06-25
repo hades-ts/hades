@@ -1,6 +1,6 @@
-import { ChatInputCommandInteraction } from "discord.js";
+import type { ChatInputCommandInteraction } from "discord.js";
 
-import { SlashArgInstaller, SlashArgParser } from "../../services";
+import { type SlashArgInstaller, SlashArgParser } from "../../services";
 
 export class UserParser extends SlashArgParser {
     override name = "user";

@@ -1,6 +1,6 @@
-import { ChatInputCommandInteraction, CommandInteractionOptionResolver } from "discord.js";
+import type { ChatInputCommandInteraction, CommandInteractionOptionResolver } from "discord.js";
 
-import { SlashArgInstaller, SlashArgParser } from "../../services";
+import { type SlashArgInstaller, SlashArgParser } from "../../services";
 
 export class ChannelParser extends SlashArgParser {
     override name = "channel";

@@ -1,4 +1,4 @@
-import { Constructable } from "@hades-ts/hades";
+import type { Constructable } from "@hades-ts/hades";
 
 import { addSlashValidatorMethod } from "../../metadata";
 
@@ -7,8 +7,12 @@ import { addSlashValidatorMethod } from "../../metadata";
  * @param name Name of argument to validate.
  */
 export function validate(name: string) {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    return ({ constructor }: Constructable, key: string, _: PropertyDescriptor) => {
+    return (
+        // biome-ignore lint/suspicious/noShadowRestrictedNames: ¯\_(ツ)_/¯
+        { constructor }: Constructable,
+        key: string,
+        _: PropertyDescriptor,
+    ) => {
         addSlashValidatorMethod(constructor, name, key);
     };
 }

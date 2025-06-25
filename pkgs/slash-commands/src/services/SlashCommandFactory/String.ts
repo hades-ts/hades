@@ -1,6 +1,6 @@
-import { ChatInputCommandInteraction } from "discord.js";
+import type { ChatInputCommandInteraction } from "discord.js";
 
-import { SlashArgInstaller } from "./SlashArgInstaller";
+import type { SlashArgInstaller } from "./SlashArgInstaller";
 import { SlashArgParser } from "./SlashArgParser";
 
 export class StringParser extends SlashArgParser {

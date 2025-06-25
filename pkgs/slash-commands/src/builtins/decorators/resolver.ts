@@ -1,4 +1,4 @@
-import { Constructable } from "@hades-ts/hades";
+import type { Constructable } from "@hades-ts/hades";
 
 import { getSlashArgMeta } from "../../metadata";
 

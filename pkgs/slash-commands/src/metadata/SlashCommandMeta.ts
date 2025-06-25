@@ -1,5 +1,5 @@
-import { Newable } from "@hades-ts/hades";
-import { ChatInputApplicationCommandData, Collection } from "discord.js";
+import type { Newable } from "@hades-ts/hades";
+import { type ChatInputApplicationCommandData, Collection } from "discord.js";
 
 import { SlashArgMeta } from "./SlashArgMeta";
 

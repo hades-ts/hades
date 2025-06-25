@@ -1,11 +1,11 @@
-import { Constructor, InstallerFunc, Newable } from "@hades-ts/hades";
+import { type Constructor, type InstallerFunc, Newable } from "@hades-ts/hades";
 import { ChatInputCommandInteraction, CommandInteraction } from "discord.js";
-import { Container } from "inversify";
+import type { Container } from "inversify";
 
 import { SlashArgError } from "../../errors";
-import { SlashArgMeta } from "../../metadata";
+import type { SlashArgMeta } from "../../metadata";
 import { Validator } from "../../validators";
-import { SlashArgParser } from "./SlashArgParser";
+import type { SlashArgParser } from "./SlashArgParser";
 
 /**
  * Binds argument values in a container.

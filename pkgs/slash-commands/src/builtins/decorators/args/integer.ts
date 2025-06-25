@@ -1,7 +1,7 @@
-import { ApplicationCommandOptionChoiceData, ApplicationCommandOptionType } from "discord.js";
+import { type ApplicationCommandOptionChoiceData, ApplicationCommandOptionType } from "discord.js";
 
 import { arg } from "./arg";
-import { SlashCommand } from "../../../models";
+import type { SlashCommand } from "../../../models";
 
 export type IntegerArgOptions = {
     required?: boolean;

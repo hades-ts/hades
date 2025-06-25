@@ -2,7 +2,7 @@ import { Constructable } from "@hades-ts/hades";
 import { ApplicationCommandOptionType } from "discord.js";
 import { arg } from "./arg";
 import { RoleParser } from "../../parsers";
-import { SlashCommand } from "../../../models";
+import type { SlashCommand } from "../../../models";
 
 export type RoleArgOptions = {
     required?: boolean;
