@@ -1,7 +1,7 @@
 import { GuildManager } from "@hades-ts/guilds";
 import { HadesBotService, singleton } from "@hades-ts/hades";
 import { SlashCommandService } from "@hades-ts/slash-commands";
-import { CommandInteraction, Interaction } from "discord.js";
+import { CommandInteraction, type Interaction } from "discord.js";
 import { inject } from "inversify";
 
 import { GuildService } from "../guildServices";

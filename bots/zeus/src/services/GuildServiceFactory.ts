@@ -1,6 +1,6 @@
 import { GuildManager } from "@hades-ts/guilds";
 import { singleton } from "@hades-ts/hades";
-import { Guild } from "discord.js";
+import type { Guild } from "discord.js";
 import { inject } from "inversify";
 
 import { GuildService } from "../guildServices";
