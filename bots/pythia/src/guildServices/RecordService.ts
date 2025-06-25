@@ -4,7 +4,7 @@ import fs from "fs";
 import { inject } from "inversify";
 import path from "path";
 
-import { Thread } from "../types";
+import type { Thread } from "../types";
 
 export const RecordServiceTokens = {
     RecordUpdated: Symbol.for("RecordUpdated"),

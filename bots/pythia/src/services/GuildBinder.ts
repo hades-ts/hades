@@ -1,8 +1,8 @@
-import { GuildBinder, guildTokens } from "@hades-ts/guilds";
+import { type GuildBinder, guildTokens } from "@hades-ts/guilds";
 import { singleton } from "@hades-ts/hades";
-import { Container, inject } from "inversify";
+import { type Container, inject } from "inversify";
 
-import { Config } from "../config";
+import type { Config } from "../config";
 
 @singleton(guildTokens.GuildBinder)
 export class ZeusGuildBinder implements GuildBinder {
