@@ -43,7 +43,10 @@ export class TokenQuota {
     }
 
     protected saveQuota(quota: Quota) {
-        fs.writeFileSync(this.quotaConfig.quotaFile, JSON.stringify(quota, null, 2));
+        fs.writeFileSync(
+            this.quotaConfig.quotaFile,
+            JSON.stringify(quota, null, 2),
+        );
     }
 
     protected resetQuota(quota: Quota) {
