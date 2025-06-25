@@ -1,5 +1,5 @@
 import { DiscordService } from "@hades-ts/hades";
-import { CommandInteraction, InteractionReplyOptions, Message } from "discord.js";
+import type { CommandInteraction, InteractionReplyOptions, Message } from "discord.js";
 import { inject, injectable } from "inversify";
 
 /**

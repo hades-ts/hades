@@ -1,6 +1,6 @@
-import { Collection, EmbedBuilder } from "discord.js";
+import { type Collection, EmbedBuilder } from "discord.js";
 
-import { SlashArgMeta, SlashCommandMeta } from "../../metadata";
+import type { SlashArgMeta, SlashCommandMeta } from "../../metadata";
 
 /**
  * Extracts help information from a command meta.

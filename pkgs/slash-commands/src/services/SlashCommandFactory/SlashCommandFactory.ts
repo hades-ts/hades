@@ -1,8 +1,8 @@
-import { AutocompleteInteraction, ChatInputCommandInteraction, Collection, CommandInteraction } from "discord.js";
-import { Container, interfaces } from "inversify";
+import { AutocompleteInteraction, type ChatInputCommandInteraction, Collection, type CommandInteraction } from "discord.js";
+import type { Container, interfaces } from "inversify";
 
-import { SlashCommandMeta } from "../../metadata";
-import { SlashCommand } from "../../models";
+import type { SlashCommandMeta } from "../../metadata";
+import type { SlashCommand } from "../../models";
 import { SlashArgInstaller } from "./SlashArgInstaller";
 
 /**

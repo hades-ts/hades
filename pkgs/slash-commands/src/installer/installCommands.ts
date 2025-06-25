@@ -1,6 +1,6 @@
-import { Container } from "inversify";
+import type { Container } from "inversify";
 
-import { getSlashCommandMetas, SlashCommandMeta } from "../metadata";
+import { getSlashCommandMetas, type SlashCommandMeta } from "../metadata";
 import { SlashCommandFactory, SlashCommandHelper } from "../services";
 
 type Metas = ReturnType<typeof getSlashCommandMetas>;

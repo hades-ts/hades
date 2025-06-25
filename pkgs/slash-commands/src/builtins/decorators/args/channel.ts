@@ -1,12 +1,12 @@
 import { Constructable } from "@hades-ts/hades";
-import { ApplicationCommandChannelOptionData, ApplicationCommandOptionType, GuildBasedChannel } from "discord.js";
+import { type ApplicationCommandChannelOptionData, ApplicationCommandOptionType, type GuildBasedChannel } from "discord.js";
 
 import { arg } from "./arg";
 import { ChannelParser } from "../../parsers";
-import { SlashCommand } from "../../../models";
+import type { SlashCommand } from "../../../models";
 import { interfaces } from "inversify";
-import { Validator, Validators } from "../../../validators";
-import { Optional } from "../../../utils";
+import { Validator, type Validators } from "../../../validators";
+import type { Optional } from "../../../utils";
 
 export type ChannelArgOptions = {
     required?: boolean;

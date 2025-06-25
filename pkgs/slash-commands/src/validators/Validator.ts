@@ -1,6 +1,6 @@
 import { Constructable } from "@hades-ts/hades";
 import { CommandInteraction } from "discord.js";
-import { Container, injectable } from "inversify";
+import { type Container, injectable } from "inversify";
 
 import { addSlashArgValidator } from "../metadata";
 import { SlashArgInstaller } from "../services";
@@ -10,19 +10,19 @@ import { SlashArgInstaller } from "../services";
  */
 @injectable()
 export class Validator<T = any> {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    public async validate(value: T) {
+    public async validate(_value: T) {
         return;
     }
 
     static check<ValueType>() {
         return <ClassType extends { [key: string]: ValueType }>(
+            // biome-ignore lint/suspicious/noShadowRestrictedNames: ¯\_(ツ)_/¯
             { constructor }: ClassType,
-            key: string & keyof ClassType
+            key: string & keyof ClassType,
         ) => {
             // Verify the target field has the expected type at runtime
             addSlashArgValidator(constructor, key, (container: Container) => {
-                container.bind(Validator).to(this).whenTargetNamed(key);
+                container.bind(Validator).to(Validator).whenTargetNamed(key);
             });
         };
     }

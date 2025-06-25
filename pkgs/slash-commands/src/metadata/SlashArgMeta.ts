@@ -1,8 +1,8 @@
-import { Constructor, InstallerFunc, Newable } from "@hades-ts/hades";
-import { ApplicationCommandOptionData } from "discord.js";
+import { type Constructor, type InstallerFunc, Newable } from "@hades-ts/hades";
+import type { ApplicationCommandOptionData } from "discord.js";
 
-import { SlashArgParser } from "../services";
-import { interfaces } from "inversify";
+import type { SlashArgParser } from "../services";
+import type { interfaces } from "inversify";
 
 /**
  * Decorator metdata for command arguments.

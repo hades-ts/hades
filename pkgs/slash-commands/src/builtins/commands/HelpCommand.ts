@@ -1,4 +1,4 @@
-import { EmbedBuilder } from "discord.js";
+import type { EmbedBuilder } from "discord.js";
 import { inject } from "inversify";
 
 import { SlashArgError } from "../../errors";

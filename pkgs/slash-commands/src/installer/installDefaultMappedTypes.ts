@@ -1,9 +1,9 @@
-import { Constructable, Newable } from "@hades-ts/hades";
+import type { Constructable, Newable } from "@hades-ts/hades";
 import { GuildChannel, GuildMember, Role, User } from "discord.js";
-import { Container } from "inversify";
+import type { Container } from "inversify";
 
 import { ChannelParser, MemberParser, RoleParser, UserParser } from "../builtins";
-import { SlashArgParser, StringParser } from "../services";
+import { type SlashArgParser, StringParser } from "../services";
 
 export type TypePair = readonly [Constructable, Newable<SlashArgParser>];
 

@@ -1,5 +1,5 @@
-import { Constructable } from "@hades-ts/hades";
-import { ApplicationCommandOptionChoiceData } from "discord.js";
+import type { Constructable } from "@hades-ts/hades";
+import type { ApplicationCommandOptionChoiceData } from "discord.js";
 
 import { getSlashArgMeta } from "../../metadata";
 

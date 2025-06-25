@@ -2,9 +2,9 @@ import { Constructable } from "@hades-ts/hades";
 import { ApplicationCommandOptionType } from "discord.js";
 
 import { arg } from "./arg";
-import { SlashCommand } from "../../../models";
-import { interfaces } from "inversify";
-import { Validator } from "../../../validators";
+import type { SlashCommand } from "../../../models";
+import type { interfaces } from "inversify";
+import type { Validator } from "../../../validators";
 
 type BooleanArgOptions = {
     required?: boolean;

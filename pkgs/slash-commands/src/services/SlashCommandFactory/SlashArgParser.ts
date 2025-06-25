@@ -1,7 +1,7 @@
-import { CommandInteraction } from "discord.js";
+import type { CommandInteraction } from "discord.js";
 import { injectable } from "inversify";
 
-import { SlashArgInstaller } from "..";
+import type { SlashArgInstaller } from "..";
 
 @injectable()
 export class SlashArgParser {

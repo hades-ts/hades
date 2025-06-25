@@ -1,4 +1,4 @@
-import { InstallerFunc, Newable } from "@hades-ts/hades";
+import type { InstallerFunc, Newable } from "@hades-ts/hades";
 import { Collection } from "discord.js";
 
 import { SlashArgParser } from "../services";

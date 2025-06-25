@@ -1,5 +1,5 @@
-import { Constructable, Constructor, InstallerFunc } from "@hades-ts/hades";
-import {
+import { type Constructable, Constructor, InstallerFunc } from "@hades-ts/hades";
+import type {
     ApplicationCommandAutocompleteStringOption,
     ApplicationCommandChannelOptionData,
     ApplicationCommandChoicesData,
@@ -10,12 +10,12 @@ import {
     ApplicationCommandSubCommandData,
     ApplicationCommandSubGroupData,
 } from "discord.js";
-import { Container, inject, interfaces } from "inversify";
+import { type Container, inject, type interfaces } from "inversify";
 
 import { getSlashArgMeta } from "../../../metadata";
-import { SlashCommand } from "../../../models";
-import { camelToDash, Optional } from "../../../utils";
-import { SlashArgParser } from "../../../services";
+import type { SlashCommand } from "../../../models";
+import { camelToDash, type Optional } from "../../../utils";
+import type { SlashArgParser } from "../../../services";
 import { Validator } from "../../../validators";
 
 export type ArgOptions =
@@ -60,10 +60,10 @@ export const makeArgMeta = <TField>(info: ArgConfig<TField>, target: Constructab
  * @param info Options for the decorator.
  */
 export function arg<TField = any>(info: ArgConfig<TField>) {
-    return function <T extends SlashCommand, K extends keyof T & string>(
+    return <T extends SlashCommand, K extends keyof T & string>(
         target: T,
         key: K
-    ): void {
+    ): void => {
         // Now TypeScript will enforce T[K] extends TField
         const _typeCheck: T[K] extends TField ? true : never = true as any;
 
