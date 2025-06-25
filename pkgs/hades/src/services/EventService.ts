@@ -43,14 +43,19 @@ export abstract class EventService {
             .on("guildMemberUpdate", bot.onGuildMemberUpdate.bind(bot))
             .on("guildMembersChunk", bot.onGuildMembersChunk.bind(bot))
             .on("guildUpdate", bot.onGuildUpdate.bind(bot))
-            .on("interactionCreate", (...args) => bot.onInteractionCreate(...args))
+            .on("interactionCreate", (...args) =>
+                bot.onInteractionCreate(...args),
+            )
             // .on('message', bot.onMessage.bind(bot))
             .on("messageCreate", (...args) => bot.onMessage(...args))
             .on("messageDelete", bot.onMessageDelete.bind(bot))
             .on("messageDeleteBulk", bot.onMessageDeleteBulk.bind(bot))
             .on("messageReactionAdd", bot.onMessageReactionAdd.bind(bot))
             .on("messageReactionRemove", bot.onMessageReactionRemove.bind(bot))
-            .on("messageReactionRemoveAll", bot.onMessageReactionRemoveAll.bind(bot))
+            .on(
+                "messageReactionRemoveAll",
+                bot.onMessageReactionRemoveAll.bind(bot),
+            )
             .on("messageUpdate", bot.onMessageUpdate.bind(bot))
             .on("presenceUpdate", bot.onPresenceUpdate.bind(bot))
             .on("typingStart", bot.onTypingStart.bind(bot))

@@ -11,10 +11,9 @@ export * from "./interactions";
 export * from "./services";
 export * from "./utils";
 
-
 export const boot = async (
     botService: interfaces.Newable<HadesBotService>,
-    installers?: (Installer | InstallerFunc)[]
+    installers?: (Installer | InstallerFunc)[],
 ) => {
     try {
         const container = new HadesContainer({
@@ -27,4 +26,4 @@ export const boot = async (
         console.error(e);
         process.exit(1);
     }
-}
+};

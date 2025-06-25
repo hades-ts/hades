@@ -42,12 +42,16 @@ export abstract class BaseButtonInteraction {
     protected createCollector(timeout = 10000) {
         const filter: CollectorFilter<[ButtonInteraction<"cached">]> = (
             ...interactions: Array<ButtonInteraction<"cached">>
-        ) => interactions.some((interaction) => interaction.customId === this.id);
+        ) =>
+            interactions.some(
+                (interaction) => interaction.customId === this.id,
+            );
 
-        const collector = this.channel.createMessageComponentCollector<ComponentType.Button>({
-            filter,
-            time: timeout,
-        });
+        const collector =
+            this.channel.createMessageComponentCollector<ComponentType.Button>({
+                filter,
+                time: timeout,
+            });
 
         collector.on("collect", async (interaction) => {
             this.interaction = interaction;
@@ -68,6 +72,8 @@ export abstract class BaseButtonInteraction {
     }
 
     asRow() {
-        return new ActionRowBuilder<ButtonBuilder>().addComponents(this.build());
+        return new ActionRowBuilder<ButtonBuilder>().addComponents(
+            this.build(),
+        );
     }
 }
