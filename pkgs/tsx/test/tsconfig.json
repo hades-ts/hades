@@ -1,13 +1,9 @@
 {
-  "extends": [
-    "../tsconfig.json"
-  ],
-  "compilerOptions": {
-    "jsx": "react",
-    "jsxFactory": "DiscordComponents.createComponent",
-    "jsxFragmentFactory": "DiscordComponents.Fragment"
-  },
-  "include": [
-    "ts/**/*.tsx"
-  ]
+    "extends": ["../tsconfig.json"],
+    "compilerOptions": {
+        "jsx": "react",
+        "jsxFactory": "DiscordComponents.createComponent",
+        "jsxFragmentFactory": "DiscordComponents.Fragment"
+    },
+    "include": ["ts/**/*.tsx"]
 }

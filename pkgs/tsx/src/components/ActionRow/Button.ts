@@ -1,9 +1,17 @@
-import { ButtonBuilder, InteractionButtonComponentData, LinkButtonComponentData } from "discord.js";
+import {
+    ButtonBuilder,
+    InteractionButtonComponentData,
+    LinkButtonComponentData,
+} from "discord.js";
 import { BuilderComponent } from "../../typings/types.js";
 
 export type ButtonOptions = Omit<InteractionButtonComponentData, "type">;
 
-export type ButtonComponent = BuilderComponent<ButtonBuilder, ButtonOptions, undefined> & { type: "Button" };
+export type ButtonComponent = BuilderComponent<
+    ButtonBuilder,
+    ButtonOptions,
+    undefined
+> & { type: "Button" };
 
 export const ButtonResolver = (props: ButtonOptions) => {
     const button = new ButtonBuilder();
@@ -15,7 +23,7 @@ export const ButtonResolver = (props: ButtonOptions) => {
     if (emoji) button.setEmoji(emoji);
 
     return button;
-}
+};
 
 export function Button(props: ButtonOptions): ButtonComponent {
     return {
@@ -27,7 +35,11 @@ export function Button(props: ButtonOptions): ButtonComponent {
 
 export type LinkButtonOptions = Omit<LinkButtonComponentData, "type">;
 
-export type LinkButtonComponent = BuilderComponent<ButtonBuilder, LinkButtonOptions, undefined> & { type: "LinkButton" };
+export type LinkButtonComponent = BuilderComponent<
+    ButtonBuilder,
+    LinkButtonOptions,
+    undefined
+> & { type: "LinkButton" };
 
 export const LinkButtonResolver = (props: LinkButtonOptions) => {
     const button = new ButtonBuilder();
@@ -39,7 +51,7 @@ export const LinkButtonResolver = (props: LinkButtonOptions) => {
     if (emoji) button.setEmoji(emoji);
 
     return button;
-}
+};
 
 export function LinkButton(props: LinkButtonOptions): LinkButtonComponent {
     return {

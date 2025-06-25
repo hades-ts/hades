@@ -1,12 +1,16 @@
-import {
-    UserSelectMenuBuilder,
-    UserSelectMenuComponentData,
-} from "discord.js";
+import { UserSelectMenuBuilder, UserSelectMenuComponentData } from "discord.js";
 import { BuilderComponent } from "../../typings/types.js";
 
-export type UserSelectMenuOptions = Omit<UserSelectMenuComponentData, "type" | "options">;
+export type UserSelectMenuOptions = Omit<
+    UserSelectMenuComponentData,
+    "type" | "options"
+>;
 
-export type UserSelectMenuComponent = BuilderComponent<UserSelectMenuBuilder, UserSelectMenuOptions, undefined> & {
+export type UserSelectMenuComponent = BuilderComponent<
+    UserSelectMenuBuilder,
+    UserSelectMenuOptions,
+    undefined
+> & {
     type: "UserSelectMenu";
 };
 
@@ -22,9 +26,11 @@ export const UserSelectMenuResolver = (props: UserSelectMenuOptions) => {
     }
 
     return userSelectMenu;
-}
+};
 
-export function UserSelectMenu(props: UserSelectMenuOptions): UserSelectMenuComponent {
+export function UserSelectMenu(
+    props: UserSelectMenuOptions,
+): UserSelectMenuComponent {
     return {
         type: "UserSelectMenu",
         props,

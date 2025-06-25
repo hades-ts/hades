@@ -43,7 +43,9 @@ export class DiscordComponents {
                     embeds.push(atom.resolve(atom.props, atom.children));
                     break;
                 default:
-                    throw new TypeError(`Unsupported parent component: "${atom}"!`);
+                    throw new TypeError(
+                        `Unsupported parent component: "${atom}"!`,
+                    );
             }
         });
 

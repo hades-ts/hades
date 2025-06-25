@@ -11,32 +11,36 @@ export type ActionRowResolvable =
     | StringSelectMenuComponent
     | UserSelectMenuComponent
     | RoleSelectMenuComponent
-    | ChannelSelectMenuComponent
+    | ChannelSelectMenuComponent;
 
-export type ActionRowComponent =
-    BuilderComponent<
-        ActionRowBuilder,
-        {},
-        ActionRowResolvable[] | ActionRowResolvable[][]
-    > & { type: "ActionRow" };
+export type ActionRowComponent = BuilderComponent<
+    ActionRowBuilder,
+    {},
+    ActionRowResolvable[] | ActionRowResolvable[][]
+> & { type: "ActionRow" };
 
-export const ActionRowResolver = (_props: {}, children?: ActionRowResolvable[] | ActionRowResolvable[][]) => {
+export const ActionRowResolver = (
+    _props: {},
+    children?: ActionRowResolvable[] | ActionRowResolvable[][],
+) => {
     const actionRow = new ActionRowBuilder();
 
     if (!children?.length) return actionRow;
 
     for (const child of children) {
         if (typeof child === "object" && "type" in child) {
-            actionRow.addComponents(child.resolve(child.props as any, child.children as any));
+            actionRow.addComponents(
+                child.resolve(child.props as any, child.children as any),
+            );
         }
     }
 
     return actionRow;
-}
+};
 
 export function ActionRow(
     _props: {},
-    children: ActionRowResolvable[]
+    children: ActionRowResolvable[],
 ): ActionRowComponent {
     return {
         type: "ActionRow",
