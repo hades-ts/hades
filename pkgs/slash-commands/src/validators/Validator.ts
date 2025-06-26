@@ -1,9 +1,6 @@
-import { Constructable } from "@hades-ts/hades";
-import { CommandInteraction } from "discord.js";
 import { type Container, injectable } from "inversify";
-
 import { addSlashArgValidator } from "../metadata";
-import { SlashArgInstaller } from "../services";
+import { whenTargetNamedConstraint } from "../utils/whenTargetNamed";
 
 /**
  * Base class for reusable argument validators.
@@ -22,7 +19,10 @@ export class Validator<T = any> {
         ) => {
             // Verify the target field has the expected type at runtime
             addSlashArgValidator(constructor, key, (container: Container) => {
-                container.bind(Validator).to(Validator).whenTargetNamed(key);
+                container
+                    .bind(Validator)
+                    .to(Validator)
+                    .when(whenTargetNamedConstraint(key));
             });
         };
     }

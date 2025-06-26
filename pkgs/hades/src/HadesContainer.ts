@@ -3,14 +3,14 @@ import {
     EagerBinder,
     type EagerBinderSettings,
 } from "@ldlework/inversify-config-injection";
-import { Container, ContainerModule, type interfaces } from "inversify";
+import { Container, ContainerModule, type ContainerOptions } from "inversify";
 
 import { Installer } from "./Installer";
 import type { InstallerFunc } from "./utils";
 
 export type ConfigOptions = EagerBinderSettings;
 
-export type HadesContainerOptions = interfaces.ContainerOptions & {
+export type HadesContainerOptions = ContainerOptions & {
     installers?: Array<Installer | InstallerFunc>;
     configOptions?: ConfigOptions;
 };
@@ -21,7 +21,11 @@ export type HadesContainerOptions = interfaces.ContainerOptions & {
 export class HadesContainer extends Container {
     constructor(options?: HadesContainerOptions) {
         const { installers, ...containerOptions } = options || {};
-        super({ ...containerOptions, skipBaseClassChecks: true });
+        super({
+            ...containerOptions,
+            // TODO: this might be important??
+            // skipBaseClassChecks: true
+        });
         this.bind(HadesContainer).toConstantValue(this);
         this.load(buildProviderModule()); // binding-decorators support
         this.loadConfigurationModule(options?.configOptions);

@@ -1,6 +1,6 @@
 import "reflect-metadata";
 
-import type { interfaces } from "inversify";
+import type { Newable } from "inversify";
 import { HadesContainer } from "./HadesContainer";
 import type { Installer } from "./Installer";
 import type { HadesBotService } from "./services";
@@ -14,7 +14,7 @@ export * from "./services";
 export * from "./utils";
 
 export const boot = async (
-    botService: interfaces.Newable<HadesBotService>,
+    botService: Newable<HadesBotService>,
     installers?: (Installer | InstallerFunc)[],
 ) => {
     try {

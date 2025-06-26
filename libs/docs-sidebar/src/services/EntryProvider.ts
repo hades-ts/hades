@@ -1,5 +1,5 @@
+import { readdirSync } from "node:fs";
 import { inject, injectable, postConstruct } from "inversify";
-import { readdirSync } from "fs";
 
 @injectable()
 export class SectionEntryProvider {

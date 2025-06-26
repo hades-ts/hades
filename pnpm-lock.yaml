@@ -51,6 +51,10 @@ patchedDependencies:
 importers:
 
   .:
+    dependencies:
+      '@ldlework/categoric-containers':
+        specifier: 'catalog:'
+        version: 0.1.6(inversify@7.5.4(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
     devDependencies:
       '@biomejs/biome':
         specifier: ^2.0.5

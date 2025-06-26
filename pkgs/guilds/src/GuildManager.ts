@@ -13,7 +13,7 @@ export class GuildManager {
     protected guildContainers: Record<string, Container> = {};
 
     @inject(HadesContainer)
-    protected container!: HadesContainer;
+    protected container!: Container;
 
     @inject(HadesClient)
     protected client!: HadesClient;

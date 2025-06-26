@@ -1,7 +1,6 @@
-import { inject, interfaces } from "inversify";
+import { inject } from "inversify";
 
 import { getListenerMetas, type SI, singleton } from "../decorators";
-import type { HadesBotService } from "./HadesBotService";
 import { HadesClient } from "./HadesClient";
 
 /**

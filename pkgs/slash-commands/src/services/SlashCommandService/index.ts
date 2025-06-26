@@ -96,8 +96,9 @@ export class SlashCommandService {
                 ...meta.registrationDetails,
                 options: meta.args.map((arg) => {
                     if (arg.choicesResolver) {
-                        const resolver = this.container.resolve(
+                        const resolver = this.container.get(
                             arg.choicesResolver,
+                            { autobind: true },
                         );
                         const choices = (resolver as any).getChoices();
                         arg.options = {

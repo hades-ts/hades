@@ -1,17 +1,13 @@
-import { Constructable } from "@hades-ts/hades";
 import { ApplicationCommandOptionType } from "discord.js";
-
-import { arg } from "./arg";
+import type { Newable } from "inversify";
 import type { SlashCommand } from "../../../models";
-import type { interfaces } from "inversify";
 import type { Validator } from "../../../validators";
+import { arg } from "./arg";
 
 type TextArgOptions = {
     required?: boolean;
     description: string;
-    validators?: Array<
-        interfaces.Newable<Validator<string>> | Validator<string>
-    >;
+    validators?: Array<Newable<Validator<string>> | Validator<string>>;
 };
 
 /**
