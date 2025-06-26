@@ -1,4 +1,4 @@
-import { inject, postConstruct } from "inversify";
+import { inject, injectable, postConstruct } from "inversify";
 
 import { EventService } from "./EventService";
 import { HadesClient } from "./HadesClient";
@@ -9,6 +9,7 @@ import { HadesClient } from "./HadesClient";
  * Comes with a HadesClient and EventService. The bot will automatically
  * register with the EventService.
  */
+@injectable()
 export class HadesBotService {
     /**
      * The Discord client.
@@ -28,16 +29,12 @@ export class HadesBotService {
     @inject(EventService)
     protected eventService!: EventService;
 
-    @postConstruct()
-    setup() {
-        this.eventService.register(this);
-    }
-
     /**
      * Connect to Discord.
      * @returns Promise<string>
      */
     async login() {
+        console.log("----- login");
         return this.client.login(this.token.toString());
     }
 

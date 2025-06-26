@@ -1,9 +1,10 @@
 import "reflect-metadata";
 
 import type { Newable } from "inversify";
+import { install } from "./decorators";
 import { HadesContainer } from "./HadesContainer";
 import type { Installer } from "./Installer";
-import type { HadesBotService } from "./services";
+import { type HadesBotService, HadesClient } from "./services";
 import type { InstallerFunc } from "./utils";
 
 export * from "./decorators";
@@ -21,7 +22,8 @@ export const boot = async (
         const container = new HadesContainer({
             installers: installers ?? [],
         });
-        container.bind(botService).toSelf().inSingletonScope();
+        install(container);
+        console.log(`client is bound: ${container.isBound(HadesClient)}`);
         const bot = container.get(botService);
         await bot.login();
     } catch (e) {

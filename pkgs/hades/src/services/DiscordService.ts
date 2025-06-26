@@ -24,7 +24,7 @@ export type ChannelTypes =
  *
  * @inject client HadesClient The client to use for communicating with Discord.
  */
-@singleton(DiscordService)
+@singleton(DiscordService, false)
 export class DiscordService {
     constructor(
         @inject(HadesClient)

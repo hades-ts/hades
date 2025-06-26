@@ -1,10 +1,13 @@
 import { HadesBotService, listenFor } from "@hades-ts/hades";
 import { type BaseInteraction, Events } from "discord.js";
-import { inject, injectable } from "inversify";
-
+import { inject, injectable, injectFromBase } from "inversify";
 import { SlashCommandService } from "./SlashCommandService";
 
 @injectable()
+@injectFromBase({
+    extendConstructorArguments: false,
+    extendProperties: true,
+})
 export class SlashCommandBotService extends HadesBotService {
     @inject(SlashCommandService)
     protected commandService!: SlashCommandService;

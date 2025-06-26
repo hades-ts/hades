@@ -1,11 +1,13 @@
 import { Client, GatewayIntentBits } from "discord.js";
-
+import { injectable } from "inversify";
 import { singleton } from "../decorators";
+
+injectable()(Client);
 
 /**
  * The base Discord client class.
  */
-@singleton(HadesClient)
+@singleton(HadesClient, false)
 export class HadesClient extends Client {
     constructor() {
         super({

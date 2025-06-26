@@ -1,10 +1,8 @@
-import { buildProviderModule } from "@ldlework/inversify-binding-decorators";
 import {
     EagerBinder,
     type EagerBinderSettings,
 } from "@ldlework/inversify-config-injection";
 import { Container, ContainerModule, type ContainerOptions } from "inversify";
-
 import { Installer } from "./Installer";
 import type { InstallerFunc } from "./utils";
 
@@ -27,7 +25,6 @@ export class HadesContainer extends Container {
             // skipBaseClassChecks: true
         });
         this.bind(HadesContainer).toConstantValue(this);
-        this.load(buildProviderModule()); // binding-decorators support
         this.loadConfigurationModule(options?.configOptions);
         for (const installer of installers || []) {
             if (installer instanceof Installer) {

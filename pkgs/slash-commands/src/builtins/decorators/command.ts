@@ -2,8 +2,7 @@ import {
     ApplicationCommandType,
     type ChatInputApplicationCommandData,
 } from "discord.js";
-import { injectable } from "inversify";
-
+import { injectable, injectFromBase } from "inversify";
 import { getSlashCommandMeta } from "../../metadata";
 
 export type CommandOptions = Omit<
@@ -25,6 +24,10 @@ export function command(name: string, registrationDetails: CommandOptions) {
             type: ApplicationCommandType.ChatInput,
         } as ChatInputApplicationCommandData;
         meta.target = target;
-        return injectable()(target);
+        injectable()(target);
+        injectFromBase({
+            extendConstructorArguments: false,
+            extendProperties: true,
+        })(target);
     };
 }

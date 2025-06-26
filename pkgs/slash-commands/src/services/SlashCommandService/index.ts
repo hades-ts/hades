@@ -12,7 +12,7 @@ import { SlashArgError } from "../../errors";
 import { getSlashCommandMetas } from "../../metadata";
 import { SlashCommandFactoryRegistry } from "../SlashCommandFactory";
 
-@singleton(SlashCommandService)
+@singleton(SlashCommandService, false)
 export class SlashCommandService {
     @inject(HadesContainer)
     protected container!: HadesContainer;
