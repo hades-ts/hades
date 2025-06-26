@@ -3,7 +3,7 @@ import { SlashCommandService } from "@hades-ts/slash-commands";
 import { type Interaction, Message } from "discord.js";
 import { inject } from "inversify";
 
-@singleton(BotService)
+@singleton()
 export class BotService extends HadesBotService {
     @inject(DiscordService)
     protected discord: DiscordService;

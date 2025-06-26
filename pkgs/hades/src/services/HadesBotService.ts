@@ -1,6 +1,4 @@
-import { inject, injectable, postConstruct } from "inversify";
-
-import { EventService } from "./EventService";
+import { inject, injectable } from "inversify";
 import { HadesClient } from "./HadesClient";
 
 /**
@@ -16,33 +14,5 @@ export class HadesBotService {
      */
     @inject(HadesClient)
     protected client!: HadesClient;
-
-    /**
-     * The Discord bot token.
-     */
-    @inject("cfg.discordToken")
-    protected token!: string;
-
-    /**
-     * Used to receive Discord events.
-     */
-    @inject(EventService)
-    protected eventService!: EventService;
-
-    /**
-     * Connect to Discord.
-     * @returns Promise<string>
-     */
-    async login() {
-        console.log("----- login");
-        return this.client.login(this.token.toString());
-    }
-
-    get highlight() {
-        return `<@${this.client.user?.id}>`;
-    }
-
-    protected isHighlight(content: string) {
-        return content.startsWith(this.highlight);
-    }
 }
+// TODO: DELETE THIS FILE

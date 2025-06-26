@@ -46,7 +46,7 @@ Then dispatch `Message`s to it:
 ```ts
 import { HadesBotService, singleton } from "hades";
 
-@singleton(BotService)
+@singleton()
 export class BotService extends HadesBotService {
   @inject(TextCommandService)
   commandService: TextCommandService;

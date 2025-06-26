@@ -8,7 +8,7 @@ import { guildTokens } from "./tokens";
 
 export type GuildFetcher = () => Promise<Guild>;
 
-@singleton(GuildManager)
+@singleton()
 export class GuildManager {
     protected guildContainers: Record<string, Container> = {};
 

@@ -1,12 +1,12 @@
 import { inject } from "inversify";
 
 import { getListenerMetas, type SI, singleton } from "../decorators";
-import { HadesClient } from "./HadesClient";
+import { HadesClient } from "../services/HadesClient";
 
 /**
  * A callback service for Discord events.
  */
-@singleton(EventService, false)
+@singleton()
 export abstract class EventService {
     @inject(HadesClient)
     protected client!: HadesClient;

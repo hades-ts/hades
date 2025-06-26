@@ -1101,6 +1101,9 @@ importers:
       '@docusaurus/babel':
         specifier: ~3.8.1
         version: 3.8.1(acorn@8.15.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@ldlework/categoric-decorators':
+        specifier: ^1.0.1
+        version: 1.0.1
       '@ldlework/inversify-binding-decorators':
         specifier: ^4.0.2
         version: 4.0.2

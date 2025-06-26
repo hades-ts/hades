@@ -7,7 +7,7 @@ import { SlashCommandFactory } from "./SlashCommandFactory";
 /**
  * A registry of available command factories.
  */
-@singleton(SlashCommandFactoryRegistry, false)
+@singleton()
 export class SlashCommandFactoryRegistry {
     map = new Collection<string, SlashCommandFactory>();
 

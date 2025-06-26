@@ -4,7 +4,7 @@ import { inject } from "inversify";
 
 import { aiTokens } from "../tokens";
 
-@singleton(OpenAIClient)
+@singleton()
 export class OpenAIClient {
     @inject(aiTokens.OpenAIToken)
     protected token!: string;

@@ -5,7 +5,7 @@ import { inject } from "inversify";
 
 import { GuildService } from "../guildServices";
 
-@singleton(GuildServiceFactory)
+@singleton()
 export class GuildServiceFactory {
     @inject(GuildManager)
     protected guildManager!: GuildManager;

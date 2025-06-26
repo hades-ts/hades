@@ -1,30 +1,21 @@
-import { listenFor, singleton } from "@hades-ts/hades";
-import { SlashCommandBotService } from "@hades-ts/slash-commands";
+import { HadesClient, listener, listenFor, singleton } from "@hades-ts/hades";
 import { Events, type Message } from "discord.js";
-import { inject, postConstruct } from "inversify";
-import { ILogger } from "./logs/ILogger";
+import { inject } from "inversify";
 
-@singleton(BotService)
-export class BotService extends SlashCommandBotService {
-    @inject(ILogger)
-    private readonly logger: ILogger;
-
-    @postConstruct()
-    setup() {
-        console.log("----- setup");
-        console.log(`client is injected: ${this.client}`);
-        this.eventService.register(this);
-    }
+@listener()
+@singleton()
+export class BotService {
+    @inject(HadesClient)
+    protected client!: HadesClient;
 
     @listenFor(Events.ClientReady)
-    override async onReady(): Promise<void> {
-        this.logger.info("Dyskonos is ready!");
-        await super.onReady();
+    async onReady(): Promise<void> {
+        console.log("Dyskonos is ready!");
     }
 
     @listenFor(Events.MessageCreate)
     async onMessage(message: Message) {
-        if (this.isHighlight(message.content)) {
+        if (this.client.isHighlight(message.content)) {
             await message.reply("Hello!");
         }
     }

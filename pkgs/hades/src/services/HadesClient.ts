@@ -7,7 +7,7 @@ injectable()(Client);
 /**
  * The base Discord client class.
  */
-@singleton(HadesClient, false)
+@singleton()
 export class HadesClient extends Client {
     constructor() {
         super({
@@ -19,5 +19,13 @@ export class HadesClient extends Client {
                 GatewayIntentBits.DirectMessages,
             ],
         });
+    }
+
+    public get highlight() {
+        return `<@${this.user?.id}>`;
+    }
+
+    public isHighlight(content: string) {
+        return content.startsWith(this.highlight);
     }
 }

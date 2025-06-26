@@ -5,57 +5,18 @@ import {
 import { injectFromBase } from "inversify";
 
 const {
-    install,
-    singleton: _singleton,
-    transient: _transient,
-    request: _request,
+    install: withDecorators,
+    singleton,
+    transient,
+    request,
 } = createCategoricContainer();
 
-const singleton = (
-    serviceIdentifier?: ServiceIdentifier,
-    _injectFromBase = true,
-) => {
-    return (target: any) => {
-        _singleton(serviceIdentifier)(target);
-        if (_injectFromBase) {
-            injectFromBase({
-                extendConstructorArguments: false,
-                extendProperties: true,
-            })(target);
-        }
-    };
-};
+const based = injectFromBase({
+    extendConstructorArguments: false,
+    extendProperties: true,
+});
 
-const transient = (
-    serviceIdentifier: ServiceIdentifier,
-    _injectFromBase = true,
-) => {
-    return (target: any) => {
-        _transient(serviceIdentifier)(target);
-        if (_injectFromBase) {
-            injectFromBase({
-                extendConstructorArguments: false,
-                extendProperties: true,
-            })(target);
-        }
-    };
-};
-
-const request = (
-    serviceIdentifier: ServiceIdentifier,
-    _injectFromBase = true,
-) => {
-    return (target: any) => {
-        _request(serviceIdentifier)(target);
-        if (_injectFromBase) {
-            injectFromBase({
-                extendConstructorArguments: false,
-                extendProperties: true,
-            })(target);
-        }
-    };
-};
-
+export * from "./listener";
 export * from "./listenFor";
 
-export { install, singleton, transient, request };
+export { withDecorators, singleton, transient, request, based };

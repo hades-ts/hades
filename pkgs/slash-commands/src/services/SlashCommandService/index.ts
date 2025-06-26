@@ -1,10 +1,17 @@
-import { type HadesClient, HadesContainer, singleton } from "@hades-ts/hades";
+import {
+    HadesClient,
+    HadesContainer,
+    listener,
+    listenFor,
+    singleton,
+} from "@hades-ts/hades";
 import {
     type AutocompleteInteraction,
-    BaseInteraction,
+    type BaseInteraction,
     type ChatInputApplicationCommandData,
     type ChatInputCommandInteraction,
     type CommandInteraction,
+    Events,
 } from "discord.js";
 import { inject } from "inversify";
 
@@ -12,8 +19,24 @@ import { SlashArgError } from "../../errors";
 import { getSlashCommandMetas } from "../../metadata";
 import { SlashCommandFactoryRegistry } from "../SlashCommandFactory";
 
-@singleton(SlashCommandService, false)
+@listener()
+@singleton()
 export class SlashCommandService {
+    @inject(HadesClient)
+    private readonly client!: HadesClient;
+
+    @listenFor(Events.ClientReady)
+    async onReady(): Promise<void> {
+        this.registerCommands(this.client);
+    }
+
+    @listenFor(Events.InteractionCreate)
+    async onInteractionCreate(interaction: BaseInteraction) {
+        if (interaction.isCommand()) {
+            await this.dispatch(interaction);
+        }
+    }
+
     @inject(HadesContainer)
     protected container!: HadesContainer;
 
@@ -25,7 +48,7 @@ export class SlashCommandService {
     // help: SlashCommandHelpService
 
     async execute(interaction: ChatInputCommandInteraction) {
-        console.log("Executing command: " + interaction.commandName);
+        console.log(`Executing command: ${interaction.commandName}`);
         const factory = this.factories.factoryFor(interaction.commandName);
 
         if (factory) {

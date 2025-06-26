@@ -5,7 +5,7 @@ import { inject } from "inversify";
 import type { SlashCommandHelper } from "./SlashCommandHelper";
 import { SlashCommandHelperRegistry } from "./SlashCommandHelperRegistry";
 
-@singleton(SlashCommandHelpService, false)
+@singleton()
 export class SlashCommandHelpService {
     @inject(SlashCommandHelperRegistry)
     protected helpers!: SlashCommandHelperRegistry;

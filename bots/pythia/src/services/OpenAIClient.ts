@@ -4,7 +4,7 @@ import { inject } from "inversify";
 
 import { QuotaService } from "./QuotaService";
 
-@singleton(OpenAIClient)
+@singleton()
 export class OpenAIClient {
     @inject("cfg.gpt3Token")
     protected token!: string;
