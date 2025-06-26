@@ -1,4 +1,4 @@
-import fs from "fs";
+import fs from "node:fs";
 import * as path from "@reliverse/pathkit";
 
 const and =

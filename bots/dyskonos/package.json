@@ -19,7 +19,7 @@
         "@hades-ts/hades": "workspace:^",
         "@hades-ts/slash-commands": "workspace:^",
         "@hades-ts/stash": "workspace:^",
-        "@ldlework/categoric-containers": "~0.0.2",
+        "@ldlework/categoric-containers": "catalog:",
         "@ldlework/categoric-decorators": "^1.0.1",
         "@ldlework/inversify-binding-decorators": "^4.0.2",
         "common-tags": "^1.8.2",
@@ -36,7 +36,7 @@
     "devDependencies": {
         "@hades-ts/tsx": "workspace:^",
         "@types/common-tags": "^1.8.4",
-        "@types/node": "^24.0.3",
+        "@types/node": "^24.0.4",
         "@types/node-schedule": "^1.3.2",
         "@types/ws": "^8.18.1",
         "@typescript-eslint/eslint-plugin": "~6.21.0",

@@ -12,7 +12,7 @@ export type Quota = {
     users: Record<string, number>;
 };
 
-@singleton(QuotaService)
+@singleton()
 export class QuotaService {
     @inject("cfg.quota")
     protected quotaConfig!: ConfigQuota;

@@ -1,8 +1,4 @@
-import {
-    type Constructable,
-    Constructor,
-    InstallerFunc,
-} from "@hades-ts/hades";
+import type { Constructable } from "@hades-ts/hades";
 import type {
     ApplicationCommandAutocompleteStringOption,
     ApplicationCommandChannelOptionData,
@@ -14,12 +10,13 @@ import type {
     ApplicationCommandSubCommandData,
     ApplicationCommandSubGroupData,
 } from "discord.js";
-import { type Container, inject, type interfaces } from "inversify";
+import { type Container, inject, type Newable } from "inversify";
 
 import { getSlashArgMeta } from "../../../metadata";
 import type { SlashCommand } from "../../../models";
-import { camelToDash, type Optional } from "../../../utils";
 import type { SlashArgParser } from "../../../services";
+import { camelToDash, type Optional } from "../../../utils";
+import { whenTargetNamedConstraint } from "../../../utils/whenTargetNamed";
 import { Validator } from "../../../validators";
 
 export type ArgOptions =
@@ -34,9 +31,7 @@ export type ArgOptions =
 
 export type ArgConfig<TField = any> = {
     parser?: SlashArgParser;
-    validators?: Array<
-        interfaces.Newable<Validator<TField>> | Validator<TField>
-    >;
+    validators?: Array<Newable<Validator<TField>> | Validator<TField>>;
 } & ArgOptions;
 
 export const makeArgMeta = <TField>(
@@ -55,22 +50,18 @@ export const makeArgMeta = <TField>(
     meta.parser = info.parser!;
     meta.validatorInstallers =
         info.validators?.map(
-            (
-                validator:
-                    | Validator<TField>
-                    | interfaces.Newable<Validator<TField>>,
-            ) =>
+            (validator: Validator<TField> | Newable<Validator<TField>>) =>
                 (container: Container) => {
                     if (validator instanceof Validator) {
                         container
                             .bind(Validator)
                             .toConstantValue(validator)
-                            .whenTargetNamed(key);
+                            .when(whenTargetNamedConstraint(key));
                     } else {
                         container
                             .bind(Validator)
                             .to(validator)
-                            .whenTargetNamed(key);
+                            .when(whenTargetNamedConstraint(key));
                     }
                 },
         ) || [];

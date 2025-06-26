@@ -3,7 +3,7 @@ import type { GuildMember } from "discord.js";
 
 import type { BypassConfig } from "../schema";
 
-@singleton(BypassService)
+@singleton()
 export class BypassService {
     // eslint-disable-next-line no-useless-constructor
     constructor(protected config: BypassConfig) {}

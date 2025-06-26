@@ -87,8 +87,8 @@ export class SlashArgInstaller {
     }
 
     private async executeValidators(di: Container, value: any) {
-        if (di.isBoundNamed(Validator, this.property)) {
-            const validators = di.getAllNamed(Validator, this.property);
+        if (di.isBound(Validator, { name: this.property })) {
+            const validators = di.getAll(Validator, { name: this.property });
             for (const validator of validators) {
                 await validator.validate(value);
             }

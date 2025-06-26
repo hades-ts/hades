@@ -13,7 +13,7 @@ export type Quota = {
     users: Record<string, number>;
 };
 
-@singleton(TokenQuota)
+@singleton()
 export class TokenQuota {
     @inject(aiTokens.TokenQuota)
     protected quotaConfig!: QuotaConfig;

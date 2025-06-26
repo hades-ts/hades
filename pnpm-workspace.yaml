@@ -6,10 +6,11 @@ packages:
   - pkgs/*
 
 catalog:
-  '@ldlework/inversify-config-injection': 0.0.8
+  '@ldlework/inversify-config-injection': 0.1.0
+  '@ldlework/categoric-containers': 0.1.6
   '@types/node': 24.0.3
   discord.js: 14.20.0
-  inversify: 6.2.2
+  inversify: 7.5.4
   reflect-metadata: 0.2.2
   turbo: 2.5.4
   typescript: ~5.8.3

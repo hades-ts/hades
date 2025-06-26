@@ -7,7 +7,7 @@ import { SlashCommandHelper } from "./SlashCommandHelper";
 /**
  * A registry of available command helpers.
  */
-@singleton(SlashCommandHelperRegistry)
+@singleton()
 export class SlashCommandHelperRegistry {
     map = new Collection<string, SlashCommandHelper>();
 

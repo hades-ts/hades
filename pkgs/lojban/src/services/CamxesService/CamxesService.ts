@@ -44,7 +44,7 @@ function isNodeArray(node: any): node is ParseNode[] {
     return Array.isArray(node) && node.every((child) => Array.isArray(child));
 }
 
-@singleton(CamxesService)
+@singleton()
 export class CamxesService {
     public getParse(word: string) {
         const parse = camxes.parse(word, undefined);

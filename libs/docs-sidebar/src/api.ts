@@ -1,22 +1,23 @@
 const path = require("@reliverse/pathkit");
+
 import { Container } from "inversify";
 import {
-    SectionFactory,
-    SectionEntryProvider,
-    SectionFileProvider,
     SectionDirectoryProvider,
-    SectionMetadataProvider,
-    SectionLinkProvider,
+    SectionEntryProvider,
+    SectionFactory,
+    SectionFileProvider,
     SectionItemProvider,
+    SectionLinkProvider,
+    SectionMetadataProvider,
 } from "./services";
 import type { SidebarItemCategoryEntry } from "./types";
 import {
-    join,
-    removeLeadingSlashes,
-    isFile,
     isDirectory,
-    removeNumericPrefix,
+    isFile,
+    join,
     removeExtension,
+    removeLeadingSlashes,
+    removeNumericPrefix,
 } from "./utils";
 
 export function mkSubSection(

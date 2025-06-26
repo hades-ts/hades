@@ -7,7 +7,7 @@ import { inject } from "inversify";
 import { GuildService } from "../guildServices";
 import { ThreadStarterService } from "./ThreadStarterService";
 
-@singleton(BotService)
+@singleton()
 export class BotService extends HadesBotService {
     @inject(SlashCommandService)
     protected slashCommands!: SlashCommandService;

@@ -32,7 +32,7 @@
         "@hades-ts/tsconfig": "workspace:*",
         "@ldlework/inversify-binding-decorators": "^4.0.2",
         "@ldlework/inversify-config-injection": "catalog:",
-        "@types/node": "^24.0.3",
+        "@types/node": "^24.0.4",
         "@typescript-eslint/eslint-plugin": "~6.21.0",
         "@typescript-eslint/parser": "~6.21.0",
         "eslint": "^8.57.1",

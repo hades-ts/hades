@@ -7,9 +7,9 @@ import {
     Collection,
     Events,
 } from "discord.js";
-import type { interfaces } from "inversify";
+import type { ServiceIdentifier } from "inversify";
 
-export type SI = interfaces.ServiceIdentifier<any>;
+export type SI = ServiceIdentifier<any>;
 
 // Type helper to get the handler signature for a specific event
 type EventHandler<TEvent extends keyof ClientEvents> = (

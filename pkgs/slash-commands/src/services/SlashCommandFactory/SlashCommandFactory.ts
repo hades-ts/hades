@@ -4,7 +4,7 @@ import {
     Collection,
     type CommandInteraction,
 } from "discord.js";
-import type { Container, interfaces } from "inversify";
+import { Container, type ServiceIdentifier } from "inversify";
 
 import type { SlashCommandMeta } from "../../metadata";
 import type { SlashCommand } from "../../models";
@@ -73,18 +73,14 @@ export class SlashCommandFactory {
      * @returns A sub-container.
      */
     createSubContainer(interaction: CommandInteraction) {
-        const di = this.parentContainer.createChild({
-            skipBaseClassChecks: true,
-        });
+        const di = new Container({ parent: this.parentContainer });
 
         // bind the command class
-        di.bind(this.meta.target as interfaces.ServiceIdentifier).toSelf();
+        di.bind(this.meta.target as ServiceIdentifier).toSelf();
 
         // bind the invocation context
         di.bind<CommandInteraction>("Interaction").toConstantValue(interaction);
 
-        // connect the containers
-        di.parent = this.parentContainer;
         return di;
     }
 
@@ -102,7 +98,7 @@ export class SlashCommandFactory {
 
         // resolve command instance
         const inst = subContainer.get<SlashCommand>(
-            this.meta.target as interfaces.ServiceIdentifier<SlashCommand>,
+            this.meta.target as ServiceIdentifier<SlashCommand>,
         );
 
         // run instance-method validators
@@ -117,11 +113,9 @@ export class SlashCommandFactory {
         if (!argMeta) {
             return;
         }
-        const di = this.parentContainer.createChild({
-            skipBaseClassChecks: true,
-        });
+        const di = new Container({ parent: this.parentContainer });
         di.bind(AutocompleteInteraction).toConstantValue(interaction);
-        const completer = di.resolve(argMeta.choicesCompleter!);
+        const completer = di.get(argMeta.choicesCompleter!, { autobind: true });
         const choices = await completer.complete(value);
         return choices;
     }
