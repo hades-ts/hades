@@ -86,7 +86,7 @@ friend.
 ### Installing Dependencies
 
 ```
-pnpm i -r <package>
+pnpm i <package>
 ```
 
 ### Updating Dependencies
