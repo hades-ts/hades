@@ -52,7 +52,7 @@
         "typescript": "catalog:"
     },
     "dependencies": {
-        "@ldlework/categoric-containers": "~0.0.2",
+        "@ldlework/categoric-containers": "catalog:",
         "discord-command-parser": "^1.5.3",
         "discord.js": "catalog:",
         "inversify": "catalog:",

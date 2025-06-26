@@ -6,9 +6,12 @@ settings:
 
 catalogs:
   default:
+    '@ldlework/categoric-containers':
+      specifier: 0.1.1
+      version: 0.1.1
     '@ldlework/inversify-config-injection':
-      specifier: 0.0.8
-      version: 0.0.8
+      specifier: 0.1.0
+      version: 0.1.0
     '@types/node':
       specifier: 24.0.3
       version: 24.0.3
@@ -16,8 +19,8 @@ catalogs:
       specifier: 14.20.0
       version: 14.20.0
     inversify:
-      specifier: 6.2.2
-      version: 6.2.2
+      specifier: 7.5.4
+      version: 7.5.4
     pkgroll:
       specifier: 2.13.1
       version: 2.13.1
@@ -118,7 +121,7 @@ importers:
         version: 4.0.3
       inversify:
         specifier: 'catalog:'
-        version: 6.2.2(reflect-metadata@0.2.2)
+        version: 7.5.4(reflect-metadata@0.2.2)
       mdx-mermaid:
         specifier: ~2.0.3
         version: 2.0.3(mermaid@9.4.3)(react@18.3.1)(typescript@5.8.3)(unist-util-visit@4.1.2)
@@ -247,8 +250,8 @@ importers:
         specifier: workspace:^
         version: link:../../pkgs/stash
       '@ldlework/categoric-containers':
-        specifier: ~0.0.2
-        version: 0.0.2(inversify@6.2.2(reflect-metadata@0.2.2))
+        specifier: 'catalog:'
+        version: 0.1.1(inversify@7.5.4(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
       '@ldlework/categoric-decorators':
         specifier: ^1.0.1
         version: 1.0.1
@@ -275,7 +278,7 @@ importers:
         version: 67.1.1(encoding@0.1.13)
       inversify:
         specifier: 'catalog:'
-        version: 6.2.2(reflect-metadata@0.2.2)
+        version: 7.5.4(reflect-metadata@0.2.2)
       node-schedule:
         specifier: ^1.3.3
         version: 1.3.3
@@ -375,7 +378,7 @@ importers:
         version: 16.5.0
       inversify:
         specifier: 'catalog:'
-        version: 6.2.2(reflect-metadata@0.2.2)
+        version: 7.5.4(reflect-metadata@0.2.2)
       reflect-metadata:
         specifier: 'catalog:'
         version: 0.2.2
@@ -456,8 +459,8 @@ importers:
         specifier: workspace:^
         version: link:../../pkgs/stash
       '@ldlework/categoric-containers':
-        specifier: ~0.0.2
-        version: 0.0.2(inversify@6.2.2(reflect-metadata@0.2.2))
+        specifier: 'catalog:'
+        version: 0.1.1(inversify@7.5.4(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
       '@ldlework/categoric-decorators':
         specifier: ^1.0.1
         version: 1.0.1
@@ -490,7 +493,7 @@ importers:
         version: 1.1.5
       inversify:
         specifier: 'catalog:'
-        version: 6.2.2(reflect-metadata@0.2.2)
+        version: 7.5.4(reflect-metadata@0.2.2)
       node-schedule:
         specifier: ^1.3.3
         version: 1.3.3
@@ -583,8 +586,8 @@ importers:
         specifier: workspace:^
         version: link:../../pkgs/stash
       '@ldlework/categoric-containers':
-        specifier: ~0.0.2
-        version: 0.0.2(inversify@6.2.2(reflect-metadata@0.2.2))
+        specifier: 'catalog:'
+        version: 0.1.1(inversify@7.5.4(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
       '@ldlework/categoric-decorators':
         specifier: ^1.0.1
         version: 1.0.1
@@ -611,7 +614,7 @@ importers:
         version: 67.1.1(encoding@0.1.13)
       inversify:
         specifier: 'catalog:'
-        version: 6.2.2(reflect-metadata@0.2.2)
+        version: 7.5.4(reflect-metadata@0.2.2)
       luxon:
         specifier: ^3.6.1
         version: 3.6.1
@@ -699,7 +702,7 @@ importers:
         version: 4.0.3
       inversify:
         specifier: 'catalog:'
-        version: 6.2.2(reflect-metadata@0.2.2)
+        version: 7.5.4(reflect-metadata@0.2.2)
       reflect-metadata:
         specifier: 'catalog:'
         version: 0.2.2
@@ -790,7 +793,7 @@ importers:
         version: 4.0.2
       '@ldlework/inversify-config-injection':
         specifier: 'catalog:'
-        version: 0.0.8(inversify@6.2.2(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
+        version: 0.1.0(inversify@7.5.4(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
       '@types/node':
         specifier: 'catalog:'
         version: 24.0.3
@@ -832,7 +835,7 @@ importers:
         version: 3.2.0(@typescript-eslint/eslint-plugin@6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)
       inversify:
         specifier: 'catalog:'
-        version: 6.2.2(reflect-metadata@0.2.2)
+        version: 7.5.4(reflect-metadata@0.2.2)
       pkgroll:
         specifier: 'catalog:'
         version: 2.13.1(typescript@5.8.3)
@@ -872,7 +875,7 @@ importers:
         version: 4.0.2
       '@ldlework/inversify-config-injection':
         specifier: 'catalog:'
-        version: 0.0.8(inversify@6.2.2(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
+        version: 0.1.0(inversify@7.5.4(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
       '@types/node':
         specifier: ^24.0.3
         version: 24.0.3
@@ -1010,8 +1013,8 @@ importers:
   pkgs/guilds:
     dependencies:
       '@ldlework/categoric-containers':
-        specifier: ~0.0.2
-        version: 0.0.2(inversify@6.2.2(reflect-metadata@0.2.2))
+        specifier: 'catalog:'
+        version: 0.1.1(inversify@7.5.4(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
       discord-command-parser:
         specifier: ^1.5.3
         version: 1.5.3
@@ -1020,7 +1023,7 @@ importers:
         version: 14.20.0
       inversify:
         specifier: 'catalog:'
-        version: 6.2.2(reflect-metadata@0.2.2)
+        version: 7.5.4(reflect-metadata@0.2.2)
       zod:
         specifier: ~3.25.67
         version: 3.25.67
@@ -1036,7 +1039,7 @@ importers:
         version: 4.0.2
       '@ldlework/inversify-config-injection':
         specifier: 'catalog:'
-        version: 0.0.8(inversify@6.2.2(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
+        version: 0.1.0(inversify@7.5.4(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
       '@types/node':
         specifier: 'catalog:'
         version: 24.0.3
@@ -1099,7 +1102,7 @@ importers:
         version: 4.0.2
       '@ldlework/inversify-config-injection':
         specifier: 'catalog:'
-        version: 0.0.8(inversify@6.2.2(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
+        version: 0.1.0(inversify@7.5.4(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
       acorn:
         specifier: ^8.15.0
         version: 8.15.0
@@ -1151,7 +1154,7 @@ importers:
         version: 3.2.0(@typescript-eslint/eslint-plugin@6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)
       inversify:
         specifier: 'catalog:'
-        version: 6.2.2(reflect-metadata@0.2.2)
+        version: 7.5.4(reflect-metadata@0.2.2)
       pkgroll:
         specifier: 'catalog:'
         version: 2.13.1(typescript@5.8.3)
@@ -1188,7 +1191,7 @@ importers:
         version: 4.0.2
       '@ldlework/inversify-config-injection':
         specifier: 'catalog:'
-        version: 0.0.8(inversify@6.2.2(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
+        version: 0.1.0(inversify@7.5.4(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
       '@types/jest':
         specifier: ^29.5.14
         version: 29.5.14
@@ -1233,7 +1236,7 @@ importers:
         version: 3.2.0(@typescript-eslint/eslint-plugin@6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)
       inversify:
         specifier: 'catalog:'
-        version: 6.2.2(reflect-metadata@0.2.2)
+        version: 7.5.4(reflect-metadata@0.2.2)
       jest:
         specifier: ^29.7.0
         version: 29.7.0(@types/node@24.0.3)(ts-node@10.9.2(@swc/core@1.12.5)(@types/node@24.0.3)(typescript@5.8.3))
@@ -1273,7 +1276,7 @@ importers:
         version: 4.0.2
       '@ldlework/inversify-config-injection':
         specifier: 'catalog:'
-        version: 0.0.8(inversify@6.2.2(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
+        version: 0.1.0(inversify@7.5.4(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
       '@types/node':
         specifier: 'catalog:'
         version: 24.0.3
@@ -1315,7 +1318,7 @@ importers:
         version: 3.2.0(@typescript-eslint/eslint-plugin@6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)
       inversify:
         specifier: 'catalog:'
-        version: 6.2.2(reflect-metadata@0.2.2)
+        version: 7.5.4(reflect-metadata@0.2.2)
       pkgroll:
         specifier: 'catalog:'
         version: 2.13.1(typescript@5.8.3)
@@ -1358,7 +1361,7 @@ importers:
         version: 4.0.2
       '@ldlework/inversify-config-injection':
         specifier: 'catalog:'
-        version: 0.0.8(inversify@6.2.2(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
+        version: 0.1.0(inversify@7.5.4(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
       '@types/node':
         specifier: 'catalog:'
         version: 24.0.3
@@ -1382,7 +1385,7 @@ importers:
         version: 3.2.0(@typescript-eslint/eslint-plugin@6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)
       inversify:
         specifier: 'catalog:'
-        version: 6.2.2(reflect-metadata@0.2.2)
+        version: 7.5.4(reflect-metadata@0.2.2)
       pkgroll:
         specifier: 'catalog:'
         version: 2.13.1(typescript@5.8.3)
@@ -1428,7 +1431,7 @@ importers:
         version: 4.0.2
       '@ldlework/inversify-config-injection':
         specifier: 'catalog:'
-        version: 0.0.8(inversify@6.2.2(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
+        version: 0.1.0(inversify@7.5.4(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
       '@types/node':
         specifier: ^24.0.3
         version: 24.0.3
@@ -3279,14 +3282,25 @@ packages:
       '@types/node':
         optional: true
 
-  '@inversifyjs/common@1.4.0':
-    resolution: {integrity: sha512-qfRJ/3iOlCL/VfJq8+4o5X4oA14cZSBbpAmHsYj8EsIit1xDndoOl0xKOyglKtQD4u4gdNVxMHx4RWARk/I4QA==}
+  '@inversifyjs/common@1.5.2':
+    resolution: {integrity: sha512-WlzR9xGadABS9gtgZQ+luoZ8V6qm4Ii6RQfcfC9Ho2SOlE6ZuemFo7PKJvKI0ikm8cmKbU8hw5UK6E4qovH21w==}
 
-  '@inversifyjs/core@1.3.5':
-    resolution: {integrity: sha512-B4MFXabhNTAmrfgB+yeD6wd/GIvmvWC6IQ8Rh/j2C3Ix69kmqwz9pr8Jt3E+Nho9aEHOQCZaGmrALgtqRd+oEQ==}
+  '@inversifyjs/container@1.10.3':
+    resolution: {integrity: sha512-uuB6fNd3XeFBtsysJXqOt0G114M69EpQCfM2G2XnhNYUb/osnHNGeubl2sMHd6SO08HbtAD8yNQOkPpxKeQTEw==}
+    peerDependencies:
+      reflect-metadata: ~0.2.2
 
-  '@inversifyjs/reflect-metadata-utils@0.2.4':
-    resolution: {integrity: sha512-u95rV3lKfG+NT2Uy/5vNzoDujos8vN8O18SSA5UyhxsGYd4GLQn/eUsGXfOsfa7m34eKrDelTKRUX1m/BcNX5w==}
+  '@inversifyjs/core@5.3.3':
+    resolution: {integrity: sha512-sx7msHtmgu/7gNPTMN9TzeBiE7y9y3dCEbLgtY8JOLP7okRPrrjTl7w6pd5RY00s/AovdDoE7BscNZVjqWIR0A==}
+
+  '@inversifyjs/plugin@0.2.0':
+    resolution: {integrity: sha512-R/JAdkTSD819pV1zi0HP54mWHyX+H2m8SxldXRgPQarS3ySV4KPyRdosWcfB8Se0JJZWZLHYiUNiS6JvMWSPjw==}
+
+  '@inversifyjs/prototype-utils@0.1.2':
+    resolution: {integrity: sha512-WZAEycwVd8zVCPCQ7GRzuQmjYF7X5zbjI9cGigDbBoTHJ8y5US9om00IAp0RYislO+fYkMzgcB2SnlIVIzyESA==}
+
+  '@inversifyjs/reflect-metadata-utils@1.2.0':
+    resolution: {integrity: sha512-EvXdBP+IjAZ3QKWFWGDzWLacyng9RMohtZ0c0EPUmvbaF4wgfwrE6n92ilt9aGwdbE5roGmDTmoRSmvavVOtIA==}
     peerDependencies:
       reflect-metadata: 0.2.2
 
@@ -3409,10 +3423,11 @@ packages:
   '@kwsites/promise-deferred@1.1.1':
     resolution: {integrity: sha512-GaHYm+c0O9MjZRu0ongGBRbinu8gVAMd2UZjji6jVmqKtZluZnptXGWhz1E8j8D2HJ3f/yMxKAUC0b+57wncIw==}
 
-  '@ldlework/categoric-containers@0.0.2':
-    resolution: {integrity: sha512-bRJZAYPJwN/WYiK3rkAL93lG+Tv9WHD6gYQ4RNKiFS7jeA+GVIRKIFB8GV6EwwH6VeTwv7igj0Cf+n5cxMnz1w==}
+  '@ldlework/categoric-containers@0.1.1':
+    resolution: {integrity: sha512-zMMHckcqXHQ8Ej04278P9b9c/VCMH/u0QSICRTZd6mW79yDDjUg441Z9H19DLNWPU5sfaXD3YMSmJOI9sFieUg==}
     peerDependencies:
-      inversify: ^6.0.1
+      inversify: ^7.5.4
+      reflect-metadata: ^0.2.2
 
   '@ldlework/categoric-decorators@1.0.1':
     resolution: {integrity: sha512-o0Alerhcl4pv1nQjKhLFPVZDKHji5nKJ1tkplZ9xTRTsSfRP9Sr0tQbOhowZ9poPUBY/DnHNICub/j7h4svTfA==}
@@ -3420,11 +3435,11 @@ packages:
   '@ldlework/inversify-binding-decorators@4.0.2':
     resolution: {integrity: sha512-j7VTdeCz+DHOlqMLsCP6C0UtD7K/z88tfQRS7K/Pc1xscYsvkDyXy+AOs/VjXcpi2HP0TPPRPlGG5nBpdq4oLw==}
 
-  '@ldlework/inversify-config-injection@0.0.8':
-    resolution: {integrity: sha512-os5kpr/tT23tBgm4EVobvpH5O+Ix3A5Fy6zNTrMPJrtmCN9GSZKUBLDRear24DhkCXUCnocIBpmumRoNdH39+Q==}
+  '@ldlework/inversify-config-injection@0.1.0':
+    resolution: {integrity: sha512-hiahm9IYRqJOn8qF1zATfC6qHYS9W74LTFXIgCxdFlre0v4f+nAzoLlGksutDuQ+0GU6Un3jLcvPzgjhfPq00Q==}
     engines: {node: '>=22.0.0'}
     peerDependencies:
-      inversify: ^6.2.2
+      inversify: ^7.5.3
       reflect-metadata: ~0.2.2
 
   '@leichtgewicht/ip-codec@2.0.5':
@@ -5666,13 +5681,13 @@ packages:
   config-chain@1.1.13:
     resolution: {integrity: sha512-qj+f8APARXHrM0hraqXYb2/bOVSV4PvJQlNZ/DVj0QrmNM2q2euizkeuVckQ57J+W0mRH6Hvi+k50M4Jul2VRQ==}
 
-  config@1.31.0:
-    resolution: {integrity: sha512-Ep/l9Rd1J9IPueztJfpbOqVzuKHQh4ZODMNt9xqTYdBBNRXbV4oTu34kCkkfdRVcDq0ohtpaeXGgb+c0LQxFRA==}
-    engines: {node: '>= 4.0.0'}
-
   config@3.3.12:
     resolution: {integrity: sha512-Vmx389R/QVM3foxqBzXO8t2tUikYZP64Q6vQxGrsMpREeJc/aWRnPRERXWsYzOHAumx/AOoILWe6nU3ZJL+6Sw==}
     engines: {node: '>= 10.0.0'}
+
+  config@4.0.0:
+    resolution: {integrity: sha512-zOzfDfcpaBUMRvTH+pbj111Gfb+1BMvCy9EcE5ckuugfAcks3FIQMyt8TRA30dhuGnZNBxfbPBUKtuM03ih/nA==}
+    engines: {node: '>= 20.0.0'}
 
   configstore@5.0.1:
     resolution: {integrity: sha512-aMKprgk5YhBNyH25hj8wGt2+D52Sw1DRRIzqBwLp2Ya9mFmY8KPvvtvmna8SxVR9JMZ4kzMD68N22vlaRpkeFA==}
@@ -7789,8 +7804,8 @@ packages:
   invariant@2.2.4:
     resolution: {integrity: sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==}
 
-  inversify@6.2.2:
-    resolution: {integrity: sha512-KB836KHbZ9WrUnB8ax5MtadOwnqQYa+ZJO3KWbPFgcr4RIEnHM621VaqFZzOZd9+U7ln6upt9n0wJei7x2BNqw==}
+  inversify@7.5.4:
+    resolution: {integrity: sha512-4UqlM8ALDzxsqQpK9ExQJAgnJoYhGJ88sr5v0ukwjpwIsE/ZKl9PyRtm9sWmViaHA4n2SergxC5sL3eeW+EWLQ==}
     peerDependencies:
       reflect-metadata: ~0.2.2
 
@@ -15780,16 +15795,31 @@ snapshots:
     optionalDependencies:
       '@types/node': 24.0.3
 
-  '@inversifyjs/common@1.4.0': {}
+  '@inversifyjs/common@1.5.2': {}
 
-  '@inversifyjs/core@1.3.5(reflect-metadata@0.2.2)':
+  '@inversifyjs/container@1.10.3(reflect-metadata@0.2.2)':
     dependencies:
-      '@inversifyjs/common': 1.4.0
-      '@inversifyjs/reflect-metadata-utils': 0.2.4(reflect-metadata@0.2.2)
+      '@inversifyjs/common': 1.5.2
+      '@inversifyjs/core': 5.3.3(reflect-metadata@0.2.2)
+      '@inversifyjs/plugin': 0.2.0
+      '@inversifyjs/reflect-metadata-utils': 1.2.0(reflect-metadata@0.2.2)
+      reflect-metadata: 0.2.2
+
+  '@inversifyjs/core@5.3.3(reflect-metadata@0.2.2)':
+    dependencies:
+      '@inversifyjs/common': 1.5.2
+      '@inversifyjs/prototype-utils': 0.1.2
+      '@inversifyjs/reflect-metadata-utils': 1.2.0(reflect-metadata@0.2.2)
     transitivePeerDependencies:
       - reflect-metadata
 
-  '@inversifyjs/reflect-metadata-utils@0.2.4(reflect-metadata@0.2.2)':
+  '@inversifyjs/plugin@0.2.0': {}
+
+  '@inversifyjs/prototype-utils@0.1.2':
+    dependencies:
+      '@inversifyjs/common': 1.5.2
+
+  '@inversifyjs/reflect-metadata-utils@1.2.0(reflect-metadata@0.2.2)':
     dependencies:
       reflect-metadata: 0.2.2
 
@@ -16017,10 +16047,11 @@ snapshots:
 
   '@kwsites/promise-deferred@1.1.1': {}
 
-  '@ldlework/categoric-containers@0.0.2(inversify@6.2.2(reflect-metadata@0.2.2))':
+  '@ldlework/categoric-containers@0.1.1(inversify@7.5.4(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)':
     dependencies:
       '@ldlework/categoric-decorators': 1.0.1
-      inversify: 6.2.2(reflect-metadata@0.2.2)
+      inversify: 7.5.4(reflect-metadata@0.2.2)
+      reflect-metadata: 0.2.2
       uuid: 8.3.2
 
   '@ldlework/categoric-decorators@1.0.1':
@@ -16030,10 +16061,10 @@ snapshots:
 
   '@ldlework/inversify-binding-decorators@4.0.2': {}
 
-  '@ldlework/inversify-config-injection@0.0.8(inversify@6.2.2(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)':
+  '@ldlework/inversify-config-injection@0.1.0(inversify@7.5.4(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)':
     dependencies:
-      config: 1.31.0
-      inversify: 6.2.2(reflect-metadata@0.2.2)
+      config: 4.0.0
+      inversify: 7.5.4(reflect-metadata@0.2.2)
       reflect-metadata: 0.2.2
       zod: 3.25.67
 
@@ -18791,11 +18822,11 @@ snapshots:
       ini: 1.3.8
       proto-list: 1.2.4
 
-  config@1.31.0:
-    dependencies:
-      json5: 1.0.2
-
   config@3.3.12:
+    dependencies:
+      json5: 2.2.3
+
+  config@4.0.0:
     dependencies:
       json5: 2.2.3
 
@@ -21465,10 +21496,11 @@ snapshots:
     dependencies:
       loose-envify: 1.4.0
 
-  inversify@6.2.2(reflect-metadata@0.2.2):
+  inversify@7.5.4(reflect-metadata@0.2.2):
     dependencies:
-      '@inversifyjs/common': 1.4.0
-      '@inversifyjs/core': 1.3.5(reflect-metadata@0.2.2)
+      '@inversifyjs/common': 1.5.2
+      '@inversifyjs/container': 1.10.3(reflect-metadata@0.2.2)
+      '@inversifyjs/core': 5.3.3(reflect-metadata@0.2.2)
       reflect-metadata: 0.2.2
 
   iota-array@1.0.0: {}
