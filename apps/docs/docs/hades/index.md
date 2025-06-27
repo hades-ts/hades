@@ -4,7 +4,7 @@ Typescript bot framework using [Inversify.js](https://inversify.io/) and [Discor
 
 <p align="center">
 
-![hades.png](../../../../pkgs/hades/hades.png)
+![hades.png](../../../../pkgs/core/hades.png)
 
 </p>
 
