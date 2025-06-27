@@ -6,7 +6,7 @@
     "type": "commonjs",
     "main": "./dist/index.js",
     "scripts": {
-        "build": "pkgroll",
+        "build": "pkgroll --sourcemap && tsc --emitDeclarationOnly --declaration --declarationMap",
         "clean": "rimraf dist",
         "lint": "tsc --noEmit",
         "start": "node dist/index.js",

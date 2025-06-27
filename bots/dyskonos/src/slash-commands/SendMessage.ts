@@ -7,7 +7,7 @@ import {
     Validator,
 } from "@hades-ts/slash-commands";
 import { ChannelType, type GuildBasedChannel } from "discord.js";
-import { injectable, type interfaces } from "inversify";
+import { injectable, type Newable } from "inversify";
 
 @injectable()
 class MessageValidator extends Validator<string> {
@@ -33,8 +33,10 @@ class MessageValidator extends Validator<string> {
 //     }
 // }
 
-const makeValidator = (validatorClass: interfaces.Newable<Validator<any>>) => {
-    return injectable()(validatorClass);
+const makeValidator = <T extends Newable<Validator<any>>>(
+    validatorClass: T,
+): T => {
+    return injectable()(validatorClass) as T;
 };
 
 const MaxLength = (maxLength: number) =>
