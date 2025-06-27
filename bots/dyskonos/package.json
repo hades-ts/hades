@@ -16,7 +16,7 @@
         "@hades-ts/ai": "workspace:^",
         "@hades-ts/bypass": "workspace:^",
         "@hades-ts/guilds": "workspace:^",
-        "@hades-ts/hades": "workspace:^",
+        "@hades-ts/core": "workspace:^",
         "@hades-ts/slash-commands": "workspace:^",
         "@hades-ts/stash": "workspace:^",
         "@ldlework/categoric-containers": "catalog:",

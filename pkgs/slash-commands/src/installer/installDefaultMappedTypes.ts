@@ -1,4 +1,4 @@
-import type { Constructable, Newable } from "@hades-ts/hades";
+import type { Constructable, Newable } from "@hades-ts/core";
 import { GuildChannel, GuildMember, Role, User } from "discord.js";
 import type { Container } from "inversify";
 

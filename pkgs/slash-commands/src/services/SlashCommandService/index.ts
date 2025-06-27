@@ -1,4 +1,4 @@
-import { HadesClient, listener, listenFor, singleton } from "@hades-ts/hades";
+import { HadesClient, listener, listenFor, singleton } from "@hades-ts/core";
 import {
     type AutocompleteInteraction,
     type BaseInteraction,

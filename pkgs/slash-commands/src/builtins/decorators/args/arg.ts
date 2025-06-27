@@ -1,4 +1,4 @@
-import type { Constructable } from "@hades-ts/hades";
+import type { Constructable } from "@hades-ts/core";
 import type {
     ApplicationCommandAutocompleteStringOption,
     ApplicationCommandChannelOptionData,

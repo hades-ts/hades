@@ -1,4 +1,4 @@
-import { BaseButtonInteraction } from "@hades-ts/hades";
+import { BaseButtonInteraction } from "@hades-ts/core";
 import {
     ButtonBuilder,
     type ButtonInteraction,

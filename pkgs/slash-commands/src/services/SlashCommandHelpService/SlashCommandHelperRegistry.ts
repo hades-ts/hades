@@ -1,4 +1,4 @@
-import { singleton } from "@hades-ts/hades";
+import { singleton } from "@hades-ts/core";
 import { Collection } from "discord.js";
 import { multiInject, postConstruct } from "inversify";
 

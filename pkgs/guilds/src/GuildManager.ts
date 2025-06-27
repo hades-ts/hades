@@ -1,4 +1,4 @@
-import { HadesClient, singleton } from "@hades-ts/hades";
+import { HadesClient, singleton } from "@hades-ts/core";
 import type { Guild } from "discord.js";
 import { Container, inject, optional } from "inversify";
 

@@ -1,5 +1,5 @@
+import { singleton } from "@hades-ts/core";
 import { type GuildBinder, guildTokens } from "@hades-ts/guilds";
-import { singleton } from "@hades-ts/hades";
 import { type Container, inject } from "inversify";
 
 import type { Config } from "../config";

@@ -1,4 +1,4 @@
-import { HadesClient } from "@hades-ts/hades";
+import { HadesClient } from "@hades-ts/core";
 import {
     command,
     SlashArgError,

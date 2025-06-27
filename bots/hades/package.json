@@ -1,6 +1,6 @@
 {
     "private": true,
-    "name": "@hades-ts/hades-bot",
+    "name": "@hades-ts/core-bot",
     "version": "0.0.0",
     "description": "Example Discord bot",
     "type": "commonjs",
@@ -13,7 +13,7 @@
         "watch": "tsc -p tsconfig.json -w"
     },
     "dependencies": {
-        "@hades-ts/hades": "workspace:^",
+        "@hades-ts/core": "workspace:^",
         "@hades-ts/slash-commands": "workspace:^",
         "@ldlework/inversify-binding-decorators": "catalog:",
         "common-tags": "^1.8.2",

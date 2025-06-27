@@ -1,4 +1,4 @@
-import { singleton } from "@hades-ts/hades";
+import { singleton } from "@hades-ts/core";
 import { EmbedBuilder } from "discord.js";
 import { inject } from "inversify";
 

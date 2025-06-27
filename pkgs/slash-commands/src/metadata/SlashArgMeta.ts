@@ -1,4 +1,4 @@
-import type { Constructor, InstallerFunc } from "@hades-ts/hades";
+import type { Constructor, InstallerFunc } from "@hades-ts/core";
 import type { ApplicationCommandOptionData } from "discord.js";
 import type { Newable } from "inversify";
 import type { SlashArgParser } from "../services";

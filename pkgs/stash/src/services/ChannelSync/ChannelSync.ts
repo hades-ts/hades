@@ -1,4 +1,4 @@
-import type { HadesClient } from "@hades-ts/hades";
+import type { HadesClient } from "@hades-ts/core";
 import {
     ChannelType,
     type GuildTextBasedChannel,

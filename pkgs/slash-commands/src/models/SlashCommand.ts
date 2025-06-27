@@ -1,4 +1,4 @@
-import { DiscordService } from "@hades-ts/hades";
+import { DiscordService } from "@hades-ts/core";
 import type {
     CommandInteraction,
     InteractionReplyOptions,
