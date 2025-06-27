@@ -1,0 +1,10 @@
+{
+    "extends": "@hades-ts/tsconfig/pkg.json",
+    "compilerOptions": {
+        "rootDir": "src",
+        "outDir": "./dist",
+        "types": ["node", "reflect-metadata"]
+    },
+    "include": ["src/**/*.ts", "src/**/*.js"],
+    "exclude": ["node_modules"]
+}

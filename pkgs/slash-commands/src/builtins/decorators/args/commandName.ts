@@ -2,8 +2,8 @@ import type { Constructable } from "@hades-ts/core";
 import { ApplicationCommandOptionType } from "discord.js";
 import { inject, injectable } from "inversify";
 
-import { SlashCommandService } from "../../services";
-import { makeArgMeta } from ".";
+import { SlashCommandService } from "../../../services";
+import { makeArgMeta } from "..";
 
 export type ChannelNameArgOptions = {
     required?: boolean;

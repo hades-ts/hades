@@ -1,6 +1,7 @@
 import {
     channel,
     command,
+    guildCommand,
     SlashArgError,
     SlashCommand,
     text,
@@ -8,6 +9,7 @@ import {
 } from "@hades-ts/slash-commands";
 import { ChannelType, type GuildBasedChannel } from "discord.js";
 import { injectable, type Newable } from "inversify";
+import { getMetadata, getOwnMetadata } from "reflect-metadata/no-conflict";
 
 @injectable()
 class MessageValidator extends Validator<string> {
@@ -36,12 +38,13 @@ class MessageValidator extends Validator<string> {
 const makeValidator = <T extends Newable<Validator<any>>>(
     validatorClass: T,
 ): T => {
-    return injectable()(validatorClass) as T;
+    injectable()(validatorClass) as T;
+    return validatorClass;
 };
 
 const MaxLength = (maxLength: number) =>
     makeValidator(
-        class extends Validator<string> {
+        class MaxLengthValidator extends Validator<string> {
             async validate(message: string) {
                 if (message.length > maxLength) {
                     throw new SlashArgError(
@@ -72,7 +75,7 @@ class Sendable extends Validator {
     }
 }
 
-@command("send-message", { description: "Send a message to a channel." })
+@guildCommand("send-message", { description: "Send a message to a channel." })
 export class SendMessageCommand extends SlashCommand {
     @channel({
         description: "The channel to send the message to.",
@@ -83,7 +86,7 @@ export class SendMessageCommand extends SlashCommand {
 
     @text({
         description: "The message to send.",
-        validators: [MessageValidator, MaxLength(5)],
+        validators: [MessageValidator, MaxLength(10), MaxLength(5)],
     })
     message!: string;
 

@@ -1,11 +1,7 @@
 import type { Container } from "inversify";
 
 import { getSlashCommandMetas, type SlashCommandMeta } from "../metadata";
-import {
-    SlashCommandFactory,
-    SlashCommandHelper,
-    SlashCommandService,
-} from "../services";
+import { SlashCommandFactory, SlashCommandService } from "../services";
 
 type Metas = ReturnType<typeof getSlashCommandMetas>;
 
@@ -23,15 +19,6 @@ const installCommandFactories = (container: Container, metas: Metas) => {
     metas.forEach((meta) => installCommandFactory(container, meta));
 };
 
-const installCommandHelper = (container: Container, meta: SlashCommandMeta) => {
-    const helper = new SlashCommandHelper(meta);
-    container.bind(SlashCommandHelper).toConstantValue(helper);
-};
-
-const installCommandHelpers = (container: Container, metas: Metas) => {
-    metas.forEach((meta) => installCommandHelper(container, meta));
-};
-
 /**
  * Binds SlashCommandFactory instances for each @command
  * @param container The Container to use.
@@ -43,6 +30,5 @@ export const installCommands = (container: Container) => {
         console.log(meta);
     }
     installCommandFactories(container, metas);
-    installCommandHelpers(container, metas);
     container.get(SlashCommandService);
 };

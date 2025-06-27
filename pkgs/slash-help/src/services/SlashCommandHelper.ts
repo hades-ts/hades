@@ -1,6 +1,5 @@
+import type { SlashArgMeta, SlashCommandMeta } from "@hades-ts/slash-commands";
 import { type Collection, EmbedBuilder } from "discord.js";
-
-import type { SlashArgMeta, SlashCommandMeta } from "../../metadata";
 
 /**
  * Extracts help information from a command meta.
@@ -23,7 +22,7 @@ export class SlashCommandHelper {
     }
 
     getArgTags() {
-        return this.args.map((a) => `[*${a.name}*]`);
+        return this.args.map((a) => `[${a.name}]`);
     }
 
     getArgUsage() {
@@ -31,17 +30,16 @@ export class SlashCommandHelper {
     }
 
     getUsage() {
-        return `**${this.name} ${this.getArgUsage()}** `;
+        return `\`/${this.name} ${this.getArgUsage()}\``;
     }
 
     getArgFields() {
         return this.args.map((arg: SlashArgMeta) => {
-            // TODO: figure out how to get at parser for arg (ParserRegistry?)
             const parserType = arg.parser?.name || "string";
-            const description =
-                arg.description || /* arg.parser.description || */ "";
-            const value = `*${parserType}*\n${description} `.trim();
-            return { name: arg.name, value };
+            return {
+                name: `${arg.name}: \`${parserType}\``,
+                value: arg.description.trim() ?? "",
+            };
         });
     }
 
@@ -49,7 +47,7 @@ export class SlashCommandHelper {
         let desc = this.getUsage();
 
         if (this.description) {
-            desc = desc + "\n" + this.description;
+            desc = `${desc}\n${this.description}`;
         }
 
         const embed = new EmbedBuilder()

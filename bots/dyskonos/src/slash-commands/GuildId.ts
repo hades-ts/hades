@@ -1,8 +1,8 @@
-import { command, SlashCommand } from "@hades-ts/slash-commands";
+import { guildCommand, SlashCommand } from "@hades-ts/slash-commands";
 import { inject } from "inversify";
 import { GuildIdService } from "../guildServices/GuildIdService";
 
-@command("guild-id", { description: "Get the guild ID." })
+@guildCommand("guild-id", { description: "Get the guild ID." })
 export class GuildIdCommand extends SlashCommand {
     @inject(GuildIdService)
     protected guildIdService!: GuildIdService;

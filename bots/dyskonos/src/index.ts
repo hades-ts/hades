@@ -6,6 +6,7 @@ dotenv.config();
 
 import { boot } from "@hades-ts/core";
 import { withSlashCommands } from "@hades-ts/slash-commands";
+import { withHelp } from "@hades-ts/slash-help";
 
 import { BotService } from "./services";
 
@@ -18,6 +19,7 @@ boot(BotService, {
     installers: [
         withGuilds(),
         withSlashCommands(),
+        withHelp(),
         (c) => c.bind(ILogger).to(ConsoleLogger).inSingletonScope(),
     ],
 });

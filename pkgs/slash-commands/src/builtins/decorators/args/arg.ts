@@ -41,6 +41,7 @@ export const makeArgMeta = <TField>(
 ) => {
     const meta = getSlashArgMeta(target.constructor, key);
     meta.name = camelToDash(key);
+    meta.description = info.description ?? "";
     meta.options = {
         required: true,
         ...info,
@@ -79,7 +80,6 @@ export function arg<TField = any>(info: ArgConfig<TField>) {
     ): void => {
         // Now TypeScript will enforce T[K] extends TField
         const _typeCheck: T[K] extends TField ? true : never = true as any;
-
         makeArgMeta(info, target as any, key);
         inject(key)(target, key);
     };

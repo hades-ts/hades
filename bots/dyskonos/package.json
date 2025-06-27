@@ -18,6 +18,7 @@
         "@hades-ts/guilds": "workspace:^",
         "@hades-ts/core": "workspace:^",
         "@hades-ts/slash-commands": "workspace:^",
+        "@hades-ts/slash-help": "workspace:^",
         "@hades-ts/stash": "workspace:^",
         "@ldlework/categoric-containers": "catalog:",
         "@ldlework/categoric-decorators": "catalog:",
