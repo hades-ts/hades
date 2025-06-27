@@ -1,5 +1,5 @@
+import { singleton } from "@hades-ts/core";
 import { GuildManager } from "@hades-ts/guilds";
-import { singleton } from "@hades-ts/hades";
 import type { Guild } from "discord.js";
 import { inject } from "inversify";
 

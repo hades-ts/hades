@@ -1,4 +1,4 @@
-import { HadesClient } from "@hades-ts/hades";
+import { HadesClient } from "@hades-ts/core";
 import { command, member, role, SlashCommand } from "@hades-ts/slash-commands";
 import type { GuildMember, Role } from "discord.js";
 import { inject } from "inversify";

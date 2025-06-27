@@ -3,7 +3,7 @@ import * as dotenv from "dotenv";
 
 dotenv.config();
 
-import { boot } from "@hades-ts/hades";
+import { boot } from "@hades-ts/core";
 import { withSlashCommands } from "@hades-ts/slash-commands";
 
 import "@hades-ts/slash-commands/dist/builtins/commands/HelpCommand";

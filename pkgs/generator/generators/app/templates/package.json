@@ -10,7 +10,7 @@
         "watch": "tsc -p tsconfig.json -w"
     },
     "dependencies": {
-        "@hades-ts/hades": "^0.0.4",
+        "@hades-ts/core": "^0.0.4",
         "@hades-ts/slash-commands": "^0.0.4",
         "common-tags": "^1.8.0",
         "config": "^3.3.3",

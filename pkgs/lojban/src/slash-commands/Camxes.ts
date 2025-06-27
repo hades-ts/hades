@@ -1,8 +1,8 @@
-import { ApplicationCommandOptionType } from "discord.js";
+import { HadesClient } from "@hades-ts/core";
 import { arg, command, SlashCommand } from "@hades-ts/slash-commands";
+import { ApplicationCommandOptionType } from "discord.js";
 import { inject } from "inversify";
 import { CamxesService } from "../services/CamxesService";
-import { HadesClient } from "@hades-ts/hades";
 
 @command("genturba'a", { description: "jarco le genturba'a lo jufra" })
 export class Genturbaha extends SlashCommand {

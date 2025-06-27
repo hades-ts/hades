@@ -1,4 +1,4 @@
-import { HadesClient, singleton } from "@hades-ts/hades";
+import { HadesClient, singleton } from "@hades-ts/core";
 import { inject, postConstruct } from "inversify";
 
 @singleton()

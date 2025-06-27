@@ -1,5 +1,5 @@
 {
-    "name": "@hades-ts/hades",
+    "name": "@hades-ts/core",
     "version": "0.0.7",
     "description": "Typescript framework using Inversify.js and Discord.js",
     "type": "commonjs",

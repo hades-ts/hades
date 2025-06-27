@@ -29,7 +29,7 @@
     },
     "devDependencies": {
         "@hades-ts/guilds": "workspace:^",
-        "@hades-ts/hades": "workspace:^",
+        "@hades-ts/core": "workspace:^",
         "@hades-ts/tsconfig": "workspace:*",
         "@ldlework/inversify-binding-decorators": "catalog:",
         "@ldlework/inversify-config-injection": "catalog:",
@@ -47,7 +47,7 @@
         "typescript": "catalog:"
     },
     "peerDependencies": {
-        "@hades-ts/hades": "workspace:^",
+        "@hades-ts/core": "workspace:^",
         "@ldlework/inversify-binding-decorators": "^4.0.1",
         "@ldlework/inversify-config-injection": "catalog:",
         "discord.js": "catalog:",

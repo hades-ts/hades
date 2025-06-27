@@ -1,4 +1,4 @@
-import { type Constructor, type InstallerFunc, Newable } from "@hades-ts/hades";
+import { type Constructor, type InstallerFunc, Newable } from "@hades-ts/core";
 import { ChatInputCommandInteraction, CommandInteraction } from "discord.js";
 import type { Container } from "inversify";
 

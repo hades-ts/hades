@@ -1,5 +1,5 @@
+import { singleton } from "@hades-ts/core";
 import { type GuildBinder, guildTokens } from "@hades-ts/guilds";
-import { singleton } from "@hades-ts/hades";
 import { MarkdownStash } from "@hades-ts/stash";
 import { type Container, inject, type ResolutionContext } from "inversify";
 import path from "path";

@@ -247,12 +247,12 @@ importers:
       '@hades-ts/bypass':
         specifier: workspace:^
         version: link:../../pkgs/bypass
+      '@hades-ts/core':
+        specifier: workspace:^
+        version: link:../../pkgs/core
       '@hades-ts/guilds':
         specifier: workspace:^
         version: link:../../pkgs/guilds
-      '@hades-ts/hades':
-        specifier: workspace:^
-        version: link:../../pkgs/hades
       '@hades-ts/slash-commands':
         specifier: workspace:^
         version: link:../../pkgs/slash-commands
@@ -362,9 +362,9 @@ importers:
 
   bots/hades:
     dependencies:
-      '@hades-ts/hades':
+      '@hades-ts/core':
         specifier: workspace:^
-        version: link:../../pkgs/hades
+        version: link:../../pkgs/core
       '@hades-ts/slash-commands':
         specifier: workspace:^
         version: link:../../pkgs/slash-commands
@@ -456,12 +456,12 @@ importers:
       '@hades-ts/bypass':
         specifier: workspace:^
         version: link:../../pkgs/bypass
+      '@hades-ts/core':
+        specifier: workspace:^
+        version: link:../../pkgs/core
       '@hades-ts/guilds':
         specifier: workspace:^
         version: link:../../pkgs/guilds
-      '@hades-ts/hades':
-        specifier: workspace:^
-        version: link:../../pkgs/hades
       '@hades-ts/slash-commands':
         specifier: workspace:^
         version: link:../../pkgs/slash-commands
@@ -583,12 +583,12 @@ importers:
 
   bots/zeus:
     dependencies:
+      '@hades-ts/core':
+        specifier: workspace:^
+        version: link:../../pkgs/core
       '@hades-ts/guilds':
         specifier: workspace:^
         version: link:../../pkgs/guilds
-      '@hades-ts/hades':
-        specifier: workspace:^
-        version: link:../../pkgs/hades
       '@hades-ts/slash-commands':
         specifier: workspace:^
         version: link:../../pkgs/slash-commands
@@ -792,9 +792,9 @@ importers:
         specifier: ~3.25.67
         version: 3.25.67
     devDependencies:
-      '@hades-ts/hades':
+      '@hades-ts/core':
         specifier: workspace:^
-        version: link:../hades
+        version: link:../core
       '@hades-ts/tsconfig':
         specifier: workspace:*
         version: link:../../libs/tsconfig
@@ -874,9 +874,9 @@ importers:
         specifier: ~3.25.67
         version: 3.25.67
     devDependencies:
-      '@hades-ts/hades':
+      '@hades-ts/core':
         specifier: workspace:^
-        version: link:../hades
+        version: link:../core
       '@hades-ts/tsconfig':
         specifier: workspace:*
         version: link:../../libs/tsconfig
@@ -931,6 +931,88 @@ importers:
       ts-node:
         specifier: ^10.9.2
         version: 10.9.2(@types/node@24.0.4)(typescript@5.8.3)
+      tsconfig-paths:
+        specifier: ^4.2.0
+        version: 4.2.0
+      typescript:
+        specifier: 'catalog:'
+        version: 5.8.3
+
+  pkgs/core:
+    dependencies:
+      '@docusaurus/babel':
+        specifier: ~3.8.1
+        version: 3.8.1(acorn@8.15.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@ldlework/categoric-decorators':
+        specifier: 'catalog:'
+        version: 1.0.1
+      '@ldlework/inversify-binding-decorators':
+        specifier: 'catalog:'
+        version: 4.0.2
+      '@ldlework/inversify-config-injection':
+        specifier: 'catalog:'
+        version: 0.1.0(inversify@7.5.4(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
+      acorn:
+        specifier: ^8.15.0
+        version: 8.15.0
+    devDependencies:
+      '@hades-ts/tsconfig':
+        specifier: workspace:*
+        version: link:../../libs/tsconfig
+      '@types/node':
+        specifier: ^24.0.4
+        version: 24.0.4
+      '@typescript-eslint/eslint-plugin':
+        specifier: ~6.21.0
+        version: 6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)(typescript@5.8.3)
+      '@typescript-eslint/parser':
+        specifier: ~6.21.0
+        version: 6.21.0(eslint@8.57.1)(typescript@5.8.3)
+      commander:
+        specifier: ^7.2.0
+        version: 7.2.0
+      discord.js:
+        specifier: 'catalog:'
+        version: 14.20.0
+      eslint:
+        specifier: ^8.57.1
+        version: 8.57.1
+      eslint-config-prettier:
+        specifier: ^9.1.0
+        version: 9.1.0(eslint@8.57.1)
+      eslint-plugin-decorator-position:
+        specifier: ^5.0.2
+        version: 5.0.2(eslint@8.57.1)
+      eslint-plugin-eslint-plugin:
+        specifier: ^5.5.1
+        version: 5.5.1(eslint@8.57.1)
+      eslint-plugin-import:
+        specifier: ^2.32.0
+        version: 2.32.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)
+      eslint-plugin-import-newlines:
+        specifier: ^1.4.0
+        version: 1.4.0(eslint@8.57.1)
+      eslint-plugin-node:
+        specifier: ^11.1.0
+        version: 11.1.0(eslint@8.57.1)
+      eslint-plugin-simple-import-sort:
+        specifier: ^8.0.0
+        version: 8.0.0(eslint@8.57.1)
+      eslint-plugin-unused-imports:
+        specifier: ~3.2.0
+        version: 3.2.0(@typescript-eslint/eslint-plugin@6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)
+      inversify:
+        specifier: 'catalog:'
+        version: 7.5.4(reflect-metadata@0.2.2)
+      pkgroll:
+        specifier: 'catalog:'
+        version: 2.13.1(typescript@5.8.3)
+      reflect-metadata:
+        specifier: 'catalog:'
+        version: 0.2.2
+      rimraf:
+        specifier: ^6.0.1
+        version: 6.0.1
       tsconfig-paths:
         specifier: ^4.2.0
         version: 4.2.0
@@ -1038,9 +1120,9 @@ importers:
         specifier: ~3.25.67
         version: 3.25.67
     devDependencies:
-      '@hades-ts/hades':
+      '@hades-ts/core':
         specifier: workspace:^
-        version: link:../hades
+        version: link:../core
       '@hades-ts/tsconfig':
         specifier: workspace:*
         version: link:../../libs/tsconfig
@@ -1190,9 +1272,9 @@ importers:
         specifier: github:Lord-Valen/camxes.js
         version: camxes.js@https://codeload.github.com/Lord-Valen/camxes.js/tar.gz/690bd58abe07708f138ee56b305e9b4a7ac709bd
     devDependencies:
-      '@hades-ts/hades':
+      '@hades-ts/core':
         specifier: workspace:^
-        version: link:../hades
+        version: link:../core
       '@hades-ts/slash-commands':
         specifier: workspace:^
         version: link:../slash-commands
@@ -1278,9 +1360,9 @@ importers:
         specifier: ^1.5.3
         version: 1.5.3
     devDependencies:
-      '@hades-ts/hades':
+      '@hades-ts/core':
         specifier: workspace:^
-        version: link:../hades
+        version: link:../core
       '@hades-ts/tsconfig':
         specifier: workspace:*
         version: link:../../libs/tsconfig
@@ -1360,12 +1442,12 @@ importers:
         specifier: ~3.25.67
         version: 3.25.67
     devDependencies:
+      '@hades-ts/core':
+        specifier: workspace:^
+        version: link:../core
       '@hades-ts/guilds':
         specifier: workspace:^
         version: link:../guilds
-      '@hades-ts/hades':
-        specifier: workspace:^
-        version: link:../hades
       '@hades-ts/tsconfig':
         specifier: workspace:*
         version: link:../../libs/tsconfig
@@ -1433,9 +1515,9 @@ importers:
         specifier: ~3.25.67
         version: 3.25.67
     devDependencies:
-      '@hades-ts/hades':
+      '@hades-ts/core':
         specifier: workspace:^
-        version: link:../hades
+        version: link:../core
       '@hades-ts/tsconfig':
         specifier: workspace:*
         version: link:../../libs/tsconfig

@@ -1,5 +1,5 @@
+import { HadesClient } from "@hades-ts/core";
 import { GuildManager } from "@hades-ts/guilds";
-import { HadesClient } from "@hades-ts/hades";
 import { command, SlashCommand } from "@hades-ts/slash-commands";
 import { inject } from "inversify";
 

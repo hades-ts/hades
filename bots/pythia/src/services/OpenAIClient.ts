@@ -1,4 +1,4 @@
-import { singleton } from "@hades-ts/hades";
+import { singleton } from "@hades-ts/core";
 import axios, { type AxiosResponse } from "axios";
 import { inject } from "inversify";
 

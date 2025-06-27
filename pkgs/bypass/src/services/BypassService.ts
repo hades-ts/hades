@@ -1,4 +1,4 @@
-import { singleton } from "@hades-ts/hades";
+import { singleton } from "@hades-ts/core";
 import type { GuildMember } from "discord.js";
 
 import type { BypassConfig } from "../schema";
