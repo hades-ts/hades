@@ -31,7 +31,7 @@
     "devDependencies": {
         "@hades-ts/hades": "workspace:^",
         "@hades-ts/tsconfig": "workspace:*",
-        "@ldlework/inversify-binding-decorators": "^4.0.2",
+        "@ldlework/inversify-binding-decorators": "catalog:",
         "@ldlework/inversify-config-injection": "catalog:",
         "@types/node": "catalog:",
         "@typescript-eslint/eslint-plugin": "~6.21.0",

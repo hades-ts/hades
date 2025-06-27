@@ -15,7 +15,7 @@
     "dependencies": {
         "@hades-ts/hades": "workspace:^",
         "@hades-ts/slash-commands": "workspace:^",
-        "@ldlework/inversify-binding-decorators": "^4.0.2",
+        "@ldlework/inversify-binding-decorators": "catalog:",
         "common-tags": "^1.8.2",
         "config": "^3.3.12",
         "discord-command-parser": "^1.5.3",

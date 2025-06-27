@@ -8,6 +8,8 @@ packages:
 catalog:
   '@ldlework/inversify-config-injection': 0.1.0
   '@ldlework/categoric-containers': 0.1.6
+  '@ldlework/categoric-decorators': 1.0.1
+  '@ldlework/inversify-binding-decorators': 4.0.2
   '@types/node': 24.0.3
   discord.js: 14.20.0
   inversify: 7.5.4

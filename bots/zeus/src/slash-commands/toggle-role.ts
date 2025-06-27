@@ -86,7 +86,7 @@ export class ToggleRoleCommand extends SlashCommand {
     protected memberHasRole(member: GuildMember): boolean {
         let hasRole = false;
 
-        for (const [_key, role] of member.roles.cache.entries()) {
+        for (const [_key, role] of Array.from(member.roles.cache.entries())) {
             if (this.role === role.name) {
                 hasRole = true;
                 break;

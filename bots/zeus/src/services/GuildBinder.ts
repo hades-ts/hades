@@ -1,7 +1,7 @@
 import { type GuildBinder, guildTokens } from "@hades-ts/guilds";
 import { singleton } from "@hades-ts/hades";
 import { MarkdownStash } from "@hades-ts/stash";
-import { type Container, inject, type interfaces } from "inversify";
+import { type Container, inject, type ResolutionContext } from "inversify";
 import path from "path";
 
 import { type GuildConfig, ruleSchema } from "../config";
@@ -21,9 +21,8 @@ export class ZeusGuildBinder implements GuildBinder {
 
         guildContainer
             .bind(MarkdownStash)
-            .toDynamicValue((context: interfaces.Context) => {
-                const container = context.container;
-                const rulesPath = container.get<string>("cfg.rulesPath");
+            .toDynamicValue((context: ResolutionContext) => {
+                const rulesPath = context.get<string>("cfg.rulesPath");
                 const guildRulesPath = path.join(rulesPath, guildId);
                 return new MarkdownStash(guildRulesPath, ruleSchema);
             });

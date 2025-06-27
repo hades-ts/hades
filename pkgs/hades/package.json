@@ -19,9 +19,9 @@
     },
     "dependencies": {
         "@docusaurus/babel": "~3.8.1",
-        "@ldlework/inversify-binding-decorators": "^4.0.2",
+        "@ldlework/inversify-binding-decorators": "catalog:",
         "@ldlework/inversify-config-injection": "catalog:",
-        "@ldlework/categoric-decorators": "^1.0.1",
+        "@ldlework/categoric-decorators": "catalog:",
         "acorn": "^8.15.0"
     },
     "devDependencies": {
