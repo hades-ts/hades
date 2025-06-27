@@ -1,10 +1,15 @@
+import { GuildInfo } from "@hades-ts/guilds";
 import { command, SlashCommand } from "@hades-ts/slash-commands";
+import { inject } from "inversify";
+import type { Config, GuildConfig } from "../config";
 
 @command("ping", { description: "Ping the bot." })
 export class PingCommand extends SlashCommand {
+    @inject(GuildInfo)
+    public info!: GuildInfo<GuildConfig>;
+
     async execute(): Promise<void> {
-        await this.interaction.reply({
-            content: "Pong!",
-        });
+        const content = this.info.config?.guildPongMessage ?? "Pong!";
+        await this.interaction.reply({ content });
     }
 }

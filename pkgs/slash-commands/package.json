@@ -53,10 +53,12 @@
         "typescript": "catalog:"
     },
     "dependencies": {
+        "@hades-ts/guilds": "workspace:^",
         "discord-command-parser": "^1.5.3"
     },
     "peerDependencies": {
         "@hades-ts/core": "workspace:^",
+        "@hades-ts/guilds": "workspace:^",
         "@ldlework/inversify-binding-decorators": "^4.0.1",
         "@ldlework/inversify-config-injection": "catalog:",
         "discord.js": "catalog:",

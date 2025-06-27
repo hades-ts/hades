@@ -1,3 +1,4 @@
+import { GuildManager } from "@hades-ts/guilds";
 import {
     AutocompleteInteraction,
     type ChatInputCommandInteraction,
@@ -72,8 +73,16 @@ export class SlashCommandFactory {
      * @param context The parent container.
      * @returns A sub-container.
      */
-    createSubContainer(interaction: CommandInteraction) {
-        const di = new Container({ parent: this.parentContainer });
+    async createSubContainer(interaction: CommandInteraction) {
+        let parent = this.parentContainer;
+
+        if (interaction.guild && parent.isBound(GuildManager)) {
+            const guildManager = parent.get(GuildManager);
+            const guildContainer = await guildManager.get(interaction.guild);
+            parent = guildContainer;
+        }
+
+        const di = new Container({ parent });
 
         // bind the command class
         di.bind(this.meta.target as ServiceIdentifier).toSelf();
@@ -91,7 +100,7 @@ export class SlashCommandFactory {
      */
     async create(interaction: ChatInputCommandInteraction) {
         // subcontainer config
-        const subContainer = this.createSubContainer(interaction);
+        const subContainer = await this.createSubContainer(interaction);
 
         // parse, validate and bind argument values
         await this.installArguments(subContainer, interaction);
