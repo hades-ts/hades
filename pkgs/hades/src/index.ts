@@ -5,9 +5,7 @@ import { withDecorators } from "./decorators";
 import { withEvents } from "./events";
 import { HadesContainer } from "./HadesContainer";
 import type { Installer } from "./Installer";
-import type { HadesBotService } from "./services";
-import { ILoginService } from "./services/ILogin";
-import { LoginService } from "./services/LoginService";
+import { ILoginService, LoginService } from "./services";
 import type { InstallerFunc } from "./utils";
 
 export * from "./decorators";
@@ -19,7 +17,7 @@ export * from "./services";
 export * from "./utils";
 
 export const boot = async (
-    botService: Newable<HadesBotService>,
+    botService: Newable<any>,
     installers?: (Installer | InstallerFunc)[],
 ) => {
     try {

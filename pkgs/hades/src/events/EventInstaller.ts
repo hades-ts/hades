@@ -1,6 +1,6 @@
 import type { Container } from "inversify";
 import { findListeners } from "../decorators/listener";
-import { EventService } from "../services";
+import { EventService } from "./EventService";
 
 export const withEvents = (container: Container) => {
     const es = container.get(EventService);
