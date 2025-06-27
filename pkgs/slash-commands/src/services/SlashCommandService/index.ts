@@ -1,10 +1,4 @@
-import {
-    HadesClient,
-    HadesContainer,
-    listener,
-    listenFor,
-    singleton,
-} from "@hades-ts/hades";
+import { HadesClient, listener, listenFor, singleton } from "@hades-ts/hades";
 import {
     type AutocompleteInteraction,
     type BaseInteraction,
@@ -13,7 +7,7 @@ import {
     type CommandInteraction,
     Events,
 } from "discord.js";
-import { inject } from "inversify";
+import { Container, inject } from "inversify";
 
 import { SlashArgError } from "../../errors";
 import { getSlashCommandMetas } from "../../metadata";
@@ -37,8 +31,8 @@ export class SlashCommandService {
         }
     }
 
-    @inject(HadesContainer)
-    protected container!: HadesContainer;
+    @inject(Container)
+    protected container!: Container;
 
     /** factories for creating command instances */
     @inject(SlashCommandFactoryRegistry)

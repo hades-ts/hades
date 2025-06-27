@@ -1,5 +1,5 @@
 import { inject, injectable } from "inversify";
-import { HadesClient } from "./HadesClient";
+import { HadesClient } from "../services/HadesClient";
 import type { ILoginService } from "./ILogin";
 
 @injectable()
