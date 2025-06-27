@@ -1,24 +1,18 @@
-import { HadesBotService, singleton } from "@hades-ts/hades";
-import { SlashCommandService } from "@hades-ts/slash-commands";
-import type { Interaction } from "discord.js";
+import { HadesClient, listener, listenFor, singleton } from "@hades-ts/hades";
+import { Events } from "discord.js";
 import { inject } from "inversify";
 
+@listener()
 @singleton()
-export class BotService extends HadesBotService {
-    @inject(SlashCommandService)
-    protected slashCommands: SlashCommandService;
+export class BotService {
+    @inject(HadesClient)
+    protected client!: HadesClient;
 
+    @listenFor(Events.ClientReady)
     async onReady() {
-        console.log(`Logged in as ${this.client.user.username}.`);
-        await this.slashCommands.registerCommands(this.client);
+        console.log(`Logged in as ${this.client.user?.username || "Unknown"}.`);
         this.client.guilds.cache.forEach((guild) => {
             console.log(` - ${guild.name} (${guild.id})`);
         });
-    }
-
-    async onInteractionCreate<T extends Interaction>(interaction: T) {
-        if (interaction.isCommand()) {
-            this.slashCommands.dispatch(interaction);
-        }
     }
 }
