@@ -34,7 +34,7 @@ const installCommandHelpers = (container: Container, metas: Metas) => {
 
 /**
  * Binds SlashCommandFactory instances for each @command
- * @param container The HadesContainer to use.
+ * @param container The Container to use.
  */
 export const installCommands = (container: Container) => {
     const metas = getSlashCommandMetas();

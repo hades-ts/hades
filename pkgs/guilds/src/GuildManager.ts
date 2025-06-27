@@ -1,6 +1,6 @@
-import { HadesClient, HadesContainer, singleton } from "@hades-ts/hades";
+import { HadesClient, singleton } from "@hades-ts/hades";
 import type { Guild } from "discord.js";
-import { type Container, inject, optional } from "inversify";
+import { Container, inject, optional } from "inversify";
 
 import { makeGuildContainer } from "./decorators";
 import type { GuildBinder } from "./GuildBinder";
@@ -12,7 +12,7 @@ export type GuildFetcher = () => Promise<Guild>;
 export class GuildManager {
     protected guildContainers: Record<string, Container> = {};
 
-    @inject(HadesContainer)
+    @inject(Container)
     protected container!: Container;
 
     @inject(HadesClient)
