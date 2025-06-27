@@ -103,7 +103,6 @@ export class SlashCommandService {
 
     async registerCommands(client: HadesClient) {
         const config = this.getCommandRegistrationMeta();
-        console.log(JSON.stringify(config, null, 2));
         await client.application?.commands.set(config);
     }
 
