@@ -23,7 +23,7 @@ export class SlashArgInstaller {
     /** the argument's description */
     description: string;
     /** the parser instance used to get the value */
-    parser: SlashArgParser;
+    parser?: SlashArgParser;
     /** validator installers for this argument */
     validatorInstallers: InstallerFunc[];
     /** methods for validating this argument's value */
@@ -63,10 +63,12 @@ export class SlashArgInstaller {
 
     private throwIfValueIsEmpty(value: any) {
         if (value === null || value === undefined) {
-            throw new SlashArgError(
-                `argument \`${this.name}\` must be a ${this.parser.name}.`,
-                true,
-            );
+            if (this.parser !== undefined) {
+                throw new SlashArgError(
+                    `argument \`${this.name}\` must be a ${this.parser.name}.`,
+                    true,
+                );
+            }
         }
     }
 
