@@ -474,6 +474,9 @@ importers:
       '@hades-ts/slash-commands':
         specifier: workspace:^
         version: link:../../pkgs/slash-commands
+      '@hades-ts/slash-help':
+        specifier: workspace:^
+        version: link:../../pkgs/slash-help
       '@hades-ts/stash':
         specifier: workspace:^
         version: link:../../pkgs/stash
@@ -546,6 +549,9 @@ importers:
       typeorm:
         specifier: ~0.2.45
         version: 0.2.45(pg@8.16.3)(sqlite3@5.1.7)
+      word-wrap:
+        specifier: ^1.2.5
+        version: 1.2.5
       zod:
         specifier: ~3.25.67
         version: 3.25.67

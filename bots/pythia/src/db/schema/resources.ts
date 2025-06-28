@@ -1,26 +1,47 @@
-import { sql } from "drizzle-orm";
-import { pgTable, text, timestamp, varchar } from "drizzle-orm/pg-core";
-import { createSelectSchema } from "drizzle-zod";
-import { nanoid } from "nanoid";
+import {
+    bigint,
+    index,
+    integer,
+    pgTable,
+    serial,
+    text,
+    varchar,
+    vector,
+} from "drizzle-orm/pg-core";
+import { createInsertSchema } from "drizzle-zod";
 import type { z } from "zod/v4";
 
 export const resources = pgTable("resources", {
-    id: varchar("id", { length: 191 })
-        .primaryKey()
-        .$defaultFn(() => nanoid()),
-    content: text("content").notNull(),
-    createdAt: timestamp("created_at").notNull().default(sql`now()`),
-    updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+    id: serial("id").primaryKey(),
+    resourceId: integer("resource_id").notNull(),
+    guildId: bigint("guild_id", { mode: "number" }).notNull(),
+    userId: varchar("user_id").notNull(),
+    title: text("title").notNull(),
+    length: integer("length").notNull(),
 });
 
-// Schema for resources - used to validate API requests
-export const insertResourceSchema = createSelectSchema(resources)
-    .extend({})
-    .omit({
-        id: true,
-        createdAt: true,
-        updatedAt: true,
-    });
+export const resourceChunks = pgTable(
+    "resource_chunks",
+    {
+        id: serial("id").primaryKey(),
+        resourceId: integer("resource_id")
+            .notNull()
+            .references(() => resources.id, { onDelete: "cascade" }),
+        content: text("content").notNull(),
+        vector: vector("vector", { dimensions: 1536 }).notNull(),
+        startLine: integer("start_line").notNull(),
+        endLine: integer("end_line").notNull(),
+    },
+    (table) => ({
+        embeddingIndex: index("embedding_idx").using(
+            "hnsw",
+            table.vector.op("vector_cosine_ops"),
+        ),
+    }),
+);
 
-// Type for resources - used to type API request params and within Components
-export type NewResourceParams = z.infer<typeof insertResourceSchema>;
+export const insertResourceSchema = createInsertSchema(resources);
+export type NewResource = z.infer<typeof insertResourceSchema>;
+
+export const insertResourceChunkSchema = createInsertSchema(resourceChunks);
+export type NewResourceChunk = z.infer<typeof insertResourceChunkSchema>;
