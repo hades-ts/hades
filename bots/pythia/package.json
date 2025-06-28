@@ -26,6 +26,7 @@
         "@hades-ts/core": "workspace:^",
         "@hades-ts/guilds": "workspace:^",
         "@hades-ts/slash-commands": "workspace:^",
+        "@hades-ts/slash-help": "workspace:^",
         "@hades-ts/stash": "workspace:^",
         "@ldlework/categoric-containers": "catalog:",
         "@ldlework/categoric-decorators": "catalog:",
@@ -50,6 +51,7 @@
         "rxjs": "^7.8.2",
         "sqlite3": "^5.1.7",
         "typeorm": "~0.2.45",
+        "word-wrap": "^1.2.5",
         "zod": "~3.25.67"
     },
     "devDependencies": {
