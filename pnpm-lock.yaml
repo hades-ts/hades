@@ -1572,6 +1572,73 @@ importers:
         specifier: 'catalog:'
         version: 5.8.3
 
+  pkgs/sync:
+    dependencies:
+      gray-matter:
+        specifier: ^4.0.3
+        version: 4.0.3
+      yaml:
+        specifier: ^2.8.0
+        version: 2.8.0
+      zod:
+        specifier: ~3.25.67
+        version: 3.25.67
+    devDependencies:
+      '@hades-ts/core':
+        specifier: workspace:^
+        version: link:../core
+      '@hades-ts/guilds':
+        specifier: workspace:^
+        version: link:../guilds
+      '@hades-ts/stash':
+        specifier: workspace:^
+        version: link:../stash
+      '@hades-ts/tsconfig':
+        specifier: workspace:*
+        version: link:../../libs/tsconfig
+      '@ldlework/inversify-binding-decorators':
+        specifier: 'catalog:'
+        version: 4.0.2
+      '@ldlework/inversify-config-injection':
+        specifier: 'catalog:'
+        version: 0.1.0(inversify@7.5.4(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
+      '@types/node':
+        specifier: 'catalog:'
+        version: 24.0.3
+      discord.js:
+        specifier: 'catalog:'
+        version: 14.20.0
+      eslint:
+        specifier: ^8.57.1
+        version: 8.57.1
+      eslint-plugin-eslint-plugin:
+        specifier: ^5.5.1
+        version: 5.5.1(eslint@8.57.1)
+      eslint-plugin-node:
+        specifier: ^11.1.0
+        version: 11.1.0(eslint@8.57.1)
+      eslint-plugin-simple-import-sort:
+        specifier: ^8.0.0
+        version: 8.0.0(eslint@8.57.1)
+      eslint-plugin-unused-imports:
+        specifier: ~3.2.0
+        version: 3.2.0(@typescript-eslint/eslint-plugin@6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)
+      inversify:
+        specifier: 'catalog:'
+        version: 7.5.4(reflect-metadata@0.2.2)
+      pkgroll:
+        specifier: 'catalog:'
+        version: 2.13.1(typescript@5.8.3)
+      rimraf:
+        specifier: ^6.0.1
+        version: 6.0.1
+      tsconfig-paths:
+        specifier: ^4.2.0
+        version: 4.2.0
+      typescript:
+        specifier: 'catalog:'
+        version: 5.8.3
+
   pkgs/tags:
     dependencies:
       '@types/luxon':
@@ -26440,7 +26507,7 @@ snapshots:
     dependencies:
       hosted-git-info: 4.1.0
       is-core-module: 2.16.1
-      semver: 7.3.8
+      semver: 7.7.2
       validate-npm-package-license: 3.0.4
 
   normalize-package-data@6.0.2:

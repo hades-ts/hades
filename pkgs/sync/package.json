@@ -1,0 +1,63 @@
+{
+    "name": "@hades-ts/sync",
+    "version": "0.0.7",
+    "description": "A simple file-based channel sync for Hades.",
+    "author": "",
+    "license": "ISC",
+    "homepage": "https://github.com/hades-ts/hades#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/hades-ts/hades.git"
+    },
+    "bugs": {
+        "url": "https://github.com/hades-ts/hades/issues"
+    },
+    "type": "commonjs",
+    "exports": {
+        "require": "./dist/index.cjs",
+        "import": "./dist/index.mjs",
+        "types": "./dist/index.d.ts"
+    },
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "map": "tsc --emitDeclarationOnly --declaration --declarationMap",
+        "build": "pkgroll --sourcemap && pnpm run map",
+        "clean": "rimraf dist",
+        "watch": "tsc -p tsconfig.json -w"
+    },
+    "devDependencies": {
+        "@hades-ts/guilds": "workspace:^",
+        "@hades-ts/core": "workspace:^",
+        "@hades-ts/stash": "workspace:^",
+        "@hades-ts/tsconfig": "workspace:*",
+        "@ldlework/inversify-binding-decorators": "catalog:",
+        "@ldlework/inversify-config-injection": "catalog:",
+        "@types/node": "catalog:",
+        "discord.js": "catalog:",
+        "eslint": "^8.57.1",
+        "eslint-plugin-eslint-plugin": "^5.5.1",
+        "eslint-plugin-node": "^11.1.0",
+        "eslint-plugin-simple-import-sort": "^8.0.0",
+        "eslint-plugin-unused-imports": "~3.2.0",
+        "inversify": "catalog:",
+        "pkgroll": "catalog:",
+        "rimraf": "^6.0.1",
+        "tsconfig-paths": "^4.2.0",
+        "typescript": "catalog:"
+    },
+    "peerDependencies": {
+        "@hades-ts/core": "workspace:^",
+        "@hades-ts/stash": "workspace:^",
+        "@ldlework/inversify-binding-decorators": "^4.0.1",
+        "@ldlework/inversify-config-injection": "catalog:",
+        "discord.js": "catalog:",
+        "inversify": "catalog:"
+    },
+    "dependencies": {
+        "gray-matter": "^4.0.3",
+        "yaml": "^2.8.0",
+        "zod": "~3.25.67"
+    }
+}
