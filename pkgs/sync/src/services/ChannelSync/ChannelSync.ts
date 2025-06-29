@@ -1,4 +1,5 @@
 import type { HadesClient } from "@hades-ts/core";
+import { type BaseFiletypeStash, MarkdownStash } from "@hades-ts/stash";
 import {
     ChannelType,
     type GuildTextBasedChannel,
@@ -7,10 +8,8 @@ import {
 import fs from "fs";
 import path from "path";
 import { z } from "zod";
-
 import { type EmbedSchema, embedSchema } from "../../schemas";
 import { renderComponents, renderEmbedRecord } from "../../utils";
-import { type BaseFiletypeStash, MarkdownStash } from "../Stash";
 
 export class ChannelSync {
     // eslint-disable-next-line no-useless-constructor
