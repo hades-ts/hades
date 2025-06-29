@@ -1,8 +1,7 @@
-import type { z } from "zod";
-
-import { BaseFiletypeStash } from "./BaseFiletypeStash";
 import matter from "gray-matter";
 import yaml from "yaml";
+import type { z } from "zod";
+import { BaseFiletypeStash } from "./BaseFiletypeStash";
 
 export class MarkdownStash<
     T extends z.ZodTypeAny,

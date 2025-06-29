@@ -1,29 +1,28 @@
-import fs from "fs";
-import path from "path";
+import fs from "node:fs";
+import path from "node:path";
 import type { z } from "zod";
-
-import { ExtensionLocator } from "../Locator/SimpleLocator";
 
 export type ZodWithId<T extends z.ZodTypeAny> = z.TypeOf<T> & { id: string };
 
 export abstract class BaseFiletypeStash<T extends z.ZodTypeAny> {
-    locator: ExtensionLocator;
-
     constructor(
         public readonly path: string,
         public readonly extension: string,
         public readonly schema: T,
-    ) {
-        this.locator = new ExtensionLocator(path, extension);
-    }
+    ) {}
 
     abstract deserialize(content: string): z.TypeOf<T>;
     abstract serialize(content: z.TypeOf<T>): string;
 
+    findAllSync(): string[] {
+        const files = fs.readdirSync(this.path);
+        return files.filter((file) => file.endsWith(this.extension));
+    }
+
     index(): string[] {
-        return this.locator
-            .findAllSync()
-            .map((filepath) => path.basename(filepath, `.${this.extension}`));
+        return this.findAllSync().map((filepath) =>
+            path.basename(filepath, `.${this.extension}`),
+        );
     }
 
     filepathFor(id: string): string {
