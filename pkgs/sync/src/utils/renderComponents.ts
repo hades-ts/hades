@@ -7,10 +7,6 @@ export const renderComponents = (
 ): ActionRowBuilder<ButtonBuilder> => {
     const rowBuilder = new ActionRowBuilder<ButtonBuilder>();
 
-    if (embedRecord.buttons) {
-        console.log("buttons -", JSON.stringify(embedRecord.buttons, null, 2));
-    }
-
     for (const button of embedRecord.buttons) {
         const buttonBuilder = buildButton(button);
         rowBuilder.addComponents(buttonBuilder);

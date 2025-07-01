@@ -2,7 +2,6 @@ import { singleton } from "@hades-ts/core";
 import type {
     ApplicationCommandType,
     ComponentType,
-    Events,
     InteractionType,
 } from "discord.js";
 import { multiInject, postConstruct } from "inversify";
@@ -20,16 +19,12 @@ export class InteractionFactoryRegistry {
 
     @postConstruct()
     init() {
-        console.log("Initializing InteractionFactoryRegistry");
         for (const factory of this.factories) {
             if (!this.map.has(factory.interaction)) {
                 this.map.set(factory.interaction, new Map());
             }
             const subTypeMap = this.map.get(factory.interaction);
             if (!subTypeMap?.has(factory.subType ?? null)) {
-                console.log(
-                    `Adding factory for interaction ${factory.interaction} with subType ${factory.subType}`,
-                );
                 subTypeMap?.set(factory.subType ?? null, factory);
             }
         }

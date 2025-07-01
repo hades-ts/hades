@@ -35,11 +35,6 @@ export function listenFor<TEvent extends keyof ClientEvents>(event: TEvent) {
         const methodMeta = meta.getMethodMeta(String(methodName));
         methodMeta.event = event;
         methodMeta.once = false;
-        console.info(
-            `Added listener for ${event} to ${target.constructor.name}.${String(
-                methodName,
-            )}`,
-        );
     };
 }
 
@@ -86,8 +81,6 @@ export function getListenerMeta(target: SI): ListenerMeta {
     if (meta === undefined) {
         meta = new ListenerMeta();
         metas.set(target, meta);
-        console.info(`Created listener meta for:`);
-        console.info(target);
     }
     return meta;
 }

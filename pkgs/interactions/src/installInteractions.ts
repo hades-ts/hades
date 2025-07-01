@@ -33,9 +33,6 @@ const groupMetasByInteractionAndSubType = (
         }
         const types = subMap?.get(data.subType);
         if (types) {
-            console.log(
-                `Adding interaction ${(target as any).name} to ${data.type} with subType ${data.subType}`,
-            );
             types.push(target as Newable<Interaction>);
         }
     }
@@ -58,9 +55,6 @@ const installCommandFactories = (
                 subType ?? undefined,
                 types,
             );
-            console.log(
-                `Binding factory for interaction ${interaction} with subType ${subType}`,
-            );
             container
                 .bind<InteractionFactory>(InteractionFactory)
                 .toConstantValue(factory);
@@ -74,8 +68,6 @@ const installCommandFactories = (
  */
 export const withInteractions = (container: Container) => {
     const metas = Array.from(findInteractions().values());
-    console.log("withInteractions found metas:");
-    console.log("Found", metas.length, "interactions");
     installCommandFactories(container, metas);
     container.get(InteractionService);
 };

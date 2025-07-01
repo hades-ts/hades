@@ -101,7 +101,6 @@ export class DiscordService {
         type: ChannelType,
         guildId: string,
     ) {
-        console.log(`Grabbing channels of type ${type} for guild ${guildId}`);
         const guild = this.guilds.get(guildId);
         if (guild !== undefined) {
             return guild.channels.cache

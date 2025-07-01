@@ -42,7 +42,6 @@ export class SlashCommandService {
     // help: SlashCommandHelpService
 
     async execute(interaction: ChatInputCommandInteraction) {
-        console.log(`Executing command: ${interaction.commandName}`);
         const factory = this.factories.factoryFor(interaction.commandName);
 
         if (factory) {

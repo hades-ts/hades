@@ -1,6 +1,7 @@
-import { singleton } from "@hades-ts/core";
+import { service, singleton } from "@hades-ts/core";
+import { tool } from "ai";
 import { inject } from "inversify";
-import { z } from "zod/v4";
+import { z } from "zod";
 import { SearchFactsAction } from "../../db/actions/facts";
 
 export const SearchFactsSchema = z.object({
@@ -10,7 +11,7 @@ export const SearchFactsSchema = z.object({
 
 export type SearchFactsSchema = z.infer<typeof SearchFactsSchema>;
 
-@singleton()
+@service()
 export class SearchFactsTool {
     @inject(SearchFactsAction)
     private searchFactsAction!: SearchFactsAction;
@@ -20,12 +21,11 @@ export class SearchFactsTool {
             this.searchFactsAction.execute(guildId, query);
     }
 
-    $() {
-        return {
-            name: "searchFacts",
+    get $() {
+        return tool({
             description: "Search for facts in your knowledge-base.",
             parameters: SearchFactsSchema,
             execute: this.makeCallback(),
-        };
+        });
     }
 }

@@ -3,8 +3,6 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-console.log(process.env);
-
 import { boot } from "@hades-ts/core";
 import { withSlashCommands } from "@hades-ts/slash-commands";
 import { withHelp } from "@hades-ts/slash-help";
