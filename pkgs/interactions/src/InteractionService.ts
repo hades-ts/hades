@@ -16,7 +16,6 @@ export class InteractionService {
 
     @listenFor(Events.InteractionCreate)
     onInteractionCreate(interaction: BaseInteraction) {
-        console.log("Interaction created", interaction.type);
         return this.dispatch(interaction);
     }
 

@@ -11,6 +11,8 @@ import { Events, type GuildChannel, type Message } from "discord.js";
 import dotenv from "dotenv";
 import { inject } from "inversify";
 import z from "zod";
+import { CreateFactTool } from "../ai/tools/createFact";
+import { SearchFactsTool } from "../ai/tools/searchFacts";
 import type { GuildConfig } from "../config";
 import { MessageChainFetcher } from "./MessageChainFetcher";
 import { MessageChainFormatter } from "./MessageChainFormatter";
@@ -43,6 +45,12 @@ export class MentionHandler {
 
     @inject(RoleInfoService)
     protected roleInfoService!: RoleInfoService;
+
+    @inject(CreateFactTool)
+    protected createFactTool!: CreateFactTool;
+
+    @inject(SearchFactsTool)
+    protected searchFactsTool!: SearchFactsTool;
 
     @listenFor(Events.MessageCreate)
     async handle(message: Message) {
@@ -184,11 +192,10 @@ NEVER PING @EVERYONE.
             temperature: 0.7,
             maxSteps: 5,
             maxRetries: 3,
-            onStepFinish: (step) => {
-                console.log("Step finished:");
-                console.log(step);
-            },
+            // onStepFinish: (step) => {},
             tools: {
+                searchFacts: this.searchFactsTool.$,
+                createFact: this.createFactTool.$,
                 getShortTermContext: tool({
                     description:
                         "Get N messages prior to the current message, whether or not they are from you or the user. Use this when the user seems to refer to missing previous context.",
@@ -236,18 +243,11 @@ NEVER PING @EVERYONE.
                     execute: async ({ roleId }) => {
                         const content =
                             await this.roleInfoService.fetchUsersInRole(roleId);
-                        console.log("Fetching users in role:", roleId);
-                        console.log(content);
                         return { content };
                     },
                 }),
             },
         });
-
-        console.log("---");
-        console.log(response);
-        console.log((response.response.body as any).output);
-        console.log("---");
 
         await message.reply(response.text || "No response");
     }

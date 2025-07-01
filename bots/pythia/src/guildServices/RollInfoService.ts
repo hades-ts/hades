@@ -41,19 +41,12 @@ export class RoleInfoService {
     }
 
     async fetchUsersInRole(roleId: string) {
-        console.log("Fetching users in role:", roleId);
         const guild = await this.guild;
-        console.log("Guild:", guild.id);
-        console.log("Fetching members...");
         await guild.members.fetch();
-        console.log("Members fetched:", guild.members.cache.size);
-
         const roleMembers = [];
 
         for (const member of Array.from(guild.members.cache.values())) {
-            console.log("Member:", member.id);
             if (member.roles.cache.has(roleId)) {
-                console.log("Member has role:", member.id);
                 roleMembers.push(member);
             }
         }

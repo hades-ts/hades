@@ -1,4 +1,4 @@
-import { HadesClient, singleton } from "@hades-ts/core";
+import { HadesClient } from "@hades-ts/core";
 import type { ClientEvents } from "discord.js";
 import { inject } from "inversify";
 import { guildService } from "../decorators";
@@ -21,42 +21,29 @@ export class GuildEventService {
      * @param bot The bot to register callbacks for.
      */
     register(bot: object) {
-        console.log(
-            `registering guild listener ${bot.constructor.name} in guild ${this.guildInfo.id}`,
-        );
         const metas = getListenerMetas();
 
         let ctor = Object.getPrototypeOf(bot).constructor;
 
         while (ctor !== Object.prototype) {
-            console.log(`ctor: ${ctor.name}`);
             const meta = metas.get(ctor as SI);
 
             if (meta === undefined) {
-                console.log(`meta is undefined`);
                 return;
             }
 
-            console.log(`meta: ${meta}`);
-
             for (const methodMeta of meta.methods.values()) {
-                console.log(`methodMeta: ${methodMeta}`);
                 const method = bot[methodMeta.name as keyof typeof bot] as (
                     ...args: any[]
                 ) => void;
 
                 if (method === undefined) {
-                    console.log(`method is undefined`);
                     throw new Error(
                         `Method ${methodMeta.name} not found on ${bot.constructor.name}`,
                     );
                 }
 
                 const event = methodMeta.event as keyof ClientEvents;
-
-                console.log(
-                    `registering event ${event} in guild ${this.guildInfo.id} against method ${methodMeta.name}`,
-                );
 
                 if (event === "applicationCommandPermissionsUpdate") {
                     this.client.on(event, (data) => {

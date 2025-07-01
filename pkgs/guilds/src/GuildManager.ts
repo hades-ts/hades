@@ -63,10 +63,6 @@ export class GuildManager {
                 subContainer.onActivation(
                     listenerClass,
                     (_context, instance) => {
-                        console.log(
-                            "registering guild listener",
-                            listenerClass,
-                        );
                         es.register(instance as any);
                         return instance;
                     },

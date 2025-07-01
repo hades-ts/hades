@@ -49,12 +49,10 @@ export class SlashArgInstaller {
         const value = await this.parse(interaction);
 
         // install validators
-        console.log(`Installing validators for ${this.name}...`);
         this.installValidators(di);
         di.bind(SlashArgInstaller).toConstantValue(this);
         di.bind(ChatInputCommandInteraction).toConstantValue(interaction);
         // resolve and run validators
-        console.log(`Executing validators for ${this.name}...`);
         await this.executeValidators(di, value);
 
         // finally bind the validated value in the subcontainer

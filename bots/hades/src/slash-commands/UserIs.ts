@@ -22,7 +22,6 @@ export class UserIsCommand extends SlashCommand {
     role: Role;
 
     async execute() {
-        console.log(JSON.stringify(this.who, null, 2));
         this.who.roles.cache.has(this.role.id)
             ? await this.followUp(
                   `Yes, <@!${this.who.id}> is a member of <@&${this.role.id}>.`,
