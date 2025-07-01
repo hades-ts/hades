@@ -21,6 +21,7 @@
         "@hades-ts/slash-commands": "workspace:^",
         "@hades-ts/slash-help": "workspace:^",
         "@hades-ts/stash": "workspace:^",
+        "@hades-ts/logging": "workspace:^",
         "@ldlework/categoric-containers": "catalog:",
         "@ldlework/categoric-decorators": "catalog:",
         "@ldlework/inversify-binding-decorators": "catalog:",
