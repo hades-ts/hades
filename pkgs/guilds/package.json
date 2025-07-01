@@ -25,7 +25,7 @@
         "map": "tsc --emitDeclarationOnly --declaration --declarationMap",
         "build": "pkgroll --sourcemap && pnpm run map",
         "clean": "rimraf dist",
-        "rebuild": "rm -rf dist && npm run build",
+        "rebuild": "rm -rf dist && pnpm run build",
         "watch": "tsc -p tsconfig.json -w"
     },
     "devDependencies": {
