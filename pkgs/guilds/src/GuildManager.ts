@@ -1,8 +1,22 @@
-import { HadesClient } from "@hades-ts/core";
-import type { Guild } from "discord.js";
-import { Container, inject, optional } from "inversify";
+import {
+    HadesClient,
+    listener,
+    listenFor,
+    service,
+    singleton,
+    withServices,
+} from "@hades-ts/core";
+import { Events, type Guild } from "discord.js";
+import {
+    Container,
+    inject,
+    injectable,
+    optional,
+    type ServiceIdentifier,
+} from "inversify";
 
-import { makeGuildContainer } from "./decorators";
+import { findGuildServices, makeGuildContainer } from "./decorators";
+import { findGuildListeners, GuildEventService } from "./events";
 import type { GuildBinder } from "./GuildBinder";
 import { guildTokens } from "./tokens";
 
@@ -18,6 +32,7 @@ export class GuildInfo<T = unknown> {
     ) {}
 }
 
+@listener()
 export class GuildManager {
     protected guildContainers: Record<string, Container> = {};
 
@@ -33,6 +48,36 @@ export class GuildManager {
     @optional()
     @inject(guildTokens.GuildBinder)
     protected guildBinder?: GuildBinder;
+
+    @listenFor(Events.ClientReady)
+    async onClientReady() {
+        console.log("GuildManager is ready");
+        for (const guild of this.client.guilds.cache.values()) {
+            const subContainer = await this.get(guild);
+
+            const es = subContainer.get(GuildEventService);
+            const listeners = findGuildListeners();
+
+            for (const [_name, data] of listeners) {
+                const listenerClass = data.target as any;
+                subContainer.onActivation(
+                    listenerClass,
+                    (_context, instance) => {
+                        console.log(
+                            "registering guild listener",
+                            listenerClass,
+                        );
+                        es.register(instance as any);
+                        return instance;
+                    },
+                );
+            }
+
+            for (const [type] of findGuildServices()) {
+                subContainer.get(type as ServiceIdentifier<any>);
+            }
+        }
+    }
 
     protected async setupGuild(guild: Guild) {
         const subContainer: Container = makeGuildContainer(this.container);

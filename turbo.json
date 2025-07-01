@@ -8,8 +8,8 @@
             "cache": false
         },
         "build": {
-            "dependsOn": ["clean", "^build"],
-            "inputs": ["$TURBO_DEFAULTS", ".env*"],
+            "dependsOn": ["^build"],
+            "inputs": ["src/**", "$TURBO_DEFAULTS", ".env*"],
             "outputs": ["dist/**"]
         },
         "watch": {

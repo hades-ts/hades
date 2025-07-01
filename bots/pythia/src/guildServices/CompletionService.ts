@@ -3,20 +3,19 @@ import { guildSingleton } from "@hades-ts/guilds";
 import type { GuildMember } from "discord.js";
 import { inject } from "inversify";
 
-import { OpenAIClient } from "../services/OpenAIClient";
+// import { OpenAIClient } from "../services/OpenAIClient";
 import { QuotaService } from "../services/QuotaService";
 import type { Thread } from "../types";
 import { QuotaBypassService } from "./QuotaBypassService";
 import { RecordService } from "./RecordService";
 import { ThreadFormatter } from "./ThreadFormatter";
 
-@guildSingleton()
 export class CompletionService {
     @inject(HadesClient)
     protected client!: HadesClient;
 
-    @inject(OpenAIClient)
-    protected openai!: OpenAIClient;
+    // @inject(OpenAIClient)
+    // protected openai!: OpenAIClient;
 
     @inject(ThreadFormatter)
     protected formatter!: ThreadFormatter;
@@ -63,25 +62,25 @@ export class CompletionService {
      * @returns The completed Thread
      */
     async complete(thread: Thread) {
-        const lastMessage = thread.messages[thread.messages.length - 1];
-        const prompt = this.formatter.format(thread);
-        const { completion, tokens } = await this.openai.complete(prompt);
+        // const lastMessage = thread.messages[thread.messages.length - 1];
+        // const prompt = this.formatter.format(thread);
+        // const { completion, tokens } = await this.openai.complete(prompt);
 
-        // get the member based on the thread.guildId and lastMessage.authorId
-        const guild = await this.client.guilds.fetch(thread.guildId);
-        const member = guild.members.cache.get(lastMessage.authorId);
+        // // get the member based on the thread.guildId and lastMessage.authorId
+        // const guild = await this.client.guilds.fetch(thread.guildId);
+        // const member = guild.members.cache.get(lastMessage.authorId);
 
-        if (member && !this.bypass.isExempted(member)) {
-            this.quota.spendTokens(member.id, tokens);
-        }
+        // if (member && !this.bypass.isExempted(member)) {
+        //     this.quota.spendTokens(member.id, tokens);
+        // }
 
-        thread.messages.push({
-            authorId: this.client.user!.id,
-            authorName: this.client.user!.username,
-            content: completion,
-        });
+        // thread.messages.push({
+        //     authorId: this.client.user!.id,
+        //     authorName: this.client.user!.username,
+        //     content: completion,
+        // });
 
-        this.records.saveThread(thread);
+        // this.records.saveThread(thread);
 
         return thread;
     }

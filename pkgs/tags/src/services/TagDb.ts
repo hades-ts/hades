@@ -1,7 +1,7 @@
 import fs from "fs";
 import { DateTime } from "luxon";
 import path from "path";
-import { z } from "zod";
+import { z } from "zod/v4";
 
 export const tagSchema = z.object({
     tag: z.string(),

@@ -7,7 +7,7 @@ import { HadesClient } from "../services/HadesClient";
  * A callback service for Discord events.
  */
 @singleton()
-export abstract class EventService {
+export class EventService {
     @inject(HadesClient)
     protected client!: HadesClient;
 

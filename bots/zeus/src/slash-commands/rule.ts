@@ -6,13 +6,13 @@ import {
     type ICompleter,
     SlashCommand,
 } from "@hades-ts/slash-commands";
+import type { MarkdownStashData, Record } from "@hades-ts/stash";
 import {
     ApplicationCommandOptionType,
     AutocompleteInteraction,
     EmbedBuilder,
 } from "discord.js";
 import { inject, injectable } from "inversify";
-
 import type { RuleConfig } from "../config";
 import { GuildServiceFactory } from "../services";
 
@@ -36,10 +36,10 @@ class RuleCompleter implements ICompleter {
         );
     }
 
-    protected makeChoices(rules: Array<RuleConfig & { id: string }>) {
-        return rules.map((rule) => ({
-            name: `${rule.title}: ${rule.description}`,
-            value: rule.id,
+    protected makeChoices(rules: Array<Record<MarkdownStashData<RuleConfig>>>) {
+        return rules.map(({ data, id }) => ({
+            name: `${data.data.title}: ${data.data.description}`,
+            value: id,
         }));
     }
 
@@ -47,14 +47,16 @@ class RuleCompleter implements ICompleter {
         const guildService = await this.guildServiceFactory.getGuildService(
             this.interaction.guild!,
         );
-        const rules = guildService.rules.stash.filter((rule) => {
-            if (value.trim() === "") {
-                return true;
-            }
-            const tokens = this.tokenize(rule);
-            const searchTokens = value.split(/\s+/);
-            return this.compare(tokens, searchTokens);
-        });
+        const rules = guildService.rules.stash.filter(
+            (rule: MarkdownStashData<RuleConfig>) => {
+                if (value.trim() === "") {
+                    return true;
+                }
+                const tokens = this.tokenize(rule.data);
+                const searchTokens = value.split(/\s+/);
+                return this.compare(tokens, searchTokens);
+            },
+        );
 
         return this.makeChoices(rules);
     }
@@ -100,13 +102,15 @@ export class RuleCommand extends SlashCommand {
             return;
         }
 
+        const embed = rule.data.data;
+
         await this.interaction.reply({
             embeds: [
                 new EmbedBuilder()
-                    .setTitle(rule.title)
-                    .setDescription(rule.content)
+                    .setTitle(embed.title)
+                    .setDescription(embed.content)
                     .setFooter({
-                        text: rule.description,
+                        text: embed.description,
                     }),
             ],
         });

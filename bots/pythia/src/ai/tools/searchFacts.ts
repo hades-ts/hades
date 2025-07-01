@@ -1,11 +1,10 @@
+import { singleton } from "@hades-ts/core";
 import { inject } from "inversify";
 import { z } from "zod/v4";
-
-import { singleton } from "@hades-ts/core";
 import { SearchFactsAction } from "../../db/actions/facts";
 
 export const SearchFactsSchema = z.object({
-    guildId: z.number().describe("The guild ID to search for facts in."),
+    guildId: z.string().describe("The guild ID to search for facts in."),
     query: z.string().describe("The search query."),
 });
 

@@ -1,4 +1,7 @@
+import { singleton } from "@hades-ts/core";
 import { and, eq, inArray } from "drizzle-orm";
+import { PostgresJsDatabase } from "drizzle-orm/postgres-js";
+import { inject } from "inversify";
 import { generateEmbedding, generateEmbeddings } from "../../ai/embeddings";
 import {
     insertResourceChunkSchema,
@@ -8,9 +11,6 @@ import {
     resources,
 } from "../schema";
 import { vectorize } from "../utils";
-import { singleton } from "@hades-ts/core";
-import { PostgresJsDatabase } from "drizzle-orm/postgres-js";
-import { inject } from "inversify";
 
 export const createResource = async (
     db: PostgresJsDatabase,
@@ -50,12 +50,23 @@ export class CreateResourceAction {
     @inject(PostgresJsDatabase)
     private db!: PostgresJsDatabase;
 
-    async execute(guildId: number, userId: string, id: number, title: string, content: string) {
+    async execute(
+        guildId: number,
+        userId: string,
+        id: number,
+        title: string,
+        content: string,
+    ) {
         return createResource(this.db, guildId, userId, id, title, content);
     }
 }
 
-export const searchResources = async (db: PostgresJsDatabase, guildId: number, query: string, resourceIds?: number[]) => {
+export const searchResources = async (
+    db: PostgresJsDatabase,
+    guildId: number,
+    query: string,
+    resourceIds?: number[],
+) => {
     const queryEmbedding = await generateEmbedding(query);
 
     const results = await db
@@ -107,7 +118,11 @@ export class SearchResourcesAction {
     }
 }
 
-export const searchResource = async (db: PostgresJsDatabase, resourceId: number, query: string) => {
+export const searchResource = async (
+    db: PostgresJsDatabase,
+    resourceId: number,
+    query: string,
+) => {
     const queryEmbedding = await generateEmbedding(query);
 
     return db
@@ -131,7 +146,10 @@ export class SearchResourceAction {
     }
 }
 
-export const deleteResource = async (db: PostgresJsDatabase, resourceId: number) => {
+export const deleteResource = async (
+    db: PostgresJsDatabase,
+    resourceId: number,
+) => {
     return db.delete(resources).where(eq(resources.id, resourceId));
 };
 

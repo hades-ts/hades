@@ -1,12 +1,11 @@
+import { singleton } from "@hades-ts/core";
 import { inject } from "inversify";
 import { z } from "zod/v4";
-
-import { singleton } from "@hades-ts/core";
 import { CreateFactAction } from "../../db/actions/facts";
 
 export const CreateFactSchema = z.object({
     guildId: z
-        .number()
+        .string()
         .describe("The guild ID where the fact is being created."),
     userId: z.string().describe("The user ID of the user creating the fact."),
     content: z.string().describe("The content of the fact."),

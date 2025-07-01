@@ -33,7 +33,7 @@ export const resourceChunks = pgTable(
         endLine: integer("end_line").notNull(),
     },
     (table) => ({
-        embeddingIndex: index("embedding_idx").using(
+        embeddingIndex: index("resource_chunk_embedding_idx").using(
             "hnsw",
             table.vector.op("vector_cosine_ops"),
         ),
@@ -41,7 +41,23 @@ export const resourceChunks = pgTable(
 );
 
 export const insertResourceSchema = createInsertSchema(resources);
-export type NewResource = z.infer<typeof insertResourceSchema>;
+// export type NewResource = z.infer<typeof insertResourceSchema>;
+
+export type NewResource = {
+    resourceId: number;
+    guildId: number;
+    userId: string;
+    title: string;
+    length: number;
+};
 
 export const insertResourceChunkSchema = createInsertSchema(resourceChunks);
-export type NewResourceChunk = z.infer<typeof insertResourceChunkSchema>;
+// export type NewResourceChunk = z.infer<typeof insertResourceChunkSchema>;
+
+export type NewResourceChunk = {
+    resourceId: number;
+    content: string;
+    vector: number[];
+    startLine: number;
+    endLine: number;
+};

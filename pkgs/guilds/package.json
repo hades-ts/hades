@@ -52,6 +52,7 @@
         "typescript": "catalog:"
     },
     "dependencies": {
+        "@ldlework/categoric-decorators": "catalog:",
         "@ldlework/categoric-containers": "catalog:",
         "discord-command-parser": "^1.5.3",
         "discord.js": "catalog:",

@@ -1,14 +1,14 @@
+import { singleton } from "@hades-ts/core";
 import { eq } from "drizzle-orm";
+import { PostgresJsDatabase } from "drizzle-orm/postgres-js";
+import { inject } from "inversify";
 import { generateEmbedding } from "../../ai/embeddings";
 import { facts, insertFactSchema, type NewFact } from "../schema";
 import { vectorize } from "../utils";
-import { singleton } from "@hades-ts/core";
-import { PostgresJsDatabase } from "drizzle-orm/postgres-js";
-import { inject } from "inversify";
 
 export const createFact = async (
     db: PostgresJsDatabase,
-    guildId: number,
+    guildId: string,
     userId: string,
     content: string,
 ) => {
@@ -28,12 +28,16 @@ export class CreateFactAction {
     @inject(PostgresJsDatabase)
     private db!: PostgresJsDatabase;
 
-    async execute(guildId: number, userId: string, content: string) {
+    async execute(guildId: string, userId: string, content: string) {
         return createFact(this.db, guildId, userId, content);
     }
 }
 
-export const searchFacts = async (db: PostgresJsDatabase, guildId: number, query: string) => {
+export const searchFacts = async (
+    db: PostgresJsDatabase,
+    guildId: string,
+    query: string,
+) => {
     const queryEmbedding = await generateEmbedding(query);
 
     const results = await db
@@ -54,7 +58,7 @@ export class SearchFactsAction {
     @inject(PostgresJsDatabase)
     private db!: PostgresJsDatabase;
 
-    async execute(guildId: number, query: string) {
+    async execute(guildId: string, query: string) {
         return searchFacts(this.db, guildId, query);
     }
 }

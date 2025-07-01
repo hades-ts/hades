@@ -3,11 +3,11 @@ import { MarkdownStash } from "@hades-ts/stash";
 import { inject } from "inversify";
 import path from "path";
 
-import { ruleSchema } from "../config";
+import { type RuleConfig, ruleSchema } from "../config";
 
 @guildSingleton()
 export class GuildRuleStash {
-    stash: MarkdownStash<typeof ruleSchema>;
+    stash: MarkdownStash<RuleConfig>;
 
     constructor(
         @inject("cfg.dataPath")
@@ -16,7 +16,7 @@ export class GuildRuleStash {
         @inject(guildTokens.GuildId)
         protected readonly guildId: string,
     ) {
-        this.stash = new MarkdownStash<typeof ruleSchema>(
+        this.stash = new MarkdownStash<RuleConfig>(
             path.join(this.dataPath, this.guildId, "rules"),
             ruleSchema,
         );

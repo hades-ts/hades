@@ -1,5 +1,5 @@
 import type { HadesClient } from "@hades-ts/core";
-import { type BaseFiletypeStash, MarkdownStash } from "@hades-ts/stash";
+import { MarkdownStash } from "@hades-ts/stash";
 import {
     ChannelType,
     type GuildTextBasedChannel,
@@ -7,7 +7,7 @@ import {
 } from "discord.js";
 import fs from "fs";
 import path from "path";
-import { z } from "zod";
+import { z } from "zod/v4";
 import { type EmbedSchema, embedSchema } from "../../schemas";
 import { renderComponents, renderEmbedRecord } from "../../utils";
 
@@ -25,10 +25,10 @@ export class ChannelSync {
     }
 
     protected async createStash() {
-        return new MarkdownStash(this.stashPath, embedSchema);
+        return new MarkdownStash<EmbedSchema>(this.stashPath, embedSchema);
     }
 
-    protected async getOrdering(stash: BaseFiletypeStash<typeof embedSchema>) {
+    protected async getOrdering(stash: MarkdownStash<EmbedSchema>) {
         const orderFile = path.join(this.stashPath, "order.json");
         if (fs.existsSync(orderFile)) {
             const text = fs.readFileSync(orderFile, "utf8");
@@ -61,11 +61,12 @@ export class ChannelSync {
 
     protected async sendMessages(
         channel: GuildTextBasedChannel,
-        stash: BaseFiletypeStash<typeof embedSchema>,
+        stash: MarkdownStash<EmbedSchema>,
         index: string[],
     ) {
         for (const key of index) {
-            const embedRecord = stash.get(key);
+            const mdRecord = stash.get(key);
+            const embedRecord = mdRecord.data.data;
             await this.sendMessage(channel, embedRecord);
         }
     }

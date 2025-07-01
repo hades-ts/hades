@@ -6,7 +6,7 @@ packages:
   - pkgs/*
 
 catalog:
-  '@ldlework/inversify-config-injection': 0.1.0
+  '@ldlework/inversify-config-injection': 0.1.3
   '@ldlework/categoric-containers': 0.1.6
   '@ldlework/categoric-decorators': 1.0.1
   '@ldlework/inversify-binding-decorators': 4.0.2
@@ -19,6 +19,8 @@ catalog:
   pkgroll: 2.13.1
   tsx: 4.20.3
   rimraf: 6.0.1
+
+catalogMode: strict
 
 linkWorkspacePackages: true
 
