@@ -15,15 +15,14 @@ import "./guildServices";
 
 import { withGuilds } from "@hades-ts/guilds";
 import { withInteractions } from "@hades-ts/interactions";
-import { ConsoleLogger } from "./services/logs/ConsoleLogger";
-import { ILogger } from "./services/logs/ILogger";
+import { ConsoleLogger, LogLevel, withLogging } from "@hades-ts/logging";
 
 boot(BotService, {
     installers: [
+        withLogging(LogLevel.DEBUG, ConsoleLogger),
         withGuilds(),
         withSlashCommands(),
         (c) => withInteractions(c),
         withHelp(),
-        (c) => c.bind(ILogger).to(ConsoleLogger).inSingletonScope(),
     ],
 });

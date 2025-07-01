@@ -1,0 +1,49 @@
+{
+    "name": "@hades-ts/logging",
+    "version": "0.0.7",
+    "description": "A simple file-based storage for discord.js bots",
+    "author": "",
+    "license": "ISC",
+    "homepage": "https://github.com/hades-ts/hades#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/hades-ts/hades.git"
+    },
+    "bugs": {
+        "url": "https://github.com/hades-ts/hades/issues"
+    },
+    "type": "commonjs",
+    "exports": {
+        "require": "./dist/index.cjs",
+        "import": "./dist/index.mjs",
+        "types": "./dist/index.d.ts"
+    },
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "map": "tsc --emitDeclarationOnly --declaration --declarationMap",
+        "build": "pkgroll --sourcemap && pnpm run map",
+        "clean": "rimraf dist",
+        "watch": "tsc -p tsconfig.json -w"
+    },
+    "devDependencies": {
+        "@hades-ts/tsconfig": "workspace:*",
+        "@ldlework/categoric-decorators": "catalog:",
+        "@types/node": "catalog:",
+        "eslint": "^8.57.1",
+        "eslint-plugin-eslint-plugin": "^5.5.1",
+        "eslint-plugin-node": "^11.1.0",
+        "eslint-plugin-simple-import-sort": "^8.0.0",
+        "eslint-plugin-unused-imports": "~3.2.0",
+        "inversify": "catalog:",
+        "pkgroll": "catalog:",
+        "rimraf": "^6.0.1",
+        "tsconfig-paths": "^4.2.0",
+        "typescript": "catalog:"
+    },
+    "dependencies": {
+        "@ldlework/categoric-decorators": "catalog:",
+        "inversify": "catalog:"
+    }
+}
