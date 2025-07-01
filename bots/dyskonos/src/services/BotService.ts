@@ -1,5 +1,5 @@
 import { HadesClient, listener, listenFor, singleton } from "@hades-ts/core";
-import { Events, type Message } from "discord.js";
+import { Events } from "discord.js";
 import { inject } from "inversify";
 
 @listener()
@@ -11,13 +11,6 @@ export class BotService {
     @listenFor(Events.ClientReady)
     async onReady(): Promise<void> {
         console.log("Dyskonos is ready!");
-    }
-
-    @listenFor(Events.MessageCreate)
-    async onMessage(message: Message) {
-        if (this.client.isHighlight(message.content)) {
-            await message.reply("Hello!");
-        }
     }
 
     @listenFor(Events.Debug)

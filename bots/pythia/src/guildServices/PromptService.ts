@@ -20,6 +20,6 @@ export class PromptService {
     }
 
     getPrompt() {
-        return this.readPrompt(this.config.prompt);
+        // return this.readPrompt(this.config.prompt);
     }
 }

@@ -5,7 +5,6 @@ import type { GuildConfig } from "../config";
 import { CompletionService } from "./CompletionService";
 import { RecordService } from "./RecordService";
 
-@guildSingleton()
 export class GuildService {
     @inject(guildTokens.GuildId)
     public guildId!: string;

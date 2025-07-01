@@ -18,5 +18,6 @@ const based = injectFromBase({
 
 export * from "./listener";
 export * from "./listenFor";
+export * from "./service";
 
 export { withDecorators, singleton, transient, request, based };

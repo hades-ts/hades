@@ -1,7 +1,6 @@
 import { HadesClient, singleton } from "@hades-ts/core";
 import { inject, postConstruct } from "inversify";
 
-@singleton()
 export class ThreadStarterService {
     @inject(HadesClient)
     protected client!: HadesClient;

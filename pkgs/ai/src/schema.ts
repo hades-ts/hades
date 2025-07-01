@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from "zod/v4";
 
 export const quotaSchema = z.object({
     quotaFile: z.string(),

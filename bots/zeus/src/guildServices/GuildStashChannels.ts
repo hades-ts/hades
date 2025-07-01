@@ -1,6 +1,6 @@
 import { HadesClient } from "@hades-ts/core";
 import { guildSingleton, guildTokens } from "@hades-ts/guilds";
-import { MultiSync } from "@hades-ts/stash";
+import { MultiSync } from "@hades-ts/sync";
 import { inject, postConstruct } from "inversify";
 import path from "path";
 

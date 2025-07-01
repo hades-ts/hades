@@ -1,20 +1,15 @@
-import type { z } from "zod";
-
 import { BaseFiletypeStash } from "./BaseFiletypeStash";
 
-export class TextStash<T extends z.ZodTypeAny> extends BaseFiletypeStash<T> {
-    constructor(
-        public override readonly path: string,
-        public override readonly schema: T,
-    ) {
-        super(path, "txt", schema);
+export class TextStash extends BaseFiletypeStash<string> {
+    constructor(public override readonly path: string) {
+        super(path, "txt");
     }
 
-    deserialize(content: string): z.TypeOf<T> {
+    deserialize(content: string): string {
         return content;
     }
 
-    serialize(content: z.TypeOf<T>): string {
+    serialize(content: string): string {
         return content;
     }
 }

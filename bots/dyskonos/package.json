@@ -15,6 +15,7 @@
     "dependencies": {
         "@hades-ts/ai": "workspace:^",
         "@hades-ts/bypass": "workspace:^",
+        "@hades-ts/interactions": "workspace:^",
         "@hades-ts/guilds": "workspace:^",
         "@hades-ts/core": "workspace:^",
         "@hades-ts/slash-commands": "workspace:^",

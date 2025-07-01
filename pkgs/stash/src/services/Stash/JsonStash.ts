@@ -1,21 +1,16 @@
-import type { z } from "zod";
+import { ParsedFiletypeStash } from "./ParsedFiletypeStash";
 
-import { BaseFiletypeStash } from "./BaseFiletypeStash";
-
-export class JsonStash<T extends z.ZodTypeAny> extends BaseFiletypeStash<T> {
-    constructor(
-        public override readonly path: string,
-        public override readonly schema: T,
-    ) {
+export class JsonStash<T> extends ParsedFiletypeStash<T> {
+    constructor(path: string, schema: ParsedFiletypeStash<T>["schema"]) {
         super(path, "json", schema);
     }
 
-    deserialize(content: string): z.TypeOf<T> {
+    deserialize(content: string): T {
         const data = JSON.parse(content);
         return this.schema.parse(data);
     }
 
-    serialize(content: z.TypeOf<T>): string {
+    serialize(content: T): string {
         this.schema.parse(content);
         return JSON.stringify(content, null, 4);
     }

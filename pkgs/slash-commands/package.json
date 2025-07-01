@@ -10,7 +10,7 @@
         "url": "git+https://github.com/hades-ts/hades.git"
     },
     "bugs": {
-        "url": "https://github.com/hades-ts/slash-commands/issues"
+        "url": "https://github.com/hades-ts/hades/issues"
     },
     "type": "commonjs",
     "exports": {

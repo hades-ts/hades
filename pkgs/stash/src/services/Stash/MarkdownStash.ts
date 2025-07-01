@@ -1,19 +1,26 @@
 import matter from "gray-matter";
 import yaml from "yaml";
-import type { z } from "zod";
+import z from "zod/v4";
 import { BaseFiletypeStash } from "./BaseFiletypeStash";
+import { ParsedFiletypeStash } from "./ParsedFiletypeStash";
 
-export class MarkdownStash<
-    T extends z.ZodTypeAny,
-> extends BaseFiletypeStash<T> {
-    constructor(
-        public override readonly path: string,
-        public override readonly schema: T,
-    ) {
-        super(path, "md", schema);
+export type MarkdownStashData<T> = {
+    data: T;
+    content: string;
+};
+
+export class MarkdownStash<T> extends BaseFiletypeStash<MarkdownStashData<T>> {
+    schema: z.ZodType<MarkdownStashData<T>>;
+
+    constructor(path: string, schema: z.ZodType<T>) {
+        super(path, "md");
+        this.schema = z.object({
+            data: schema,
+            content: z.string(),
+        });
     }
 
-    deserialize(text: string): z.TypeOf<T> {
+    deserialize(text: string): MarkdownStashData<T> {
         const { data, content } = matter(text);
         return this.schema.parse({
             ...data,
@@ -21,7 +28,7 @@ export class MarkdownStash<
         });
     }
 
-    serialize(record: z.TypeOf<T>) {
+    serialize(record: MarkdownStashData<T>) {
         this.schema.parse(record);
         const { content, ...data } = record;
         // matter has no api for saving so we must do it ourselves

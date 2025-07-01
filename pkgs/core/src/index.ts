@@ -6,6 +6,7 @@ import {
     withConfig,
 } from "./config/loadConfigurationModule";
 import { withDecorators } from "./decorators";
+import { withServices } from "./decorators/service";
 import { withEvents } from "./events";
 import { Installer } from "./Installer";
 import { ILoginService } from "./login";
@@ -43,6 +44,7 @@ export const boot = async (botService: Newable<any>, options?: BootOptions) => {
             withEvents,
             withLogin,
             ...userInstallers,
+            withServices,
         ]) {
             if (installer instanceof Installer) {
                 void installer.install(container);

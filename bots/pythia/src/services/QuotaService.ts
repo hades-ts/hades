@@ -3,7 +3,7 @@ import fs from "fs";
 import GPT3Tokenizer from "gpt3-tokenizer";
 import { inject } from "inversify";
 
-import type { ConfigQuota } from "../config";
+// import type { ConfigQuota } from "../config";
 import { GlobalQuotaError, UserQuotaError } from "../errors";
 
 export type Quota = {
@@ -12,10 +12,10 @@ export type Quota = {
     users: Record<string, number>;
 };
 
-@singleton()
 export class QuotaService {
     @inject("cfg.quota")
-    protected quotaConfig!: ConfigQuota;
+    protected quotaConfig!: any;
+    // protected quotaConfig!: ConfigQuota;
 
     protected getToday() {
         const today = new Date();

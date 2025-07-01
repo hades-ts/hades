@@ -35,10 +35,10 @@ class RoleCompleter implements ICompleter {
         const choices = guildService.roles.stash
             .index()
             .map((key) => guildService.roles.stash.get(key))
-            .map((role) => {
+            .map(({ data }) => {
                 return {
-                    name: `${role.title}: ${role.description}`,
-                    value: role.id,
+                    name: `${data.data.title}: ${data.data.description}`,
+                    value: data.data.roleId,
                 };
             });
 
@@ -122,7 +122,7 @@ export class ToggleRoleCommand extends SlashCommand {
         const guildService = await this.guildServiceFactory.getGuildService(
             this.interaction.guild!,
         );
-        const roleInfo = guildService.roles.stash.get(this.role);
+        const { data } = guildService.roles.stash.get(this.role);
 
         const guild = await this.client.guilds.fetch(this.interaction.guildId!);
         const member = await guild.members.fetch(this.interaction.user.id);
@@ -132,9 +132,9 @@ export class ToggleRoleCommand extends SlashCommand {
         const hasRole = this.memberHasRole(member);
 
         if (hasRole) {
-            await this.removeRole(roleManager, roleInfo.roleId);
+            await this.removeRole(roleManager, data.data.roleId);
         } else {
-            await this.addRole(roleManager, roleInfo.roleId);
+            await this.addRole(roleManager, data.data.roleId);
         }
     }
 }

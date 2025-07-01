@@ -1,18 +1,19 @@
 import fs from "node:fs";
 import path from "node:path";
-import type { z } from "zod";
 
-export type ZodWithId<T extends z.ZodTypeAny> = z.TypeOf<T> & { id: string };
+export type Record<T> = {
+    id: string;
+    data: T;
+};
 
-export abstract class BaseFiletypeStash<T extends z.ZodTypeAny> {
+export abstract class BaseFiletypeStash<T> {
     constructor(
         public readonly path: string,
         public readonly extension: string,
-        public readonly schema: T,
     ) {}
 
-    abstract deserialize(content: string): z.TypeOf<T>;
-    abstract serialize(content: z.TypeOf<T>): string;
+    abstract deserialize(content: string): T;
+    abstract serialize(content: T): string;
 
     findAllSync(): string[] {
         const files = fs.readdirSync(this.path);
@@ -31,28 +32,23 @@ export abstract class BaseFiletypeStash<T extends z.ZodTypeAny> {
         return filepath;
     }
 
-    get(id: string): ZodWithId<T> {
+    get(id: string): Record<T> {
         const filepath = this.filepathFor(id);
         const content = fs.readFileSync(filepath, "utf-8");
-        const data = this.deserialize(content);
-        return { ...data, id };
+        return { id, data: this.deserialize(content) };
     }
 
-    set(record: ZodWithId<T>) {
-        const { id, ...data } = record;
+    set(id: string, content: T) {
         const filepath = this.filepathFor(id);
-        const content = this.serialize(data);
-        fs.writeFileSync(filepath, content, "utf-8");
+        const data = this.serialize(content);
+        fs.writeFileSync(filepath, data, "utf-8");
     }
 
-    find(query: (data: z.TypeOf<T>) => boolean): Array<ZodWithId<T>> {
+    filter(query: (data: T) => boolean): Array<Record<T>> {
         const ids = this.index();
-        return ids.map((id) => this.get(id)).find(query)!;
-    }
-
-    filter(query: (data: z.TypeOf<T>) => boolean): Array<ZodWithId<T>> {
-        const ids = this.index();
-        return ids.map((id) => this.get(id)).filter(query);
+        return ids
+            .map((id) => this.get(id))
+            .filter((record) => query(record.data));
     }
 
     delete(id: string) {
