@@ -22,7 +22,7 @@
     ],
     "scripts": {
         "map": "tsc --emitDeclarationOnly --declaration --declarationMap",
-        "build": "pkgroll --clean-dits --sourcemap",
+        "build": "pkgroll --sourcemap",
         "clean": "rimraf dist",
         "lint": "tsc --no-emit",
         "watch": "tsc -p tsconfig.json -w"
