@@ -1,14 +1,14 @@
-import { useEffect, useRef, useState } from 'react';
-import { useLogWatcher } from '../../hooks/useLogWatcher';
-import { useFileStore } from '../../store/fileStore';
-import { useFilterStore } from '../../store/filterStore';
-import { useUiStore } from '../../store/uiStore';
-import Header from '../Header';
-import { LogDetailSidebar } from '../LogDetailSidebar';
-import ControlButtons from './ControlButtons';
-import FilterSection from './FilterSection';
-import LogStats from './LogStats';
-import LogTable from './LogTable';
+import { useEffect, useRef, useState } from "react";
+
+import { useLogWatcher } from "../../hooks/useLogWatcher";
+import { useFileStore } from "../../store/fileStore";
+import { useFilterStore } from "../../store/filterStore";
+import { useUiStore } from "../../store/uiStore";
+import FilterSection from "./FilterSection";
+import Header from "./Header";
+import LogDetailSidebar from "./LogDetailSidebar";
+import LogTable from "./LogTable";
+import StatsAndControls from "./StatsAndControls";
 
 // Pulse effect configuration
 const PULSE_BRIGHTNESS = 1.1; // 1.0 = normal, 1.1 = 10% brighter, 1.2 = 20% brighter, etc.
@@ -48,9 +48,15 @@ export default function LogViewer() {
 
     // Trigger pulse effect when new logs are added (not from filter changes)
     useEffect(() => {
-        if (logs.length > previousLogsLength.current && previousLogsLength.current > 0) {
+        if (
+            logs.length > previousLogsLength.current &&
+            previousLogsLength.current > 0
+        ) {
             setIsPulsing(true);
-            const timer = setTimeout(() => setIsPulsing(false), PULSE_DURATION_MS);
+            const timer = setTimeout(
+                () => setIsPulsing(false),
+                PULSE_DURATION_MS,
+            );
             return () => clearTimeout(timer);
         }
         previousLogsLength.current = logs.length;
@@ -59,10 +65,12 @@ export default function LogViewer() {
     const selectFile = async () => {
         try {
             const [fileHandle] = await window.showOpenFilePicker({
-                types: [{
-                    description: 'Log files',
-                    accept: { 'text/plain': ['.log', '.txt', '.json'] }
-                }]
+                types: [
+                    {
+                        description: "Log files",
+                        accept: { "text/plain": [".log", ".txt", ".json"] },
+                    },
+                ],
             });
             const selectedFile = await fileHandle.getFile();
             setFile({ handle: fileHandle, file: selectedFile });
@@ -70,8 +78,8 @@ export default function LogViewer() {
             resetFilters();
             setIsWatching(true);
         } catch (err: any) {
-            if (err.name !== 'AbortError') {
-                console.error('Error selecting file:', err);
+            if (err.name !== "AbortError") {
+                console.error("Error selecting file:", err);
             }
         }
     };
@@ -87,6 +95,7 @@ export default function LogViewer() {
     };
 
     // Auto-start watching when file is selected and isWatching is true
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         if (file && isWatching) {
             startWatching();
@@ -103,10 +112,14 @@ export default function LogViewer() {
             {/* Fixed background */}
             <div
                 className="fixed inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 -z-10"
-                style={{
-                    '--pulse-brightness': PULSE_BRIGHTNESS,
-                    animation: isPulsing ? `brightness-pulse ${PULSE_DURATION_MS}ms ease-in-out` : 'none',
-                } as React.CSSProperties}
+                style={
+                    {
+                        "--pulse-brightness": PULSE_BRIGHTNESS,
+                        animation: isPulsing
+                            ? `brightness-pulse ${PULSE_DURATION_MS}ms ease-in-out`
+                            : "none",
+                    } as React.CSSProperties
+                }
             />
 
             {/* Content */}
@@ -119,22 +132,13 @@ export default function LogViewer() {
                 />
 
                 <div className="max-w-7xl mx-auto px-6 py-6">
-                    {/* Filters Section */}
                     <FilterSection />
-
-                    {/* Stats and Controls */}
-                    <div className="flex items-center justify-between mb-6 text-sm text-slate-400">
-                        <LogStats />
-                        <ControlButtons />
-                    </div>
-
-                    {/* Log Entries Table */}
+                    <StatsAndControls />
                     <LogTable />
                 </div>
 
-                {/* Sidebar as overlay */}
                 {selectedLogEntry && <LogDetailSidebar />}
             </div>
         </div>
     );
-} 
+}
