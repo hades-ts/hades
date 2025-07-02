@@ -34,13 +34,24 @@ jobs:
         run: pnpm run build
       - name: Biome Check
         run: pnpm run ci:biome
-      # take apps/docs/build as github pages
-      - name: Deploy
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      # Deploy docs to hades-ts.github.io
+      - name: Deploy Docs
+        if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'pull_request'
         uses: peaceiris/actions-gh-pages@v4
         with:
           deploy_key: ${{ secrets.DEPLOY_KEY_PRIVATE }}
           publish_dir: ./apps/docs/build
           external_repository: hades-ts/hades-ts.github.io
+          publish_branch: main
+          enable_jekyll: false
+      
+      # Deploy log viewer to hades-logs.github.io
+      - name: Deploy Log Viewer
+        if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'pull_request'
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          deploy_key: ${{ secrets.DEPLOY_KEY_LOGS_PRIVATE }}
+          publish_dir: ./apps/log-viewer/dist
+          external_repository: hades-ts/hades-logs.github.io
           publish_branch: main
           enable_jekyll: false
