@@ -7,7 +7,7 @@ settings:
 catalogs:
   default:
     '@biomejs/biome':
-      specifier: ^2.0.6
+      specifier: 2.0.6
       version: 2.0.6
     '@ldlework/categoric-containers':
       specifier: 0.1.6
@@ -1867,6 +1867,9 @@ importers:
       '@babel/preset-env':
         specifier: ^7.27.2
         version: 7.27.2(@babel/core@7.27.7)
+      '@biomejs/biome':
+        specifier: 'catalog:'
+        version: 2.0.6
       '@hades-ts/tsconfig':
         specifier: workspace:*
         version: link:../../libs/tsconfig
