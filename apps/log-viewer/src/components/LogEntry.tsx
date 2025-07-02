@@ -1,4 +1,5 @@
 import { TableCell, TableRow } from '@/components/ui/table';
+import { useLogStore } from '../store/logStore';
 import { LogEntry as LogEntryType } from '../types';
 
 interface LogEntryProps {
@@ -74,8 +75,26 @@ const formatTags = (tags: unknown) => {
 };
 
 export default function LogEntry({ log, index }: LogEntryProps) {
+    const { selectedLogEntry, setSelectedLogEntry } = useLogStore();
+
+    const isSelected = selectedLogEntry === log;
+
+    const handleClick = () => {
+        if (isSelected) {
+            setSelectedLogEntry(null); // Deselect if already selected
+        } else {
+            setSelectedLogEntry(log);
+        }
+    };
+
     return (
-        <TableRow className="hover:bg-slate-800/50 border-slate-700">
+        <TableRow
+            className={`cursor-pointer transition-colors border-slate-700 ${isSelected
+                    ? 'bg-blue-900/30 hover:bg-blue-900/40 border-blue-700'
+                    : 'hover:bg-slate-800/50'
+                }`}
+            onClick={handleClick}
+        >
             <TableCell className="font-medium">
                 {getLevelBadge(log.level as string)}
             </TableCell>

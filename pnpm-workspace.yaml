@@ -21,14 +21,16 @@ catalog:
   rimraf: 6.0.1
   '@biomejs/biome': 2.0.6
   tailwindcss-animate: ^1.0.7
-  class-variance-authority: ^0.7.1
-  lucide-react: ^0.263.1
+  class-variance-authority: 0.7.1
+  lucide-react: 0.263.1
   clsx: ^1.2.1
   tailwind-merge: ^3.3.1
   '@radix-ui/react-popover': ^1.1.14
   cmdk: ^1.1.1
-  '@radix-ui/react-dialog': ^1.1.14
-  '@radix-ui/react-slot': ^1.2.3
+  '@radix-ui/react-dialog': 1.1.14
+  '@radix-ui/react-slot': 1.2.3
+  '@radix-ui/react-separator': ^1.1.7
+  '@radix-ui/react-tooltip': ^1.2.7
 
 catalogMode: strict
 
