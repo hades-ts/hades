@@ -15,17 +15,18 @@ import {
 import { cn } from '@/lib/utils';
 import { Check, ChevronsUpDown, X } from 'lucide-react';
 import { useState } from 'react';
-import { useLogStore } from '../store/logStore';
+import { useFileStore } from '../store/fileStore';
+import { useFilterStore } from '../store/filterStore';
 
 export default function PropertyMultiSelect() {
     const [open, setOpen] = useState(false);
+    const { properties } = useFileStore();
     const {
-        properties,
         activeFilters,
         selectedProperties,
         togglePropertySelection,
         clearPropertyFilters,
-    } = useLogStore();
+    } = useFilterStore();
 
     const availableProperties = Object.keys(properties).sort();
     const selectedPropertiesArray = Array.from(selectedProperties);

@@ -2,7 +2,9 @@ import { Table, TableBody, TableHead, TableHeader, TableRow } from '@/components
 import { ArrowUpDown, FileText, Filter, Palette, RotateCcw } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { useLogWatcher } from '../hooks/useLogWatcher';
-import { useLogStore } from '../store/logStore';
+import { useFileStore } from '../store/fileStore';
+import { useFilterStore } from '../store/filterStore';
+import { useUiStore } from '../store/uiStore';
 import Header from './Header';
 import { LogDetailSidebar } from './LogDetailSidebar';
 import LogEntryComponent from './LogEntry';
@@ -16,24 +18,32 @@ const PULSE_BRIGHTNESS = 1.1; // 1.0 = normal, 1.1 = 10% brighter, 1.2 = 20% bri
 const PULSE_DURATION_MS = 180; // Duration in milliseconds
 
 export default function LogViewer() {
+    // File store
     const {
         file,
         isWatching,
         logs,
-        filteredLogs,
-        messageFilter,
-        sortOrder,
-        selectedLogEntry,
-        filterMode,
         setFile,
         setIsWatching,
         addLogs,
         clearLogs,
+    } = useFileStore();
+
+    // Filter store
+    const {
+        filteredLogs,
+        messageFilter,
+        sortOrder,
+        filterMode,
         setMessageFilter,
         toggleSortOrder,
         resetFilters,
         toggleFilterMode,
-    } = useLogStore();
+        updateFilteredLogs,
+    } = useFilterStore();
+
+    // UI store
+    const { selectedLogEntry } = useUiStore();
 
     const [isPulsing, setIsPulsing] = useState(false);
     const previousLogsLength = useRef(logs.length);
@@ -41,7 +51,11 @@ export default function LogViewer() {
     const { startWatching, stopWatching, cleanup } = useLogWatcher({
         file,
         isWatching,
-        onNewLogs: addLogs,
+        onNewLogs: (newLogs) => {
+            addLogs(newLogs);
+            // Trigger filter update after adding logs
+            setTimeout(() => updateFilteredLogs(), 0);
+        },
         onClearLogs: clearLogs,
     });
 

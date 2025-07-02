@@ -1,9 +1,9 @@
 import { Check, Copy, X } from 'lucide-react';
 import { useState } from 'react';
-import { useLogStore } from '../store/logStore';
+import { useUiStore } from '../store/uiStore';
 
 export function LogDetailSidebar() {
-    const { selectedLogEntry, setSelectedLogEntry } = useLogStore();
+    const { selectedLogEntry, setSelectedLogEntry } = useUiStore();
     const [copiedField, setCopiedField] = useState<string | null>(null);
 
     if (!selectedLogEntry) {
