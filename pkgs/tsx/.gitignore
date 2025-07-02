@@ -1,4 +1,1 @@
-out/
-node_modules/
-/test/*-out/
-/.turbo
+test/*-out/

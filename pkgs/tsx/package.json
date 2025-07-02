@@ -17,10 +17,10 @@
         "tsx",
         "discord"
     ],
-    "type": "commonjs",
+    "type": "module",
     "exports": {
-        "require": "./dist/index.js",
-        "module": "./dist/index.mjs",
+        "require": "./dist/index.cjs",
+        "import": "./dist/index.js",
         "types": "./dist/index.d.ts"
     },
     "files": [
@@ -28,8 +28,11 @@
     ],
     "scripts": {
         "map": "tsc --emitDeclarationOnly --declaration --declarationMap",
-        "build": "pkgroll --sourcemap && pnpm run map",
-        "clean": "rimraf dist"
+        "compile": "pkgroll --sourcemap",
+        "clean": "rimraf dist",
+        "test:babel": "node test/js-out/index.js",
+        "test:babel:build": "babel test/js --out-dir test/js-out",
+        "test:ts": "tsx --tsconfig test/tsconfig.json test/ts/index.tsx"
     },
     "peerDependencies": {
         "discord.js": "catalog:"
