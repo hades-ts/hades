@@ -1,3 +1,11 @@
+import {
+    ApplicationCommandOptionType,
+    AutocompleteInteraction,
+    type GuildMember,
+    type GuildMemberRoleManager,
+} from "discord.js";
+import { inject, injectable } from "inversify";
+
 import { HadesClient } from "@hades-ts/core";
 import {
     arg,
@@ -6,13 +14,6 @@ import {
     type ICompleter,
     SlashCommand,
 } from "@hades-ts/slash-commands";
-import {
-    ApplicationCommandOptionType,
-    AutocompleteInteraction,
-    type GuildMember,
-    type GuildMemberRoleManager,
-} from "discord.js";
-import { inject, injectable } from "inversify";
 
 import type { Config } from "../config";
 import { GuildServiceFactory } from "../services";

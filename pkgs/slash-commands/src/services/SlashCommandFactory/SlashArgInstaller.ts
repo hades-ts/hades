@@ -1,6 +1,7 @@
-import { type Constructor, type InstallerFunc, Newable } from "@hades-ts/core";
 import { ChatInputCommandInteraction, CommandInteraction } from "discord.js";
 import type { Container } from "inversify";
+
+import { type Constructor, type InstallerFunc, Newable } from "@hades-ts/core";
 
 import { SlashArgError } from "../../errors";
 import type { SlashArgMeta } from "../../metadata";

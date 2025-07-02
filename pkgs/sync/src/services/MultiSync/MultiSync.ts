@@ -1,5 +1,6 @@
-import type { HadesClient } from "@hades-ts/core";
 import path from "path";
+
+import type { HadesClient } from "@hades-ts/core";
 
 import { ChannelSync } from "../ChannelSync";
 

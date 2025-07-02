@@ -1,4 +1,3 @@
-import { GuildManager } from "@hades-ts/guilds";
 import {
     AutocompleteInteraction,
     type ChatInputCommandInteraction,
@@ -6,6 +5,8 @@ import {
     type CommandInteraction,
 } from "discord.js";
 import { Container, type ServiceIdentifier } from "inversify";
+
+import { GuildManager } from "@hades-ts/guilds";
 
 import type { SlashCommandMeta } from "../../metadata";
 import type { SlashCommand } from "../../models";

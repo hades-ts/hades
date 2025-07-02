@@ -1,10 +1,11 @@
-import { BaseButtonInteraction } from "@hades-ts/core";
 import {
     ButtonBuilder,
     type ButtonInteraction,
     ButtonStyle,
     type Collection,
 } from "discord.js";
+
+import { BaseButtonInteraction } from "@hades-ts/core";
 
 export class CounterButton extends BaseButtonInteraction {
     private count = 0;

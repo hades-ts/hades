@@ -1,5 +1,5 @@
-import { sql, cosineDistance } from "drizzle-orm";
-import { AnyPgColumn } from "drizzle-orm/pg-core";
+import { cosineDistance, sql } from "drizzle-orm";
+import type { AnyPgColumn } from "drizzle-orm/pg-core";
 import { customAlphabet } from "nanoid";
 
 export const nanoid = customAlphabet("abcdefghijklmnopqrstuvwxyz0123456789");

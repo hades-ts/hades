@@ -1,5 +1,3 @@
-import { HadesClient } from "@hades-ts/core";
-import { guildSingleton, guildTokens } from "@hades-ts/guilds";
 import type {
     ButtonInteraction,
     CacheType,
@@ -8,6 +6,9 @@ import type {
     Role,
 } from "discord.js";
 import { inject, postConstruct } from "inversify";
+
+import { HadesClient } from "@hades-ts/core";
+import { guildSingleton, guildTokens } from "@hades-ts/guilds";
 
 @guildSingleton()
 export class RoleButtonListener {

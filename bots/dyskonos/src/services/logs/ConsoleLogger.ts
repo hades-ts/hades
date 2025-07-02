@@ -1,4 +1,5 @@
 import { injectable } from "inversify";
+
 import type { ILogger } from "./ILogger";
 
 @injectable()

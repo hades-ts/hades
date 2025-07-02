@@ -1,7 +1,8 @@
-import { HadesClient, listener, listenFor } from "@hades-ts/core";
-import { guildService } from "@hades-ts/guilds";
 import { Events, type Message } from "discord.js";
 import { inject } from "inversify";
+
+import { HadesClient, listener, listenFor } from "@hades-ts/core";
+import { guildService } from "@hades-ts/guilds";
 
 @listener()
 @guildService()

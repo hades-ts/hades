@@ -1,4 +1,3 @@
-import { GuildManager } from "@hades-ts/guilds";
 import type {
     ApplicationCommandType,
     BaseInteraction,
@@ -6,6 +5,9 @@ import type {
     InteractionType,
 } from "discord.js";
 import { Container, type Newable } from "inversify";
+
+import { GuildManager } from "@hades-ts/guilds";
+
 import { Interaction } from "./Interaction";
 
 export class InteractionFactory {

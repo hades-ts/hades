@@ -1,4 +1,5 @@
 import { inject, injectable, postConstruct } from "inversify";
+
 import { mkSubSection } from "../api";
 import type { SidebarItemCategoryEntry } from "../types";
 import { removeLeadingSlashes } from "../utils";

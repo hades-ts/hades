@@ -1,6 +1,7 @@
+import { inject } from "inversify";
+
 import { HadesClient, listener, singleton } from "@hades-ts/core";
 import { GuildManager } from "@hades-ts/guilds";
-import { inject } from "inversify";
 
 import { GuildService } from "../guildServices";
 

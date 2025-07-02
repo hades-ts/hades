@@ -1,5 +1,6 @@
-import type { SlashArgMeta, SlashCommandMeta } from "@hades-ts/slash-commands";
 import { type Collection, EmbedBuilder } from "discord.js";
+
+import type { SlashArgMeta, SlashCommandMeta } from "@hades-ts/slash-commands";
 
 /**
  * Extracts help information from a command meta.

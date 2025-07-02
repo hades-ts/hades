@@ -4,56 +4,36 @@
             "name": "Dyskonos",
             "request": "launch",
             "cwd": "${workspaceFolder}/bots/dyskonos",
-            "runtimeArgs": [
-                "run-script",
-                "start"
-            ],
+            "runtimeArgs": ["run-script", "start"],
             "runtimeExecutable": "npm",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
+            "skipFiles": ["<node_internals>/**"],
             "type": "node"
         },
         {
             "name": "Zeus",
             "request": "launch",
             "cwd": "${workspaceFolder}/bots/zeus",
-            "runtimeArgs": [
-                "run-script",
-                "start"
-            ],
+            "runtimeArgs": ["run-script", "start"],
             "runtimeExecutable": "npm",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
+            "skipFiles": ["<node_internals>/**"],
             "type": "node"
         },
         {
             "name": "Pythia",
             "request": "launch",
             "cwd": "${workspaceFolder}/bots/pythia",
-            "runtimeArgs": [
-                "run-script",
-                "start"
-            ],
+            "runtimeArgs": ["run-script", "start"],
             "runtimeExecutable": "npm",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
+            "skipFiles": ["<node_internals>/**"],
             "type": "node"
         },
         {
             "name": "Hades",
             "request": "launch",
             "cwd": "${workspaceFolder}/bots/hades",
-            "runtimeArgs": [
-                "run-script",
-                "start"
-            ],
+            "runtimeArgs": ["run-script", "start"],
             "runtimeExecutable": "npm",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
+            "skipFiles": ["<node_internals>/**"],
             "type": "node"
         }
     ]

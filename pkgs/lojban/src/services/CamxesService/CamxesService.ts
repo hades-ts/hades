@@ -1,8 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { singleton } from "@hades-ts/core";
+
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import { camxes } from "camxes";
+
+import { singleton } from "@hades-ts/core";
 
 type Parens = { left: string; right: string };
 

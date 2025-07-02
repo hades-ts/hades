@@ -1,6 +1,7 @@
 import "reflect-metadata";
 
 import { Container, type Newable } from "inversify";
+
 import {
     type ConfigOptions,
     withConfig,

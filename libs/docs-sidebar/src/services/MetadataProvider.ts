@@ -1,7 +1,9 @@
 import { readFileSync } from "node:fs";
+
 import { join } from "@reliverse/pathkit";
 import matter from "gray-matter";
 import { inject, injectable, postConstruct } from "inversify";
+
 import type { SectionMetadata } from "../types";
 import { SectionEntryProvider } from "./EntryProvider";
 

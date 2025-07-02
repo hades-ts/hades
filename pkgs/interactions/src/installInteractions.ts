@@ -5,6 +5,7 @@ import type {
     InteractionType,
 } from "discord.js";
 import type { Container, Newable } from "inversify";
+
 import { findInteractions } from "./decorators";
 import type { Interaction } from "./Interaction";
 import { InteractionFactory } from "./InteractionFactory";

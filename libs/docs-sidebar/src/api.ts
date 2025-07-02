@@ -1,6 +1,7 @@
 const path = require("@reliverse/pathkit");
 
 import { Container } from "inversify";
+
 import {
     SectionDirectoryProvider,
     SectionEntryProvider,

@@ -1,7 +1,8 @@
-import type { BypassService } from "@hades-ts/bypass";
-import { guildSingleton, guildTokens } from "@hades-ts/guilds";
 import type { GuildMember } from "discord.js";
 import { inject, postConstruct } from "inversify";
+
+import type { BypassService } from "@hades-ts/bypass";
+import { guildSingleton, guildTokens } from "@hades-ts/guilds";
 
 import type { GuildConfig } from "../config";
 

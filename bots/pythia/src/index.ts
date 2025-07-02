@@ -1,4 +1,5 @@
 import "reflect-metadata";
+
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -11,7 +12,9 @@ import { BotService } from "./services/BotService";
 
 import "./slash-commands";
 import "./guildServices";
+
 import { withGuilds } from "@hades-ts/guilds";
+
 import { configSchema } from "./config";
 import { withDb } from "./db";
 

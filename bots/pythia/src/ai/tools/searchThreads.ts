@@ -2,6 +2,7 @@ import { inject } from "inversify";
 import { z } from "zod/v4";
 
 import { singleton } from "@hades-ts/core";
+
 import { SearchThreadsAction } from "../../db/actions/threads";
 
 export const SearchThreadsSchema = z.object({

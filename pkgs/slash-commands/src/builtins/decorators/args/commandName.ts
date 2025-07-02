@@ -1,6 +1,7 @@
-import type { Constructable } from "@hades-ts/core";
 import { ApplicationCommandOptionType } from "discord.js";
 import { inject, injectable } from "inversify";
+
+import type { Constructable } from "@hades-ts/core";
 
 import { SlashCommandService } from "../../../services";
 import { makeArgMeta } from "..";

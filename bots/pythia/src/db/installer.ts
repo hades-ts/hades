@@ -1,5 +1,5 @@
 import { drizzle, PostgresJsDatabase } from "drizzle-orm/postgres-js";
-import { Container } from "inversify";
+import type { Container } from "inversify";
 import postgres from "postgres";
 
 export const withDb = () => (container: Container) => {

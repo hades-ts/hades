@@ -1,6 +1,7 @@
-import { HadesClient, listener, listenFor, singleton } from "@hades-ts/core";
 import { Events } from "discord.js";
 import { inject } from "inversify";
+
+import { HadesClient, listener, listenFor, singleton } from "@hades-ts/core";
 
 @listener()
 @singleton()

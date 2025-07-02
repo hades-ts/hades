@@ -1,5 +1,7 @@
 import * as child from "node:child_process";
+
 import prompts from "prompts";
+
 import { allProjects } from "./utils";
 
 const FILES_TO_REMOVE: string[] = [

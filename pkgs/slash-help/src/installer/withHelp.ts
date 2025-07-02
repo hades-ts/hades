@@ -1,8 +1,10 @@
+import type { Container } from "inversify";
+
 import {
     getSlashCommandMetas,
     type SlashCommandMeta,
 } from "@hades-ts/slash-commands";
-import type { Container } from "inversify";
+
 import { SlashCommandHelper } from "../services";
 
 type Metas = ReturnType<typeof getSlashCommandMetas>;

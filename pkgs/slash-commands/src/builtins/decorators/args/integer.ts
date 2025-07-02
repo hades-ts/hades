@@ -3,8 +3,8 @@ import {
     ApplicationCommandOptionType,
 } from "discord.js";
 
-import { arg } from "./arg";
 import type { SlashCommand } from "../../../models";
+import { arg } from "./arg";
 
 export type IntegerArgOptions = {
     required?: boolean;

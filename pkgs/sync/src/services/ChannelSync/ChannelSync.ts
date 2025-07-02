@@ -1,13 +1,16 @@
-import type { HadesClient } from "@hades-ts/core";
-import { MarkdownStash } from "@hades-ts/stash";
+import fs from "fs";
+import path from "path";
+
 import {
     ChannelType,
     type GuildTextBasedChannel,
     type MessageCreateOptions,
 } from "discord.js";
-import fs from "fs";
-import path from "path";
 import { z } from "zod/v4";
+
+import type { HadesClient } from "@hades-ts/core";
+import { MarkdownStash } from "@hades-ts/stash";
+
 import { type EmbedSchema, embedSchema } from "../../schemas";
 import { renderComponents, renderEmbedRecord } from "../../utils";
 

@@ -1,7 +1,8 @@
-import { HadesClient } from "@hades-ts/core";
-import { guildSingleton } from "@hades-ts/guilds";
 import type { GuildMember } from "discord.js";
 import { inject } from "inversify";
+
+import { HadesClient } from "@hades-ts/core";
+import { guildSingleton } from "@hades-ts/guilds";
 
 // import { OpenAIClient } from "../services/OpenAIClient";
 import { QuotaService } from "../services/QuotaService";

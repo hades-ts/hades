@@ -1,5 +1,6 @@
-import { arg, command, SlashCommand, text } from "@hades-ts/slash-commands";
 import { inject, postConstruct } from "inversify";
+
+import { arg, command, SlashCommand, text } from "@hades-ts/slash-commands";
 
 @command("lj", {
     description: "Translate english word into Lojban.",

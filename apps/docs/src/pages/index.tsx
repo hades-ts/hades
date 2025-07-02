@@ -1,8 +1,10 @@
+import React from "react";
+
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import CodeBlock from "@site/src/theme/CodeBlock";
 import Layout from "@theme/Layout";
 import clsx from "clsx";
-import React from "react";
+
 import HomepageFeatures from "../components/HomepageFeatures";
 import styles from "./index.module.scss";
 

@@ -1,5 +1,7 @@
-import { Constructable } from "@hades-ts/core";
 import { ApplicationCommandOptionType } from "discord.js";
+
+import { Constructable } from "@hades-ts/core";
+
 import type { SlashCommand } from "../../../models";
 import { RoleParser } from "../../parsers";
 import { arg } from "./arg";

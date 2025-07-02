@@ -1,8 +1,8 @@
 import { ApplicationCommandOptionType } from "discord.js";
 
-import { arg } from "./arg";
-import { UserParser } from "../../parsers";
 import type { SlashCommand } from "../../../models";
+import { UserParser } from "../../parsers";
+import { arg } from "./arg";
 
 export type UserArgOptions = {
     required?: boolean;

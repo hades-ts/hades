@@ -1,6 +1,7 @@
-import { singleton } from "@hades-ts/core";
 import { EmbedBuilder } from "discord.js";
 import { inject } from "inversify";
+
+import { singleton } from "@hades-ts/core";
 
 import type { SlashCommandHelper } from "./SlashCommandHelper";
 import { SlashCommandHelperRegistry } from "./SlashCommandHelperRegistry";

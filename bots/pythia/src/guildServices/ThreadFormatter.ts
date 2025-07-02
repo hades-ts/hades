@@ -1,6 +1,7 @@
+import { inject } from "inversify";
+
 import { HadesClient } from "@hades-ts/core";
 import { guildSingleton } from "@hades-ts/guilds";
-import { inject } from "inversify";
 
 import type { Thread, ThreadMessage } from "../types";
 import { PromptService } from "./PromptService";

@@ -1,5 +1,14 @@
-import { createClassCategoric, createMemberCategoric } from "@ldlework/categoric-decorators";
-import { type Container, inject, named, type Newable, postConstruct } from "inversify";
+import {
+    createClassCategoric,
+    createMemberCategoric,
+} from "@ldlework/categoric-decorators";
+import {
+    type Container,
+    inject,
+    type Newable,
+    named,
+    postConstruct,
+} from "inversify";
 
 export type LoggerDecoratorParams = {
     target: any;
@@ -129,14 +138,11 @@ const isEnabled = (disabledTags: string[], meta: LoggerDecoratorParams) => {
         }
     }
     return true;
-}
+};
 
 export const withLogging =
-    (
-        level: LogLevel,
-        logClass: Newable<ILogger>,
-        disabledTags?: string[],
-    ) => (container: Container) => {
+    (level: LogLevel, logClass: Newable<ILogger>, disabledTags?: string[]) =>
+    (container: Container) => {
         const _disabledTags = disabledTags ?? [];
         container.bind(ILogger).to(logClass).inSingletonScope();
         container.bind(ProxyLogger).to(ProxyLogger).inTransientScope();
@@ -160,7 +166,9 @@ export const withLogging =
                     _logger.setLevel(level);
                     logger = _logger;
                 }
-                console.log(`Binding logger ${data.id} to ${enabled ? "ProxyLogger" : "NullLogger"}`);
+                console.log(
+                    `Binding logger ${data.id} to ${enabled ? "ProxyLogger" : "NullLogger"}`,
+                );
                 container
                     .bind(Symbol.for(data.id))
                     .toConstantValue(logger)

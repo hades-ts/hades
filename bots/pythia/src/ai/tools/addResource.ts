@@ -1,9 +1,11 @@
-import z from "zod/v4";
-import { createResource, CreateResourceAction } from "../../db/actions";
-import { tool } from "./tool";
 import { PostgresJsDatabase } from "drizzle-orm/postgres-js";
 import { inject } from "inversify";
+import z from "zod/v4";
+
 import { singleton } from "@hades-ts/core";
+
+import { CreateResourceAction, createResource } from "../../db/actions";
+import { tool } from "./tool";
 
 export const AddResourceSchema = z.object({
     guildId: z.number().describe("The guild ID of the resource"),
@@ -22,16 +24,22 @@ export class AddResourceTool {
 
     makeCallback() {
         return ({ guildId, userId, id, title, content }: AddResourceSchema) => {
-            return this.createResourceAction.execute(guildId, userId, id, title, content);
-        }
+            return this.createResourceAction.execute(
+                guildId,
+                userId,
+                id,
+                title,
+                content,
+            );
+        };
     }
-    
+
     $() {
         return {
             name: "addResource",
             description: "Add a resource to your knowledge-base.",
             parameters: AddResourceSchema,
             execute: this.makeCallback(),
-        }
+        };
     }
 }

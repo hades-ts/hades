@@ -1,7 +1,9 @@
-import { singleton } from "@hades-ts/core";
 import fs from "fs";
+
 import GPT3Tokenizer from "gpt3-tokenizer";
 import { inject } from "inversify";
+
+import { singleton } from "@hades-ts/core";
 
 import { AiGlobalQuotaError, AiUserQuotaError } from "../errors";
 import type { QuotaConfig } from "../schema";

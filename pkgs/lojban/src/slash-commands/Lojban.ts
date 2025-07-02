@@ -1,3 +1,5 @@
+import { inject, postConstruct } from "inversify";
+
 import {
     arg,
     command,
@@ -6,7 +8,6 @@ import {
     text,
     validate,
 } from "@hades-ts/slash-commands";
-import { inject, postConstruct } from "inversify";
 
 @command("lojban", {
     description: "Get definition of a lojban word.",

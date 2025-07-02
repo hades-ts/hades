@@ -1,7 +1,9 @@
 import { readFileSync } from "node:fs";
+
 import { basename, join } from "@reliverse/pathkit";
 import matter from "gray-matter";
 import { inject, injectable, postConstruct } from "inversify";
+
 import type { SidebarItemDocEntry } from "../types";
 import { isMarkdown, isntEmpty, isntIndex } from "../utils";
 import { SectionEntryProvider } from "./EntryProvider";

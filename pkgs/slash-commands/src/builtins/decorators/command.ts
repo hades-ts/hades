@@ -4,6 +4,7 @@ import {
     InteractionContextType,
 } from "discord.js";
 import { injectable, injectFromBase } from "inversify";
+
 import { getSlashCommandMeta } from "../../metadata";
 
 export type CommandOptions = Omit<

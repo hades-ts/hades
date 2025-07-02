@@ -2,6 +2,7 @@ import { inject } from "inversify";
 import { z } from "zod/v4";
 
 import { singleton } from "@hades-ts/core";
+
 import { SearchResourceAction } from "../../db/actions/resources";
 
 export const SearchResourceSchema = z.object({
@@ -24,7 +25,8 @@ export class SearchResourceTool {
     $() {
         return {
             name: "searchResource",
-            description: "Search within a specific resource in your knowledge-base.",
+            description:
+                "Search within a specific resource in your knowledge-base.",
             parameters: SearchResourceSchema,
             execute: this.makeCallback(),
         };

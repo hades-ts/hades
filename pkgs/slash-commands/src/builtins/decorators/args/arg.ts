@@ -1,4 +1,3 @@
-import type { Constructable } from "@hades-ts/core";
 import type {
     ApplicationCommandAutocompleteStringOption,
     ApplicationCommandChannelOptionData,
@@ -11,6 +10,8 @@ import type {
     ApplicationCommandSubGroupData,
 } from "discord.js";
 import { type Container, inject, type Newable } from "inversify";
+
+import type { Constructable } from "@hades-ts/core";
 
 import { getSlashArgMeta } from "../../../metadata";
 import type { SlashCommand } from "../../../models";
