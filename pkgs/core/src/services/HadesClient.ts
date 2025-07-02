@@ -1,5 +1,6 @@
 import { Client, GatewayIntentBits } from "discord.js";
 import { injectable } from "inversify";
+
 import { singleton } from "../decorators";
 
 injectable()(Client);

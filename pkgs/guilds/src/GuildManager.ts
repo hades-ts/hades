@@ -1,11 +1,3 @@
-import {
-    HadesClient,
-    listener,
-    listenFor,
-    service,
-    singleton,
-    withServices,
-} from "@hades-ts/core";
 import { Events, type Guild } from "discord.js";
 import {
     Container,
@@ -14,6 +6,15 @@ import {
     optional,
     type ServiceIdentifier,
 } from "inversify";
+
+import {
+    HadesClient,
+    listener,
+    listenFor,
+    service,
+    singleton,
+    withServices,
+} from "@hades-ts/core";
 
 import { findGuildServices, makeGuildContainer } from "./decorators";
 import { findGuildListeners, GuildEventService } from "./events";

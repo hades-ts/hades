@@ -1,3 +1,6 @@
+import type { EmbedBuilder } from "discord.js";
+import { inject } from "inversify";
+
 import {
     command,
     commandName,
@@ -5,8 +8,7 @@ import {
     SlashCommand,
     validate,
 } from "@hades-ts/slash-commands";
-import type { EmbedBuilder } from "discord.js";
-import { inject } from "inversify";
+
 import { SlashCommandHelpService } from "../services";
 
 @command("help", { description: `Get help for my commands.` })

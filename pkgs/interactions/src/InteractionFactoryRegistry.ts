@@ -1,10 +1,12 @@
-import { singleton } from "@hades-ts/core";
 import type {
     ApplicationCommandType,
     ComponentType,
     InteractionType,
 } from "discord.js";
 import { multiInject, postConstruct } from "inversify";
+
+import { singleton } from "@hades-ts/core";
+
 import { InteractionFactory } from "./InteractionFactory";
 
 @singleton()

@@ -1,4 +1,10 @@
 import { openai } from "@ai-sdk/openai";
+import { type CoreMessage, generateText, tool } from "ai";
+import { Events, type GuildChannel, type Message } from "discord.js";
+import dotenv from "dotenv";
+import { inject } from "inversify";
+import z from "zod";
+
 import { HadesClient } from "@hades-ts/core";
 import {
     GuildInfo,
@@ -6,11 +12,7 @@ import {
     guildService,
     listenFor,
 } from "@hades-ts/guilds";
-import { type CoreMessage, generateText, tool } from "ai";
-import { Events, type GuildChannel, type Message } from "discord.js";
-import dotenv from "dotenv";
-import { inject } from "inversify";
-import z from "zod";
+
 import { CreateFactTool } from "../ai/tools/createFact";
 import { SearchFactsTool } from "../ai/tools/searchFacts";
 import type { GuildConfig } from "../config";

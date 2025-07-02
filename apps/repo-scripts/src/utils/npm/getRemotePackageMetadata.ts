@@ -1,4 +1,5 @@
 import { exec } from "node:child_process";
+
 import type { PackageMetadata } from "./PackageMetadata";
 
 const cache = new Map<string, PackageMetadata>();

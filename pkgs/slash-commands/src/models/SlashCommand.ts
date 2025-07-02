@@ -1,10 +1,11 @@
-import { DiscordService } from "@hades-ts/core";
 import type {
     CommandInteraction,
     InteractionReplyOptions,
     Message,
 } from "discord.js";
 import { inject, injectable } from "inversify";
+
+import { DiscordService } from "@hades-ts/core";
 
 /**
  * Base slash command class.

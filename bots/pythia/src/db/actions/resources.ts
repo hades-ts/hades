@@ -1,7 +1,9 @@
-import { singleton } from "@hades-ts/core";
 import { and, eq, inArray } from "drizzle-orm";
 import { PostgresJsDatabase } from "drizzle-orm/postgres-js";
 import { inject } from "inversify";
+
+import { singleton } from "@hades-ts/core";
+
 import { generateEmbedding, generateEmbeddings } from "../../ai/embeddings";
 import {
     insertResourceChunkSchema,

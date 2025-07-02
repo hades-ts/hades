@@ -1,9 +1,10 @@
 import {
-    RushConfiguration,
     type RushConfigurationProject as RCP,
+    RushConfiguration,
 } from "@microsoft/rush-lib";
 import { green, yellow } from "colors";
 import { table } from "table";
+
 import { allLibraries, getRemotePackageVersion } from "./utils";
 
 type PackageInfo = {

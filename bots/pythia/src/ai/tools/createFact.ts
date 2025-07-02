@@ -1,7 +1,9 @@
-import { service, singleton } from "@hades-ts/core";
 import { tool } from "ai";
 import { inject } from "inversify";
 import { z } from "zod";
+
+import { service, singleton } from "@hades-ts/core";
+
 import { CreateFactAction } from "../../db/actions/facts";
 
 export const CreateFactSchema = z.object({

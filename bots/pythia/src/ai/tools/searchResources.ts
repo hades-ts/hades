@@ -2,6 +2,7 @@ import { inject } from "inversify";
 import { z } from "zod/v4";
 
 import { singleton } from "@hades-ts/core";
+
 import { SearchResourcesAction } from "../../db/actions/resources";
 
 export const SearchResourcesSchema = z.object({

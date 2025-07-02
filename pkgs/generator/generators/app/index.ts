@@ -1,5 +1,5 @@
-import Generator from "yeoman-generator";
 import chalk from "chalk";
+import Generator from "yeoman-generator";
 import yosay from "yosay";
 
 var red = chalk.red;

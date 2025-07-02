@@ -1,6 +1,8 @@
-import { HadesClient, listener, listenFor, singleton } from "@hades-ts/core";
 import { type BaseInteraction, Events, InteractionType } from "discord.js";
 import { Container, inject } from "inversify";
+
+import { HadesClient, listener, listenFor, singleton } from "@hades-ts/core";
+
 import type { InteractionFactory } from "./InteractionFactory";
 import { InteractionFactoryRegistry } from "./InteractionFactoryRegistry";
 

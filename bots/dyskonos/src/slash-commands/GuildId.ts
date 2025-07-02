@@ -1,5 +1,7 @@
-import { guildCommand, SlashCommand } from "@hades-ts/slash-commands";
 import { inject } from "inversify";
+
+import { guildCommand, SlashCommand } from "@hades-ts/slash-commands";
+
 import { GuildIdService } from "../guildServices/GuildIdService";
 
 @guildCommand("guild-id", { description: "Get the guild ID." })

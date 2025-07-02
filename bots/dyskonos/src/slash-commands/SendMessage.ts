@@ -1,3 +1,7 @@
+import { ChannelType, type GuildBasedChannel } from "discord.js";
+import { injectable, type Newable } from "inversify";
+import { getMetadata, getOwnMetadata } from "reflect-metadata/no-conflict";
+
 import {
     channel,
     command,
@@ -7,9 +11,6 @@ import {
     text,
     Validator,
 } from "@hades-ts/slash-commands";
-import { ChannelType, type GuildBasedChannel } from "discord.js";
-import { injectable, type Newable } from "inversify";
-import { getMetadata, getOwnMetadata } from "reflect-metadata/no-conflict";
 
 @injectable()
 class MessageValidator extends Validator<string> {

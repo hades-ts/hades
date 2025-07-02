@@ -1,5 +1,6 @@
 import { createClassCategoric } from "@ldlework/categoric-decorators";
 import type { Container, Newable, ServiceIdentifier } from "inversify";
+
 import { singleton } from ".";
 
 export const [_service, findServices] = createClassCategoric();

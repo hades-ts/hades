@@ -1,5 +1,6 @@
 import { ApplicationCommandOptionType } from "discord.js";
 import type { Newable } from "inversify";
+
 import type { SlashCommand } from "../../../models";
 import type { Validator } from "../../../validators";
 import { arg } from "./arg";

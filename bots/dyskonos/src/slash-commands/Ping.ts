@@ -1,6 +1,8 @@
+import { inject } from "inversify";
+
 import { GuildInfo } from "@hades-ts/guilds";
 import { command, SlashCommand } from "@hades-ts/slash-commands";
-import { inject } from "inversify";
+
 import type { Config, GuildConfig } from "../config";
 
 @command("ping", { description: "Ping the bot." })

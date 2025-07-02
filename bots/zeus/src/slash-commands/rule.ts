@@ -1,3 +1,10 @@
+import {
+    ApplicationCommandOptionType,
+    AutocompleteInteraction,
+    EmbedBuilder,
+} from "discord.js";
+import { inject, injectable } from "inversify";
+
 import { HadesClient } from "@hades-ts/core";
 import {
     arg,
@@ -7,12 +14,7 @@ import {
     SlashCommand,
 } from "@hades-ts/slash-commands";
 import type { MarkdownStashData, Record } from "@hades-ts/stash";
-import {
-    ApplicationCommandOptionType,
-    AutocompleteInteraction,
-    EmbedBuilder,
-} from "discord.js";
-import { inject, injectable } from "inversify";
+
 import type { RuleConfig } from "../config";
 import { GuildServiceFactory } from "../services";
 

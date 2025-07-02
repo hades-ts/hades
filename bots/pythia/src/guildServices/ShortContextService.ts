@@ -1,7 +1,9 @@
-import { HadesClient } from "@hades-ts/core";
-import { guildSingleton } from "@hades-ts/guilds";
 import type { Message } from "discord.js";
 import { inject } from "inversify";
+
+import { HadesClient } from "@hades-ts/core";
+import { guildSingleton } from "@hades-ts/guilds";
+
 import { MessageChainFormatter } from "./MessageChainFormatter";
 
 @guildSingleton()

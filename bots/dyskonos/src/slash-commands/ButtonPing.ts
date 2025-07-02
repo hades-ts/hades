@@ -1,6 +1,3 @@
-import { guildService } from "@hades-ts/guilds";
-import { interaction } from "@hades-ts/interactions";
-import { command, SlashCommand } from "@hades-ts/slash-commands";
 import {
     ActionRowBuilder,
     ButtonBuilder,
@@ -9,6 +6,10 @@ import {
     ComponentType,
     InteractionType,
 } from "discord.js";
+
+import { guildService } from "@hades-ts/guilds";
+import { interaction } from "@hades-ts/interactions";
+import { command, SlashCommand } from "@hades-ts/slash-commands";
 
 @interaction(InteractionType.MessageComponent, ComponentType.Button)
 export class ButtonPingInteraction {

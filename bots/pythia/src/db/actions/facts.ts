@@ -1,7 +1,9 @@
-import { singleton } from "@hades-ts/core";
 import { eq } from "drizzle-orm";
 import { PostgresJsDatabase } from "drizzle-orm/postgres-js";
 import { inject } from "inversify";
+
+import { singleton } from "@hades-ts/core";
+
 import { generateEmbedding } from "../../ai/embeddings";
 import { facts, insertFactSchema, type NewFact } from "../schema";
 import { vectorize } from "../utils";

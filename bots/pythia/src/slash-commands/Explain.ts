@@ -1,10 +1,3 @@
-import { HadesClient } from "@hades-ts/core";
-import {
-    arg,
-    command,
-    guildCommand,
-    SlashCommand,
-} from "@hades-ts/slash-commands";
 import {
     ActionRowBuilder,
     ApplicationCommandOptionType,
@@ -16,6 +9,15 @@ import {
     type ThreadChannel,
 } from "discord.js";
 import { inject } from "inversify";
+
+import { HadesClient } from "@hades-ts/core";
+import {
+    arg,
+    command,
+    guildCommand,
+    SlashCommand,
+} from "@hades-ts/slash-commands";
+
 import { GlobalQuotaError, UserQuotaError } from "../errors";
 import type { Thread, ThreadMessage } from "../types";
 

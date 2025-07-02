@@ -1,6 +1,7 @@
-import { singleton } from "@hades-ts/core";
 import axios, { type AxiosResponse } from "axios";
 import { inject } from "inversify";
+
+import { singleton } from "@hades-ts/core";
 
 import { aiTokens } from "../tokens";
 

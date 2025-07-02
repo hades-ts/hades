@@ -1,4 +1,5 @@
 import type { Container } from "inversify";
+
 import { findListeners } from "../decorators/listener";
 import { EventService } from "./EventService";
 

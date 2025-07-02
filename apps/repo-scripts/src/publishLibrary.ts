@@ -1,5 +1,6 @@
-import { allLibraries } from "./utils";
 import { execSync } from "child_process";
+
+import { allLibraries } from "./utils";
 
 function run() {
     const packagePath = getPackagePath(process.argv[3]);

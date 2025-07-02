@@ -1,3 +1,6 @@
+import { EmbedBuilder, type GuildMember } from "discord.js";
+import { inject } from "inversify";
+
 import { HadesClient } from "@hades-ts/core";
 import {
     command,
@@ -6,8 +9,6 @@ import {
     user,
     validate,
 } from "@hades-ts/slash-commands";
-import { EmbedBuilder, type GuildMember } from "discord.js";
-import { inject } from "inversify";
 
 const avatarEmbed = (member: GuildMember) => ({
     embeds: [

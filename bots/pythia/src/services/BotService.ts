@@ -1,7 +1,9 @@
-import { HadesClient, listener, listenFor, singleton } from "@hades-ts/core";
-import { GuildManager } from "@hades-ts/guilds";
 import { Events } from "discord.js";
 import { inject } from "inversify";
+
+import { HadesClient, listener, listenFor, singleton } from "@hades-ts/core";
+import { GuildManager } from "@hades-ts/guilds";
+
 import { MentionHandler } from "../guildServices";
 import { ThreadStarterService } from "./ThreadStarterService";
 

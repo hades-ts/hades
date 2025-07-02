@@ -1,8 +1,10 @@
+import fs from "fs";
+import path from "path";
+
+import { inject } from "inversify";
+
 import { HadesClient } from "@hades-ts/core";
 import { guildSingleton } from "@hades-ts/guilds";
-import fs from "fs";
-import { inject } from "inversify";
-import path from "path";
 
 import type { Thread } from "../types";
 

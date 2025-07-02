@@ -1,4 +1,5 @@
 import { inject, injectable, postConstruct } from "inversify";
+
 import type { SidebarItemCategoryEntry } from "../types";
 import { capitalize } from "../utils";
 import { SectionItemProvider } from "./ItemProvider";

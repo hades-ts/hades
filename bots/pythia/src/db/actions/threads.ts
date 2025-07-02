@@ -1,4 +1,9 @@
 import { eq } from "drizzle-orm";
+import { PostgresJsDatabase } from "drizzle-orm/postgres-js";
+import { inject } from "inversify";
+
+import { singleton } from "@hades-ts/core";
+
 import { generateEmbedding } from "../../ai/embeddings";
 import {
     insertThreadMessageSchema,
@@ -9,9 +14,6 @@ import {
     threads,
 } from "../schema";
 import { vectorize } from "../utils";
-import { PostgresJsDatabase } from "drizzle-orm/postgres-js";
-import { singleton } from "@hades-ts/core";
-import { inject } from "inversify";
 
 export const createThread = async (
     db: PostgresJsDatabase,
@@ -35,7 +37,12 @@ export class CreateThreadAction {
     @inject(PostgresJsDatabase)
     private db!: PostgresJsDatabase;
 
-    async execute(guildId: number, channelId: number, threadId: number, isPrivate: boolean) {
+    async execute(
+        guildId: number,
+        channelId: number,
+        threadId: number,
+        isPrivate: boolean,
+    ) {
         return createThread(this.db, guildId, channelId, threadId, isPrivate);
     }
 }
@@ -67,7 +74,11 @@ export class CreateThreadMessageAction {
     }
 }
 
-export const searchThreads = async (db: PostgresJsDatabase, guildId: number, query: string) => {
+export const searchThreads = async (
+    db: PostgresJsDatabase,
+    guildId: number,
+    query: string,
+) => {
     const queryEmbedding = await generateEmbedding(query);
 
     const results = await db
@@ -112,7 +123,11 @@ export class SearchThreadsAction {
     }
 }
 
-export const searchThread = async (db: PostgresJsDatabase, threadId: number, query: string) => {
+export const searchThread = async (
+    db: PostgresJsDatabase,
+    threadId: number,
+    query: string,
+) => {
     const queryEmbedding = await generateEmbedding(query);
 
     return db

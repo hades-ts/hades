@@ -1,7 +1,8 @@
-import { HadesClient } from "@hades-ts/core";
-import { GuildInfo, guildSingleton } from "@hades-ts/guilds";
 import type { Message } from "discord.js";
 import { inject } from "inversify";
+
+import { HadesClient } from "@hades-ts/core";
+import { GuildInfo, guildSingleton } from "@hades-ts/guilds";
 
 /**
  *  The goal of this class is to, given a message:

@@ -1,7 +1,9 @@
+import path from "path";
+
+import { inject } from "inversify";
+
 import { guildSingleton, guildTokens } from "@hades-ts/guilds";
 import { MarkdownStash } from "@hades-ts/stash";
-import { inject } from "inversify";
-import path from "path";
 
 import { type RoleConfig, roleSchema } from "../config";
 

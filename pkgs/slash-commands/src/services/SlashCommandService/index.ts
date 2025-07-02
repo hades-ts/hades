@@ -1,4 +1,3 @@
-import { HadesClient, listener, listenFor, singleton } from "@hades-ts/core";
 import {
     type AutocompleteInteraction,
     type BaseInteraction,
@@ -8,6 +7,8 @@ import {
     Events,
 } from "discord.js";
 import { Container, inject } from "inversify";
+
+import { HadesClient, listener, listenFor, singleton } from "@hades-ts/core";
 
 import { SlashArgError } from "../../errors";
 import { getSlashCommandMetas } from "../../metadata";

@@ -1,5 +1,7 @@
-import { GuildInfo, guildSingleton, guildTokens } from "@hades-ts/guilds";
 import { inject } from "inversify";
+
+import { GuildInfo, guildSingleton, guildTokens } from "@hades-ts/guilds";
+
 import type { Config } from "../config";
 
 @guildSingleton()

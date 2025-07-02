@@ -1,11 +1,12 @@
+import { CommandInteraction, type GuildMember } from "discord.js";
+import { inject, injectable } from "inversify";
+
 import { HadesClient } from "@hades-ts/core";
 import {
     SlashArgError,
     SlashArgInstaller,
     Validator,
 } from "@hades-ts/slash-commands";
-import { CommandInteraction, type GuildMember } from "discord.js";
-import { inject, injectable } from "inversify";
 
 @injectable()
 export class NotMeValidator extends Validator<GuildMember> {

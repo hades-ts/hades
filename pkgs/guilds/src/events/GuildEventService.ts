@@ -1,6 +1,8 @@
-import { HadesClient } from "@hades-ts/core";
 import type { ClientEvents } from "discord.js";
 import { inject } from "inversify";
+
+import { HadesClient } from "@hades-ts/core";
+
 import { guildService } from "../decorators";
 import { GuildInfo } from "../GuildManager";
 import { getListenerMetas, type SI } from "./listenFor";

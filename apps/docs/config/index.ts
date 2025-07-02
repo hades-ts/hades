@@ -1,10 +1,11 @@
 import { themes } from "prism-react-renderer";
-import metadata from "./metadata";
-import plugins from "./plugins";
-import presets from "./presets";
-import navbar from "./navbar";
+
 import footer from "./footer";
 import logo from "./logo";
+import metadata from "./metadata";
+import navbar from "./navbar";
+import plugins from "./plugins";
+import presets from "./presets";
 
 async function createConfig() {
     return {

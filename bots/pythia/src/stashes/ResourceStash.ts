@@ -1,6 +1,8 @@
+import { inject } from "inversify";
+
 import { GuildInfo, guildSingleton } from "@hades-ts/guilds";
 import { TextStash } from "@hades-ts/stash";
-import { inject } from "inversify";
+
 import type { GuildConfig } from "../config";
 
 @guildSingleton()

@@ -1,4 +1,5 @@
 import type { z } from "zod/v4";
+
 import { BaseFiletypeStash } from "./BaseFiletypeStash";
 
 export abstract class ParsedFiletypeStash<T> extends BaseFiletypeStash<T> {

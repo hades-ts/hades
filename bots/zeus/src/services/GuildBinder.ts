@@ -1,8 +1,10 @@
+import path from "path";
+
+import { type Container, inject, type ResolutionContext } from "inversify";
+
 import { singleton } from "@hades-ts/core";
 import { type GuildBinder, guildTokens } from "@hades-ts/guilds";
 import { MarkdownStash } from "@hades-ts/stash";
-import { type Container, inject, type ResolutionContext } from "inversify";
-import path from "path";
 
 import { type GuildConfig, ruleSchema } from "../config";
 
