@@ -1,4 +1,4 @@
-import LogViewer from './components/LogViewer/LogViewer';
+import LogViewer from './Viewer';
 
 function App() {
     return <LogViewer />;

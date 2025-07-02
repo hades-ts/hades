@@ -1,5 +1,5 @@
-import { useFileStore } from '../../store/fileStore';
-import { useFilterStore } from '../../store/filterStore';
+import { useFileStore } from "../../../store/fileStore";
+import { useFilterStore } from "../../../store/filterStore";
 
 export default function LogStats() {
     const { file, isWatching, logs } = useFileStore();
