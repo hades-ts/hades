@@ -79,7 +79,7 @@ export default function LogViewer() {
             setIsWatching(true);
         } catch (err: any) {
             if (err.name !== "AbortError") {
-                console.error("Error selecting file:", err);
+                console.error("Error selecting the file:", err);
             }
         }
     };
@@ -96,6 +96,7 @@ export default function LogViewer() {
 
     // Auto-start watching when file is selected and isWatching is true
     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
     useEffect(() => {
         if (file && isWatching) {
             startWatching();
