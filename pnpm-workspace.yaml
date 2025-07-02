@@ -19,6 +19,7 @@ catalog:
   pkgroll: 2.13.1
   tsx: 4.20.3
   rimraf: 6.0.1
+  '@biomejs/biome': ^2.0.6
 
 catalogMode: strict
 
