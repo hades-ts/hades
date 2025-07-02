@@ -1,0 +1,41 @@
+name: Deploy Log-Viewer
+on:
+  workflow_run:
+    workflows: [CI]
+    types:
+      - completed
+
+jobs:
+  deploy-log-viewer:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - name: Show workflow run info
+        run: |
+          echo "Workflow run ID: ${{ github.event.workflow_run.id }}"
+          echo "Workflow run conclusion: ${{ github.event.workflow_run.conclusion }}"
+          echo "Workflow run event: ${{ github.event.workflow_run.event }}"
+          echo "Workflow run head branch: ${{ github.event.workflow_run.head_branch }}"
+          echo "Workflow run head SHA: ${{ github.event.workflow_run.head_sha }}"
+      - name: Download log-viewer build artifacts
+        uses: dawidd6/action-download-artifact@v6
+        with:
+          workflow: ci.yml
+          name: log-viewer-build
+          path: ./apps/log-viewer/dist
+          run_id: ${{ github.event.workflow_run.id }}
+          if_no_artifact_found: fail
+      - name: Verify downloaded artifacts
+        run: |
+          echo "Contents of current directory:"
+          ls -la
+          echo "Contents of apps/log-viewer/dist:"
+          ls -la ./apps/log-viewer/dist || echo "Dist directory not found"
+      - name: Deploy Log Viewer
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          deploy_key: ${{ secrets.LOG_VIEWER_DEPLOY_KEY }}
+          publish_dir: ./apps/log-viewer/dist
+          external_repository: hades-ts/log-viewer
+          publish_branch: main
+          enable_jekyll: false 
