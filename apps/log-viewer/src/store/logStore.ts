@@ -18,6 +18,7 @@ interface LogStore {
   specialActiveFilters: PropertyFilters;
   selectedProperties: Set<string>; // Properties selected but no values chosen = filter by existence
   selectedProperty: string | null;
+  filterMode: 'filter' | 'tint';
   
   // Selection state
   selectedLogEntry: LogEntry | null;
@@ -40,9 +41,12 @@ interface LogStore {
   clearPropertyFilters: (property?: string) => void;
   setSelectedProperty: (property: string | null) => void;
   setSelectedLogEntry: (logEntry: LogEntry | null) => void;
+  toggleFilterMode: () => void;
   toggleSortOrder: () => void;
   resetFilters: () => void;
   updateFilteredLogs: () => void;
+  isLogMatchingFilters: (log: LogEntry) => boolean;
+  hasActiveFilters: () => boolean;
 }
 
 // Helper function to extract values from property (handles arrays)
@@ -68,6 +72,7 @@ export const useLogStore = create<LogStore>((set, get) => ({
   selectedProperties: new Set(),
   selectedProperty: null,
   selectedLogEntry: null,
+  filterMode: 'filter',
   sortOrder: 'newest',
   filteredLogs: [],
 
@@ -219,6 +224,12 @@ export const useLogStore = create<LogStore>((set, get) => ({
   
   setSelectedLogEntry: (logEntry) => set({ selectedLogEntry: logEntry }),
   
+  toggleFilterMode: () => {
+    const { filterMode } = get();
+    set({ filterMode: filterMode === 'filter' ? 'tint' : 'filter' });
+    get().updateFilteredLogs();
+  },
+  
   toggleSortOrder: () => {
     const { sortOrder } = get();
     set({ sortOrder: sortOrder === 'newest' ? 'oldest' : 'newest' });
@@ -239,59 +250,62 @@ export const useLogStore = create<LogStore>((set, get) => ({
   },
   
   updateFilteredLogs: () => {
-    const { logs, messageFilter, activeFilters, specialActiveFilters, selectedProperties, sortOrder } = get();
+    const { logs, messageFilter, activeFilters, specialActiveFilters, selectedProperties, sortOrder, filterMode } = get();
     let filtered = logs;
     
-    // Message filter
-    if (messageFilter.trim()) {
-      filtered = filtered.filter(log =>
-        log.message && log.message.toLowerCase().includes(messageFilter.toLowerCase())
-      );
+    // Only apply filters in filter mode, not in tint mode
+    if (filterMode === 'filter') {
+      // Message filter
+      if (messageFilter.trim()) {
+        filtered = filtered.filter(log =>
+          log.message && log.message.toLowerCase().includes(messageFilter.toLowerCase())
+        );
+      }
+      
+      // Special property filters
+      Object.entries(specialActiveFilters).forEach(([property, values]) => {
+        if (values.size > 0) {
+          filtered = filtered.filter(log => {
+            const logValue = log[property];
+            if (!logValue) return false;
+            
+            // Handle arrays: check if any array element matches any filter value
+            if (Array.isArray(logValue)) {
+              return logValue.some(item => values.has(String(item)));
+            }
+            
+            // Handle single values
+            return values.has(String(logValue));
+          });
+        }
+      });
+      
+      // Regular property filters
+      Object.entries(activeFilters).forEach(([property, values]) => {
+        if (values.size > 0) {
+          filtered = filtered.filter(log => {
+            const logValue = log[property];
+            if (!logValue) return false;
+            
+            // Handle arrays: check if any array element matches any filter value
+            if (Array.isArray(logValue)) {
+              return logValue.some(item => values.has(String(item)));
+            }
+            
+            // Handle single values
+            return values.has(String(logValue));
+          });
+        }
+      });
+      
+      // Property existence filters (selected properties with no values)
+      selectedProperties.forEach(property => {
+        // Only filter by existence if no specific values are selected for this property
+        if (!activeFilters[property] || activeFilters[property].size === 0) {
+          filtered = filtered.filter(log => log.hasOwnProperty(property));
+        }
+      });
     }
-    
-    // Special property filters
-    Object.entries(specialActiveFilters).forEach(([property, values]) => {
-      if (values.size > 0) {
-        filtered = filtered.filter(log => {
-          const logValue = log[property];
-          if (!logValue) return false;
-          
-          // Handle arrays: check if any array element matches any filter value
-          if (Array.isArray(logValue)) {
-            return logValue.some(item => values.has(String(item)));
-          }
-          
-          // Handle single values
-          return values.has(String(logValue));
-        });
-      }
-    });
-    
-    // Regular property filters
-    Object.entries(activeFilters).forEach(([property, values]) => {
-      if (values.size > 0) {
-        filtered = filtered.filter(log => {
-          const logValue = log[property];
-          if (!logValue) return false;
-          
-          // Handle arrays: check if any array element matches any filter value
-          if (Array.isArray(logValue)) {
-            return logValue.some(item => values.has(String(item)));
-          }
-          
-          // Handle single values
-          return values.has(String(logValue));
-        });
-      }
-    });
-    
-    // Property existence filters (selected properties with no values)
-    selectedProperties.forEach(property => {
-      // Only filter by existence if no specific values are selected for this property
-      if (!activeFilters[property] || activeFilters[property].size === 0) {
-        filtered = filtered.filter(log => log.hasOwnProperty(property));
-      }
-    });
     
     // Sort by timestamp
     filtered.sort((a, b) => {
@@ -306,5 +320,89 @@ export const useLogStore = create<LogStore>((set, get) => ({
     });
     
     set({ filteredLogs: filtered });
+  },
+  
+  isLogMatchingFilters: (log) => {
+    const { activeFilters, specialActiveFilters, selectedProperties } = get();
+    
+    // Check message filter
+    if (get().messageFilter.trim() && (!log.message || !log.message.toLowerCase().includes(get().messageFilter.toLowerCase()))) {
+      return false;
+    }
+    
+    // Check special property filters
+    for (const [property, values] of Object.entries(specialActiveFilters)) {
+      if (values.size > 0) {
+        const logValue = log[property];
+        if (logValue) {
+          if (Array.isArray(logValue)) {
+            if (!logValue.some(item => values.has(String(item)))) {
+              return false;
+            }
+          } else {
+            if (!values.has(String(logValue))) {
+              return false;
+            }
+          }
+        }
+      }
+    }
+    
+    // Check regular property filters
+    for (const [property, values] of Object.entries(activeFilters)) {
+      if (values.size > 0) {
+        const logValue = log[property];
+        if (logValue) {
+          if (Array.isArray(logValue)) {
+            if (!logValue.some(item => values.has(String(item)))) {
+              return false;
+            }
+          } else {
+            if (!values.has(String(logValue))) {
+              return false;
+            }
+          }
+        }
+      }
+    }
+    
+    // Check property existence filters
+    for (const property of selectedProperties) {
+      if (!log.hasOwnProperty(property)) {
+        return false;
+      }
+    }
+    
+    return true;
+  },
+
+  hasActiveFilters: () => {
+    const { messageFilter, activeFilters, specialActiveFilters, selectedProperties } = get();
+    
+    // Check if message filter is present
+    if (messageFilter.trim()) {
+      return true;
+    }
+    
+    // Check if any special property filters are active
+    for (const values of Object.values(specialActiveFilters)) {
+      if (values.size > 0) {
+        return true;
+      }
+    }
+    
+    // Check if any regular property filters are active
+    for (const values of Object.values(activeFilters)) {
+      if (values.size > 0) {
+        return true;
+      }
+    }
+    
+    // Check if any property existence filters are active
+    if (selectedProperties.size > 0) {
+      return true;
+    }
+    
+    return false;
   }
 })); 
