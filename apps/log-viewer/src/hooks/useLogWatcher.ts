@@ -9,7 +9,7 @@ interface UseLogWatcherProps {
   onClearLogs?: () => void;
 }
 
-export const useLogWatcher = ({ file, isWatching, onNewLogs, onClearLogs }: UseLogWatcherProps) => {
+export const useLogWatcher = ({ file, isWatching: _isWatching, onNewLogs, onClearLogs }: UseLogWatcherProps) => {
   const lastPositionRef = useRef(0);
   const currentFileRef = useRef<FileSystemFileHandle | null>(null);
   const currentObserverRef = useRef<FileSystemObserver | any>(null);

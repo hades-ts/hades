@@ -75,7 +75,7 @@ const formatTags = (tags: unknown) => {
     return String(tags);
 };
 
-export default function LogEntry({ log, index }: LogEntryProps) {
+export default function LogEntry({ log }: LogEntryProps) {
     const { filterMode, isLogMatchingFilters, hasActiveFilters } = useFilterStore();
     const { selectedLogEntry, setSelectedLogEntry } = useUiStore();
 

@@ -1,17 +1,14 @@
-import { Table, TableBody, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { ArrowUpDown, FileText, Filter, Palette, RotateCcw } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { useLogWatcher } from '../hooks/useLogWatcher';
 import { useFileStore } from '../store/fileStore';
 import { useFilterStore } from '../store/filterStore';
 import { useUiStore } from '../store/uiStore';
+import ControlButtons from './ControlButtons';
+import FilterSection from './FilterSection';
 import Header from './Header';
 import { LogDetailSidebar } from './LogDetailSidebar';
-import LogEntryComponent from './LogEntry';
-import PropertyMultiSelect from './PropertyMultiSelect';
-import PropertyValueFilters from './PropertyValueFilters';
-import SearchBar from './SearchBar';
-import SpecialPropertyFilters from './SpecialPropertyFilters';
+import LogStats from './LogStats';
+import LogTable from './LogTable';
 
 // Pulse effect configuration
 const PULSE_BRIGHTNESS = 1.1; // 1.0 = normal, 1.1 = 10% brighter, 1.2 = 20% brighter, etc.
@@ -30,17 +27,7 @@ export default function LogViewer() {
     } = useFileStore();
 
     // Filter store
-    const {
-        filteredLogs,
-        messageFilter,
-        sortOrder,
-        filterMode,
-        setMessageFilter,
-        toggleSortOrder,
-        resetFilters,
-        toggleFilterMode,
-        updateFilteredLogs,
-    } = useFilterStore();
+    const { resetFilters, updateFilteredLogs } = useFilterStore();
 
     // UI store
     const { selectedLogEntry } = useUiStore();
@@ -133,95 +120,16 @@ export default function LogViewer() {
 
                 <div className="max-w-7xl mx-auto px-6 py-6">
                     {/* Filters Section */}
-                    <div className="mb-6 space-y-6">
-                        {/* 1. Message Search */}
-                        <SearchBar
-                            value={messageFilter}
-                            onChange={setMessageFilter}
-                        />
+                    <FilterSection />
 
-                        {/* 2. Property Selection Dropdown */}
-                        <PropertyMultiSelect />
-
-                        {/* 3. Permanent Value Filters (Special Properties) */}
-                        <SpecialPropertyFilters />
-
-                        {/* 4. Enabled Value Filters (Selected Properties) */}
-                        <PropertyValueFilters />
-                    </div>
-
-                    {/* Stats */}
+                    {/* Stats and Controls */}
                     <div className="flex items-center justify-between mb-6 text-sm text-slate-400">
-                        <div className="flex items-center gap-6">
-                            <span>Total: {logs.length} entries</span>
-                            <span>Filtered: {filteredLogs.length} entries</span>
-                            {file && (
-                                <span className={`flex items-center gap-1 ${isWatching ? 'text-green-400' : 'text-slate-400'}`}>
-                                    <div className={`w-2 h-2 rounded-full ${isWatching ? 'bg-green-400 animate-pulse' : 'bg-slate-500'}`} />
-                                    {isWatching ? 'Watching' : 'Stopped'}
-                                </span>
-                            )}
-                        </div>
-
-                        <div className="flex items-center gap-3">
-                            <button
-                                onClick={resetFilters}
-                                className="flex items-center gap-2 px-3 py-1.5 bg-slate-700 hover:bg-slate-600 rounded-lg transition-colors text-slate-300 hover:text-white"
-                            >
-                                <RotateCcw className="w-4 h-4" />
-                                Reset Filters
-                            </button>
-
-                            <button
-                                onClick={toggleSortOrder}
-                                className="flex items-center gap-2 px-3 py-1.5 bg-slate-700 hover:bg-slate-600 rounded-lg transition-colors text-slate-300 hover:text-white"
-                            >
-                                <ArrowUpDown className="w-4 h-4" />
-                                {sortOrder === 'newest' ? 'Newest First' : 'Oldest First'}
-                            </button>
-
-                            <button
-                                onClick={toggleFilterMode}
-                                className="flex items-center gap-2 px-3 py-1.5 bg-slate-700 hover:bg-slate-600 rounded-lg transition-colors text-slate-300 hover:text-white"
-                            >
-                                {filterMode === 'filter' ? <Filter className="w-4 h-4" /> : <Palette className="w-4 h-4" />}
-                                {filterMode === 'filter' ? 'Filter' : 'Tint'}
-                            </button>
-                        </div>
+                        <LogStats />
+                        <ControlButtons />
                     </div>
 
                     {/* Log Entries Table */}
-                    <div className="rounded-md border border-slate-700 bg-slate-900/50">
-                        {filteredLogs.length === 0 ? (
-                            <div className="text-center py-12 text-slate-400">
-                                {logs.length === 0 ? (
-                                    <div>
-                                        <FileText className="w-12 h-12 mx-auto mb-4 opacity-50" />
-                                        <p>Select a log file to start</p>
-                                    </div>
-                                ) : (
-                                    <p>No entries match the current filters</p>
-                                )}
-                            </div>
-                        ) : (
-                            <Table>
-                                <TableHeader>
-                                    <TableRow className="border-slate-700 hover:bg-transparent">
-                                        <TableHead className="text-slate-300 font-semibold w-24">Level</TableHead>
-                                        <TableHead className="text-slate-300 font-semibold w-40">Timestamp</TableHead>
-                                        <TableHead className="text-slate-300 font-semibold w-32">Name</TableHead>
-                                        <TableHead className="text-slate-300 font-semibold">Message</TableHead>
-                                        <TableHead className="text-slate-300 font-semibold w-32">Tags</TableHead>
-                                    </TableRow>
-                                </TableHeader>
-                                <TableBody>
-                                    {filteredLogs.map((log, index) => (
-                                        <LogEntryComponent key={index} log={log} index={index} />
-                                    ))}
-                                </TableBody>
-                            </Table>
-                        )}
-                    </div>
+                    <LogTable />
                 </div>
 
                 {/* Sidebar as overlay */}
