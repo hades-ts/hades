@@ -1,8 +1,9 @@
 import {
     ChannelSelectMenuBuilder,
-    ChannelSelectMenuComponentData,
+    type ChannelSelectMenuComponentData,
 } from "discord.js";
-import { BuilderComponent } from "../../typings/types.js";
+
+import type { BuilderComponent } from "../../typings/types.js";
 
 export type ChannelSelectMenuOptions = Omit<
     ChannelSelectMenuComponentData,

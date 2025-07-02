@@ -1,10 +1,11 @@
-import { BuilderComponent } from "../../typings/types.js";
-import { ButtonComponent } from "./Button.js";
-import { StringSelectMenuComponent } from "./StringSelectMenu.js";
-import { UserSelectMenuComponent } from "./UserSelectMenu.js";
-import { RoleSelectMenuComponent } from "./RoleSelectMenu.js";
-import { ChannelSelectMenuComponent } from "./ChannelSelectMenu.js";
 import { ActionRowBuilder } from "discord.js";
+
+import type { BuilderComponent } from "../../typings/types.js";
+import type { ButtonComponent } from "./Button.js";
+import type { ChannelSelectMenuComponent } from "./ChannelSelectMenu.js";
+import type { RoleSelectMenuComponent } from "./RoleSelectMenu.js";
+import type { StringSelectMenuComponent } from "./StringSelectMenu.js";
+import type { UserSelectMenuComponent } from "./UserSelectMenu.js";
 
 export type ActionRowResolvable =
     | ButtonComponent

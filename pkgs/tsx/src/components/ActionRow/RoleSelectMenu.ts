@@ -1,5 +1,9 @@
-import { RoleSelectMenuBuilder, RoleSelectMenuComponentData } from "discord.js";
-import { BuilderComponent } from "../../typings/types.js";
+import {
+    RoleSelectMenuBuilder,
+    type RoleSelectMenuComponentData,
+} from "discord.js";
+
+import type { BuilderComponent } from "../../typings/types.js";
 
 export type RoleSelectMenuOptions = Omit<
     RoleSelectMenuComponentData,

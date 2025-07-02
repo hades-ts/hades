@@ -1,8 +1,9 @@
-import { ActionRowBuilder, EmbedBuilder } from "discord.js";
-import {
+import type { ActionRowBuilder, EmbedBuilder } from "discord.js";
+
+import type {
     Atom,
-    ComponentFactory,
     Component,
+    ComponentFactory,
     ComponentPropTypes,
     FragmentResolvable,
 } from "../typings/types";
