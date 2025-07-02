@@ -1,4 +1,4 @@
-import { AlertTriangle, Tag, User, X } from 'lucide-react';
+import { AlertTriangle, Tag, User } from 'lucide-react';
 import { useLogStore } from '../store/logStore';
 
 const SPECIAL_PROPERTY_ICONS = {
@@ -120,9 +120,9 @@ export default function SpecialPropertyFilters() {
                                     <button
                                         key={String(value)}
                                         onClick={() => togglePropertyFilter(property, String(value), true)}
-                                        className={`inline-flex items-center gap-1 px-2 py-1 text-xs rounded-md font-medium transition-all ${isActive
+                                        className={`px-2 py-1 text-xs rounded-md font-medium transition-all ${isActive
                                             ? isLevel
-                                                ? `${levelColors?.text} ${levelColors?.bg} border ${levelColors?.border} ring-1 ring-current/30`
+                                                ? `text-white ${levelColors?.bg} border ${levelColors?.border} ring-1 ring-current/30`
                                                 : 'bg-indigo-500 text-white ring-1 ring-indigo-400'
                                             : isLevel
                                                 ? `${levelColors?.text} ${levelColors?.bg} border ${levelColors?.border} ${levelColors?.hoverBg} hover:text-white`
@@ -130,15 +130,6 @@ export default function SpecialPropertyFilters() {
                                             }`}
                                     >
                                         {isLevel ? String(value).toUpperCase() : String(value)}
-                                        {isActive && (
-                                            <X
-                                                className="w-3 h-3 ml-1 hover:bg-white/20 rounded-full cursor-pointer"
-                                                onClick={(e) => {
-                                                    e.stopPropagation();
-                                                    togglePropertyFilter(property, String(value), true);
-                                                }}
-                                            />
-                                        )}
                                     </button>
                                 );
                             })}

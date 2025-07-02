@@ -19,6 +19,9 @@ interface LogStore {
   selectedProperties: Set<string>; // Properties selected but no values chosen = filter by existence
   selectedProperty: string | null;
   
+  // Selection state
+  selectedLogEntry: LogEntry | null;
+  
   // Sorting state
   sortOrder: 'newest' | 'oldest';
   
@@ -36,6 +39,7 @@ interface LogStore {
   togglePropertySelection: (property: string) => void;
   clearPropertyFilters: (property?: string) => void;
   setSelectedProperty: (property: string | null) => void;
+  setSelectedLogEntry: (logEntry: LogEntry | null) => void;
   toggleSortOrder: () => void;
   resetFilters: () => void;
   updateFilteredLogs: () => void;
@@ -63,6 +67,7 @@ export const useLogStore = create<LogStore>((set, get) => ({
   specialActiveFilters: {},
   selectedProperties: new Set(),
   selectedProperty: null,
+  selectedLogEntry: null,
   sortOrder: 'newest',
   filteredLogs: [],
 
@@ -212,6 +217,8 @@ export const useLogStore = create<LogStore>((set, get) => ({
   
   setSelectedProperty: (selectedProperty) => set({ selectedProperty }),
   
+  setSelectedLogEntry: (logEntry) => set({ selectedLogEntry: logEntry }),
+  
   toggleSortOrder: () => {
     const { sortOrder } = get();
     set({ sortOrder: sortOrder === 'newest' ? 'oldest' : 'newest' });
@@ -221,14 +228,14 @@ export const useLogStore = create<LogStore>((set, get) => ({
   resetFilters: () => {
     set({
       messageFilter: '',
-      properties: {},
-      specialProperties: {},
       activeFilters: {},
       specialActiveFilters: {},
       selectedProperties: new Set(),
       selectedProperty: null,
-      filteredLogs: []
+      selectedLogEntry: null,
     });
+    // Update filtered logs to show all entries
+    get().updateFilteredLogs();
   },
   
   updateFilteredLogs: () => {

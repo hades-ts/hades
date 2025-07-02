@@ -1,14 +1,19 @@
 import { Table, TableBody, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { ArrowUpDown, FileText } from 'lucide-react';
-import { useEffect } from 'react';
+import { ArrowUpDown, FileText, RotateCcw } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
 import { useLogWatcher } from '../hooks/useLogWatcher';
 import { useLogStore } from '../store/logStore';
 import Header from './Header';
+import { LogDetailSidebar } from './LogDetailSidebar';
 import LogEntryComponent from './LogEntry';
 import PropertyMultiSelect from './PropertyMultiSelect';
 import PropertyValueFilters from './PropertyValueFilters';
 import SearchBar from './SearchBar';
 import SpecialPropertyFilters from './SpecialPropertyFilters';
+
+// Pulse effect configuration
+const PULSE_BRIGHTNESS = 1.1; // 1.0 = normal, 1.1 = 10% brighter, 1.2 = 20% brighter, etc.
+const PULSE_DURATION_MS = 180; // Duration in milliseconds
 
 export default function LogViewer() {
     const {
@@ -18,6 +23,7 @@ export default function LogViewer() {
         filteredLogs,
         messageFilter,
         sortOrder,
+        selectedLogEntry,
         setFile,
         setIsWatching,
         addLogs,
@@ -27,11 +33,25 @@ export default function LogViewer() {
         resetFilters,
     } = useLogStore();
 
+    const [isPulsing, setIsPulsing] = useState(false);
+    const previousLogsLength = useRef(logs.length);
+
     const { startWatching, stopWatching, cleanup } = useLogWatcher({
         file,
         isWatching,
         onNewLogs: addLogs,
+        onClearLogs: clearLogs,
     });
+
+    // Trigger pulse effect when new logs are added (not from filter changes)
+    useEffect(() => {
+        if (logs.length > previousLogsLength.current && previousLogsLength.current > 0) {
+            setIsPulsing(true);
+            const timer = setTimeout(() => setIsPulsing(false), PULSE_DURATION_MS);
+            return () => clearTimeout(timer);
+        }
+        previousLogsLength.current = logs.length;
+    }, [logs.length]);
 
     const selectFile = async () => {
         try {
@@ -76,7 +96,13 @@ export default function LogViewer() {
     }, [cleanup]);
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
+        <div
+            className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white relative"
+            style={{
+                '--pulse-brightness': PULSE_BRIGHTNESS,
+                animation: isPulsing ? `brightness-pulse ${PULSE_DURATION_MS}ms ease-in-out` : 'none',
+            } as React.CSSProperties}
+        >
             <Header
                 file={file}
                 isWatching={isWatching}
@@ -116,13 +142,23 @@ export default function LogViewer() {
                         )}
                     </div>
 
-                    <button
-                        onClick={toggleSortOrder}
-                        className="flex items-center gap-2 px-3 py-1.5 bg-slate-700 hover:bg-slate-600 rounded-lg transition-colors text-slate-300 hover:text-white"
-                    >
-                        <ArrowUpDown className="w-4 h-4" />
-                        {sortOrder === 'newest' ? 'Newest First' : 'Oldest First'}
-                    </button>
+                    <div className="flex items-center gap-3">
+                        <button
+                            onClick={resetFilters}
+                            className="flex items-center gap-2 px-3 py-1.5 bg-slate-700 hover:bg-slate-600 rounded-lg transition-colors text-slate-300 hover:text-white"
+                        >
+                            <RotateCcw className="w-4 h-4" />
+                            Reset Filters
+                        </button>
+
+                        <button
+                            onClick={toggleSortOrder}
+                            className="flex items-center gap-2 px-3 py-1.5 bg-slate-700 hover:bg-slate-600 rounded-lg transition-colors text-slate-300 hover:text-white"
+                        >
+                            <ArrowUpDown className="w-4 h-4" />
+                            {sortOrder === 'newest' ? 'Newest First' : 'Oldest First'}
+                        </button>
+                    </div>
                 </div>
 
                 {/* Log Entries Table */}
@@ -158,6 +194,9 @@ export default function LogViewer() {
                     )}
                 </div>
             </div>
+
+            {/* Sidebar as overlay */}
+            {selectedLogEntry && <LogDetailSidebar />}
         </div>
     );
 } 

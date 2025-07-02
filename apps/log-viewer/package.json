@@ -11,7 +11,9 @@
   "dependencies": {
     "@radix-ui/react-dialog": "catalog:",
     "@radix-ui/react-popover": "catalog:",
+    "@radix-ui/react-separator": "catalog:",
     "@radix-ui/react-slot": "catalog:",
+    "@radix-ui/react-tooltip": "catalog:",
     "class-variance-authority": "catalog:",
     "clsx": "catalog:",
     "cmdk": "catalog:",

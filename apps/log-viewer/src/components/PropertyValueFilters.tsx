@@ -1,4 +1,3 @@
-import { X } from 'lucide-react';
 import { useLogStore } from '../store/logStore';
 
 export default function PropertyValueFilters() {
@@ -57,21 +56,12 @@ export default function PropertyValueFilters() {
                                     <button
                                         key={String(value)}
                                         onClick={() => togglePropertyFilter(property, String(value), false)}
-                                        className={`inline-flex items-center gap-1 px-2 py-1 text-xs rounded-md transition-all ${isActive
-                                                ? 'bg-green-500 text-white ring-1 ring-green-400'
-                                                : 'bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white border border-slate-700'
+                                        className={`px-2 py-1 text-xs rounded-md transition-all ${isActive
+                                            ? 'bg-green-500 text-white ring-1 ring-green-400'
+                                            : 'bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white border border-slate-700'
                                             }`}
                                     >
                                         {String(value)}
-                                        {isActive && (
-                                            <X
-                                                className="w-3 h-3 ml-1 hover:bg-white/20 rounded-full cursor-pointer"
-                                                onClick={(e) => {
-                                                    e.stopPropagation();
-                                                    togglePropertyFilter(property, String(value), false);
-                                                }}
-                                            />
-                                        )}
                                     </button>
                                 );
                             })}
