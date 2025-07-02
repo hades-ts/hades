@@ -1,5 +1,5 @@
 import { ArrowUpDown, Filter, Palette, RotateCcw } from 'lucide-react';
-import { useFilterStore } from '../store/filterStore';
+import { useFilterStore } from '../../store/filterStore';
 
 export default function ControlButtons() {
     const { sortOrder, filterMode, resetFilters, toggleSortOrder, toggleFilterMode } = useFilterStore();

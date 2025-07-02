@@ -1,8 +1,8 @@
 import { Table, TableBody, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { FileText } from 'lucide-react';
-import { useFileStore } from '../store/fileStore';
-import { useFilterStore } from '../store/filterStore';
-import LogEntryComponent from './LogEntry';
+import { useFileStore } from '../../store/fileStore';
+import { useFilterStore } from '../../store/filterStore';
+import LogEntryComponent from '../LogEntry';
 
 export default function LogTable() {
     const { logs } = useFileStore();

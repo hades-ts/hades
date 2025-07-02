@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
-import { useLogWatcher } from '../hooks/useLogWatcher';
-import { useFileStore } from '../store/fileStore';
-import { useFilterStore } from '../store/filterStore';
-import { useUiStore } from '../store/uiStore';
+import { useLogWatcher } from '../../hooks/useLogWatcher';
+import { useFileStore } from '../../store/fileStore';
+import { useFilterStore } from '../../store/filterStore';
+import { useUiStore } from '../../store/uiStore';
+import Header from '../Header';
+import { LogDetailSidebar } from '../LogDetailSidebar';
 import ControlButtons from './ControlButtons';
 import FilterSection from './FilterSection';
-import Header from './Header';
-import { LogDetailSidebar } from './LogDetailSidebar';
 import LogStats from './LogStats';
 import LogTable from './LogTable';
 

@@ -1,8 +1,8 @@
-import { useFilterStore } from '../store/filterStore';
-import PropertyMultiSelect from './PropertyMultiSelect';
-import PropertyValueFilters from './PropertyValueFilters';
-import SearchBar from './SearchBar';
-import SpecialPropertyFilters from './SpecialPropertyFilters';
+import { useFilterStore } from '../../store/filterStore';
+import PropertyMultiSelect from '../PropertyMultiSelect';
+import PropertyValueFilters from '../PropertyValueFilters';
+import SearchBar from '../SearchBar';
+import SpecialPropertyFilters from '../SpecialPropertyFilters';
 
 export default function FilterSection() {
     const { messageFilter, setMessageFilter } = useFilterStore();
