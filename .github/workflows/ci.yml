@@ -35,7 +35,7 @@ jobs:
       # - name: Biome Check
       #   run: pnpm run ci:biome
       - name: Check build outputs
-        if: matrix.node-version == 'lts/*'
+        if: matrix.node-version == 'lts/*' && github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
           echo "Checking build outputs..."
           ls -la ./apps/docs/ || echo "docs directory not found"
@@ -43,7 +43,7 @@ jobs:
           ls -la ./apps/log-viewer/ || echo "log-viewer directory not found"
           ls -la ./apps/log-viewer/dist/ || echo "log-viewer dist directory not found"
       - name: Upload docs build artifacts
-        if: matrix.node-version == 'lts/*'
+        if: matrix.node-version == 'lts/*' && github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: actions/upload-artifact@v4
         with:
           name: docs-build
@@ -51,7 +51,7 @@ jobs:
           retention-days: 1
           if-no-files-found: error
       - name: Upload log-viewer build artifacts
-        if: matrix.node-version == 'lts/*'
+        if: matrix.node-version == 'lts/*' && github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: actions/upload-artifact@v4
         with:
           name: log-viewer-build
