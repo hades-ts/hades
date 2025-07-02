@@ -4,6 +4,10 @@
     "scripts": {
         "build": "turbo run build",
         "test": "turbo run test",
+        "root:lint": "biome lint .",
+        "root:format": "biome format .",
+        "root:check": "biome check .",
+        "ci": "biome ci .",
         "purge": "find . -name \"node_modules\" -type d -exec rm -rf {} +",
         "publish-packages": "turbo run build lint test && changeset version && changeset publish"
     },
