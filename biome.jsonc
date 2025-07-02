@@ -35,7 +35,27 @@
     "enabled": true,
     "actions": {
       "source": {
-        "organizeImports": "on"
+        "organizeImports": {
+          "level": "on",
+          "options": {
+            "groups": [
+              "reflect-metadata",
+              "react",
+              ":BLANK_LINE:",
+              ":URL:",
+              ":BLANK_LINE:",
+              [":BUN:", ":NODE:"],
+              ":PACKAGE_WITH_PROTOCOL:",
+              ":BLANK_LINE:",
+              [":PACKAGE:", "!@hades-ts/**"],
+              ":BLANK_LINE:",
+              "@hades-ts/**",
+              ":BLANK_LINE:",
+              ":ALIAS:",
+              ":PATH:"
+            ]
+          }
+        }
       }
     }
   }
