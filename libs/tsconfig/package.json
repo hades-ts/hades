@@ -16,5 +16,8 @@
     "files": [
         "aspects/**/*.json",
         "*.json"
-    ]
+    ],
+    "devDependencies": {
+        "@biomejs/biome": "catalog:"
+    }
 }
