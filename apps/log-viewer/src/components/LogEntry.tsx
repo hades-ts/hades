@@ -75,9 +75,11 @@ const formatTags = (tags: unknown) => {
 };
 
 export default function LogEntry({ log, index }: LogEntryProps) {
-    const { selectedLogEntry, setSelectedLogEntry } = useLogStore();
+    const { selectedLogEntry, setSelectedLogEntry, filterMode, isLogMatchingFilters, hasActiveFilters } = useLogStore();
 
     const isSelected = selectedLogEntry === log;
+    const matchesFilters = isLogMatchingFilters(log);
+    const hasFilters = hasActiveFilters();
 
     const handleClick = () => {
         if (isSelected) {
@@ -87,12 +89,25 @@ export default function LogEntry({ log, index }: LogEntryProps) {
         }
     };
 
+    // Determine row styling based on mode
+    const getRowClassName = () => {
+        let baseClasses = 'cursor-pointer transition-colors border-slate-700';
+
+        if (isSelected) {
+            return `${baseClasses} bg-blue-900/30 hover:bg-blue-900/40 border-blue-700`;
+        }
+
+        if (filterMode === 'tint' && hasFilters && matchesFilters) {
+            // Brighten background for matching entries in tint mode, but only if filters are active
+            return `${baseClasses} bg-slate-700/50 hover:bg-slate-700/70`;
+        }
+
+        return `${baseClasses} hover:bg-slate-800/50`;
+    };
+
     return (
         <TableRow
-            className={`cursor-pointer transition-colors border-slate-700 ${isSelected
-                    ? 'bg-blue-900/30 hover:bg-blue-900/40 border-blue-700'
-                    : 'hover:bg-slate-800/50'
-                }`}
+            className={getRowClassName()}
             onClick={handleClick}
         >
             <TableCell className="font-medium">
