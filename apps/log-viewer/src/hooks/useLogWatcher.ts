@@ -8,9 +8,11 @@ interface UseLogWatcherProps {
   onNewLogs: (logs: LogEntry[]) => void;
 }
 
+// Use module-level variable instead of useRef for interval storage
+let currentInterval: number | null = null;
+
 export const useLogWatcher = ({ file, isWatching, onNewLogs }: UseLogWatcherProps) => {
   const lastPositionRef = useRef(0);
-  const intervalRef = useRef<number | null>(null);
 
   const processNewContent = useCallback((content: string) => {
     const lines = content.split('\n').filter(line => line.trim());
@@ -29,27 +31,32 @@ export const useLogWatcher = ({ file, isWatching, onNewLogs }: UseLogWatcherProp
   }, [onNewLogs]);
 
   const startWatching = useCallback(async () => {
-    if (!file || isWatching) return;
+    if (!file || currentInterval !== null) return;
 
     // Initial read
     const { content, newPosition } = await readFileFromPosition(file.handle, 0);
     lastPositionRef.current = newPosition;
     processNewContent(content);
 
-    // Set up polling
-    intervalRef.current = window.setInterval(async () => {
-      const { content, newPosition } = await readFileFromPosition(file.handle, lastPositionRef.current);
-      lastPositionRef.current = newPosition;
-      if (content) {
-        processNewContent(content);
+    // Set up polling with regular variable storage
+    currentInterval = window.setInterval(async () => {
+      try {
+        const { content, newPosition } = await readFileFromPosition(file.handle, lastPositionRef.current);
+        lastPositionRef.current = newPosition;
+        if (content) {
+          processNewContent(content);
+        }
+      } catch (error) {
+        console.error('Error during file polling:', error);
       }
     }, 1000);
-  }, [file, isWatching, processNewContent]);
+
+  }, [file, processNewContent]);
 
   const stopWatching = useCallback(() => {
-    if (intervalRef.current) {
-      window.clearInterval(intervalRef.current);
-      intervalRef.current = null;
+    if (currentInterval !== null) {
+      window.clearInterval(currentInterval);
+      currentInterval = null;
     }
   }, []);
 
@@ -57,8 +64,9 @@ export const useLogWatcher = ({ file, isWatching, onNewLogs }: UseLogWatcherProp
     startWatching,
     stopWatching,
     cleanup: () => {
-      if (intervalRef.current) {
-        window.clearInterval(intervalRef.current);
+      if (currentInterval !== null) {
+        window.clearInterval(currentInterval);
+        currentInterval = null;
       }
     }
   };
