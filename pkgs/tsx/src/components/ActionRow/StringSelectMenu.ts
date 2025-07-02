@@ -1,10 +1,11 @@
 import {
-    SelectMenuComponentOptionData,
+    type SelectMenuComponentOptionData,
     StringSelectMenuBuilder,
-    StringSelectMenuComponentData,
+    type StringSelectMenuComponentData,
     StringSelectMenuOptionBuilder,
 } from "discord.js";
-import { BuilderComponent } from "../../typings/types.js";
+
+import type { BuilderComponent } from "../../typings/types.js";
 
 export type StringSelectMenuOptions = Omit<
     StringSelectMenuComponentData,

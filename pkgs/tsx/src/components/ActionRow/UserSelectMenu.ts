@@ -1,5 +1,9 @@
-import { UserSelectMenuBuilder, UserSelectMenuComponentData } from "discord.js";
-import { BuilderComponent } from "../../typings/types.js";
+import {
+    UserSelectMenuBuilder,
+    type UserSelectMenuComponentData,
+} from "discord.js";
+
+import type { BuilderComponent } from "../../typings/types.js";
 
 export type UserSelectMenuOptions = Omit<
     UserSelectMenuComponentData,

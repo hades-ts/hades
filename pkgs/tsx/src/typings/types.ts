@@ -6,6 +6,7 @@ import type {
     EmbedImageData,
     SelectMenuComponentOptionData,
 } from "discord.js";
+
 import type {
     ActionRowComponent,
     ButtonOptions,

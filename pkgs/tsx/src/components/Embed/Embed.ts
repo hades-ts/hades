@@ -1,12 +1,13 @@
 import {
-    EmbedAuthorOptions,
-    ColorResolvable,
-    EmbedImageData,
-    EmbedFooterOptions,
-    APIEmbedField,
+    type APIEmbedField,
+    type ColorResolvable,
+    type EmbedAuthorOptions,
     EmbedBuilder,
+    type EmbedFooterOptions,
+    type EmbedImageData,
 } from "discord.js";
-import {
+
+import type {
     BuilderComponent,
     EmbedPropertyComponent,
 } from "../../typings/types.js";
