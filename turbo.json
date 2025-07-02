@@ -9,7 +9,7 @@
         },
         "build": {
             "dependsOn": ["^build"],
-            "inputs": ["src/**", "$TURBO_DEFAULTS", ".env*"],
+            "inputs": ["$TURBO_DEFAULT$", "**/.env", "config"],
             "outputs": ["dist/**"]
         },
         "watch": {
