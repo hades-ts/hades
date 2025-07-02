@@ -5,7 +5,8 @@
     "editor.tabCompletion": "on",
     "editor.detectIndentation": false,
     "editor.codeActionsOnSave": {
-        "source.fixAll": "explicit"
+        "source.fixAll": "explicit",
+        "source.organizeImports": "explicit"
     },
     "cSpell.words": [
         "camxes",
