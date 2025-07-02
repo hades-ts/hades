@@ -1,4 +1,4 @@
-import { LogEntry } from '../types';
+import type { LogEntry } from '../types';
 
 export const parseLogLine = (line: string): LogEntry | null => {
   try {

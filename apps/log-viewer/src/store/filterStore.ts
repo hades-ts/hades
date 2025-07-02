@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { LogEntry, PropertyFilters } from '../types';
+import type { LogEntry, PropertyFilters } from '../types';
 import { useFileStore } from './fileStore';
 
 interface FilterStore {
@@ -199,7 +199,7 @@ export const useFilterStore = create<FilterStore>((set, get) => ({
         selectedProperties.forEach(property => {
           // Only filter by existence if no specific values are selected for this property
           if (!activeFilters[property] || activeFilters[property].size === 0) {
-            filtered = filtered.filter(log => log.hasOwnProperty(property));
+            filtered = filtered.filter(log => Object.hasOwn(log, property));
           }
         });
       }
@@ -265,7 +265,7 @@ export const useFilterStore = create<FilterStore>((set, get) => ({
       
       // Check property existence filters
       for (const property of selectedProperties) {
-        if (!log.hasOwnProperty(property)) {
+        if (!Object.hasOwn(log, property)) {
           return false;
         }
       }

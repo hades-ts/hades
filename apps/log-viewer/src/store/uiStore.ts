@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { LogEntry } from '../types';
+import type { LogEntry } from '../types';
 
 interface UiStore {
   // Selection state

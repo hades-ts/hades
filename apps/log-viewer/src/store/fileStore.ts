@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { LogEntry, LogFile, PropertyValues } from '../types';
+import type { LogEntry, LogFile, PropertyValues } from '../types';
 
 // Special properties that are always visible
 const SPECIAL_PROPERTIES = new Set(['timestamp', 'level', 'name', 'tags']);

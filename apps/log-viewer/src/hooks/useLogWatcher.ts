@@ -1,5 +1,5 @@
 import { useCallback, useRef } from 'react';
-import { FileSystemObserver, FileSystemObserverEntry, LogEntry, LogFile } from '../types';
+import type { FileSystemObserver, FileSystemObserverEntry, LogEntry, LogFile } from '../types';
 import { parseLogLine, readFileFromPosition } from '../utils/fileUtils';
 
 interface UseLogWatcherProps {
