@@ -17,6 +17,12 @@
             "cache": false,
             "persistent": true
         },
+        "//#root:lint": { "cache": false },
+        "//#root:format": { "cache": false },
+        "//#root:check": { "cache": false },
+        "//#ci": { "cache": false },
+        "//#purge": { "cache": false },
+        "//#publish-packages": { "cache": false },
         "lint": {
             "dependsOn": ["transit"]
         },
