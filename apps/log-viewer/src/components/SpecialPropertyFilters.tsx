@@ -1,5 +1,6 @@
 import { AlertTriangle, Tag, User } from 'lucide-react';
-import { useLogStore } from '../store/logStore';
+import { useFileStore } from '../store/fileStore';
+import { useFilterStore } from '../store/filterStore';
 
 const SPECIAL_PROPERTY_ICONS = {
     level: AlertTriangle,
@@ -63,12 +64,12 @@ const getLevelColors = (level: string) => {
 };
 
 export default function SpecialPropertyFilters() {
+    const { specialProperties } = useFileStore();
     const {
-        specialProperties,
         specialActiveFilters,
         togglePropertyFilter,
         clearPropertyFilters,
-    } = useLogStore();
+    } = useFilterStore();
 
     const specialPropertyKeys = ['level', 'name', 'tags'];
     const availableSpecialProperties = specialPropertyKeys.filter(prop =>

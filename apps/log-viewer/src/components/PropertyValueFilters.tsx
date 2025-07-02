@@ -1,13 +1,14 @@
-import { useLogStore } from '../store/logStore';
+import { useFileStore } from '../store/fileStore';
+import { useFilterStore } from '../store/filterStore';
 
 export default function PropertyValueFilters() {
+    const { properties } = useFileStore();
     const {
-        properties,
         activeFilters,
         selectedProperties,
         togglePropertyFilter,
         clearPropertyFilters,
-    } = useLogStore();
+    } = useFilterStore();
 
     const selectedPropertiesWithValues = Array.from(selectedProperties).filter(
         property => properties[property] && properties[property].size > 0

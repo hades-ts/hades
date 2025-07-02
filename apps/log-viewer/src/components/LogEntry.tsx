@@ -1,5 +1,6 @@
 import { TableCell, TableRow } from '@/components/ui/table';
-import { useLogStore } from '../store/logStore';
+import { useFilterStore } from '../store/filterStore';
+import { useUiStore } from '../store/uiStore';
 import { LogEntry as LogEntryType } from '../types';
 
 interface LogEntryProps {
@@ -75,7 +76,8 @@ const formatTags = (tags: unknown) => {
 };
 
 export default function LogEntry({ log, index }: LogEntryProps) {
-    const { selectedLogEntry, setSelectedLogEntry, filterMode, isLogMatchingFilters, hasActiveFilters } = useLogStore();
+    const { filterMode, isLogMatchingFilters, hasActiveFilters } = useFilterStore();
+    const { selectedLogEntry, setSelectedLogEntry } = useUiStore();
 
     const isSelected = selectedLogEntry === log;
     const matchesFilters = isLogMatchingFilters(log);
