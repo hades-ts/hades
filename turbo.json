@@ -20,7 +20,7 @@
         "//#root:lint": { "cache": false },
         "//#root:format": { "cache": false },
         "//#root:check": { "cache": false },
-        "//#ci": { "cache": false },
+        "//#ci:biome": { "cache": false },
         "//#purge": { "cache": false },
         "//#publish-packages": { "cache": false },
         "lint": {

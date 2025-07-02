@@ -32,6 +32,8 @@ jobs:
         run: pnpm install
       - name: Build
         run: pnpm run build
+      - name: Biome Check
+        run: pnpm run ci:biome
       # take apps/docs/build as github pages
       - name: Deploy
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
