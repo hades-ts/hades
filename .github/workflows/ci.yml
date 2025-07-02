@@ -7,21 +7,31 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [lts/*, latest]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 2
-      - uses: actions/setup-node@v3
+      - name: Turbo Cache
+        uses: actions/cache@v4
         with:
-          node-version: 18
-      # - name: Verify Change Logs
-      #   run: node common/scripts/install-run-rush.js change --verify
+          path: .turbo
+          key: ${{ runner.os }}-turbo-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-
       - name: Install pnpm
         uses: pnpm/action-setup@v4
-      - name: Install
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+      - name: Install Dependencies
         run: pnpm install
       - name: Build
-        run: npx turbo build
+        run: pnpm run build
       # take apps/docs/build as github pages
       - name: Deploy
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
