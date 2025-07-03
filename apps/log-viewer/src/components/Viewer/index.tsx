@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 
-import { useLogWatcher } from "../../hooks/useLogWatcher";
 import { useFileStore } from "../../store/fileStore";
 import { useFilterStore } from "../../store/filterStore";
 import { useUiStore } from "../../store/uiStore";
@@ -22,8 +21,9 @@ export default function LogViewer() {
         logs,
         setFile,
         setIsWatching,
-        addLogs,
         clearLogs,
+        startWatching,
+        stopWatching,
     } = useFileStore();
 
     // Filter store
@@ -34,17 +34,6 @@ export default function LogViewer() {
 
     const [isPulsing, setIsPulsing] = useState(false);
     const previousLogsLength = useRef(logs.length);
-
-    const { startWatching, stopWatching, cleanup } = useLogWatcher({
-        file,
-        isWatching,
-        onNewLogs: (newLogs) => {
-            addLogs(newLogs);
-            // Trigger filter update after adding logs
-            setTimeout(() => updateFilteredLogs(), 0);
-        },
-        onClearLogs: clearLogs,
-    });
 
     // Trigger pulse effect when new logs are added (not from filter changes)
     useEffect(() => {
@@ -61,6 +50,11 @@ export default function LogViewer() {
         }
         previousLogsLength.current = logs.length;
     }, [logs.length]);
+
+    // Update filtered logs when logs change
+    useEffect(() => {
+        updateFilteredLogs();
+    }, [logs, updateFilteredLogs]);
 
     const selectFile = async () => {
         try {
@@ -95,18 +89,11 @@ export default function LogViewer() {
     };
 
     // Auto-start watching when file is selected and isWatching is true
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
     useEffect(() => {
         if (file && isWatching) {
             startWatching();
         }
-    }, [file, isWatching]);
-
-    // Cleanup on unmount
-    useEffect(() => {
-        return cleanup;
-    }, [cleanup]);
+    }, [file, isWatching, startWatching]);
 
     return (
         <div className="min-h-screen relative">

@@ -10,16 +10,16 @@ import { withHelp } from "@hades-ts/slash-help";
 
 import { BotService } from "./services";
 
-import "./slash-commands";
 import "./guildServices";
+import "./slash-commands";
 
 import { withGuilds } from "@hades-ts/guilds";
 import { withInteractions } from "@hades-ts/interactions";
-import { ConsoleLogger, LogLevel, withLogging } from "@hades-ts/logging";
+import { LogLevel, withJsonLogging } from "@hades-ts/logging";
 
 boot(BotService, {
     installers: [
-        withLogging(LogLevel.DEBUG, ConsoleLogger),
+        withJsonLogging("logs/dyskonos.json", LogLevel.DEBUG),
         withGuilds(),
         withSlashCommands(),
         (c) => withInteractions(c),
