@@ -23,10 +23,22 @@ export class BotService {
 
     @listenFor(Events.Debug)
     async onDebug(message: string) {
+        const meta = {} as Record<string, any>;
+
         if (message.includes("Provided token")) {
             return
         }
 
-        this.debugLog.debug(message);
+        if (message.includes("Heartbeat acknowledged")) {
+            meta.heartbeat = true;
+            meta.latency = null;
+
+            const match = message.match(/latency of (\d+)ms/);
+            if (match) {
+                meta.latency = parseInt(match[1]);
+            }
+        }
+
+        this.debugLog.debug(message, meta);
     }
 }

@@ -11,12 +11,15 @@ export default function PropertyMultiSelect() {
     const {
         activeFilters,
         selectedProperties,
+        excludedProperties,
         togglePropertySelection,
         clearPropertyFilters,
     } = useFilterStore();
 
     const availableProperties = Object.keys(properties).sort();
     const selectedPropertiesArray = Array.from(selectedProperties);
+    const excludedPropertiesArray = Array.from(excludedProperties);
+    const hasActivePropertyFilters = selectedPropertiesArray.length > 0 || excludedPropertiesArray.length > 0;
 
     if (availableProperties.length === 0) {
         return null;
@@ -28,7 +31,7 @@ export default function PropertyMultiSelect() {
                 <span className="text-sm font-medium text-slate-300">
                     Property Filters
                 </span>
-                {selectedPropertiesArray.length > 0 && (
+                {hasActivePropertyFilters && (
                     <button
                         type="button"
                         onClick={() => clearPropertyFilters()}

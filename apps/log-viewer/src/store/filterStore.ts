@@ -8,6 +8,9 @@ interface FilterStore {
   activeFilters: PropertyFilters;
   specialActiveFilters: PropertyFilters;
   selectedProperties: Set<string>; // Properties selected but no values chosen = filter by existence
+  excludedProperties: Set<string>; // Properties to exclude
+  excludedFilters: PropertyFilters; // Property values to exclude
+  specialExcludedFilters: PropertyFilters; // Special property values to exclude
   selectedProperty: string | null;
   filterMode: 'filter' | 'tint';
   
@@ -21,6 +24,8 @@ interface FilterStore {
   setMessageFilter: (filter: string) => void;
   togglePropertyFilter: (property: string, value: string, isSpecial?: boolean) => void;
   togglePropertySelection: (property: string) => void;
+  togglePropertyExclusion: (property: string) => void;
+  toggleExcludedFilter: (property: string, value: string, isSpecial?: boolean) => void;
   clearPropertyFilters: (property?: string) => void;
   setSelectedProperty: (property: string | null) => void;
   toggleFilterMode: () => void;
@@ -29,6 +34,7 @@ interface FilterStore {
   updateFilteredLogs: () => void;
   isLogMatchingFilters: (log: LogEntry) => boolean;
   hasActiveFilters: () => boolean;
+  isPropertyExcluded: (property: string) => boolean;
 }
 
 export const useFilterStore = create<FilterStore>((set, get) => ({
@@ -37,6 +43,9 @@ export const useFilterStore = create<FilterStore>((set, get) => ({
     activeFilters: {},
     specialActiveFilters: {},
     selectedProperties: new Set(),
+    excludedProperties: new Set(),
+    excludedFilters: {},
+    specialExcludedFilters: {},
     selectedProperty: null,
     filterMode: 'filter',
     sortOrder: 'newest',
@@ -90,29 +99,83 @@ export const useFilterStore = create<FilterStore>((set, get) => ({
       get().updateFilteredLogs();
     },
     
+    togglePropertyExclusion: (property) => {
+      const { excludedProperties } = get();
+      const newExcludedProperties = new Set(excludedProperties);
+      
+      if (newExcludedProperties.has(property)) {
+        newExcludedProperties.delete(property);
+      } else {
+        newExcludedProperties.add(property);
+      }
+      
+      set({ excludedProperties: newExcludedProperties });
+      get().updateFilteredLogs();
+    },
+    
+    toggleExcludedFilter: (property, value, isSpecial = false) => {
+      const { excludedFilters, specialExcludedFilters } = get();
+      const targetFilters = isSpecial ? specialExcludedFilters : excludedFilters;
+      const updatedFilters = { ...targetFilters };
+      
+      if (!updatedFilters[property]) {
+        updatedFilters[property] = new Set();
+      }
+      
+      if (updatedFilters[property].has(value)) {
+        updatedFilters[property].delete(value);
+        // Remove the property entirely if no values are selected
+        if (updatedFilters[property].size === 0) {
+          delete updatedFilters[property];
+        }
+      } else {
+        updatedFilters[property].add(value);
+      }
+      
+      if (isSpecial) {
+        set({ specialExcludedFilters: updatedFilters });
+      } else {
+        set({ excludedFilters: updatedFilters });
+      }
+      
+      get().updateFilteredLogs();
+    },
+    
     clearPropertyFilters: (property) => {
-      const { activeFilters, specialActiveFilters, selectedProperties } = get();
+      const { activeFilters, specialActiveFilters, selectedProperties, excludedProperties, excludedFilters, specialExcludedFilters } = get();
       
       if (property) {
         const updatedFilters = { ...activeFilters };
         const updatedSpecialFilters = { ...specialActiveFilters };
+        const updatedExcludedFilters = { ...excludedFilters };
+        const updatedSpecialExcludedFilters = { ...specialExcludedFilters };
         const newSelectedProperties = new Set(selectedProperties);
+        const newExcludedProperties = new Set(excludedProperties);
         
         delete updatedFilters[property];
         delete updatedSpecialFilters[property];
+        delete updatedExcludedFilters[property];
+        delete updatedSpecialExcludedFilters[property];
         newSelectedProperties.delete(property);
+        newExcludedProperties.delete(property);
         
         set({ 
           activeFilters: updatedFilters,
           specialActiveFilters: updatedSpecialFilters,
-          selectedProperties: newSelectedProperties
+          excludedFilters: updatedExcludedFilters,
+          specialExcludedFilters: updatedSpecialExcludedFilters,
+          selectedProperties: newSelectedProperties,
+          excludedProperties: newExcludedProperties
         });
       } else {
         // Clear all filters
         set({
           activeFilters: {},
           specialActiveFilters: {},
-          selectedProperties: new Set()
+          excludedFilters: {},
+          specialExcludedFilters: {},
+          selectedProperties: new Set(),
+          excludedProperties: new Set()
         });
       }
       
@@ -139,6 +202,9 @@ export const useFilterStore = create<FilterStore>((set, get) => ({
         activeFilters: {},
         specialActiveFilters: {},
         selectedProperties: new Set(),
+        excludedProperties: new Set(),
+        excludedFilters: {},
+        specialExcludedFilters: {},
         selectedProperty: null,
       });
       // Update filtered logs to show all entries
@@ -146,7 +212,7 @@ export const useFilterStore = create<FilterStore>((set, get) => ({
     },
     
     updateFilteredLogs: () => {
-      const { messageFilter, activeFilters, specialActiveFilters, selectedProperties, sortOrder, filterMode } = get();
+      const { messageFilter, activeFilters, specialActiveFilters, selectedProperties, excludedProperties, excludedFilters, specialExcludedFilters, sortOrder, filterMode } = get();
       const logs = useFileStore.getState().logs;
       let filtered = logs;
       
@@ -202,6 +268,47 @@ export const useFilterStore = create<FilterStore>((set, get) => ({
             filtered = filtered.filter(log => Object.hasOwn(log, property));
           }
         });
+        
+        // Property exclusion filters
+        excludedProperties.forEach(property => {
+          filtered = filtered.filter(log => !Object.hasOwn(log, property));
+        });
+        
+        // Special property value exclusions
+        Object.entries(specialExcludedFilters).forEach(([property, values]) => {
+          if (values.size > 0) {
+            filtered = filtered.filter(log => {
+              const logValue = log[property];
+              if (!logValue) return true; // If property doesn't exist, don't exclude
+              
+              // Handle arrays: exclude if any array element matches any excluded value
+              if (Array.isArray(logValue)) {
+                return !logValue.some(item => values.has(String(item)));
+              }
+              
+              // Handle single values
+              return !values.has(String(logValue));
+            });
+          }
+        });
+        
+        // Regular property value exclusions
+        Object.entries(excludedFilters).forEach(([property, values]) => {
+          if (values.size > 0) {
+            filtered = filtered.filter(log => {
+              const logValue = log[property];
+              if (!logValue) return true; // If property doesn't exist, don't exclude
+              
+              // Handle arrays: exclude if any array element matches any excluded value
+              if (Array.isArray(logValue)) {
+                return !logValue.some(item => values.has(String(item)));
+              }
+              
+              // Handle single values
+              return !values.has(String(logValue));
+            });
+          }
+        });
       }
       
       // Sort by timestamp
@@ -220,7 +327,7 @@ export const useFilterStore = create<FilterStore>((set, get) => ({
     },
     
     isLogMatchingFilters: (log) => {
-      const { messageFilter, activeFilters, specialActiveFilters, selectedProperties } = get();
+      const { messageFilter, activeFilters, specialActiveFilters, selectedProperties, excludedProperties, excludedFilters, specialExcludedFilters } = get();
       
       // Check message filter
       if (messageFilter.trim() && (!log.message || !log.message.toLowerCase().includes(messageFilter.toLowerCase()))) {
@@ -270,11 +377,54 @@ export const useFilterStore = create<FilterStore>((set, get) => ({
         }
       }
       
+      // Check property exclusion filters
+      for (const property of excludedProperties) {
+        if (Object.hasOwn(log, property)) {
+          return false;
+        }
+      }
+      
+      // Check special property value exclusions
+      for (const [property, values] of Object.entries(specialExcludedFilters)) {
+        if (values.size > 0) {
+          const logValue = log[property];
+          if (logValue) {
+            if (Array.isArray(logValue)) {
+              if (logValue.some(item => values.has(String(item)))) {
+                return false;
+              }
+            } else {
+              if (values.has(String(logValue))) {
+                return false;
+              }
+            }
+          }
+        }
+      }
+      
+      // Check regular property value exclusions
+      for (const [property, values] of Object.entries(excludedFilters)) {
+        if (values.size > 0) {
+          const logValue = log[property];
+          if (logValue) {
+            if (Array.isArray(logValue)) {
+              if (logValue.some(item => values.has(String(item)))) {
+                return false;
+              }
+            } else {
+              if (values.has(String(logValue))) {
+                return false;
+              }
+            }
+          }
+        }
+      }
+      
       return true;
     },
 
     hasActiveFilters: () => {
-      const { messageFilter, activeFilters, specialActiveFilters, selectedProperties } = get();
+      const { messageFilter, activeFilters, specialActiveFilters, selectedProperties, excludedProperties, excludedFilters, specialExcludedFilters } = get();
       
       // Check if message filter is present
       if (messageFilter.trim()) {
@@ -300,6 +450,30 @@ export const useFilterStore = create<FilterStore>((set, get) => ({
         return true;
       }
       
+      // Check if any property exclusion filters are active
+      if (excludedProperties.size > 0) {
+        return true;
+      }
+      
+      // Check if any special property value exclusions are active
+      for (const values of Object.values(specialExcludedFilters)) {
+        if (values.size > 0) {
+          return true;
+        }
+      }
+      
+      // Check if any regular property value exclusions are active
+      for (const values of Object.values(excludedFilters)) {
+        if (values.size > 0) {
+          return true;
+        }
+      }
+      
       return false;
+    },
+
+    isPropertyExcluded: (property) => {
+      const { excludedProperties } = get();
+      return excludedProperties.has(property);
     }
   })); 

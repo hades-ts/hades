@@ -1,3 +1,4 @@
+import { useFilterStore } from "../../../../../store/filterStore";
 import PropertyBadge from "../PropertyBadge";
 
 interface SelectedPropertiesListProps {
@@ -13,28 +14,29 @@ export default function SelectedPropertiesList({
     clearPropertyFilters,
     togglePropertySelection,
 }: SelectedPropertiesListProps) {
-    if (selectedPropertiesArray.length === 0) {
+    const { excludedProperties } = useFilterStore();
+    const excludedPropertiesArray = Array.from(excludedProperties);
+
+    // Combine selected and excluded properties
+    const allProperties = [...new Set([...selectedPropertiesArray, ...excludedPropertiesArray])];
+
+    if (allProperties.length === 0) {
         return null;
     }
 
     return (
         <div className="space-y-2">
             <span className="text-xs text-slate-400">
-                Selected Properties:
+                Active Property Filters:
             </span>
             <div className="flex flex-wrap gap-2">
-                {selectedPropertiesArray.map((property) => (
+                {allProperties.map((property) => (
                     <PropertyBadge
                         key={property}
                         property={property}
                         activeFilters={activeFilters}
                         onRemove={() => {
-                            const hasFilters = activeFilters[property] && activeFilters[property].size > 0;
-                            if (hasFilters) {
-                                clearPropertyFilters(property);
-                            } else {
-                                togglePropertySelection(property);
-                            }
+                            clearPropertyFilters(property);
                         }}
                     />
                 ))}

@@ -1,5 +1,6 @@
 import { inject, injectable } from "inversify";
 
+import { ILogger, logger } from "@hades-ts/logging";
 import { HadesClient } from "../services/HadesClient";
 import type { ILoginService } from "./ILogin";
 
@@ -11,7 +12,13 @@ export class LoginService implements ILoginService {
     @inject("cfg.discordToken")
     token!: string;
 
-    async login(): Promise<string> {
-        return this.client.login(this.token.toString());
+    @logger("LoginService")
+    log!: ILogger;
+
+    async login() {
+        this.log.info("Logging into Discord.");
+        const result = await this.client.login(this.token.toString());
+        this.log.info("Logged into Discord.");
+        return result;
     }
 }

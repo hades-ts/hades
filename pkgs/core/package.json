@@ -19,6 +19,7 @@
     },
     "dependencies": {
         "@docusaurus/babel": "~3.8.1",
+        "@hades-ts/logging": "workspace:*",
         "@ldlework/inversify-binding-decorators": "catalog:",
         "@ldlework/inversify-config-injection": "catalog:",
         "@ldlework/categoric-decorators": "catalog:",
