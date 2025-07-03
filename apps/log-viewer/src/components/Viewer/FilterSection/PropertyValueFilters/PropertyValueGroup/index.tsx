@@ -1,3 +1,4 @@
+import { useFilterStore } from "../../../../../store/filterStore";
 import ValueButton from "../ValueButton";
 
 interface PropertyValueGroupProps {
@@ -15,6 +16,9 @@ export default function PropertyValueGroup({
     onToggleFilter,
     onClearFilters,
 }: PropertyValueGroupProps) {
+    const { excludedFilters, toggleExcludedFilter } = useFilterStore();
+    const excludedValues = excludedFilters[property] || new Set<string>();
+
     return (
         <div className="space-y-2">
             <div className="flex items-center justify-between">
@@ -25,7 +29,7 @@ export default function PropertyValueGroup({
                     <span className="text-xs text-slate-500">
                         ({values.length} values)
                     </span>
-                    {activeValues.size === 0 && (
+                    {activeValues.size === 0 && excludedValues.size === 0 && (
                         <span className="text-xs text-blue-400">
                             Filtering by existence
                         </span>
@@ -41,19 +45,49 @@ export default function PropertyValueGroup({
             </div>
 
             <div className="flex flex-wrap gap-2 max-h-32 overflow-y-auto">
-                {values.map((value) => (
-                    <ValueButton
-                        key={String(value)}
-                        value={String(value)}
-                        isActive={activeValues.has(String(value))}
-                        onClick={() => onToggleFilter(String(value))}
-                    />
-                ))}
+                {values.map((value) => {
+                    const isActive = activeValues.has(String(value));
+                    const isExcluded = excludedValues.has(String(value));
+
+                    return (
+                        <ValueButton
+                            key={String(value)}
+                            value={String(value)}
+                            isActive={isActive}
+                            isExcluded={isExcluded}
+                            onClick={() => {
+                                // If excluded, remove from exclusions
+                                if (isExcluded) {
+                                    toggleExcludedFilter(property, String(value), false);
+                                } else {
+                                    // Toggle inclusion
+                                    onToggleFilter(String(value));
+                                }
+                            }}
+                            onContextMenu={() => {
+                                // If included, remove from inclusions
+                                if (isActive) {
+                                    onToggleFilter(String(value));
+                                }
+                                // Toggle exclusion
+                                toggleExcludedFilter(property, String(value), false);
+                            }}
+                        />
+                    );
+                })}
             </div>
 
-            {activeValues.size > 0 && (
+            {(activeValues.size > 0 || excludedValues.size > 0) && (
                 <div className="text-xs text-slate-500">
-                    {activeValues.size} of {values.length} values selected
+                    {activeValues.size > 0 && (
+                        <span>{activeValues.size} included</span>
+                    )}
+                    {activeValues.size > 0 && excludedValues.size > 0 && (
+                        <span>, </span>
+                    )}
+                    {excludedValues.size > 0 && (
+                        <span>{excludedValues.size} excluded</span>
+                    )}
                 </div>
             )}
         </div>

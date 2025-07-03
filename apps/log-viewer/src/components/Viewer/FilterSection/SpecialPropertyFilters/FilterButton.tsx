@@ -56,30 +56,45 @@ const getLevelColors = (level: string) => {
 interface FilterButtonProps {
     value: string;
     isActive: boolean;
+    isExcluded?: boolean;
     isLevel: boolean;
     onClick: () => void;
+    onContextMenu?: () => void;
 }
 
 export default function FilterButton({
     value,
     isActive,
+    isExcluded = false,
     isLevel,
     onClick,
+    onContextMenu,
 }: FilterButtonProps) {
     const levelColors = isLevel ? getLevelColors(value) : null;
+
+    const handleContextMenu = (e: React.MouseEvent) => {
+        e.preventDefault();
+        if (onContextMenu) {
+            onContextMenu();
+        }
+    };
 
     return (
         <button
             type="button"
             onClick={onClick}
-            className={`px-2 py-1 text-xs rounded-md font-medium transition-all ${isActive
-                    ? isLevel
-                        ? `text-white ${levelColors?.bg} border ${levelColors?.border} ring-1 ring-current/30`
-                        : "bg-indigo-500 text-white ring-1 ring-indigo-400"
-                    : isLevel
-                        ? `${levelColors?.text} ${levelColors?.bg} border ${levelColors?.border} ${levelColors?.hoverBg} hover:text-white`
-                        : "bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white border border-slate-700"
+            onContextMenu={handleContextMenu}
+            className={`px-2 py-1 text-xs rounded-md font-medium transition-all select-none ${isExcluded
+                    ? "bg-red-500 text-white ring-1 ring-red-400"
+                    : isActive
+                        ? isLevel
+                            ? `text-white ${levelColors?.bg} border ${levelColors?.border} ring-1 ring-current/30`
+                            : "bg-indigo-500 text-white ring-1 ring-indigo-400"
+                        : isLevel
+                            ? `${levelColors?.text} ${levelColors?.bg} border ${levelColors?.border} ${levelColors?.hoverBg} hover:text-white`
+                            : "bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white border border-slate-700"
                 }`}
+            title={isExcluded ? "Right-click to include" : "Right-click to exclude"}
         >
             {isLevel ? value.toUpperCase() : value}
         </button>

@@ -1,5 +1,6 @@
 import { AlertTriangle, Tag, User } from "lucide-react";
 
+import { useFilterStore } from "../../../../../store/filterStore";
 import FilterButton from "../FilterButton";
 
 const SPECIAL_PROPERTY_ICONS = {
@@ -26,6 +27,9 @@ export default function FilterGroup({
     const Icon =
         SPECIAL_PROPERTY_ICONS[property as keyof typeof SPECIAL_PROPERTY_ICONS];
 
+    const { specialExcludedFilters, toggleExcludedFilter } = useFilterStore();
+    const excludedValues = specialExcludedFilters[property] || new Set<string>();
+
     return (
         <div className="space-y-2">
             <div className="flex items-center justify-between">
@@ -38,7 +42,7 @@ export default function FilterGroup({
                         ({values.length})
                     </span>
                 </div>
-                {activeValues.size > 0 && (
+                {(activeValues.size > 0 || excludedValues.size > 0) && (
                     <button
                         type="button"
                         onClick={onClearFilters}
@@ -50,15 +54,37 @@ export default function FilterGroup({
             </div>
 
             <div className="flex flex-wrap gap-2">
-                {values.map((value) => (
-                    <FilterButton
-                        key={String(value)}
-                        value={String(value)}
-                        isActive={activeValues.has(String(value))}
-                        isLevel={property === "level"}
-                        onClick={() => onToggleFilter(String(value))}
-                    />
-                ))}
+                {values.map((value) => {
+                    const isActive = activeValues.has(String(value));
+                    const isExcluded = excludedValues.has(String(value));
+
+                    return (
+                        <FilterButton
+                            key={String(value)}
+                            value={String(value)}
+                            isActive={isActive}
+                            isExcluded={isExcluded}
+                            isLevel={property === "level"}
+                            onClick={() => {
+                                // If excluded, remove from exclusions
+                                if (isExcluded) {
+                                    toggleExcludedFilter(property, String(value), true);
+                                } else {
+                                    // Toggle inclusion
+                                    onToggleFilter(String(value));
+                                }
+                            }}
+                            onContextMenu={() => {
+                                // If included, remove from inclusions
+                                if (isActive) {
+                                    onToggleFilter(String(value));
+                                }
+                                // Toggle exclusion
+                                toggleExcludedFilter(property, String(value), true);
+                            }}
+                        />
+                    );
+                })}
             </div>
         </div>
     );

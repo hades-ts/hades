@@ -15,6 +15,7 @@ import {
     PopoverTrigger,
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
+import { useFilterStore } from "../../../../../store/filterStore";
 
 interface PropertySelectorProps {
     open: boolean;
@@ -37,6 +38,9 @@ export default function PropertySelector({
     activeFilters,
     togglePropertySelection,
 }: PropertySelectorProps) {
+    const { excludedProperties } = useFilterStore();
+    const totalActiveProperties = selectedPropertiesArray.length + excludedProperties.size;
+
     const hasActiveFilters = (property: string) => {
         return activeFilters[property] && activeFilters[property].size > 0;
     };
@@ -51,8 +55,8 @@ export default function PropertySelector({
                     aria-expanded={open}
                     className="w-full justify-between bg-slate-800 border-slate-700 hover:bg-slate-700"
                 >
-                    {selectedPropertiesArray.length > 0
-                        ? `${selectedPropertiesArray.length} properties selected`
+                    {totalActiveProperties > 0
+                        ? `${totalActiveProperties} properties selected`
                         : "Select properties..."}
                     <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                 </Button>
