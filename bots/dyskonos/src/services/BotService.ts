@@ -23,6 +23,10 @@ export class BotService {
 
     @listenFor(Events.Debug)
     async onDebug(message: string) {
+        if (message.includes("Provided token")) {
+            return
+        }
+
         this.debugLog.debug(message);
     }
 }
