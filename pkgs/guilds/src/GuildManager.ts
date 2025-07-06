@@ -1,24 +1,9 @@
 import { Events, type Guild } from "discord.js";
-import {
-    Container,
-    inject,
-    injectable,
-    optional,
-    type ServiceIdentifier,
-} from "inversify";
+import { Container, inject, optional, type ServiceIdentifier } from "inversify";
 
-import {
-    HadesClient,
-    listener,
-    listenFor,
-    service,
-    singleton,
-    withServices,
-} from "@hades-ts/core";
+import { HadesClient, listener, listenFor } from "@hades-ts/core";
 
 import { findGuildServices, makeGuildContainer } from "./decorators";
-import { findGuildListeners, GuildEventService } from "./events";
-import type { GuildBinder } from "./GuildBinder";
 import { guildTokens } from "./tokens";
 
 export type GuildFetcher = () => Promise<Guild>;
@@ -48,28 +33,13 @@ export class GuildManager {
 
     @optional()
     @inject(guildTokens.GuildBinder)
-    protected guildBinder?: GuildBinder;
+    protected guildBinder?: (guildContainer: Container) => Promise<void>;
 
     @listenFor(Events.ClientReady)
     async onClientReady() {
         console.log("GuildManager is ready");
         for (const guild of this.client.guilds.cache.values()) {
             const subContainer = await this.get(guild);
-
-            const es = subContainer.get(GuildEventService);
-            const listeners = findGuildListeners();
-
-            for (const [_name, data] of listeners) {
-                const listenerClass = data.target as any;
-                subContainer.onActivation(
-                    listenerClass,
-                    (_context, instance) => {
-                        es.register(instance as any);
-                        return instance;
-                    },
-                );
-            }
-
             for (const [type] of findGuildServices()) {
                 subContainer.get(type as ServiceIdentifier<any>);
             }
@@ -105,7 +75,7 @@ export class GuildManager {
         const newContainer = await this.setupGuild(guild);
 
         if (this.guildBinder) {
-            await this.guildBinder.bind(newContainer);
+            await this.guildBinder(newContainer);
         }
 
         return newContainer;

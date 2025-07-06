@@ -1,14 +1,7 @@
 import fs from "node:fs";
 
-import {
-    createMemberCategoric
-} from "@ldlework/categoric-decorators";
-import {
-    Container,
-    inject,
-    named,
-    type Newable
-} from "inversify";
+import { createMemberCategoric } from "@ldlework/categoric-decorators";
+import { Container, inject, named, type Newable } from "inversify";
 
 export type LoggerDecoratorParams = {
     target: any;
@@ -139,11 +132,13 @@ export class PrefixLogLineRenderer implements ILogRenderer {
 
 export class JsonLogLineRenderer implements ILogRenderer {
     render(message: string, meta: LoggerMeta): string {
-        return JSON.stringify({
-            ...meta,
-            message,
-            level: LogLevels[meta.level],
-        }) + "\n";
+        return (
+            JSON.stringify({
+                ...meta,
+                message,
+                level: LogLevels[meta.level],
+            }) + "\n"
+        );
     }
 }
 
@@ -171,7 +166,7 @@ export class ConsoleLogger implements ILogSink {
 
 export class FileLogger implements ILogSink {
     static Path = Symbol.for("FileLogger.Path");
-    
+
     @inject(ILogRenderer)
     protected renderer!: ILogRenderer;
 
@@ -187,7 +182,10 @@ export class FileLogger implements ILogSink {
     }
 }
 
-const isEnabled = (disabledTags: string[], meta: LoggerDecoratorParams) => {
+export const isEnabled = (
+    disabledTags: string[],
+    meta: LoggerDecoratorParams,
+) => {
     if (disabledTags.includes(meta.name)) {
         return false;
     }
@@ -199,19 +197,24 @@ const isEnabled = (disabledTags: string[], meta: LoggerDecoratorParams) => {
     return true;
 };
 
-const fromSubContainer = <T>(parent: Container, token: Newable<T>, installer: (subContainer: Container) => void) => {
-    const subContainer = new Container({ parent })
-    installer(subContainer)
-    return subContainer.get(token)
-}
+const fromSubContainer = <T>(
+    parent: Container,
+    token: Newable<T>,
+    installer: (subContainer: Container) => void,
+) => {
+    const subContainer = new Container({ parent });
+    installer(subContainer);
+    return subContainer.get(token);
+};
 
 export const withLogging =
-    (level: LogLevel, disabledTags?: string[]) =>
-    (container: Container) => {
+    (level: LogLevel, disabledTags?: string[]) => (container: Container) => {
         const _disabledTags = disabledTags ?? [];
 
         if (!container.isBound(ILogSink)) {
-            throw new Error("ILogSink is not bound. Did you forget to bind it?");
+            throw new Error(
+                "ILogSink is not bound. Did you forget to bind it?",
+            );
         }
 
         const loggers = findLoggers();
@@ -228,11 +231,18 @@ export const withLogging =
             for (const member of members) {
                 const data = member.data as unknown as LoggerDecoratorParams;
                 const enabled = isEnabled(_disabledTags, data);
-                const logger = fromSubContainer(container, ProxyLogger, (subContainer) => {
-                    if (!enabled) {
-                        subContainer.bind(ILogSink).to(NullLogger).inSingletonScope();
-                    }
-                });
+                const logger = fromSubContainer(
+                    container,
+                    ProxyLogger,
+                    (subContainer) => {
+                        if (!enabled) {
+                            subContainer
+                                .bind(ILogSink)
+                                .to(NullLogger)
+                                .inSingletonScope();
+                        }
+                    },
+                );
                 logger.setName(data.name);
                 logger.setTags(data.tags);
                 logger.setLevel(level);
@@ -244,25 +254,33 @@ export const withLogging =
         }
     };
 
-export const withConsoleLogging = (level: LogLevel, disabledTags?: string[]) =>
-    (container: Container) => {
+export const withConsoleLogging =
+    (level: LogLevel, disabledTags?: string[]) => (container: Container) => {
         container.bind(ILogSink).to(ConsoleLogger).inSingletonScope();
-        container.bind(ILogRenderer).to(PrefixLogLineRenderer).inSingletonScope();
+        container
+            .bind(ILogRenderer)
+            .to(PrefixLogLineRenderer)
+            .inSingletonScope();
         withLogging(level, disabledTags)(container);
-    }
+    };
 
-export const withFileLogging = (path: string, level: LogLevel, disabledTags?: string[]) =>
+export const withFileLogging =
+    (path: string, level: LogLevel, disabledTags?: string[]) =>
     (container: Container) => {
         container.bind(ILogSink).to(FileLogger).inSingletonScope();
         container.bind(FileLogger.Path).toConstantValue(path);
-        container.bind(ILogRenderer).to(PrefixLogLineRenderer).inSingletonScope();
+        container
+            .bind(ILogRenderer)
+            .to(PrefixLogLineRenderer)
+            .inSingletonScope();
         withLogging(level, disabledTags)(container);
-    }
+    };
 
-export const withJsonLogging = (path: string, level: LogLevel, disabledTags?: string[]) =>
+export const withJsonLogging =
+    (path: string, level: LogLevel, disabledTags?: string[]) =>
     (container: Container) => {
         container.bind(ILogSink).to(FileLogger).inSingletonScope();
         container.bind(FileLogger.Path).toConstantValue(path);
         container.bind(ILogRenderer).to(JsonLogLineRenderer).inSingletonScope();
         withLogging(level, disabledTags)(container);
-    }
+    };

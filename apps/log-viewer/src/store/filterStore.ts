@@ -216,7 +216,7 @@ export const useFilterStore = create<FilterStore>((set, get) => ({
       const logs = useFileStore.getState().logs;
       let filtered = logs;
       
-      // Only apply filters in filter mode, not in tint mode
+      // Apply inclusion filters only in filter mode
       if (filterMode === 'filter') {
         // Message filter
         if (messageFilter.trim()) {
@@ -268,48 +268,50 @@ export const useFilterStore = create<FilterStore>((set, get) => ({
             filtered = filtered.filter(log => Object.hasOwn(log, property));
           }
         });
-        
-        // Property exclusion filters
-        excludedProperties.forEach(property => {
-          filtered = filtered.filter(log => !Object.hasOwn(log, property));
-        });
-        
-        // Special property value exclusions
-        Object.entries(specialExcludedFilters).forEach(([property, values]) => {
-          if (values.size > 0) {
-            filtered = filtered.filter(log => {
-              const logValue = log[property];
-              if (!logValue) return true; // If property doesn't exist, don't exclude
-              
-              // Handle arrays: exclude if any array element matches any excluded value
-              if (Array.isArray(logValue)) {
-                return !logValue.some(item => values.has(String(item)));
-              }
-              
-              // Handle single values
-              return !values.has(String(logValue));
-            });
-          }
-        });
-        
-        // Regular property value exclusions
-        Object.entries(excludedFilters).forEach(([property, values]) => {
-          if (values.size > 0) {
-            filtered = filtered.filter(log => {
-              const logValue = log[property];
-              if (!logValue) return true; // If property doesn't exist, don't exclude
-              
-              // Handle arrays: exclude if any array element matches any excluded value
-              if (Array.isArray(logValue)) {
-                return !logValue.some(item => values.has(String(item)));
-              }
-              
-              // Handle single values
-              return !values.has(String(logValue));
-            });
-          }
-        });
       }
+      
+      // EXCLUSIONS ALWAYS APPLY (regardless of filter/tint mode)
+      
+      // Property exclusion filters
+      excludedProperties.forEach(property => {
+        filtered = filtered.filter(log => !Object.hasOwn(log, property));
+      });
+      
+      // Special property value exclusions
+      Object.entries(specialExcludedFilters).forEach(([property, values]) => {
+        if (values.size > 0) {
+          filtered = filtered.filter(log => {
+            const logValue = log[property];
+            if (!logValue) return true; // If property doesn't exist, don't exclude
+            
+            // Handle arrays: exclude if any array element matches any excluded value
+            if (Array.isArray(logValue)) {
+              return !logValue.some(item => values.has(String(item)));
+            }
+            
+            // Handle single values
+            return !values.has(String(logValue));
+          });
+        }
+      });
+      
+      // Regular property value exclusions
+      Object.entries(excludedFilters).forEach(([property, values]) => {
+        if (values.size > 0) {
+          filtered = filtered.filter(log => {
+            const logValue = log[property];
+            if (!logValue) return true; // If property doesn't exist, don't exclude
+            
+            // Handle arrays: exclude if any array element matches any excluded value
+            if (Array.isArray(logValue)) {
+              return !logValue.some(item => values.has(String(item)));
+            }
+            
+            // Handle single values
+            return !values.has(String(logValue));
+          });
+        }
+      });
       
       // Sort by timestamp
       filtered.sort((a, b) => {

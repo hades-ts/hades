@@ -4,7 +4,7 @@ import * as dotenv from "dotenv";
 
 dotenv.config();
 
-import { boot } from "@hades-ts/core";
+import { boot, withEvents } from "@hades-ts/core";
 import { withSlashCommands } from "@hades-ts/slash-commands";
 import { withHelp } from "@hades-ts/slash-help";
 
@@ -15,12 +15,12 @@ import "./slash-commands";
 
 import { withGuilds } from "@hades-ts/guilds";
 import { withInteractions } from "@hades-ts/interactions";
-import { LogLevel, withJsonLogging } from "@hades-ts/logging";
+import { LogLevel, withJsonLogging, withLogging } from "@hades-ts/logging";
 
 boot(BotService, {
     installers: [
         withJsonLogging("logs/dyskonos.json", LogLevel.DEBUG),
-        withGuilds(),
+        withGuilds(withEvents(), withLogging(LogLevel.DEBUG)),
         withSlashCommands(),
         (c) => withInteractions(c),
         withHelp(),

@@ -9,6 +9,7 @@ import {
 import { Container, inject } from "inversify";
 
 import { HadesClient, listener, listenFor, singleton } from "@hades-ts/core";
+import { type ILogger, logger } from "@hades-ts/logging";
 
 import { SlashArgError } from "../../errors";
 import { getSlashCommandMetas } from "../../metadata";
@@ -39,6 +40,9 @@ export class SlashCommandService {
     @inject(SlashCommandFactoryRegistry)
     public factories!: SlashCommandFactoryRegistry;
 
+    @logger("SlashCommandService")
+    protected log!: ILogger;
+
     // @inject(SlashCommandHelpService)
     // help: SlashCommandHelpService
 
@@ -47,7 +51,17 @@ export class SlashCommandService {
 
         if (factory) {
             try {
+                this.log.info(`Executing command.`, {
+                    command: interaction.commandName,
+                    guild: interaction.guild?.id,
+                    user: interaction.user.id,
+                });
                 const command = await factory.create(interaction);
+                this.log.info(`Command created.`, {
+                    command: interaction.commandName,
+                    guild: interaction.guild?.id,
+                    user: interaction.user.id,
+                });
                 await command.execute();
             } catch (e: unknown) {
                 if (e instanceof SlashArgError) {
@@ -63,6 +77,11 @@ export class SlashCommandService {
                         });
                     }
                 } else {
+                    this.log.error(`Error executing command.`, {
+                        command: interaction.commandName,
+                        guild: interaction.guild?.id,
+                        user: interaction.user.id,
+                    });
                     await interaction.reply({
                         content:
                             "Erm, uh well something went wrong. Dunno what though.",
@@ -103,6 +122,10 @@ export class SlashCommandService {
 
     async registerCommands(client: HadesClient) {
         const config = this.getCommandRegistrationMeta();
+        this.log.info(`Registering slash commands.`, {
+            guild: client.guilds.cache.size,
+            commands: config.map((c) => c.name),
+        });
         await client.application?.commands.set(config);
     }
 

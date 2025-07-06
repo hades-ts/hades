@@ -1,14 +1,6 @@
 /// <reference lib="es2015" />
-import {
-    type ApplicationCommandPermissionsUpdateData,
-    type AutoModerationActionExecution,
-    type AutoModerationRule,
-    type ClientEvents,
-    Collection,
-    Events,
-    type Message,
-} from "discord.js";
-import type { Newable, ServiceIdentifier } from "inversify";
+import { type ClientEvents, Collection } from "discord.js";
+import type { ServiceIdentifier } from "inversify";
 
 export type SI = ServiceIdentifier<any>;
 

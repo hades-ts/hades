@@ -1,15 +1,11 @@
-import {
-    createCategoricContainer,
-    type ServiceIdentifier,
-} from "@ldlework/categoric-containers";
-import { injectFromBase } from "inversify";
+import { createCategoricContainer } from "@ldlework/categoric-containers";
+import { type Container, injectFromBase } from "inversify";
 
-const {
-    install: withDecorators,
-    singleton,
-    transient,
-    request,
-} = createCategoricContainer();
+const { install, singleton, transient, request } = createCategoricContainer();
+
+const withDecorators = () => (c: Container) => {
+    install(c);
+};
 
 const based = injectFromBase({
     extendConstructorArguments: false,
@@ -20,4 +16,4 @@ export * from "./listener";
 export * from "./listenFor";
 export * from "./service";
 
-export { withDecorators, singleton, transient, request, based };
+export { based, request, singleton, transient, withDecorators };

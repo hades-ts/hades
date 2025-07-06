@@ -53,6 +53,7 @@
         "typescript": "catalog:"
     },
     "dependencies": {
+        "@hades-ts/logging": "workspace:^",
         "@hades-ts/guilds": "workspace:^",
         "discord-command-parser": "^1.5.3"
     },

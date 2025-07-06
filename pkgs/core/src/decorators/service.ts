@@ -12,7 +12,7 @@ export function service() {
     };
 }
 
-export const withServices = (container: Container) => {
+export const withServices = () => (container: Container) => {
     for (const [type] of findServices()) {
         container.get(type as ServiceIdentifier<any>);
     }

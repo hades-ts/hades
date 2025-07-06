@@ -9,7 +9,6 @@ import {
 import { withDecorators } from "./decorators";
 import { withServices } from "./decorators/service";
 import { withEvents } from "./events";
-import { Installer } from "./Installer";
 import { ILoginService } from "./login";
 import { withLogin } from "./login/LoginInstaller";
 import type { InstallerFunc } from "./utils";
@@ -23,7 +22,7 @@ export * from "./services";
 export * from "./utils";
 
 export type BootOptions = {
-    installers?: (Installer | InstallerFunc)[];
+    installers?: InstallerFunc[];
     configOptions?: ConfigOptions;
 };
 
@@ -36,22 +35,18 @@ export const boot = async (botService: Newable<any>, options?: BootOptions) => {
         const configOptions = options?.configOptions ?? {};
 
         for (const installer of [
-            withDecorators,
+            withDecorators(),
             withConfig({
                 prefix: "cfg",
                 objects: true,
                 ...configOptions,
             }),
-            withEvents,
-            withLogin,
             ...userInstallers,
-            withServices,
+            withEvents(),
+            withLogin(),
+            withServices(),
         ]) {
-            if (installer instanceof Installer) {
-                void installer.install(container);
-            } else {
-                installer(container);
-            }
+            installer(container);
         }
 
         void container.get(botService, { autobind: true });

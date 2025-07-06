@@ -1,7 +1,7 @@
 import type { ClientEvents } from "discord.js";
 import { inject } from "inversify";
 
-import { HadesClient } from "@hades-ts/core";
+import { HadesClient, type IEventService } from "@hades-ts/core";
 
 import { guildService } from "../decorators";
 import { GuildInfo } from "../GuildManager";
@@ -11,7 +11,7 @@ import { getListenerMetas, type SI } from "./listenFor";
  * A callback service for Discord events.
  */
 @guildService()
-export class GuildEventService {
+export class GuildEventService implements IEventService {
     @inject(HadesClient)
     protected client!: HadesClient;
 

@@ -53,7 +53,7 @@ export const makeArgMeta = <TField>(
     meta.validatorInstallers =
         info.validators?.map(
             (validator: Validator<TField> | Newable<Validator<TField>>) =>
-                (container: Container) => {
+                async (container: Container) => {
                     if (validator instanceof Validator) {
                         container
                             .bind(Validator)

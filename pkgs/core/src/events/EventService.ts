@@ -1,15 +1,24 @@
 import { inject } from "inversify";
 
+import { type ILogger, logger } from "@hades-ts/logging";
+
 import { getListenerMetas, type SI, singleton } from "../decorators";
 import { HadesClient } from "../services/HadesClient";
+
+export abstract class IEventService {
+    abstract register(bot: object): void;
+}
 
 /**
  * A callback service for Discord events.
  */
 @singleton()
-export class EventService {
+export class EventService implements IEventService {
     @inject(HadesClient)
     protected client!: HadesClient;
+
+    @logger("EventService")
+    protected log!: ILogger;
 
     /**
      * Register a bot for event callbacks.
@@ -20,6 +29,10 @@ export class EventService {
 
         let ctor = Object.getPrototypeOf(bot).constructor;
 
+        this.log.info(`Registering event handlers.`, {
+            target: bot.constructor.name,
+        });
+
         while (ctor !== Object.prototype) {
             const meta = metas.get(ctor as SI);
 
@@ -28,11 +41,22 @@ export class EventService {
             }
 
             for (const methodMeta of meta.methods.values()) {
+                this.log.debug(`Registering event handler.`, {
+                    target: bot.constructor.name,
+                    method: methodMeta.name,
+                    event: methodMeta.event,
+                });
+
                 const method = bot[methodMeta.name as keyof typeof bot] as (
                     ...args: any[]
                 ) => void;
 
                 if (method === undefined) {
+                    this.log.error(`Event handler method not found.`, {
+                        target: bot.constructor.name,
+                        method: methodMeta.name,
+                        event: methodMeta.event,
+                    });
                     throw new Error(
                         `Method ${methodMeta.name} not found on ${bot.constructor.name}`,
                     );

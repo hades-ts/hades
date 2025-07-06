@@ -1301,6 +1301,9 @@ importers:
 
   pkgs/guilds:
     dependencies:
+      '@hades-ts/logging':
+        specifier: workspace:^
+        version: link:../logging
       '@ldlework/categoric-containers':
         specifier: 'catalog:'
         version: 0.1.6(inversify@7.5.4(reflect-metadata@0.2.2))(reflect-metadata@0.2.2)
@@ -1602,6 +1605,9 @@ importers:
       '@hades-ts/guilds':
         specifier: workspace:^
         version: link:../guilds
+      '@hades-ts/logging':
+        specifier: workspace:^
+        version: link:../logging
       discord-command-parser:
         specifier: ^1.5.3
         version: 1.5.3
