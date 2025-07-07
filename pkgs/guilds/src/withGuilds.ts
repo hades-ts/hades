@@ -1,16 +1,19 @@
 import type { Container } from "inversify";
 
-import { IEventService } from "@hades-ts/core";
+import { IInteractionDispatch } from "@hades-ts/interactions";
+import { ISlashCommandDispatch } from "@hades-ts/slash-commands";
 
-import { GuildEventService } from "./events";
+import { GuildInteractionDispatch } from "./GuildInteractionDispatch";
 import { GuildManager } from "./GuildManager";
+import { GuildSlashCommandDispatch } from "./GuildSlashCommandDispatch";
 import { guildTokens } from "./tokens";
 
 export const withGuilds = (
-    ...installers: ((guildContainer: Container) => void)[]
+    ...installers: ((container: Container) => void)[]
 ) => {
     return (container: Container) => {
-        container.bind(IEventService).to(GuildEventService).inSingletonScope();
+        container.bind(ISlashCommandDispatch).to(GuildSlashCommandDispatch);
+        container.bind(IInteractionDispatch).to(GuildInteractionDispatch);
         container.bind(GuildManager).toSelf().inSingletonScope();
         if (installers.length > 0) {
             container

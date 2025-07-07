@@ -26,7 +26,7 @@ export class BotService {
         const meta = {} as Record<string, any>;
 
         if (message.includes("Provided token")) {
-            return
+            return;
         }
 
         if (message.includes("Heartbeat acknowledged")) {

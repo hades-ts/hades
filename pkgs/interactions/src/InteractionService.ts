@@ -1,27 +1,30 @@
-import { type BaseInteraction, Events, InteractionType } from "discord.js";
-import { Container, inject } from "inversify";
+import { type BaseInteraction, Events } from "discord.js";
+import { Container, inject, injectable } from "inversify";
 
-import { HadesClient, listener, listenFor, singleton } from "@hades-ts/core";
+import { listener, listenFor, service } from "@hades-ts/core";
+import { type ILogger, logger } from "@hades-ts/logging";
 
 import type { InteractionFactory } from "./InteractionFactory";
 import { InteractionFactoryRegistry } from "./InteractionFactoryRegistry";
 
-@listener()
-@singleton()
-export class InteractionService {
+@injectable()
+export abstract class IInteractionDispatch {
+    abstract dispatch(interaction: BaseInteraction): Promise<void>;
+}
+
+@injectable()
+export class InteractionDispatch implements IInteractionDispatch {
     @inject(Container)
     protected container!: Container;
 
-    /** factories for creating interaction instances */
     @inject(InteractionFactoryRegistry)
     public factories!: InteractionFactoryRegistry;
 
-    @listenFor(Events.InteractionCreate)
-    onInteractionCreate(interaction: BaseInteraction) {
-        return this.dispatch(interaction);
+    async dispatch(interaction: BaseInteraction) {
+        return this.execute(this.container, interaction);
     }
 
-    async dispatch(interaction: BaseInteraction) {
+    async execute(container: Container, interaction: BaseInteraction) {
         let factory: InteractionFactory | undefined;
 
         if (interaction.isCommand()) {
@@ -40,7 +43,7 @@ export class InteractionService {
 
         if (factory) {
             try {
-                const handlers = await factory.create(interaction);
+                const handlers = await factory.create(container, interaction);
                 for (const handler of handlers) {
                     handler.execute(interaction);
                 }
@@ -57,5 +60,32 @@ export class InteractionService {
         } else {
             console.error("No factory found for interaction", interaction.type);
         }
+    }
+}
+
+@listener()
+@service()
+export class InteractionService {
+    @inject(Container)
+    protected container!: Container;
+
+    @inject(IInteractionDispatch)
+    protected dispatcher!: IInteractionDispatch;
+
+    @listenFor(Events.InteractionCreate)
+    onInteractionCreate(interaction: BaseInteraction) {
+        return this.dispatch(interaction);
+    }
+
+    @logger("InteractionService")
+    protected log!: ILogger;
+
+    async dispatch(interaction: BaseInteraction) {
+        this.log.debug("Dispatching interaction", {
+            user: interaction.user.id,
+            interactionId: interaction.id,
+            interactionType: interaction.type,
+        });
+        await this.dispatcher.dispatch(interaction);
     }
 }

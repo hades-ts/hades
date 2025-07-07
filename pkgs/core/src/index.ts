@@ -8,7 +8,7 @@ import {
 } from "./config/loadConfigurationModule";
 import { withDecorators } from "./decorators";
 import { withServices } from "./decorators/service";
-import { withEvents } from "./events";
+import { IEventService, withEvents } from "./events";
 import { ILoginService } from "./login";
 import { withLogin } from "./login/LoginInstaller";
 import type { InstallerFunc } from "./utils";
@@ -29,6 +29,8 @@ export type BootOptions = {
 export const boot = async (botService: Newable<any>, options?: BootOptions) => {
     try {
         const container = new Container();
+        (container as any).type = "global";
+        (container as any).id = "global";
         container.bind(Container).toConstantValue(container);
 
         const userInstallers = options?.installers ?? [];
@@ -49,6 +51,7 @@ export const boot = async (botService: Newable<any>, options?: BootOptions) => {
             installer(container);
         }
 
+        void container.get(IEventService);
         void container.get(botService, { autobind: true });
         const ls = container.get(ILoginService);
         await ls.login();

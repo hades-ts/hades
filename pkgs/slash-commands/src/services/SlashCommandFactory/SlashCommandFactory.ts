@@ -6,8 +6,6 @@ import {
 } from "discord.js";
 import { Container, type ServiceIdentifier } from "inversify";
 
-import { GuildManager } from "@hades-ts/guilds";
-
 import type { SlashCommandMeta } from "../../metadata";
 import type { SlashCommand } from "../../models";
 import { SlashArgInstaller } from "./SlashArgInstaller";
@@ -20,16 +18,13 @@ import { SlashArgInstaller } from "./SlashArgInstaller";
  * create an instance of that command class suitable for execution.
  */
 export class SlashCommandFactory {
-    /** container to derive sub-containers from */
-    parentContainer: Container;
     /** the meta of the associated command */
     meta: SlashCommandMeta;
 
     /** arguments of the associated command */
     argInstallers = new Collection<string, SlashArgInstaller>();
 
-    constructor(parentContainer: Container, meta: SlashCommandMeta) {
-        this.parentContainer = parentContainer;
+    constructor(meta: SlashCommandMeta) {
         this.meta = meta;
         // setup arguments
         for (const [argName, argMeta] of meta.args) {
@@ -74,15 +69,10 @@ export class SlashCommandFactory {
      * @param context The parent container.
      * @returns A sub-container.
      */
-    async createSubContainer(interaction: CommandInteraction) {
-        let parent = this.parentContainer;
-
-        if (interaction.guild && parent.isBound(GuildManager)) {
-            const guildManager = parent.get(GuildManager);
-            const guildContainer = await guildManager.get(interaction.guild);
-            parent = guildContainer;
-        }
-
+    async createSubContainer(
+        parent: Container,
+        interaction: CommandInteraction,
+    ) {
         const di = new Container({ parent });
 
         // bind the command class
@@ -99,9 +89,9 @@ export class SlashCommandFactory {
      * @param context A command invocation context.
      * @returns A command instance.
      */
-    async create(interaction: ChatInputCommandInteraction) {
+    async create(parent: Container, interaction: ChatInputCommandInteraction) {
         // subcontainer config
-        const subContainer = await this.createSubContainer(interaction);
+        const subContainer = await this.createSubContainer(parent, interaction);
 
         // parse, validate and bind argument values
         await this.installArguments(subContainer, interaction);
@@ -117,13 +107,13 @@ export class SlashCommandFactory {
         return inst;
     }
 
-    async complete(interaction: AutocompleteInteraction) {
+    async complete(parent: Container, interaction: AutocompleteInteraction) {
         const { name, value } = interaction.options.getFocused(true);
         const argMeta = this.meta.args.get(name);
         if (!argMeta) {
             return;
         }
-        const di = new Container({ parent: this.parentContainer });
+        const di = new Container({ parent });
         di.bind(AutocompleteInteraction).toConstantValue(interaction);
         const completer = di.get(argMeta.choicesCompleter!, { autobind: true });
         const choices = await completer.complete(value);

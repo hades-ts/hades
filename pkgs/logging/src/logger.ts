@@ -11,8 +11,10 @@ export type LoggerDecoratorParams = {
     id: string;
 };
 
-export const [_logger, findLoggers] =
+export const [_logger, _findLoggers] =
     createMemberCategoric<LoggerDecoratorParams>();
+
+export const findLoggers = _findLoggers;
 
 const alphabet = "abcdefghijklmnopqrstuvwxyz";
 
@@ -70,7 +72,7 @@ export class ProxyLogger implements ILogger {
     protected level!: LogLevel;
 
     @inject(ILogSink)
-    protected log!: ILogSink;
+    public log!: ILogSink;
 
     setName(name: string) {
         this.name = name;
@@ -231,24 +233,27 @@ export const withLogging =
             for (const member of members) {
                 const data = member.data as unknown as LoggerDecoratorParams;
                 const enabled = isEnabled(_disabledTags, data);
-                const logger = fromSubContainer(
-                    container,
-                    ProxyLogger,
-                    (subContainer) => {
-                        if (!enabled) {
-                            subContainer
-                                .bind(ILogSink)
-                                .to(NullLogger)
-                                .inSingletonScope();
-                        }
-                    },
-                );
-                logger.setName(data.name);
-                logger.setTags(data.tags);
-                logger.setLevel(level);
                 container
                     .bind(Symbol.for(data.id))
-                    .toConstantValue(logger)
+                    .toDynamicValue(() => {
+                        const logger = fromSubContainer(
+                            container,
+                            ProxyLogger,
+                            (subContainer) => {
+                                if (!enabled) {
+                                    subContainer
+                                        .bind(ILogSink)
+                                        .to(NullLogger)
+                                        .inSingletonScope();
+                                }
+                            },
+                        );
+                        logger.setName(data.name);
+                        logger.setTags(data.tags);
+                        logger.setLevel(level);
+                        return logger;
+                    })
+                    .inSingletonScope()
                     .whenNamed(data.id);
             }
         }

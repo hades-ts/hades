@@ -12,7 +12,6 @@ export default function SelectedPropertiesList({
     selectedPropertiesArray,
     activeFilters,
     clearPropertyFilters,
-    togglePropertySelection,
 }: SelectedPropertiesListProps) {
     const { excludedProperties } = useFilterStore();
     const excludedPropertiesArray = Array.from(excludedProperties);

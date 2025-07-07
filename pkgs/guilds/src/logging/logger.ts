@@ -1,9 +1,9 @@
-import { createMemberCategoric } from "@ldlework/categoric-decorators";
-import { Container, inject, named, type Newable } from "inversify";
+import { Container, injectable, injectFromBase, type Newable } from "inversify";
 
 import {
     ConsoleLogger,
     FileLogger,
+    findLoggers,
     ILogRenderer,
     ILogSink,
     isEnabled,
@@ -14,6 +14,8 @@ import {
     ProxyLogger,
 } from "@hades-ts/logging";
 
+import { GuildInfo } from "../GuildManager";
+
 export type GuildLoggerDecoratorParams = {
     target: any;
     field: string;
@@ -22,28 +24,6 @@ export type GuildLoggerDecoratorParams = {
     id: string;
 };
 
-export const [_logger, findLoggers] =
-    createMemberCategoric<GuildLoggerDecoratorParams>();
-
-const alphabet = "abcdefghijklmnopqrstuvwxyz";
-
-const randomString = () => {
-    let result = "";
-    for (let i = 0; i < 10; i++) {
-        result += alphabet[Math.floor(Math.random() * alphabet.length)];
-    }
-    return result;
-};
-
-export const guildLogger =
-    (name: string, ...tags: string[]) =>
-    (target: any, field: string) => {
-        const id = randomString();
-        _logger({ target, field, name, tags, id })(target, field);
-        inject(Symbol.for(id))(target, field);
-        named(id)(target, field);
-    };
-
 export type GuildLoggerMeta = {
     name: string;
     tags: string[];
@@ -51,6 +31,11 @@ export type GuildLoggerMeta = {
     guildId: string;
 } & Record<string, any>;
 
+@injectable()
+@injectFromBase({
+    extendConstructorArguments: false,
+    extendProperties: true,
+})
 export class GuildProxyLogger extends ProxyLogger {
     protected guildId!: string;
 
@@ -99,32 +84,42 @@ export const withGuildLogging =
             return;
         }
 
-        container.bind(ProxyLogger).to(ProxyLogger).inTransientScope();
+        container.bind(GuildProxyLogger).toSelf().inTransientScope();
+
+        console.log(
+            `Found ${loggers.size} loggers to bind to guild container.`,
+        );
 
         for (const [_, loggerMeta] of loggers) {
             const members = Object.values(loggerMeta.members);
+
             for (const member of members) {
                 const data =
                     member.data as unknown as GuildLoggerDecoratorParams;
                 const enabled = isEnabled(_disabledTags, data);
-                const logger = fromSubContainer(
-                    container,
-                    ProxyLogger,
-                    (subContainer) => {
-                        if (!enabled) {
-                            subContainer
-                                .bind(ILogSink)
-                                .to(NullLogger)
-                                .inSingletonScope();
-                        }
-                    },
-                );
-                logger.setName(data.name);
-                logger.setTags(data.tags);
-                logger.setLevel(level);
                 container
                     .bind(Symbol.for(data.id))
-                    .toConstantValue(logger)
+                    .toDynamicValue(() => {
+                        const guildInfo = container.get(GuildInfo);
+                        const logger = fromSubContainer(
+                            container,
+                            GuildProxyLogger,
+                            (subContainer) => {
+                                if (!enabled) {
+                                    subContainer
+                                        .bind(ILogSink)
+                                        .to(NullLogger)
+                                        .inSingletonScope();
+                                }
+                            },
+                        );
+                        logger.setName(data.name);
+                        logger.setTags(data.tags);
+                        logger.setLevel(level);
+                        logger.setGuildId(guildInfo.id);
+                        return logger;
+                    })
+                    .inSingletonScope()
                     .whenNamed(data.id);
             }
         }
@@ -140,7 +135,7 @@ export const withConsoleGuildLogging =
         withGuildLogging(level, disabledTags)(container);
     };
 
-export const withFileGuildLogging =
+export const withSingleFileGuildLogging =
     (path: string, level: LogLevel, disabledTags?: string[]) =>
     (container: Container) => {
         container.bind(ILogSink).to(FileLogger).inSingletonScope();
@@ -152,7 +147,7 @@ export const withFileGuildLogging =
         withGuildLogging(level, disabledTags)(container);
     };
 
-export const withJsonGuildLogging =
+export const withSingleFileJsonGuildLogging =
     (path: string, level: LogLevel, disabledTags?: string[]) =>
     (container: Container) => {
         container.bind(ILogSink).to(FileLogger).inSingletonScope();

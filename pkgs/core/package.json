@@ -12,8 +12,8 @@
         "dist"
     ],
     "scripts": {
-        "map": "tsc --emitDeclarationOnly --declaration --declarationMap",
-        "build": "pkgroll --sourcemap && pnpm run map",
+        "map": "tsc --emitDeclarationOnly --declaration --declarationMap --sourcemap",
+        "build": "pkgroll && pnpm run map",
         "clean": "rimraf dist",
         "watch": "tsc -p tsconfig.json -w"
     },

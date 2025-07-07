@@ -1326,6 +1326,12 @@ importers:
       '@hades-ts/core':
         specifier: workspace:^
         version: link:../core
+      '@hades-ts/interactions':
+        specifier: workspace:^
+        version: link:../interactions
+      '@hades-ts/slash-commands':
+        specifier: workspace:^
+        version: link:../slash-commands
       '@hades-ts/tsconfig':
         specifier: workspace:*
         version: link:../../libs/tsconfig
@@ -1389,9 +1395,9 @@ importers:
 
   pkgs/interactions:
     dependencies:
-      '@hades-ts/guilds':
+      '@hades-ts/logging':
         specifier: workspace:^
-        version: link:../guilds
+        version: link:../logging
       discord-command-parser:
         specifier: ^1.5.3
         version: 1.5.3
@@ -1602,9 +1608,6 @@ importers:
 
   pkgs/slash-commands:
     dependencies:
-      '@hades-ts/guilds':
-        specifier: workspace:^
-        version: link:../guilds
       '@hades-ts/logging':
         specifier: workspace:^
         version: link:../logging

@@ -37,7 +37,6 @@ export class GuildManager {
 
     @listenFor(Events.ClientReady)
     async onClientReady() {
-        console.log("GuildManager is ready");
         for (const guild of this.client.guilds.cache.values()) {
             const subContainer = await this.get(guild);
             for (const [type] of findGuildServices()) {
@@ -48,6 +47,8 @@ export class GuildManager {
 
     protected async setupGuild(guild: Guild) {
         const subContainer: Container = makeGuildContainer(this.container);
+        (subContainer as any).type = "guild";
+        (subContainer as any).id = guild.id;
 
         subContainer.bind(Container).toConstantValue(subContainer);
 

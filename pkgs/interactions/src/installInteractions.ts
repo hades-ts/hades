@@ -9,7 +9,6 @@ import type { Container, Newable } from "inversify";
 import { findInteractions } from "./decorators";
 import type { Interaction } from "./Interaction";
 import { InteractionFactory } from "./InteractionFactory";
-import { InteractionService } from "./InteractionService";
 
 const groupMetasByInteractionAndSubType = (
     metas: CategoricClassMeta<{
@@ -40,7 +39,7 @@ const groupMetasByInteractionAndSubType = (
     return grouped;
 };
 
-const installCommandFactories = (
+const installInteractionFactories = (
     container: Container,
     metas: CategoricClassMeta<{
         type: InteractionType;
@@ -51,7 +50,6 @@ const installCommandFactories = (
     for (const [interaction, subTypes] of grouped) {
         for (const [subType, types] of subTypes) {
             const factory = new InteractionFactory(
-                container,
                 interaction,
                 subType ?? undefined,
                 types,
@@ -67,8 +65,7 @@ const installCommandFactories = (
  * Binds InteractionFactory instances for each @interaction
  * @param container The Container to use.
  */
-export const withInteractions = (container: Container) => {
+export const withInteractions = () => (container: Container) => {
     const metas = Array.from(findInteractions().values());
-    installCommandFactories(container, metas);
-    container.get(InteractionService);
+    installInteractionFactories(container, metas);
 };

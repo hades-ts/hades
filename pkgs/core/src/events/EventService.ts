@@ -1,4 +1,4 @@
-import { inject } from "inversify";
+import { Container, inject } from "inversify";
 
 import { type ILogger, logger } from "@hades-ts/logging";
 
@@ -19,6 +19,9 @@ export class EventService implements IEventService {
 
     @logger("EventService")
     protected log!: ILogger;
+
+    @inject(Container)
+    protected container!: Container;
 
     /**
      * Register a bot for event callbacks.

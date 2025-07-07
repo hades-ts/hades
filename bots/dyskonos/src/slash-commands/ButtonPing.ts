@@ -7,7 +7,6 @@ import {
     InteractionType,
 } from "discord.js";
 
-import { guildService } from "@hades-ts/guilds";
 import { interaction } from "@hades-ts/interactions";
 import { command, SlashCommand } from "@hades-ts/slash-commands";
 
@@ -40,26 +39,5 @@ export class ButtonPingCommand extends SlashCommand {
             components: [row],
             withResponse: true,
         });
-
-        // const filter = (i) => i.user.id === this.interaction.user.id;
-
-        // try {
-        //     const ping = await response.resource.message.awaitMessageComponent({
-        //         filter,
-        //         time: 60_000,
-        //     });
-
-        //     if (ping.customId === "ping") {
-        //         await this.interaction.editReply({
-        //             content: "Pong!",
-        //             components: [],
-        //         });
-        //     }
-        // } catch (_error) {
-        //     await this.interaction.editReply({
-        //         content: "You took too long to respond!",
-        //         components: [],
-        //     });
-        // }
     }
 }
