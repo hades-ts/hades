@@ -13,14 +13,36 @@ import { BotService } from "./services";
 import "./guildServices";
 import "./slash-commands";
 
-import { withGuildLogging, withGuilds } from "@hades-ts/guilds";
+import {
+    GuildPrefixLogLineRenderer,
+    withGuildLogging,
+    withGuilds,
+} from "@hades-ts/guilds";
 import { withInteractions } from "@hades-ts/interactions";
-import { LogLevel, withJsonLogging } from "@hades-ts/logging";
+import {
+    LogLevel,
+    withConsoleSink,
+    withJsonSink,
+    withLogging,
+} from "@hades-ts/logging";
+
+const level = LogLevel.DEBUG;
 
 boot(BotService, {
     installers: [
-        withJsonLogging("logs/dyskonos.json", LogLevel.DEBUG),
-        withGuilds(withGuildLogging(LogLevel.DEBUG)),
+        withLogging({
+            level,
+            sinks: [withConsoleSink(), withJsonSink("logs/dyskonos.json")],
+        }),
+        withGuilds(
+            withGuildLogging({
+                level,
+                sinks: [
+                    withConsoleSink(GuildPrefixLogLineRenderer),
+                    withJsonSink("logs/dyskonos.json"),
+                ],
+            }),
+        ),
         withSlashCommands(),
         withInteractions(),
         withHelp(),
