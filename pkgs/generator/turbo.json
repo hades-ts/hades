@@ -4,7 +4,7 @@
     "tasks": {
         "build": {
             "inputs": ["generators/**"],
-            "outputs": ["generators/index.js"]
+            "outputs": ["generators/app/index.js"]
         }
     }
 }
