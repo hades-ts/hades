@@ -11,7 +11,7 @@
     "scripts": {
         "build": "tsc -b",
         "copydeps": "copyfiles --up 1 'src/*/templates/**' generators",
-        "lint": "tsc --no-emit && eslint ./src --ext .js,.ts",
+        "lint": "tsc --noEmit && eslint ./src --ext .js,.ts",
         "clean": "rimraf -rf ./generators/index.js",
         "watch": "pnpm run watch-tsc --silent & pnpm run watch-deps --silent",
         "watch-deps": "onchange 'src/*/templates/**' --initial -- npm run copydeps --silent",

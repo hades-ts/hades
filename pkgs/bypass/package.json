@@ -24,7 +24,7 @@
         "map": "tsc --emitDeclarationOnly --declaration --declarationMap",
         "build": "pkgroll --sourcemap",
         "clean": "rimraf dist",
-        "lint": "tsc --no-emit",
+        "lint": "tsc --noEmit",
         "watch": "tsc -p tsconfig.json -w"
     },
     "devDependencies": {
