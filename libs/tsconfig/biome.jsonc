@@ -1,10 +1,11 @@
 {
-  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
-  "extends": "//",
-  "json": {
-    "parser": {
-      "allowComments": true,
-      "allowTrailingCommas": true
-    }
-  }
+	"root": false,
+	"$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+	"extends": "//",
+	"json": {
+		"parser": {
+			"allowComments": true,
+			"allowTrailingCommas": true
+		}
+	}
 }
