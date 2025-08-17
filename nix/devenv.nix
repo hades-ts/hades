@@ -2,14 +2,30 @@
 {
   imports = [
     inputs.devenv.flakeModule
-    inputs.files.flakeModules.default
-    inputs.treefmt-nix.flakeModule
   ];
+
+  flake-file = {
+    nixConfig = {
+      extra-trusted-public-keys = "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=";
+      extra-substituters = "https://devenv.cachix.org";
+    };
+    inputs = {
+      devenv-root = {
+        url = "file+file:///dev/null";
+        flake = false;
+      };
+      devenv.url = "github:cachix/devenv";
+      nix2container.url = "github:nlewo/nix2container";
+      nix2container.inputs.nixpkgs.follows = "nixpkgs";
+      mk-shell-bin.url = "github:rrbutani/nix-mk-shell-bin";
+    };
+  };
 
   perSystem =
     {
       pkgs,
       config,
+      self',
       ...
     }:
     {
@@ -19,6 +35,7 @@
           pkgs.git
           pkgs.turbo
           config.treefmt.build.wrapper
+          self'.packages.write-flake
         ];
 
         languages = {
@@ -41,11 +58,6 @@
           '';
           before = [ "devenv:enterShell" ];
         };
-      };
-
-      treefmt.programs = {
-        biome.enable = true;
-        nixfmt.enable = true;
       };
     };
 }
