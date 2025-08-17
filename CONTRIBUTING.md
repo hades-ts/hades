@@ -12,7 +12,7 @@
 - [nix-direnv](https://github.com/nix-community/nix-direnv) is recommended.
 
 Provides us with a consistent dev environment. The nix flake is responsible for generating
-`/treefmt.toml` using devenv and [treefmt-nix](https://github.com/numtide/treefmt-nix).
+[treefmt.toml](treefmt.toml) using devenv and [treefmt-nix](https://github.com/numtide/treefmt-nix).
 
 ### Entering the devenv
 
