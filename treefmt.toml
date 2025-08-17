@@ -1,6 +1,6 @@
 ### THIS FILE IS AUTO-GENERATED. SEE 'nix/devenv.nix' ###
 [formatter.biome]
-command = "/nix/store/qpkbida3knr3h509hc8pjhi6yi329v5z-biome-1.9.4/bin/biome"
+command = "/nix/store/jm4r8cv2hzjm75pjrvizx2a125x93qvk-biome-2.1.4/bin/biome"
 excludes = []
 includes = [
     "*.js",
@@ -18,10 +18,10 @@ includes = [
     "*.jsonc",
     "*.css",
 ]
-options = ["format", "--write", "--no-errors-on-unmatched"]
+options = ["check", "--write", "--no-errors-on-unmatched", "--config-path", "/nix/store/c4pbxww2l24q2zpbk8wkspkhijmx7vnl-validated-biome-config.json"]
 
 [formatter.nixfmt]
-command = "/nix/store/is564by3v63jz3gvrz9wizd0l3ghqj4g-nixfmt-unstable-2025-04-04/bin/nixfmt"
+command = "/nix/store/d1wxvx12w6nsnabanj2p68q12ghd1srj-nixfmt-1.0.0/bin/nixfmt"
 excludes = []
 includes = ["*.nix"]
 options = []
